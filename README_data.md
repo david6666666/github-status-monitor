@@ -1,6 +1,6 @@
 # GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-14 12:23:17 UTC
+Generated on: 2025-08-14 13:40:38 UTC
 
 **统计范围**: vllm-project 组织的所有贡献
 
@@ -10,7 +10,7 @@ Generated on: 2025-08-14 12:23:17 UTC
 
 这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-总共追踪了 11 个用户在 vllm-project 组织中的贡献情况。
+总共追踪了 12 个用户在 vllm-project 组织中的贡献情况。
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 
@@ -116,6 +116,17 @@ _No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
+
+### 👤 chickeyton - 总贡献: 2
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+**Issues (2 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
+| [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 GZQ (@Gongzq5) - 总贡献: 1
 
