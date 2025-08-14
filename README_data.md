@@ -1,6 +1,6 @@
 # GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-14 07:31:48 UTC
+Generated on: 2025-08-14 07:41:53 UTC
 
 **统计范围**: vllm-project 组织
 **统计时间**: 2025-06-30 以后
@@ -37,9 +37,9 @@ Generated on: 2025-08-14 07:31:48 UTC
 | [[Bug]: After online_serving disagg_example_p2p_nccl_xpyd.sh cleanup, there is a zombie process](https://github.com/vllm-project/vllm/issues/21432) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-23 |
 | [[RFC]: EPLB Execution Optimization From pr 18343](https://github.com/vllm-project/vllm/issues/20805) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 4
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 5
 
-**Pull Requests (0 open, 4 merged)**
+**Pull Requests (1 open, 4 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Doc] Fix a syntax error of example code in structured_outputs.md](https://github.com/vllm-project/vllm/pull/22045) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
@@ -50,6 +50,20 @@ Generated on: 2025-08-14 07:31:48 UTC
 
 **Issues (0 total)**
 _No public issues found._
+
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
+
+**Pull Requests (2 open, 1 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 |
+| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 |
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
 ### 👤 knlnguyen1802 - 总贡献: 3
 
@@ -63,17 +77,29 @@ _No relevant pull requests found._
 | [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
-### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 2
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 2
 
-**Pull Requests (2 open, 0 merged)**
+**Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 |
-| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 |
+| [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon](https://github.com/vllm-project/vllm/pull/21380) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-22 |
 
-**Issues (0 total)**
-_No public issues found._
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
+
+### 👤 NATURE (@natureofnature) - 总贡献: 2
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 2
 
@@ -96,25 +122,15 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 1
+### 👤 R2-Y - 总贡献: 1
 
-**Pull Requests (0 open, 1 merged)**
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+**Issues (1 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon](https://github.com/vllm-project/vllm/pull/21380) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-22 |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 NATURE (@natureofnature) - 总贡献: 1
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-
-**Issues (0 total)**
-_No public issues found._
+| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
 
 ### 👤 Gamhang (@ahengljh) - 总贡献: 1
 
@@ -132,14 +148,6 @@ _No public issues found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 R2-Y - 总贡献: 0
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
