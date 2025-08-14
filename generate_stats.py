@@ -6,7 +6,7 @@ from github import Github
 
 # =================================CONFIG=================================
 # The GitHub usernames you want to track
-USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "syedmba", "wuhang2014"]
+USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "syedmba", "wuhang2"]
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
@@ -24,6 +24,7 @@ def get_user_display_name(github_instance, username):
     try:
         user = github_instance.get_user(username)
         display_name = user.name if user.name else username
+        print(f"Display name for {username}: {display_name}")
         return display_name
     except Exception as e:
         print(f"Error fetching display name for {username}: {e}")
@@ -67,6 +68,10 @@ def generate_chart(user_data):
     usernames = [user['display_name'] for user in user_data]
     pr_counts = [user['stats']['open_prs'].totalCount + user['stats']['merged_prs'].totalCount for user in user_data]
     issue_counts = [user['stats']['issues'].totalCount for user in user_data]
+    
+    print(f"Chart data - Users: {usernames}")
+    print(f"Chart data - PR counts: {pr_counts}")
+    print(f"Chart data - Issue counts: {issue_counts}")
     
     # 创建子图配置
     chart_config = {
@@ -132,7 +137,7 @@ def generate_chart(user_data):
     }
     
     qc_url = "https://quickchart.io/chart"
-    response = requests.post(qc_url, json={"chart": chart_config, "format": "svg", "width": 800, "height": 600})
+    response = requests.post(qc_url, json={"chart": chart_config, "format": "svg", "width": 1000, "height": 600})
     
     if response.status_code == 200:
         with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
@@ -143,17 +148,20 @@ def generate_chart(user_data):
 
 def generate_markdown(user_data):
     """Generates Markdown text for tables from the sorted user data."""
-    markdown_text = "这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
+    markdown_text = f"这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
+    markdown_text += f"总共追踪了 {len(user_data)} 个用户的贡献情况。\n\n"
+    
     for user in user_data:
         username = user['username']
         display_name = user['display_name']
         stats = user['stats']
+        total_contributions = user['total_contributions']
         
         # 显示用户名和显示名称
         if display_name != username:
-            markdown_text += f"### 👤 {display_name} (@{username})\n\n"
+            markdown_text += f"### 👤 {display_name} (@{username}) - 总贡献: {total_contributions}\n\n"
         else:
-            markdown_text += f"### 👤 {username}\n\n"
+            markdown_text += f"### 👤 {username} - 总贡献: {total_contributions}\n\n"
         
         # PR Table
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
@@ -207,6 +215,11 @@ def generate_markdown(user_data):
 
 def create_fixed_readme(content):
     """Creates a README file with fixed filename."""
+    # 确保先删除已存在的文件
+    if os.path.exists(README_FILENAME):
+        os.remove(README_FILENAME)
+        print(f"Removed existing {README_FILENAME}")
+    
     # Create the full README content with header
     readme_header = f"# GitHub Stats Report\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
@@ -215,31 +228,42 @@ def create_fixed_readme(content):
     
     full_content = readme_header + content
     
-    # Write to the fixed filename
+    # Write to the fixed filename with explicit encoding
     with open(README_FILENAME, 'w', encoding='utf-8') as f:
         f.write(full_content)
     
     print(f"README created successfully: {README_FILENAME}")
+    print(f"README file size: {os.path.getsize(README_FILENAME)} bytes")
     return README_FILENAME
 
 if __name__ == "__main__":
     if not GITHUB_TOKEN:
         raise ValueError("GH_PAT environment variable not set.")
         
+    print(f"Starting GitHub stats generation for {len(USERNAMES)} users...")
+    print(f"Users to track: {USERNAMES}")
+    
     github = Github(GITHUB_TOKEN)
     
     all_user_data = []
     for username in USERNAMES:
-        display_name = get_user_display_name(github, username)
-        stats = get_user_stats(github, username)
-        total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount + stats['issues'].totalCount
-        all_user_data.append({
-            "username": username,
-            "display_name": display_name,
-            "stats": stats,
-            "total_contributions": total_contributions
-        })
+        try:
+            display_name = get_user_display_name(github, username)
+            stats = get_user_stats(github, username)
+            total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount + stats['issues'].totalCount
+            all_user_data.append({
+                "username": username,
+                "display_name": display_name,
+                "stats": stats,
+                "total_contributions": total_contributions
+            })
+            print(f"Successfully processed {username} with {total_contributions} total contributions")
+        except Exception as e:
+            print(f"Error processing user {username}: {e}")
+            # 继续处理其他用户
+            continue
         
+    print(f"Successfully processed {len(all_user_data)} users")
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
     generate_chart(all_user_data)
@@ -247,3 +271,4 @@ if __name__ == "__main__":
     readme_filename = create_fixed_readme(markdown_output)
 
     print(f"\n✅ All tasks completed successfully. README saved as: {readme_filename}")
+    print(f"Processed users: {[user['username'] for user in all_user_data]}")
