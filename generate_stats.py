@@ -170,10 +170,7 @@ def generate_chart(user_data):
             },
             "plugins": {
                 "datalabels": {
-                    "display": function(context) {
-                        # 只在数值大于0时显示标签
-                        return context.parsed.y > 0;
-                    },
+                    "display": "function(context) { return context.parsed.y > 0; }",
                     "anchor": "end",
                     "align": "top",
                     "color": "#333",
@@ -181,10 +178,7 @@ def generate_chart(user_data):
                         "size": 10,
                         "weight": "bold"
                     },
-                    "formatter": function(value) {
-                        # 只显示非零值
-                        return value > 0 ? value : '';
-                    }
+                    "formatter": "function(value) { return value > 0 ? value : ''; }"
                 }
             },
             "layout": {
