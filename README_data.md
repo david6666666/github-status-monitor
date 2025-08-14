@@ -1,12 +1,14 @@
 # GitHub Stats Report
 
-Generated on: 2025-08-14 06:14:59 UTC
+Generated on: 2025-08-14 06:19:20 UTC
+
+![GitHub Stats Chart](stats_chart.svg)
 
 ---
 
 这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-### 👤 david6666666
+### 👤 WeiQing Chen (@david6666666)
 
 **Pull Requests (4 open, 6 merged)**
 | Title | Repository | State |
@@ -35,7 +37,7 @@ Generated on: 2025-08-14 06:14:59 UTC
 | [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` |
 | [how to load berlin database](https://github.com/MarioRuggieri/Emotion-Recognition-from-Speech/issues/4) | [MarioRuggieri/Emotion-Recognition-from-Speech](https://github.com/MarioRuggieri/Emotion-Recognition-from-Speech) | `open` |
 
-### 👤 fake0fan
+### 👤 Chenguang Zheng (@fake0fan)
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State |
@@ -51,7 +53,7 @@ Generated on: 2025-08-14 06:14:59 UTC
 | [Some questions about the code of GrabAllocator.java](https://github.com/neo4j/neo4j/issues/12569) | [neo4j/neo4j](https://github.com/neo4j/neo4j) | `closed` |
 | [[Change the columns]](https://github.com/TatianaJin/cluster_monitor/issues/1) | [TatianaJin/cluster_monitor](https://github.com/TatianaJin/cluster_monitor) | `open` |
 
-### 👤 hsliuustc0106
+### 👤 Hongsheng Liu (@hsliuustc0106)
 
 **Pull Requests (0 open, 4 merged)**
 | Title | Repository | State |
