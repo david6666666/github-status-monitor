@@ -2,45 +2,44 @@ name: Update GitHub Stats
 
 on:
   schedule:
-    # 每小时运行一次
+    # Runs every hour
     - cron: '0 * * * *'
   workflow_dispatch:
-    # 允许手动触发
+    # Allows for manual runs
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    permissions:      # <-- ADD THIS BLOCK
-      contents: write # <-- GRANT WRITE PERMISSION
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install PyGithub
+          pip install PyGithub requests # <-- ADD 'requests' HERE
 
-      - name: Run script to update stats
+      - name: Run script to update stats and chart
         run: python generate_stats.py
         env:
-          # 从仓库的 Secrets 中获取令牌
           GH_PAT: ${{ secrets.GH_PAT }}
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          # 检查是否有改动，只有在有改动时才提交
+          # Add both the README and the new chart file
+          git add README.md stats_chart.svg # <-- ADD THE CHART FILE HERE
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "📊 Chore: Update stats"
+            git commit -m "📊 Chore: Update stats and chart"
             git push
           fi
