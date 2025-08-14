@@ -6,7 +6,7 @@ from github import Github
 
 # =================================CONFIG=================================
 # The GitHub usernames you want to track
-USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan"]
+USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "syedmba", "wuhang2014"]
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
