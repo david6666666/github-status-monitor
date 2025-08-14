@@ -70,91 +70,161 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    生成包含PR和Issue柱状图的子图
+    生成包含分离的Open PR、Merged PR和Issue柱状图的子图
     """
-    print("Generating new subplot chart with PR and Issue bar charts...")
+    print("Generating new grouped bar chart with separated PR types and Issues...")
     
-    # 准备数据
-    usernames = [user['display_name'] for user in user_data]
-    pr_counts = [user['stats']['open_prs'].totalCount + user['stats']['merged_prs'].totalCount for user in user_data]
-    issue_counts = [user['stats']['issues'].totalCount for user in user_data]
+    # 准备数据 - 确保所有用户都包含在内，即使数据为0
+    usernames = []
+    open_pr_counts = []
+    merged_pr_counts = []
+    issue_counts = []
+    
+    for user in user_data:
+        usernames.append(user['display_name'])
+        open_pr_counts.append(user['stats']['open_prs'].totalCount)
+        merged_pr_counts.append(user['stats']['merged_prs'].totalCount)
+        issue_counts.append(user['stats']['issues'].totalCount)
     
     print(f"Chart data - Users: {usernames}")
-    print(f"Chart data - PR counts: {pr_counts}")
+    print(f"Chart data - Open PR counts: {open_pr_counts}")
+    print(f"Chart data - Merged PR counts: {merged_pr_counts}")
     print(f"Chart data - Issue counts: {issue_counts}")
     
-    # 创建子图配置
+    # 创建分组柱状图配置
     chart_config = {
         "type": "bar",
         "data": {
             "labels": usernames,
             "datasets": [
                 {
-                    "label": "Pull Requests",
-                    "data": pr_counts,
-                    "backgroundColor": "rgba(54, 162, 235, 0.8)",
-                    "borderColor": "rgba(54, 162, 235, 1)",
+                    "label": "Open PRs",
+                    "data": open_pr_counts,
+                    "backgroundColor": "rgba(255, 193, 7, 0.8)",  # 黄色 - Open PRs
+                    "borderColor": "rgba(255, 193, 7, 1)",
+                    "borderWidth": 1
+                },
+                {
+                    "label": "Merged PRs",
+                    "data": merged_pr_counts,
+                    "backgroundColor": "rgba(40, 167, 69, 0.8)",  # 绿色 - Merged PRs
+                    "borderColor": "rgba(40, 167, 69, 1)",
                     "borderWidth": 1
                 },
                 {
                     "label": "Issues",
                     "data": issue_counts,
-                    "backgroundColor": "rgba(255, 99, 132, 0.8)",
-                    "borderColor": "rgba(255, 99, 132, 1)",
+                    "backgroundColor": "rgba(220, 53, 69, 0.8)",  # 红色 - Issues
+                    "borderColor": "rgba(220, 53, 69, 1)",
                     "borderWidth": 1
                 }
             ]
         },
         "options": {
             "responsive": True,
+            "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": f"{TARGET_ORG} 组织贡献统计 (2025-06-30以后)",
-                "fontSize": 16
+                "text": f"{TARGET_ORG} 组织贡献统计 (自 {SEARCH_START_DATE})",
+                "fontSize": 18,
+                "fontColor": "#333"
             },
             "scales": {
                 "yAxes": [{
                     "ticks": {
                         "beginAtZero": True,
-                        "stepSize": 1
+                        "stepSize": 1,
+                        "fontSize": 12
                     },
                     "scaleLabel": {
                         "display": True,
-                        "labelString": "数量"
+                        "labelString": "数量",
+                        "fontSize": 14
+                    },
+                    "gridLines": {
+                        "color": "rgba(0,0,0,0.1)"
                     }
                 }],
                 "xAxes": [{
                     "scaleLabel": {
                         "display": True,
-                        "labelString": "用户"
+                        "labelString": "用户",
+                        "fontSize": 14
+                    },
+                    "ticks": {
+                        "fontSize": 10,
+                        "maxRotation": 45,
+                        "minRotation": 0
+                    },
+                    "gridLines": {
+                        "display": False
                     }
                 }]
             },
             "legend": {
-                "position": "top"
+                "position": "top",
+                "labels": {
+                    "fontSize": 12,
+                    "padding": 20
+                }
             },
             "plugins": {
                 "datalabels": {
+                    "display": function(context) {
+                        # 只在数值大于0时显示标签
+                        return context.parsed.y > 0;
+                    },
                     "anchor": "end",
                     "align": "top",
-                    "color": "#444",
+                    "color": "#333",
                     "font": {
+                        "size": 10,
                         "weight": "bold"
+                    },
+                    "formatter": function(value) {
+                        # 只显示非零值
+                        return value > 0 ? value : '';
                     }
+                }
+            },
+            "layout": {
+                "padding": {
+                    "top": 30,
+                    "bottom": 10,
+                    "left": 10,
+                    "right": 10
                 }
             }
         }
     }
     
+    # 发送请求到QuickChart API
     qc_url = "https://quickchart.io/chart"
-    response = requests.post(qc_url, json={"chart": chart_config, "format": "svg", "width": 1000, "height": 600})
-    
-    if response.status_code == 200:
-        with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
-            f.write(response.text)
-        print(f"Chart saved successfully as {CHART_FILENAME}")
-    else:
-        print(f"Error generating chart: {response.status_code} {response.text}")
+    try:
+        response = requests.post(
+            qc_url, 
+            json={
+                "chart": chart_config, 
+                "format": "svg", 
+                "width": 1200, 
+                "height": 700,
+                "backgroundColor": "white"
+            },
+            timeout=30
+        )
+        
+        if response.status_code == 200:
+            with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
+                f.write(response.text)
+            print(f"Chart saved successfully as {CHART_FILENAME}")
+        else:
+            print(f"Error generating chart: {response.status_code}")
+            if response.text:
+                print(f"Response: {response.text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error making request to QuickChart: {e}")
+    except Exception as e:
+        print(f"Unexpected error generating chart: {e}")
 
 def generate_markdown(user_data):
     """Generates Markdown text for tables from the sorted user data."""
