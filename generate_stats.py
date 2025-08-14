@@ -1,6 +1,7 @@
 import os
 import re
 import requests
+import time
 from datetime import datetime
 from github import Github
 
@@ -30,6 +31,87 @@ def get_user_display_name(github_instance, username):
         print(f"Error fetching display name for {username}: {e}")
         return username
 
+def count_actual_items(search_result, item_type="items"):
+    """
+    计算搜索结果中的实际项目数量
+    """
+    try:
+        items = list(search_result)
+        actual_count = len(items)
+        print(f"  Actual {item_type} counted: {actual_count}")
+        return actual_count, items
+    except Exception as e:
+        print(f"  Error counting actual items: {e}")
+        return 0, []
+
+def get_user_stats_fallback(github_instance, username):
+    """
+    备用方法：直接从组织的仓库中获取用户的PR和Issue统计
+    """
+    print(f"  Using fallback method for {username}...")
+    
+    open_prs = []
+    merged_prs = []
+    issues = []
+    
+    try:
+        # 获取组织对象
+        org = github_instance.get_organization(TARGET_ORG)
+        
+        # 遍历组织中的所有仓库
+        for repo in org.get_repos():
+            try:
+                # 获取该用户在此仓库中的PRs
+                all_prs = repo.get_pulls(state='all')
+                for pr in all_prs:
+                    if pr.user.login == username:
+                        if pr.state == 'open':
+                            open_prs.append(pr)
+                        elif pr.merged:
+                            merged_prs.append(pr)
+                
+                # 获取该用户在此仓库中的Issues
+                all_issues = repo.get_issues(state='all')
+                for issue in all_issues:
+                    if issue.user.login == username and not issue.pull_request:
+                        issues.append(issue)
+                        
+            except Exception as e:
+                print(f"    Error processing repo {repo.name}: {e}")
+                continue
+                
+        print(f"  Fallback results for {username}: {len(open_prs)} open PRs, {len(merged_prs)} merged PRs, {len(issues)} issues")
+        
+        # 创建包装对象
+        class FallbackResult:
+            def __init__(self, items):
+                self._items = items
+                self.totalCount = len(items)
+            def __iter__(self):
+                return iter(self._items)
+        
+        return {
+            "open_prs": FallbackResult(open_prs),
+            "merged_prs": FallbackResult(merged_prs),
+            "issues": FallbackResult(issues)
+        }
+        
+    except Exception as e:
+        print(f"  Fallback method failed for {username}: {e}")
+        # 返回空结果
+        class EmptyResult:
+            def __init__(self):
+                self.totalCount = 0
+                self._items = []
+            def __iter__(self):
+                return iter(self._items)
+        
+        return {
+            "open_prs": EmptyResult(),
+            "merged_prs": EmptyResult(),
+            "issues": EmptyResult()
+        }
+
 def get_user_stats(github_instance, username):
     """
     Fetches PRs (open and merged) and Issues (open and closed) for a user.
@@ -44,41 +126,70 @@ def get_user_stats(github_instance, username):
     query_open_prs = f"is:pr author:{username} is:public is:open {org_qualifier}"
     query_merged_prs = f"is:pr author:{username} is:public is:merged {org_qualifier}"
     
-    print(f"Open PR query: {query_open_prs}")
-    print(f"Merged PR query: {query_merged_prs}")
+    print(f"  Open PR query: {query_open_prs}")
+    print(f"  Merged PR query: {query_merged_prs}")
+    
+    # 添加延迟以避免API限制
+    time.sleep(1)
     
     try:
         open_prs = github_instance.search_issues(query_open_prs)
         merged_prs = github_instance.search_issues(query_merged_prs)
+        
+        print(f"  ✓ Search API Success for {username}")
+        print(f"    Open PRs totalCount: {open_prs.totalCount}")
+        print(f"    Merged PRs totalCount: {merged_prs.totalCount}")
+        
+        # 验证totalCount的准确性
+        actual_open_count, open_items = count_actual_items(open_prs, "open PRs")
+        actual_merged_count, merged_items = count_actual_items(merged_prs, "merged PRs")
+        
+        # 如果totalCount不准确，使用实际计数
+        if open_prs.totalCount != actual_open_count:
+            print(f"  ⚠️  Open PR count mismatch: API={open_prs.totalCount}, Actual={actual_open_count}")
+            open_prs.totalCount = actual_open_count
+            
+        if merged_prs.totalCount != actual_merged_count:
+            print(f"  ⚠️  Merged PR count mismatch: API={merged_prs.totalCount}, Actual={actual_merged_count}")
+            merged_prs.totalCount = actual_merged_count
+        
     except Exception as e:
-        print(f"Error searching PRs for {username}: {e}")
-        # 创建空的搜索结果对象
-        class MockSearchResult:
-            def __init__(self):
-                self.totalCount = 0
-                self._items = []
-            def __iter__(self):
-                return iter(self._items)
-        open_prs = MockSearchResult()
-        merged_prs = MockSearchResult()
+        print(f"  ✗ Search API Error for {username}: {type(e).__name__}: {e}")
+        print(f"    Switching to fallback method...")
+        
+        # 使用备用方法
+        return get_user_stats_fallback(github_instance, username)
     
     # 2. Issues: Query for all issues in vllm-project organization
     query_issues = f"is:issue author:{username} -is:pr is:public {org_qualifier}"
-    print(f"Issues query: {query_issues}")
+    print(f"  Issues query: {query_issues}")
+    
+    # 添加延迟
+    time.sleep(1)
     
     try:
         issues = github_instance.search_issues(query_issues)
+        print(f"    Issues totalCount: {issues.totalCount}")
+        
+        # 验证Issues计数
+        actual_issues_count, issues_items = count_actual_items(issues, "issues")
+        if issues.totalCount != actual_issues_count:
+            print(f"  ⚠️  Issues count mismatch: API={issues.totalCount}, Actual={actual_issues_count}")
+            issues.totalCount = actual_issues_count
+            
     except Exception as e:
-        print(f"Error searching issues for {username}: {e}")
-        class MockSearchResult:
+        print(f"  ✗ Issues API Error for {username}: {type(e).__name__}: {e}")
+        # 创建空的Issues结果
+        class EmptyResult:
             def __init__(self):
                 self.totalCount = 0
                 self._items = []
             def __iter__(self):
                 return iter(self._items)
-        issues = MockSearchResult()
+        issues = EmptyResult()
     
-    print(f"Found for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
+    total_found = open_prs.totalCount + merged_prs.totalCount + issues.totalCount
+    print(f"  Final counts for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues (Total: {total_found})")
     
     return {
         "open_prs": open_prs,
@@ -356,25 +467,41 @@ if __name__ == "__main__":
     all_user_data = []
     for username in USERNAMES:
         try:
+            print(f"\n{'='*50}")
+            print(f"Processing user: {username}")
+            
             display_name = get_user_display_name(github, username)
             stats = get_user_stats(github, username)
             total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount + stats['issues'].totalCount
+            
             all_user_data.append({
                 "username": username,
                 "display_name": display_name,
                 "stats": stats,
                 "total_contributions": total_contributions
             })
-            print(f"Successfully processed {username} with {total_contributions} total contributions in {TARGET_ORG}")
+            print(f"✅ Successfully processed {username} with {total_contributions} total contributions in {TARGET_ORG}")
+            
+            # 添加延迟避免API限制
+            time.sleep(2)
+            
         except Exception as e:
-            print(f"Error processing user {username}: {e}")
+            print(f"❌ Error processing user {username}: {e}")
             # 继续处理其他用户
             continue
         
+    print(f"\n{'='*50}")
     print(f"Successfully processed {len(all_user_data)} users")
+    
+    # 按总贡献数排序
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
-    print(f"Generating stacked chart for all {len(all_user_data)} users...")
+    # 打印最终统计
+    print(f"\nFinal contribution summary:")
+    for user in all_user_data:
+        print(f"  {user['display_name']} (@{user['username']}): {user['total_contributions']} contributions")
+    
+    print(f"\nGenerating stacked chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
     readme_filename = create_fixed_readme(markdown_output)
