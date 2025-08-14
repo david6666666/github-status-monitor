@@ -15,6 +15,8 @@ MAX_ITEMS_PER_TABLE = 5
 CHART_FILENAME = "stats_chart.svg"
 # Start date for the search query to include older repositories
 SEARCH_START_DATE = "2015-01-01"
+# Fixed README filename
+README_FILENAME = "README_data.md"
 # =======================================================================
 
 def get_user_stats(github_instance, username):
@@ -159,12 +161,8 @@ def generate_markdown(user_data):
     return markdown_text
 
 
-def create_timestamped_readme(content):
-    """Creates a new README file with timestamp in the filename."""
-    # Generate timestamp in format: YYYYMMDD_HHMMSS
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    readme_filename = f"readme_{timestamp}.md"
-    
+def create_fixed_readme(content):
+    """Creates a README file with fixed filename."""
     # Create the full README content with header
     readme_header = f"# GitHub Stats Report\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
@@ -172,12 +170,12 @@ def create_timestamped_readme(content):
     
     full_content = readme_header + content
     
-    # Write to the timestamped file
-    with open(readme_filename, 'w', encoding='utf-8') as f:
+    # Write to the fixed filename
+    with open(README_FILENAME, 'w', encoding='utf-8') as f:
         f.write(full_content)
     
-    print(f"Timestamped README created successfully: {readme_filename}")
-    return readme_filename
+    print(f"README created successfully: {README_FILENAME}")
+    return README_FILENAME
 
 
 if __name__ == "__main__":
@@ -200,6 +198,6 @@ if __name__ == "__main__":
     
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
-    readme_filename = create_timestamped_readme(markdown_output)
+    readme_filename = create_fixed_readme(markdown_output)
 
     print(f"\n✅ All tasks completed successfully. README saved as: {readme_filename}")
