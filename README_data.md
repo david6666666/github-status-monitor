@@ -1,6 +1,6 @@
 # GitHub Stats Report
 
-Generated on: 2025-08-14 06:30:05 UTC
+Generated on: 2025-08-14 06:36:02 UTC
 
 ![GitHub Stats Chart](stats_chart.svg)
 
@@ -8,7 +8,9 @@ Generated on: 2025-08-14 06:30:05 UTC
 
 这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-### 👤 GZQ (@Gongzq5)
+总共追踪了 11 个用户的贡献情况。
+
+### 👤 GZQ (@Gongzq5) - 总贡献: 56
 
 **Pull Requests (0 open, 48 merged)**
 | Title | Repository | State |
@@ -75,7 +77,7 @@ Generated on: 2025-08-14 06:30:05 UTC
 | [可否咨询一下这里的教务系统API是哪里找到的呢](https://github.com/nevershow/UWP/issues/1) | [nevershow/UWP](https://github.com/nevershow/UWP) | `open` |
 | [ImageReaderRunner运行报错](https://github.com/se-2018/se-2018.github.io/issues/27) | [se-2018/se-2018.github.io](https://github.com/se-2018/se-2018.github.io) | `closed` |
 
-### 👤 WeiQing Chen (@david6666666)
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 19
 
 **Pull Requests (4 open, 6 merged)**
 | Title | Repository | State |
@@ -104,7 +106,7 @@ Generated on: 2025-08-14 06:30:05 UTC
 | [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` |
 | [how to load berlin database](https://github.com/MarioRuggieri/Emotion-Recognition-from-Speech/issues/4) | [MarioRuggieri/Emotion-Recognition-from-Speech](https://github.com/MarioRuggieri/Emotion-Recognition-from-Speech) | `open` |
 
-### 👤 knlnguyen1802
+### 👤 knlnguyen1802 - 总贡献: 6
 
 **Pull Requests (0 open, 3 merged)**
 | Title | Repository | State |
@@ -120,7 +122,7 @@ Generated on: 2025-08-14 06:30:05 UTC
 | [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` |
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` |
 
-### 👤 Chenguang Zheng (@fake0fan)
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State |
@@ -136,7 +138,7 @@ Generated on: 2025-08-14 06:30:05 UTC
 | [Some questions about the code of GrabAllocator.java](https://github.com/neo4j/neo4j/issues/12569) | [neo4j/neo4j](https://github.com/neo4j/neo4j) | `closed` |
 | [[Change the columns]](https://github.com/TatianaJin/cluster_monitor/issues/1) | [TatianaJin/cluster_monitor](https://github.com/TatianaJin/cluster_monitor) | `open` |
 
-### 👤 Syed Muhammad Bin Asif (@syedmba)
+### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 5
 
 **Pull Requests (0 open, 5 merged)**
 | Title | Repository | State |
@@ -150,7 +152,7 @@ Generated on: 2025-08-14 06:30:05 UTC
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Hongsheng Liu (@hsliuustc0106)
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 4
 
 **Pull Requests (0 open, 4 merged)**
 | Title | Repository | State |
@@ -164,7 +166,7 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Gamhang (@ahengljh)
+### 👤 Gamhang (@ahengljh) - 总贡献: 4
 
 **Pull Requests (0 open, 4 merged)**
 | Title | Repository | State |
@@ -178,7 +180,7 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Yeju Zhou (@zhouyeju)
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 2
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State |
@@ -190,7 +192,7 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 NATURE (@natureofnature)
+### 👤 NATURE (@natureofnature) - 总贡献: 2
 
 **Pull Requests (0 open, 0 merged)**
 | Title | Repository | State |
@@ -203,18 +205,15 @@ _No public issues found._
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` |
 | [123](https://github.com/natureofnature/Public/issues/1) | [natureofnature/Public](https://github.com/natureofnature/Public) | `open` |
 
-### 👤 wuhang (@wuhang2014)
+### 👤 R2-Y - 总贡献: 0
 
-**Pull Requests (0 open, 2 merged)**
-| Title | Repository | State |
-| ----- | ---------- | ----- |
-| [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` |
-| [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` |
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 R2-Y
+### 👤 wuhang (@wuhang2) - 总贡献: 0
 
 **Pull Requests (0 open, 0 merged)**
 _No relevant pull requests found._
