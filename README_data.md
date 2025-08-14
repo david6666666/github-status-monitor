@@ -1,6 +1,6 @@
 # GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-14 07:22:57 UTC
+Generated on: 2025-08-14 07:31:48 UTC
 
 **统计范围**: vllm-project 组织
 **统计时间**: 2025-06-30 以后
@@ -86,9 +86,9 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 GZQ (@Gongzq5) - 总贡献: 0
+### 👤 GZQ (@Gongzq5) - 总贡献: 1
 
-**Pull Requests (0 open, 0 merged)**
+**Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [A developer friendly tool for multi-instance deployment with Ray Implementation](https://github.com/vllm-project/vllm/pull/20761) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-10 |
@@ -96,12 +96,42 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 0
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 1
 
-**Pull Requests (0 open, 0 merged)**
+**Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon](https://github.com/vllm-project/vllm/pull/21380) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-22 |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 NATURE (@natureofnature) - 总贡献: 1
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 Gamhang (@ahengljh) - 总贡献: 1
+
+**Pull Requests (0 open, 1 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
+
+**Pull Requests (0 open, 1 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
 
 **Issues (0 total)**
 _No public issues found._
@@ -110,36 +140,6 @@ _No public issues found._
 
 **Pull Requests (0 open, 0 merged)**
 _No relevant pull requests found._
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 NATURE (@natureofnature) - 总贡献: 0
-
-**Pull Requests (0 open, 0 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 Gamhang (@ahengljh) - 总贡献: 0
-
-**Pull Requests (0 open, 0 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 0
-
-**Pull Requests (0 open, 0 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
 
 **Issues (0 total)**
 _No public issues found._
