@@ -11,8 +11,6 @@ USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju",
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
 CHART_FILENAME = "stats_chart.svg"
-# Start date for the search query - only after 2025-06-30
-SEARCH_START_DATE = "2025-06-30"
 # Target organization - only vllm-project
 TARGET_ORG = "vllm-project"
 # Fixed README filename
@@ -35,102 +33,52 @@ def get_user_display_name(github_instance, username):
 def get_user_stats(github_instance, username):
     """
     Fetches PRs (open and merged) and Issues (open and closed) for a user.
-    Only includes data from vllm-project organization after 2025-06-30.
+    Includes all data from vllm-project organization (no date restrictions).
     """
-    print(f"Fetching data for {username} in {TARGET_ORG} organization after {SEARCH_START_DATE}...")
+    print(f"Fetching all data for {username} in {TARGET_ORG} organization...")
     
-    # 修改日期查询格式，使用更明确的日期范围 - 修复：使用 >= 而不是 >
-    date_qualifier = f"created:>={SEARCH_START_DATE}"  # 修复：改回 >= 
     # Organization qualifier
     org_qualifier = f"org:{TARGET_ORG}"
 
-    # 创建模拟的搜索结果对象
-    class MockSearchResult:
-        def __init__(self, items):
-            self.totalCount = len(items)
-            self._items = items
-        
-        def __iter__(self):
-            return iter(self._items)
-
-    # 为了确保准确性，我们使用通用查询然后手动过滤
-    # 这样可以避免GitHub搜索API的延迟和不准确问题
-    print(f"Using comprehensive search approach for {username}...")
+    # 1. PRs: Query for open and merged PRs separately in vllm-project organization
+    query_open_prs = f"is:pr author:{username} is:public is:open {org_qualifier}"
+    query_merged_prs = f"is:pr author:{username} is:public is:merged {org_qualifier}"
+    
+    print(f"Open PR query: {query_open_prs}")
+    print(f"Merged PR query: {query_merged_prs}")
     
     try:
-        # 获取该用户在目标组织的所有PRs和Issues，然后手动过滤
-        all_prs_query = f"is:pr author:{username} is:public {org_qualifier}"
-        all_issues_query = f"is:issue author:{username} -is:pr is:public {org_qualifier}"
-        
-        print(f"All PRs query: {all_prs_query}")
-        print(f"All Issues query: {all_issues_query}")
-        
-        all_prs = github_instance.search_issues(all_prs_query)
-        all_issues = github_instance.search_issues(all_issues_query)
-        
-        print(f"Found {all_prs.totalCount} total PRs and {all_issues.totalCount} total issues for {username}")
-        
-        # 手动过滤日期
-        search_date = datetime.strptime(SEARCH_START_DATE, "%Y-%m-%d").date()
-        
-        filtered_open_prs = []
-        filtered_merged_prs = []
-        filtered_issues = []
-        
-        # 过滤PRs
-        for pr in all_prs:
-            created_date = pr.created_at.date()
-            print(f"PR: {pr.title[:50]}... created on {created_date}, state: {pr.state}")
-            
-            if created_date > search_date:  # 严格大于指定日期
-                if pr.state == "open":
-                    filtered_open_prs.append(pr)
-                    print(f"  -> Added to open PRs")
-                elif pr.state == "closed":
-                    # 检查是否是merged
-                    try:
-                        # 对于通过search_issues获取的PR，我们需要检查是否merged
-                        if hasattr(pr, 'pull_request') and pr.pull_request:
-                            # 获取详细的PR信息
-                            repo = github_instance.get_repo(pr.repository.full_name)
-                            pr_detail = repo.get_pull(pr.number)
-                            if pr_detail.merged:
-                                filtered_merged_prs.append(pr)
-                                print(f"  -> Added to merged PRs")
-                            else:
-                                print(f"  -> PR was closed but not merged, skipping")
-                        else:
-                            print(f"  -> Could not determine if PR was merged, skipping")
-                    except Exception as e:
-                        print(f"  -> Error checking PR merge status: {e}")
-            else:
-                print(f"  -> Filtered out by date (created {created_date} <= {search_date})")
-        
-        # 过滤Issues
-        for issue in all_issues:
-            created_date = issue.created_at.date()
-            print(f"Issue: {issue.title[:50]}... created on {created_date}")
-            
-            if created_date > search_date:  # 严格大于指定日期
-                filtered_issues.append(issue)
-                print(f"  -> Added to issues")
-            else:
-                print(f"  -> Filtered out by date (created {created_date} <= {search_date})")
-        
-        print(f"After manual filtering for {username}: {len(filtered_open_prs)} open PRs, {len(filtered_merged_prs)} merged PRs, {len(filtered_issues)} issues")
-        
-        # 返回结果
-        open_prs = MockSearchResult(filtered_open_prs)
-        merged_prs = MockSearchResult(filtered_merged_prs)
-        issues = MockSearchResult(filtered_issues)
-        
+        open_prs = github_instance.search_issues(query_open_prs)
+        merged_prs = github_instance.search_issues(query_merged_prs)
     except Exception as e:
-        print(f"Error searching for {username}: {e}")
-        open_prs = MockSearchResult([])
-        merged_prs = MockSearchResult([])
-        issues = MockSearchResult([])
+        print(f"Error searching PRs for {username}: {e}")
+        # 创建空的搜索结果对象
+        class MockSearchResult:
+            def __init__(self):
+                self.totalCount = 0
+                self._items = []
+            def __iter__(self):
+                return iter(self._items)
+        open_prs = MockSearchResult()
+        merged_prs = MockSearchResult()
     
-    print(f"Final count for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
+    # 2. Issues: Query for all issues in vllm-project organization
+    query_issues = f"is:issue author:{username} -is:pr is:public {org_qualifier}"
+    print(f"Issues query: {query_issues}")
+    
+    try:
+        issues = github_instance.search_issues(query_issues)
+    except Exception as e:
+        print(f"Error searching issues for {username}: {e}")
+        class MockSearchResult:
+            def __init__(self):
+                self.totalCount = 0
+                self._items = []
+            def __iter__(self):
+                return iter(self._items)
+        issues = MockSearchResult()
+    
+    print(f"Found for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
     
     return {
         "open_prs": open_prs,
@@ -140,9 +88,9 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    生成包含分离的Open PR、Merged PR和Issue柱状图的子图 - 显示所有用户
+    生成包含堆叠PR柱状图和独立Issue柱状图的图表 - 显示所有用户
     """
-    print(f"Generating chart for ALL {len(user_data)} users...")
+    print(f"Generating stacked chart for ALL {len(user_data)} users...")
     
     # 准备数据 - 确保所有用户都包含在内，即使数据为0
     usernames = []
@@ -164,7 +112,7 @@ def generate_chart(user_data):
     # 根据用户数量动态调整图表宽度
     chart_width = max(1400, len(user_data) * 120)  # 至少1400px，每个用户120px
     
-    # 创建分组柱状图配置
+    # 创建堆叠柱状图配置
     chart_config = {
         "type": "bar",
         "data": {
@@ -175,21 +123,24 @@ def generate_chart(user_data):
                     "data": open_pr_counts,
                     "backgroundColor": "rgba(255, 193, 7, 0.8)",
                     "borderColor": "rgba(255, 193, 7, 1)",
-                    "borderWidth": 1
+                    "borderWidth": 1,
+                    "stack": "PRs"  # 将open PRs放在PRs堆栈中
                 },
                 {
                     "label": "Merged PRs",
                     "data": merged_pr_counts,
                     "backgroundColor": "rgba(40, 167, 69, 0.8)",
                     "borderColor": "rgba(40, 167, 69, 1)",
-                    "borderWidth": 1
+                    "borderWidth": 1,
+                    "stack": "PRs"  # 将merged PRs也放在PRs堆栈中
                 },
                 {
                     "label": "Issues",
                     "data": issue_counts,
                     "backgroundColor": "rgba(220, 53, 69, 0.8)",
                     "borderColor": "rgba(220, 53, 69, 1)",
-                    "borderWidth": 1
+                    "borderWidth": 1,
+                    "stack": "Issues"  # Issues单独一个堆栈
                 }
             ]
         },
@@ -198,12 +149,13 @@ def generate_chart(user_data):
             "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": f"{TARGET_ORG} 组织贡献统计 (自 {SEARCH_START_DATE}) - 共{len(user_data)}位用户",
+                "text": f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户",
                 "fontSize": 18,
                 "fontColor": "#333"
             },
             "scales": {
                 "yAxes": [{
+                    "stacked": True,  # 启用堆叠
                     "ticks": {
                         "beginAtZero": True,
                         "stepSize": 1,
@@ -219,6 +171,7 @@ def generate_chart(user_data):
                     }
                 }],
                 "xAxes": [{
+                    "stacked": True,  # 启用堆叠
                     "scaleLabel": {
                         "display": True,
                         "labelString": "用户",
@@ -244,9 +197,9 @@ def generate_chart(user_data):
             "plugins": {
                 "datalabels": {
                     "display": "function(context) { return context.parsed.y > 0; }",
-                    "anchor": "end",
-                    "align": "top",
-                    "color": "#333",
+                    "anchor": "center",
+                    "align": "center",
+                    "color": "#fff",
                     "font": {
                         "size": 9,
                         "weight": "bold"
@@ -265,7 +218,7 @@ def generate_chart(user_data):
         }
     }
     
-    print(f"Sending chart request for {len(usernames)} users with width {chart_width}px...")
+    print(f"Sending stacked chart request for {len(usernames)} users with width {chart_width}px...")
     
     # 发送请求到QuickChart API
     qc_url = "https://quickchart.io/chart"
@@ -285,7 +238,7 @@ def generate_chart(user_data):
         if response.status_code == 200:
             with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"Chart saved successfully as {CHART_FILENAME} with {len(usernames)} users displayed")
+            print(f"Stacked chart saved successfully as {CHART_FILENAME} with {len(usernames)} users displayed")
         else:
             print(f"Error generating chart: {response.status_code}")
             if response.text:
@@ -297,7 +250,7 @@ def generate_chart(user_data):
 
 def generate_markdown(user_data):
     """Generates Markdown text for tables from the sorted user data."""
-    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中自 **{SEARCH_START_DATE}** 以来的总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
+    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
     markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_ORG} 组织中的贡献情况。\n\n"
     
     for user in user_data:
@@ -375,8 +328,7 @@ def create_fixed_readme(content):
     # Create the full README content with header
     readme_header = f"# GitHub Stats Report - {TARGET_ORG} Organization\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
-    readme_header += f"**统计范围**: {TARGET_ORG} 组织\n"
-    readme_header += f"**统计时间**: {SEARCH_START_DATE} 以后\n\n"
+    readme_header += f"**统计范围**: {TARGET_ORG} 组织的所有贡献\n\n"
     readme_header += f"![GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
@@ -396,7 +348,7 @@ if __name__ == "__main__":
         
     print(f"Starting GitHub stats generation for {len(USERNAMES)} users...")
     print(f"Target organization: {TARGET_ORG}")
-    print(f"Date range: after {SEARCH_START_DATE}")
+    print(f"Including all contributions (no date restrictions)")
     print(f"Users to track: {USERNAMES}")
     
     github = Github(GITHUB_TOKEN)
@@ -422,7 +374,7 @@ if __name__ == "__main__":
     print(f"Successfully processed {len(all_user_data)} users")
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
-    print(f"Generating chart for all {len(all_user_data)} users...")
+    print(f"Generating stacked chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
     readme_filename = create_fixed_readme(markdown_output)
