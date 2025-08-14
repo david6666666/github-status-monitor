@@ -45,12 +45,14 @@ for username, stats in user_stats.items():
     table_rows += f"| [{username}](https://github.com/{username}) | {stats['pr_count']} | {stats['issue_count']} |\n"
 
 # Combine everything into the final Markdown content
+current_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
+
 markdown_content = f"""
 # GitHub User Statistics
 
 This table shows the total number of Pull Requests and Issues for the specified users.
 
-_Last updated: {g.get_organization('github').get_members().next().created_at.strftime('%Y-%m-%d %H:%M:%S UTC')}_
+_Last updated: {current_time}_
 
 {table_header}
 {table_separator}
