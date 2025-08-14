@@ -200,6 +200,7 @@ def get_user_stats(github_instance, username):
 def generate_chart(user_data):
     """
     生成包含堆叠PR柱状图和独立Issue柱状图的图表 - 高清大尺寸版本
+    包含总数标注
     """
     print(f"Generating high-resolution stacked chart for ALL {len(user_data)} users...")
     
@@ -209,20 +210,36 @@ def generate_chart(user_data):
     merged_pr_counts = []
     issue_counts = []
     
+    # 计算总数
+    total_open_prs = 0
+    total_merged_prs = 0
+    total_issues = 0
+    
     for user in user_data:
         usernames.append(user['display_name'])
-        open_pr_counts.append(user['stats']['open_prs'].totalCount)
-        merged_pr_counts.append(user['stats']['merged_prs'].totalCount)
-        issue_counts.append(user['stats']['issues'].totalCount)
+        open_count = user['stats']['open_prs'].totalCount
+        merged_count = user['stats']['merged_prs'].totalCount
+        issue_count = user['stats']['issues'].totalCount
+        
+        open_pr_counts.append(open_count)
+        merged_pr_counts.append(merged_count)
+        issue_counts.append(issue_count)
+        
+        total_open_prs += open_count
+        total_merged_prs += merged_count
+        total_issues += issue_count
     
     print(f"Chart will display {len(usernames)} users: {usernames}")
-    print(f"Chart data - Open PR counts: {open_pr_counts}")
-    print(f"Chart data - Merged PR counts: {merged_pr_counts}")
-    print(f"Chart data - Issue counts: {issue_counts}")
+    print(f"Chart data - Open PR counts: {open_pr_counts} (Total: {total_open_prs})")
+    print(f"Chart data - Merged PR counts: {merged_pr_counts} (Total: {total_merged_prs})")
+    print(f"Chart data - Issue counts: {issue_counts} (Total: {total_issues})")
     
     # 根据用户数量动态调整图表宽度 - 增大尺寸
     chart_width = max(2000, len(user_data) * 180)  # 最小2000px，每个用户180px（原来120px）
-    chart_height = 1000  # 增大高度（原来700px）
+    chart_height = 1200  # 增加高度以容纳标注（原来1000px）
+    
+    # 创建带有总数标注的标题
+    title_with_totals = f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户\\n总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs} | Issues: {total_issues}"
     
     # 创建高清堆叠柱状图配置
     chart_config = {
@@ -231,7 +248,7 @@ def generate_chart(user_data):
             "labels": usernames,
             "datasets": [
                 {
-                    "label": "Open PRs",
+                    "label": f"Open PRs (总计: {total_open_prs})",
                     "data": open_pr_counts,
                     "backgroundColor": "rgba(255, 193, 7, 0.9)",  # 增加透明度
                     "borderColor": "rgba(255, 193, 7, 1)",
@@ -239,7 +256,7 @@ def generate_chart(user_data):
                     "stack": "PRs"
                 },
                 {
-                    "label": "Merged PRs",
+                    "label": f"Merged PRs (总计: {total_merged_prs})",
                     "data": merged_pr_counts,
                     "backgroundColor": "rgba(40, 167, 69, 0.9)",  # 增加透明度
                     "borderColor": "rgba(40, 167, 69, 1)",
@@ -247,7 +264,7 @@ def generate_chart(user_data):
                     "stack": "PRs"
                 },
                 {
-                    "label": "Issues",
+                    "label": f"Issues (总计: {total_issues})",
                     "data": issue_counts,
                     "backgroundColor": "rgba(220, 53, 69, 0.9)",  # 增加透明度
                     "borderColor": "rgba(220, 53, 69, 1)",
@@ -261,11 +278,12 @@ def generate_chart(user_data):
             "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户",
-                "fontSize": 28,  # 增大标题字体（原来18）
+                "text": title_with_totals,
+                "fontSize": 24,  # 稍微调小以容纳更多信息
                 "fontColor": "#333",
                 "fontStyle": "bold",
-                "padding": 30
+                "padding": 40,
+                "lineHeight": 1.2  # 多行标题的行高
             },
             "scales": {
                 "yAxes": [{
@@ -313,9 +331,9 @@ def generate_chart(user_data):
             "legend": {
                 "position": "top",
                 "labels": {
-                    "fontSize": 18,  # 增大字体（原来12）
+                    "fontSize": 16,  # 稍微调小字体以容纳总数信息
                     "fontColor": "#333",
-                    "padding": 25,  # 增加间距（原来20）
+                    "padding": 20,
                     "usePointStyle": True,
                     "pointStyle": "rect"
                 }
@@ -327,7 +345,7 @@ def generate_chart(user_data):
                     "align": "center",
                     "color": "#fff",
                     "font": {
-                        "size": 14,  # 增大字体（原来9）
+                        "size": 12,  # 稍微调小字体
                         "weight": "bold"
                     },
                     "formatter": "function(value) { return value > 0 ? value : ''; }",
@@ -337,7 +355,7 @@ def generate_chart(user_data):
             },
             "layout": {
                 "padding": {
-                    "top": 60,   # 增加顶部空间（原来40）
+                    "top": 80,   # 增加顶部空间以容纳更长的标题
                     "bottom": 100,  # 增加底部空间（原来60）
                     "left": 20,   # 增加左侧空间（原来10）
                     "right": 20   # 增加右侧空间（原来10）
@@ -353,6 +371,7 @@ def generate_chart(user_data):
     
     print(f"Sending high-resolution chart request for {len(usernames)} users...")
     print(f"Chart dimensions: {chart_width}x{chart_height}px")
+    print(f"Total statistics: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
     
     # 发送请求到QuickChart API
     qc_url = "https://quickchart.io/chart"
@@ -373,8 +392,9 @@ def generate_chart(user_data):
         if response.status_code == 200:
             with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"✅ High-resolution chart saved successfully as {CHART_FILENAME}")
+            print(f"✅ High-resolution chart with totals saved successfully as {CHART_FILENAME}")
             print(f"   Chart size: {chart_width}x{chart_height}px with {len(usernames)} users displayed")
+            print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
         else:
             print(f"❌ Error generating chart: {response.status_code}")
             if response.text:
