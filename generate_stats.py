@@ -70,9 +70,9 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    生成包含分离的Open PR、Merged PR和Issue柱状图的子图
+    生成包含分离的Open PR、Merged PR和Issue柱状图的子图 - 显示所有用户
     """
-    print("Generating new grouped bar chart with separated PR types and Issues...")
+    print(f"Generating chart for ALL {len(user_data)} users...")
     
     # 准备数据 - 确保所有用户都包含在内，即使数据为0
     usernames = []
@@ -86,10 +86,13 @@ def generate_chart(user_data):
         merged_pr_counts.append(user['stats']['merged_prs'].totalCount)
         issue_counts.append(user['stats']['issues'].totalCount)
     
-    print(f"Chart data - Users: {usernames}")
+    print(f"Chart will display {len(usernames)} users: {usernames}")
     print(f"Chart data - Open PR counts: {open_pr_counts}")
     print(f"Chart data - Merged PR counts: {merged_pr_counts}")
     print(f"Chart data - Issue counts: {issue_counts}")
+    
+    # 根据用户数量动态调整图表宽度
+    chart_width = max(1400, len(user_data) * 120)  # 至少1400px，每个用户120px
     
     # 创建分组柱状图配置
     chart_config = {
@@ -100,21 +103,21 @@ def generate_chart(user_data):
                 {
                     "label": "Open PRs",
                     "data": open_pr_counts,
-                    "backgroundColor": "rgba(255, 193, 7, 0.8)",  # 黄色 - Open PRs
+                    "backgroundColor": "rgba(255, 193, 7, 0.8)",
                     "borderColor": "rgba(255, 193, 7, 1)",
                     "borderWidth": 1
                 },
                 {
                     "label": "Merged PRs",
                     "data": merged_pr_counts,
-                    "backgroundColor": "rgba(40, 167, 69, 0.8)",  # 绿色 - Merged PRs
+                    "backgroundColor": "rgba(40, 167, 69, 0.8)",
                     "borderColor": "rgba(40, 167, 69, 1)",
                     "borderWidth": 1
                 },
                 {
                     "label": "Issues",
                     "data": issue_counts,
-                    "backgroundColor": "rgba(220, 53, 69, 0.8)",  # 红色 - Issues
+                    "backgroundColor": "rgba(220, 53, 69, 0.8)",
                     "borderColor": "rgba(220, 53, 69, 1)",
                     "borderWidth": 1
                 }
@@ -125,7 +128,7 @@ def generate_chart(user_data):
             "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": f"{TARGET_ORG} 组织贡献统计 (自 {SEARCH_START_DATE})",
+                "text": f"{TARGET_ORG} 组织贡献统计 (自 {SEARCH_START_DATE}) - 共{len(user_data)}位用户",
                 "fontSize": 18,
                 "fontColor": "#333"
             },
@@ -152,9 +155,9 @@ def generate_chart(user_data):
                         "fontSize": 14
                     },
                     "ticks": {
-                        "fontSize": 10,
+                        "fontSize": 8,  # 减小字体以适应更多用户
                         "maxRotation": 45,
-                        "minRotation": 0
+                        "minRotation": 45  # 强制倾斜显示
                     },
                     "gridLines": {
                         "display": False
@@ -175,7 +178,7 @@ def generate_chart(user_data):
                     "align": "top",
                     "color": "#333",
                     "font": {
-                        "size": 10,
+                        "size": 9,
                         "weight": "bold"
                     },
                     "formatter": "function(value) { return value > 0 ? value : ''; }"
@@ -183,14 +186,16 @@ def generate_chart(user_data):
             },
             "layout": {
                 "padding": {
-                    "top": 30,
-                    "bottom": 10,
+                    "top": 40,
+                    "bottom": 60,  # 增加底部空间以容纳倾斜的标签
                     "left": 10,
                     "right": 10
                 }
             }
         }
     }
+    
+    print(f"Sending chart request for {len(usernames)} users with width {chart_width}px...")
     
     # 发送请求到QuickChart API
     qc_url = "https://quickchart.io/chart"
@@ -200,7 +205,7 @@ def generate_chart(user_data):
             json={
                 "chart": chart_config, 
                 "format": "svg", 
-                "width": 1200, 
+                "width": chart_width,  # 动态宽度
                 "height": 700,
                 "backgroundColor": "white"
             },
@@ -210,7 +215,7 @@ def generate_chart(user_data):
         if response.status_code == 200:
             with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"Chart saved successfully as {CHART_FILENAME}")
+            print(f"Chart saved successfully as {CHART_FILENAME} with {len(usernames)} users displayed")
         else:
             print(f"Error generating chart: {response.status_code}")
             if response.text:
@@ -347,6 +352,7 @@ if __name__ == "__main__":
     print(f"Successfully processed {len(all_user_data)} users")
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
+    print(f"Generating chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
     readme_filename = create_fixed_readme(markdown_output)
