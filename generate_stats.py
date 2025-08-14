@@ -17,6 +17,18 @@ SEARCH_START_DATE = "2015-01-01"
 README_FILENAME = "README_data.md"
 # =======================================================================
 
+def get_user_display_name(github_instance, username):
+    """
+    获取用户的显示名称，如果没有则使用用户名
+    """
+    try:
+        user = github_instance.get_user(username)
+        display_name = user.name if user.name else username
+        return display_name
+    except Exception as e:
+        print(f"Error fetching display name for {username}: {e}")
+        return username
+
 def get_user_stats(github_instance, username):
     """
     Fetches PRs (open and merged) and Issues (open and closed) for a user.
@@ -47,50 +59,80 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    Generates a doughnut chart showing contribution proportions.
+    生成包含PR和Issue柱状图的子图
     """
-    print("Generating new doughnut chart...")
-    labels = [user['username'] for user in user_data]
-    data = [user['total_contributions'] for user in user_data]
+    print("Generating new subplot chart with PR and Issue bar charts...")
     
-    colors = [
-        'rgba(110, 107, 213, 0.8)', 
-        'rgba(40, 167, 69, 0.8)',  
-        'rgba(255, 159, 64, 0.8)', 
-        'rgba(255, 99, 132, 0.8)',  
-        'rgba(54, 162, 235, 0.8)',  
-    ]
-
+    # 准备数据
+    usernames = [user['display_name'] for user in user_data]
+    pr_counts = [user['stats']['open_prs'].totalCount + user['stats']['merged_prs'].totalCount for user in user_data]
+    issue_counts = [user['stats']['issues'].totalCount for user in user_data]
+    
+    # 创建子图配置
     chart_config = {
-        "type": "doughnut",
+        "type": "bar",
         "data": {
-            "labels": labels,
-            "datasets": [{
-                "data": data,
-                "backgroundColor": colors,
-                "borderColor": '#ffffff',
-                "borderWidth": 2
-            }]
+            "labels": usernames,
+            "datasets": [
+                {
+                    "label": "Pull Requests",
+                    "data": pr_counts,
+                    "backgroundColor": "rgba(54, 162, 235, 0.8)",
+                    "borderColor": "rgba(54, 162, 235, 1)",
+                    "borderWidth": 1
+                },
+                {
+                    "label": "Issues",
+                    "data": issue_counts,
+                    "backgroundColor": "rgba(255, 99, 132, 0.8)",
+                    "borderColor": "rgba(255, 99, 132, 1)",
+                    "borderWidth": 1
+                }
+            ]
         },
         "options": {
+            "responsive": True,
             "title": {
                 "display": True,
-                "text": "用户总贡献占比"
+                "text": "用户贡献统计 - PR和Issue数量对比",
+                "fontSize": 16
+            },
+            "scales": {
+                "yAxes": [{
+                    "ticks": {
+                        "beginAtZero": True,
+                        "stepSize": 1
+                    },
+                    "scaleLabel": {
+                        "display": True,
+                        "labelString": "数量"
+                    }
+                }],
+                "xAxes": [{
+                    "scaleLabel": {
+                        "display": True,
+                        "labelString": "用户"
+                    }
+                }]
             },
             "legend": {
-                "position": "right"
+                "position": "top"
             },
             "plugins": {
                 "datalabels": {
-                    "color": "#ffffff",
-                    "formatter": "(value) => { return value > 0 ? value : ''; }"
+                    "anchor": "end",
+                    "align": "top",
+                    "color": "#444",
+                    "font": {
+                        "weight": "bold"
+                    }
                 }
             }
         }
     }
     
     qc_url = "https://quickchart.io/chart"
-    response = requests.post(qc_url, json={"chart": chart_config, "format": "svg"})
+    response = requests.post(qc_url, json={"chart": chart_config, "format": "svg", "width": 800, "height": 600})
     
     if response.status_code == 200:
         with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
@@ -99,15 +141,19 @@ def generate_chart(user_data):
     else:
         print(f"Error generating chart: {response.status_code} {response.text}")
 
-
 def generate_markdown(user_data):
     """Generates Markdown text for tables from the sorted user data."""
     markdown_text = "这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
     for user in user_data:
         username = user['username']
+        display_name = user['display_name']
         stats = user['stats']
         
-        markdown_text += f"### 👤 {username}\n\n"
+        # 显示用户名和显示名称
+        if display_name != username:
+            markdown_text += f"### 👤 {display_name} (@{username})\n\n"
+        else:
+            markdown_text += f"### 👤 {username}\n\n"
         
         # PR Table
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
@@ -136,7 +182,7 @@ def generate_markdown(user_data):
             # Sort all PRs by creation date, descending
             pr_rows.sort(key=lambda x: x[0], reverse=True)
             
-            # Add ALL rows to the markdown (removed MAX_ITEMS_PER_TABLE limitation)
+            # Add ALL rows to the markdown
             for _, row_string in pr_rows:
                 markdown_text += row_string
         else:
@@ -148,7 +194,7 @@ def generate_markdown(user_data):
         if stats['issues'].totalCount > 0:
             markdown_text += "| Title | Repository | State |\n"
             markdown_text += "| ----- | ---------- | ----- |\n"
-            # Show ALL issues (removed MAX_ITEMS_PER_TABLE limitation)
+            # Show ALL issues
             for issue in stats['issues']:
                 repo_name = issue.repository.full_name
                 title = issue.title.replace('|', '\|')
@@ -159,12 +205,12 @@ def generate_markdown(user_data):
         
     return markdown_text
 
-
 def create_fixed_readme(content):
     """Creates a README file with fixed filename."""
     # Create the full README content with header
     readme_header = f"# GitHub Stats Report\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
+    readme_header += f"![GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
     full_content = readme_header + content
@@ -176,7 +222,6 @@ def create_fixed_readme(content):
     print(f"README created successfully: {README_FILENAME}")
     return README_FILENAME
 
-
 if __name__ == "__main__":
     if not GITHUB_TOKEN:
         raise ValueError("GH_PAT environment variable not set.")
@@ -185,10 +230,12 @@ if __name__ == "__main__":
     
     all_user_data = []
     for username in USERNAMES:
+        display_name = get_user_display_name(github, username)
         stats = get_user_stats(github, username)
         total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount + stats['issues'].totalCount
         all_user_data.append({
             "username": username,
+            "display_name": display_name,
             "stats": stats,
             "total_contributions": total_contributions
         })
