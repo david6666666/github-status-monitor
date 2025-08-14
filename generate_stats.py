@@ -1,13 +1,12 @@
 import os
 import re
 import requests
+from datetime import datetime
 from github import Github
 
 # =================================CONFIG=================================
 # The GitHub usernames you want to track
 USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan"]
-# The path to the README file to be updated
-README_PATH = "README.md"
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The maximum number of items to display per user per category
@@ -160,25 +159,25 @@ def generate_markdown(user_data):
     return markdown_text
 
 
-def update_readme(content):
-    """Writes new content into the README between the specified markers."""
-    with open(README_PATH, 'r', encoding='utf-8') as f:
-        readme_content = f.read()
-
-    start_marker = ""
-    end_marker = ""
-    if start_marker not in readme_content or end_marker not in readme_content:
-        raise ValueError(f"Error: Markers '{start_marker}' or '{end_marker}' not found in {README_PATH}. Aborting to prevent file corruption.")
-
-    new_readme = re.sub(
-        rf"(?s){start_marker}(.*?){end_marker}",
-        f"{start_marker}\n{content}\n{end_marker}",
-        readme_content
-    )
+def create_timestamped_readme(content):
+    """Creates a new README file with timestamp in the filename."""
+    # Generate timestamp in format: YYYYMMDD_HHMMSS
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    readme_filename = f"readme_{timestamp}.md"
     
-    with open(README_PATH, 'w', encoding='utf-8') as f:
-        f.write(new_readme)
-    print("README.md updated successfully.")
+    # Create the full README content with header
+    readme_header = f"# GitHub Stats Report\n\n"
+    readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
+    readme_header += "---\n\n"
+    
+    full_content = readme_header + content
+    
+    # Write to the timestamped file
+    with open(readme_filename, 'w', encoding='utf-8') as f:
+        f.write(full_content)
+    
+    print(f"Timestamped README created successfully: {readme_filename}")
+    return readme_filename
 
 
 if __name__ == "__main__":
@@ -201,6 +200,6 @@ if __name__ == "__main__":
     
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
-    update_readme(markdown_output)
+    readme_filename = create_timestamped_readme(markdown_output)
 
-    print("\n✅ All tasks completed successfully.")
+    print(f"\n✅ All tasks completed successfully. README saved as: {readme_filename}")
