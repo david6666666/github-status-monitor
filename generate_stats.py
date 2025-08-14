@@ -25,7 +25,6 @@ def get_user_stats(github_instance, username):
     """
     print(f"Fetching data for {username}...")
     
-    # [FIX] Add 'updated:>=...' to query to include less active/older repos
     date_qualifier = f"updated:>={SEARCH_START_DATE}"
 
     # 1. PRs: Query for open and merged PRs separately
@@ -49,19 +48,18 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    [NEW] Generates a doughnut chart showing contribution proportions.
+    Generates a doughnut chart showing contribution proportions.
     """
     print("Generating new doughnut chart...")
     labels = [user['username'] for user in user_data]
     data = [user['total_contributions'] for user in user_data]
     
-    # Define a color palette for the chart
     colors = [
-        'rgba(110, 107, 213, 0.8)', # Purple
-        'rgba(40, 167, 69, 0.8)',  # Green
-        'rgba(255, 159, 64, 0.8)', # Orange
-        'rgba(255, 99, 132, 0.8)',  # Pink
-        'rgba(54, 162, 235, 0.8)',  # Blue
+        'rgba(110, 107, 213, 0.8)', 
+        'rgba(40, 167, 69, 0.8)',  
+        'rgba(255, 159, 64, 0.8)', 
+        'rgba(255, 99, 132, 0.8)',  
+        'rgba(54, 162, 235, 0.8)',  
     ]
 
     chart_config = {
@@ -112,18 +110,36 @@ def generate_markdown(user_data):
         
         markdown_text += f"### 👤 {username}\n\n"
         
-        # Combined PR Table
+        # PR Table
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
         
-        all_prs = list(stats['open_prs']) + list(stats['merged_prs'])
-        if all_prs:
+        # [FIX] Process PRs by type to assign the correct state, then sort.
+        pr_rows = []
+        
+        # Process merged PRs
+        for pr in stats['merged_prs']:
+            repo_name = pr.repository.full_name
+            title = pr.title.replace('|', '\|')
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` |\n"
+            pr_rows.append((pr.created_at, row_string))
+            
+        # Process open PRs
+        for pr in stats['open_prs']:
+            repo_name = pr.repository.full_name
+            title = pr.title.replace('|', '\|')
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` |\n"
+            pr_rows.append((pr.created_at, row_string))
+
+        if pr_rows:
             markdown_text += "| Title | Repository | State |\n"
             markdown_text += "| ----- | ---------- | ----- |\n"
-            for pr in sorted(all_prs, key=lambda x: x.created_at, reverse=True)[:MAX_ITEMS_PER_TABLE]:
-                repo_name = pr.repository.full_name
-                title = pr.title.replace('|', '\|')
-                state = "merged" if pr.merged else pr.state
-                markdown_text += f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{state}` |\n"
+            
+            # Sort all PRs by creation date, descending
+            pr_rows.sort(key=lambda x: x[0], reverse=True)
+            
+            # Add top N rows to the markdown
+            for _, row_string in pr_rows[:MAX_ITEMS_PER_TABLE]:
+                markdown_text += row_string
         else:
             markdown_text += "_No relevant pull requests found._\n"
         markdown_text += "\n"
@@ -149,7 +165,6 @@ def update_readme(content):
     with open(README_PATH, 'r', encoding='utf-8') as f:
         readme_content = f.read()
 
-    # [FIX] Add a safety check to ensure the markers exist before replacement
     start_marker = ""
     end_marker = ""
     if start_marker not in readme_content or end_marker not in readme_content:
@@ -182,7 +197,6 @@ if __name__ == "__main__":
             "total_contributions": total_contributions
         })
         
-    # Sort users by total contributions (descending)
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
     generate_chart(all_user_data)
