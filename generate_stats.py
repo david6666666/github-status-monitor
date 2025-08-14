@@ -6,13 +6,15 @@ from github import Github
 
 # =================================CONFIG=================================
 # The GitHub usernames you want to track
-USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "syedmba", "wuhang2"]
+USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "Gongzq5", "zhouyeju", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "syedmba", "wuhang2014"]
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
 CHART_FILENAME = "stats_chart.svg"
-# Start date for the search query to include older repositories
-SEARCH_START_DATE = "2015-01-01"
+# Start date for the search query - only after 2025-06-30
+SEARCH_START_DATE = "2025-06-30"
+# Target organization - only vllm-project
+TARGET_ORG = "vllm-project"
 # Fixed README filename
 README_FILENAME = "README_data.md"
 # =======================================================================
@@ -33,24 +35,32 @@ def get_user_display_name(github_instance, username):
 def get_user_stats(github_instance, username):
     """
     Fetches PRs (open and merged) and Issues (open and closed) for a user.
-    Includes a date qualifier to find stats in older repositories.
+    Only includes data from vllm-project organization after 2025-06-30.
     """
-    print(f"Fetching data for {username}...")
+    print(f"Fetching data for {username} in {TARGET_ORG} organization after {SEARCH_START_DATE}...")
     
-    date_qualifier = f"updated:>={SEARCH_START_DATE}"
+    # Date qualifier for filtering by creation/update date
+    date_qualifier = f"created:>={SEARCH_START_DATE}"
+    # Organization qualifier
+    org_qualifier = f"org:{TARGET_ORG}"
 
-    # 1. PRs: Query for open and merged PRs separately
-    query_open_prs = f"is:pr author:{username} is:public is:open {date_qualifier}"
-    query_merged_prs = f"is:pr author:{username} is:public is:merged {date_qualifier}"
+    # 1. PRs: Query for open and merged PRs separately in vllm-project organization
+    query_open_prs = f"is:pr author:{username} is:public is:open {org_qualifier} {date_qualifier}"
+    query_merged_prs = f"is:pr author:{username} is:public is:merged {org_qualifier} {date_qualifier}"
+    
+    print(f"Open PR query: {query_open_prs}")
+    print(f"Merged PR query: {query_merged_prs}")
     
     open_prs = github_instance.search_issues(query_open_prs)
     merged_prs = github_instance.search_issues(query_merged_prs)
     
-    # 2. Issues: Query for open and closed issues
-    query_issues = f"is:issue author:{username} -is:pr is:public {date_qualifier}"
+    # 2. Issues: Query for open and closed issues in vllm-project organization
+    query_issues = f"is:issue author:{username} -is:pr is:public {org_qualifier} {date_qualifier}"
+    print(f"Issues query: {query_issues}")
+    
     issues = github_instance.search_issues(query_issues)
     
-    print(f"Found for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
+    print(f"Found for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
     
     return {
         "open_prs": open_prs,
@@ -99,7 +109,7 @@ def generate_chart(user_data):
             "responsive": True,
             "title": {
                 "display": True,
-                "text": "用户贡献统计 - PR和Issue数量对比",
+                "text": f"{TARGET_ORG} 组织贡献统计 (2025-06-30以后)",
                 "fontSize": 16
             },
             "scales": {
@@ -148,8 +158,8 @@ def generate_chart(user_data):
 
 def generate_markdown(user_data):
     """Generates Markdown text for tables from the sorted user data."""
-    markdown_text = f"这是根据总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
-    markdown_text += f"总共追踪了 {len(user_data)} 个用户的贡献情况。\n\n"
+    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中自 **{SEARCH_START_DATE}** 以来的总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
+    markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_ORG} 组织中的贡献情况。\n\n"
     
     for user in user_data:
         username = user['username']
@@ -173,19 +183,21 @@ def generate_markdown(user_data):
         for pr in stats['merged_prs']:
             repo_name = pr.repository.full_name
             title = pr.title.replace('|', '\|')
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` |\n"
+            created_date = pr.created_at.strftime('%Y-%m-%d')
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} |\n"
             pr_rows.append((pr.created_at, row_string))
             
         # Process open PRs
         for pr in stats['open_prs']:
             repo_name = pr.repository.full_name
             title = pr.title.replace('|', '\|')
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` |\n"
+            created_date = pr.created_at.strftime('%Y-%m-%d')
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} |\n"
             pr_rows.append((pr.created_at, row_string))
 
         if pr_rows:
-            markdown_text += "| Title | Repository | State |\n"
-            markdown_text += "| ----- | ---------- | ----- |\n"
+            markdown_text += "| Title | Repository | State | Created |\n"
+            markdown_text += "| ----- | ---------- | ----- | ------- |\n"
             
             # Sort all PRs by creation date, descending
             pr_rows.sort(key=lambda x: x[0], reverse=True)
@@ -200,13 +212,14 @@ def generate_markdown(user_data):
         # Issue Table
         markdown_text += f"**Issues ({stats['issues'].totalCount} total)**\n"
         if stats['issues'].totalCount > 0:
-            markdown_text += "| Title | Repository | State |\n"
-            markdown_text += "| ----- | ---------- | ----- |\n"
+            markdown_text += "| Title | Repository | State | Created |\n"
+            markdown_text += "| ----- | ---------- | ----- | ------- |\n"
             # Show ALL issues
             for issue in stats['issues']:
                 repo_name = issue.repository.full_name
                 title = issue.title.replace('|', '\|')
-                markdown_text += f"| [{title}]({issue.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{issue.state}` |\n"
+                created_date = issue.created_at.strftime('%Y-%m-%d')
+                markdown_text += f"| [{title}]({issue.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{issue.state}` | {created_date} |\n"
         else:
             markdown_text += "_No public issues found._\n"
         markdown_text += "\n"
@@ -221,8 +234,10 @@ def create_fixed_readme(content):
         print(f"Removed existing {README_FILENAME}")
     
     # Create the full README content with header
-    readme_header = f"# GitHub Stats Report\n\n"
+    readme_header = f"# GitHub Stats Report - {TARGET_ORG} Organization\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
+    readme_header += f"**统计范围**: {TARGET_ORG} 组织\n"
+    readme_header += f"**统计时间**: {SEARCH_START_DATE} 以后\n\n"
     readme_header += f"![GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
@@ -241,6 +256,8 @@ if __name__ == "__main__":
         raise ValueError("GH_PAT environment variable not set.")
         
     print(f"Starting GitHub stats generation for {len(USERNAMES)} users...")
+    print(f"Target organization: {TARGET_ORG}")
+    print(f"Date range: after {SEARCH_START_DATE}")
     print(f"Users to track: {USERNAMES}")
     
     github = Github(GITHUB_TOKEN)
@@ -257,7 +274,7 @@ if __name__ == "__main__":
                 "stats": stats,
                 "total_contributions": total_contributions
             })
-            print(f"Successfully processed {username} with {total_contributions} total contributions")
+            print(f"Successfully processed {username} with {total_contributions} total contributions in {TARGET_ORG}")
         except Exception as e:
             print(f"Error processing user {username}: {e}")
             # 继续处理其他用户
