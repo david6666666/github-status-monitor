@@ -1,6 +1,6 @@
 import os
 import re
-import requests # 用于请求图表API
+import requests
 from github import Github
 
 # =================================CONFIG=================================
@@ -14,23 +14,29 @@ GITHUB_TOKEN = os.getenv('GH_PAT')
 MAX_ITEMS_PER_TABLE = 5
 # The output filename for the chart
 CHART_FILENAME = "stats_chart.svg"
+# Start date for the search query to include older repositories
+SEARCH_START_DATE = "2015-01-01"
 # =======================================================================
 
 def get_user_stats(github_instance, username):
     """
     Fetches PRs (open and merged) and Issues (open and closed) for a user.
+    Includes a date qualifier to find stats in older repositories.
     """
     print(f"Fetching data for {username}...")
     
+    # [FIX] Add 'updated:>=...' to query to include less active/older repos
+    date_qualifier = f"updated:>={SEARCH_START_DATE}"
+
     # 1. PRs: Query for open and merged PRs separately
-    query_open_prs = f"is:pr author:{username} is:public is:open"
-    query_merged_prs = f"is:pr author:{username} is:public is:merged"
+    query_open_prs = f"is:pr author:{username} is:public is:open {date_qualifier}"
+    query_merged_prs = f"is:pr author:{username} is:public is:merged {date_qualifier}"
     
     open_prs = github_instance.search_issues(query_open_prs)
     merged_prs = github_instance.search_issues(query_merged_prs)
     
     # 2. Issues: Query for open and closed issues
-    query_issues = f"is:issue author:{username} -is:pr is:public"
+    query_issues = f"is:issue author:{username} -is:pr is:public {date_qualifier}"
     issues = github_instance.search_issues(query_issues)
     
     print(f"Found for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
@@ -43,57 +49,49 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    Generates a bar chart using QuickChart.io and saves it as an SVG file.
+    [NEW] Generates a doughnut chart showing contribution proportions.
     """
-    print("Generating chart...")
-    # Prepare data for the chart
-    labels = []
-    open_pr_counts = []
-    merged_pr_counts = []
-    issue_counts = []
+    print("Generating new doughnut chart...")
+    labels = [user['username'] for user in user_data]
+    data = [user['total_contributions'] for user in user_data]
+    
+    # Define a color palette for the chart
+    colors = [
+        'rgba(110, 107, 213, 0.8)', # Purple
+        'rgba(40, 167, 69, 0.8)',  # Green
+        'rgba(255, 159, 64, 0.8)', # Orange
+        'rgba(255, 99, 132, 0.8)',  # Pink
+        'rgba(54, 162, 235, 0.8)',  # Blue
+    ]
 
-    for user in user_data:
-        labels.append(user['username'])
-        open_pr_counts.append(user['stats']['open_prs'].totalCount)
-        merged_pr_counts.append(user['stats']['merged_prs'].totalCount)
-        issue_counts.append(user['stats']['issues'].totalCount)
-
-    # Configure the chart using QuickChart.io JSON format
     chart_config = {
-        "type": "bar",
+        "type": "doughnut",
         "data": {
             "labels": labels,
-            "datasets": [
-                {
-                    "label": "Merged PRs",
-                    "data": merged_pr_counts,
-                    "backgroundColor": "rgba(110, 107, 213, 0.7)", # Purple
-                },
-                {
-                    "label": "Open PRs",
-                    "data": open_pr_counts,
-                    "backgroundColor": "rgba(40, 167, 69, 0.7)", # Green
-                },
-                {
-                    "label": "Issues",
-                    "data": issue_counts,
-                    "backgroundColor": "rgba(255, 159, 64, 0.7)", # Orange
-                }
-            ]
+            "datasets": [{
+                "data": data,
+                "backgroundColor": colors,
+                "borderColor": '#ffffff',
+                "borderWidth": 2
+            }]
         },
         "options": {
             "title": {
                 "display": True,
-                "text": "用户贡献统计"
+                "text": "用户总贡献占比"
             },
-            "scales": {
-                "yAxes": [{"ticks": {"beginAtZero": True}}],
-                "xAxes": [{"stacked": True}], # Stack bars for a compact view
+            "legend": {
+                "position": "right"
+            },
+            "plugins": {
+                "datalabels": {
+                    "color": "#ffffff",
+                    "formatter": "(value) => { return value > 0 ? value : ''; }"
+                }
             }
         }
     }
     
-    # Make the API request to QuickChart
     qc_url = "https://quickchart.io/chart"
     response = requests.post(qc_url, json={"chart": chart_config, "format": "svg"})
     
@@ -117,15 +115,14 @@ def generate_markdown(user_data):
         # Combined PR Table
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
         
-        # Combine and display top PRs
         all_prs = list(stats['open_prs']) + list(stats['merged_prs'])
         if all_prs:
             markdown_text += "| Title | Repository | State |\n"
             markdown_text += "| ----- | ---------- | ----- |\n"
-            for pr in all_prs[:MAX_ITEMS_PER_TABLE]:
+            for pr in sorted(all_prs, key=lambda x: x.created_at, reverse=True)[:MAX_ITEMS_PER_TABLE]:
                 repo_name = pr.repository.full_name
                 title = pr.title.replace('|', '\|')
-                state = "merged" if pr.state == 'closed' else pr.state # Show 'merged' instead of 'closed' for PRs
+                state = "merged" if pr.merged else pr.state
                 markdown_text += f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{state}` |\n"
         else:
             markdown_text += "_No relevant pull requests found._\n"
@@ -151,10 +148,16 @@ def update_readme(content):
     """Writes new content into the README between the specified markers."""
     with open(README_PATH, 'r', encoding='utf-8') as f:
         readme_content = f.read()
-    
+
+    # [FIX] Add a safety check to ensure the markers exist before replacement
+    start_marker = ""
+    end_marker = ""
+    if start_marker not in readme_content or end_marker not in readme_content:
+        raise ValueError(f"Error: Markers '{start_marker}' or '{end_marker}' not found in {README_PATH}. Aborting to prevent file corruption.")
+
     new_readme = re.sub(
-        r"(?s)(.*?)",
-        f"\n{content}\n",
+        rf"(?s){start_marker}(.*?){end_marker}",
+        f"{start_marker}\n{content}\n{end_marker}",
         readme_content
     )
     
@@ -169,7 +172,6 @@ if __name__ == "__main__":
         
     github = Github(GITHUB_TOKEN)
     
-    # Fetch data for all users
     all_user_data = []
     for username in USERNAMES:
         stats = get_user_stats(github, username)
@@ -183,13 +185,8 @@ if __name__ == "__main__":
     # Sort users by total contributions (descending)
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
     
-    # 1. Generate and save the chart
     generate_chart(all_user_data)
-    
-    # 2. Generate the markdown tables
     markdown_output = generate_markdown(all_user_data)
-    
-    # 3. Update the README file
     update_readme(markdown_output)
 
     print("\n✅ All tasks completed successfully.")
