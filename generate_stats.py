@@ -199,10 +199,10 @@ def get_user_stats(github_instance, username):
 
 def generate_chart(user_data):
     """
-    生成包含堆叠PR柱状图和独立Issue柱状图的图表 - 高清大尺寸版本
+    生成包含堆叠PR柱状图和独立Issue柱状图的图表 - 超高清大尺寸版本（4倍像素）
     包含总数标注
     """
-    print(f"Generating high-resolution stacked chart for ALL {len(user_data)} users...")
+    print(f"Generating ultra-high-resolution stacked chart for ALL {len(user_data)} users...")
     
     # 准备数据 - 确保所有用户都包含在内，即使数据为0
     usernames = []
@@ -234,14 +234,14 @@ def generate_chart(user_data):
     print(f"Chart data - Merged PR counts: {merged_pr_counts} (Total: {total_merged_prs})")
     print(f"Chart data - Issue counts: {issue_counts} (Total: {total_issues})")
     
-    # 根据用户数量动态调整图表宽度 - 增大尺寸
-    chart_width = max(2000, len(user_data) * 180)  # 最小2000px，每个用户180px（原来120px）
-    chart_height = 1200  # 增加高度以容纳标注（原来1000px）
+    # 根据用户数量动态调整图表宽度 - 4倍像素扩大
+    chart_width = max(8000, len(user_data) * 720)  # 最小8000px，每个用户720px（原来180px * 4）
+    chart_height = 4800  # 4倍高度（原来1200px）
     
     # 创建带有总数标注的标题
     title_with_totals = f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户\\n总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs} | Issues: {total_issues}"
     
-    # 创建高清堆叠柱状图配置
+    # 创建超高清堆叠柱状图配置
     chart_config = {
         "type": "bar",
         "data": {
@@ -250,25 +250,25 @@ def generate_chart(user_data):
                 {
                     "label": f"Open PRs (总计: {total_open_prs})",
                     "data": open_pr_counts,
-                    "backgroundColor": "rgba(255, 193, 7, 0.9)",  # 增加透明度
+                    "backgroundColor": "rgba(255, 193, 7, 0.9)",
                     "borderColor": "rgba(255, 193, 7, 1)",
-                    "borderWidth": 2,  # 增加边框宽度
+                    "borderWidth": 8,  # 4倍边框宽度（原来2）
                     "stack": "PRs"
                 },
                 {
                     "label": f"Merged PRs (总计: {total_merged_prs})",
                     "data": merged_pr_counts,
-                    "backgroundColor": "rgba(40, 167, 69, 0.9)",  # 增加透明度
+                    "backgroundColor": "rgba(40, 167, 69, 0.9)",
                     "borderColor": "rgba(40, 167, 69, 1)",
-                    "borderWidth": 2,  # 增加边框宽度
+                    "borderWidth": 8,  # 4倍边框宽度（原来2）
                     "stack": "PRs"
                 },
                 {
                     "label": f"Issues (总计: {total_issues})",
                     "data": issue_counts,
-                    "backgroundColor": "rgba(220, 53, 69, 0.9)",  # 增加透明度
+                    "backgroundColor": "rgba(220, 53, 69, 0.9)",
                     "borderColor": "rgba(220, 53, 69, 1)",
-                    "borderWidth": 2,  # 增加边框宽度
+                    "borderWidth": 8,  # 4倍边框宽度（原来2）
                     "stack": "Issues"
                 }
             ]
@@ -279,11 +279,11 @@ def generate_chart(user_data):
             "title": {
                 "display": True,
                 "text": title_with_totals,
-                "fontSize": 24,  # 稍微调小以容纳更多信息
+                "fontSize": 96,  # 4倍字体大小（原来24）
                 "fontColor": "#333",
                 "fontStyle": "bold",
-                "padding": 40,
-                "lineHeight": 1.2  # 多行标题的行高
+                "padding": 160,  # 4倍内边距（原来40）
+                "lineHeight": 1.2
             },
             "scales": {
                 "yAxes": [{
@@ -291,20 +291,20 @@ def generate_chart(user_data):
                     "ticks": {
                         "beginAtZero": True,
                         "stepSize": 1,
-                        "fontSize": 16,  # 增大字体（原来12）
+                        "fontSize": 64,  # 4倍字体（原来16）
                         "fontColor": "#333",
-                        "padding": 10
+                        "padding": 40  # 4倍内边距（原来10）
                     },
                     "scaleLabel": {
                         "display": True,
                         "labelString": "贡献数量",
-                        "fontSize": 20,  # 增大字体（原来14）
+                        "fontSize": 80,  # 4倍字体（原来20）
                         "fontColor": "#333",
                         "fontStyle": "bold"
                     },
                     "gridLines": {
-                        "color": "rgba(0,0,0,0.15)",  # 增加网格线对比度
-                        "lineWidth": 1
+                        "color": "rgba(0,0,0,0.15)",
+                        "lineWidth": 4  # 4倍网格线宽度（原来1）
                     }
                 }],
                 "xAxes": [{
@@ -312,16 +312,16 @@ def generate_chart(user_data):
                     "scaleLabel": {
                         "display": True,
                         "labelString": "用户名称",
-                        "fontSize": 20,  # 增大字体（原来14）
+                        "fontSize": 80,  # 4倍字体（原来20）
                         "fontColor": "#333",
                         "fontStyle": "bold"
                     },
                     "ticks": {
-                        "fontSize": 14,  # 增大字体（原来8）
+                        "fontSize": 56,  # 4倍字体（原来14）
                         "fontColor": "#333",
                         "maxRotation": 45,
                         "minRotation": 45,
-                        "padding": 10
+                        "padding": 40  # 4倍内边距（原来10）
                     },
                     "gridLines": {
                         "display": False
@@ -331,9 +331,9 @@ def generate_chart(user_data):
             "legend": {
                 "position": "top",
                 "labels": {
-                    "fontSize": 16,  # 稍微调小字体以容纳总数信息
+                    "fontSize": 64,  # 4倍字体（原来16）
                     "fontColor": "#333",
-                    "padding": 20,
+                    "padding": 80,  # 4倍内边距（原来20）
                     "usePointStyle": True,
                     "pointStyle": "rect"
                 }
@@ -345,20 +345,20 @@ def generate_chart(user_data):
                     "align": "center",
                     "color": "#fff",
                     "font": {
-                        "size": 12,  # 稍微调小字体
+                        "size": 48,  # 4倍字体（原来12）
                         "weight": "bold"
                     },
                     "formatter": "function(value) { return value > 0 ? value : ''; }",
-                    "textStrokeColor": "#000",  # 添加文字描边
-                    "textStrokeWidth": 1
+                    "textStrokeColor": "#000",
+                    "textStrokeWidth": 4  # 4倍描边宽度（原来1）
                 }
             },
             "layout": {
                 "padding": {
-                    "top": 80,   # 增加顶部空间以容纳更长的标题
-                    "bottom": 100,  # 增加底部空间（原来60）
-                    "left": 20,   # 增加左侧空间（原来10）
-                    "right": 20   # 增加右侧空间（原来10）
+                    "top": 320,   # 4倍顶部空间（原来80）
+                    "bottom": 400,  # 4倍底部空间（原来100）
+                    "left": 80,   # 4倍左侧空间（原来20）
+                    "right": 80   # 4倍右侧空间（原来20）
                 }
             },
             "elements": {
@@ -369,8 +369,8 @@ def generate_chart(user_data):
         }
     }
     
-    print(f"Sending high-resolution chart request for {len(usernames)} users...")
-    print(f"Chart dimensions: {chart_width}x{chart_height}px")
+    print(f"Sending ultra-high-resolution chart request for {len(usernames)} users...")
+    print(f"Chart dimensions: {chart_width}x{chart_height}px (4x scale)")
     print(f"Total statistics: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
     
     # 发送请求到QuickChart API
@@ -384,15 +384,15 @@ def generate_chart(user_data):
                 "width": chart_width,
                 "height": chart_height,
                 "backgroundColor": "white",
-                "devicePixelRatio": 2  # 添加高分辨率支持
+                "devicePixelRatio": 4  # 4倍像素密度（原来2）
             },
-            timeout=45  # 增加超时时间
+            timeout=60  # 增加超时时间以处理大图
         )
         
         if response.status_code == 200:
             with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"✅ High-resolution chart with totals saved successfully as {CHART_FILENAME}")
+            print(f"✅ Ultra-high-resolution chart (4x scale) with totals saved successfully as {CHART_FILENAME}")
             print(f"   Chart size: {chart_width}x{chart_height}px with {len(usernames)} users displayed")
             print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
         else:
@@ -546,7 +546,7 @@ if __name__ == "__main__":
     for user in all_user_data:
         print(f"  {user['display_name']} (@{user['username']}): {user['total_contributions']} contributions")
     
-    print(f"\nGenerating high-resolution stacked chart for all {len(all_user_data)} users...")
+    print(f"\nGenerating ultra-high-resolution stacked chart (4x scale) for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
     readme_filename = create_fixed_readme(markdown_output)
