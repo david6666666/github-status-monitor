@@ -1,19 +1,18 @@
 # GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-14 07:41:53 UTC
+Generated on: 2025-08-14 07:53:36 UTC
 
-**统计范围**: vllm-project 组织
-**统计时间**: 2025-06-30 以后
+**统计范围**: vllm-project 组织的所有贡献
 
 ![GitHub Stats Chart](stats_chart.svg)
 
 ---
 
-这是根据在 **vllm-project** 组织中自 **2025-06-30** 以来的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
+这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
 总共追踪了 11 个用户在 vllm-project 组织中的贡献情况。
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 14
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 
 **Pull Requests (4 open, 6 merged)**
 | Title | Repository | State | Created |
@@ -29,17 +28,21 @@ Generated on: 2025-08-14 07:41:53 UTC
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 |
 
-**Issues (4 total)**
+**Issues (8 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bug]: EPLB load statistics problem](https://github.com/vllm-project/vllm/issues/21883) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-30 |
 | [[Feature]: Attention-FFN disaggregation](https://github.com/vllm-project/vllm/issues/21644) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-26 |
 | [[Bug]: After online_serving disagg_example_p2p_nccl_xpyd.sh cleanup, there is a zombie process](https://github.com/vllm-project/vllm/issues/21432) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-23 |
 | [[RFC]: EPLB Execution Optimization From pr 18343](https://github.com/vllm-project/vllm/issues/20805) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+| [[Bug]:DP Crash, After first request, process is crash, 'DPEngineCoreProc' object has no attribute 'dp_rank'](https://github.com/vllm-project/vllm-ascend/issues/1170) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-11 |
+| [[Bug]: deepseek-v2-lite tp=8 ep=8 accuracy is not correct](https://github.com/vllm-project/vllm-ascend/issues/1077) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-05 |
+| [[Bug]: tp4 DeepSeek-V2-Lite, accuracy is error，"text":"....................................................................................................."](https://github.com/vllm-project/vllm-ascend/issues/894) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-19 |
+| [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-16 |
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 5
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 4
 
-**Pull Requests (1 open, 4 merged)**
+**Pull Requests (0 open, 4 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Doc] Fix a syntax error of example code in structured_outputs.md](https://github.com/vllm-project/vllm/pull/22045) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
@@ -50,20 +53,6 @@ Generated on: 2025-08-14 07:41:53 UTC
 
 **Issues (0 total)**
 _No public issues found._
-
-### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-
-**Pull Requests (2 open, 1 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 |
-| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 |
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
 ### 👤 knlnguyen1802 - 总贡献: 3
 
@@ -77,29 +66,29 @@ _No relevant pull requests found._
 | [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 2
+
+**Pull Requests (2 open, 0 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 |
+| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 |
+
+**Issues (0 total)**
+_No public issues found._
+
 ### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 2
 
-**Pull Requests (0 open, 1 merged)**
+**Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon](https://github.com/vllm-project/vllm/pull/21380) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-22 |
+| [dLLM, short for distributed LLM, an easy-to-use tool for multi-node vllm deployment](https://github.com/vllm-project/vllm-ascend/pull/1280) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-18 |
+| [[KVConnector][1/N] v1 kvcache connector with the Chariot-DS backend](https://github.com/vllm-project/vllm-ascend/pull/1080) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-05 |
 
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
-
-### 👤 NATURE (@natureofnature) - 总贡献: 2
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+**Issues (0 total)**
+_No public issues found._
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 2
 
@@ -112,9 +101,9 @@ _No relevant pull requests found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 GZQ (@Gongzq5) - 总贡献: 1
+### 👤 GZQ (@Gongzq5) - 总贡献: 0
 
-**Pull Requests (1 open, 0 merged)**
+**Pull Requests (0 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [A developer friendly tool for multi-instance deployment with Ray Implementation](https://github.com/vllm-project/vllm/pull/20761) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-10 |
@@ -122,19 +111,27 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 R2-Y - 总贡献: 1
+### 👤 R2-Y - 总贡献: 0
 
 **Pull Requests (0 open, 0 merged)**
 _No relevant pull requests found._
 
-**Issues (1 total)**
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 NATURE (@natureofnature) - 总贡献: 0
+
+**Pull Requests (0 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
+| [[Bugfix] Enable killing of orphaned EngineCores](https://github.com/vllm-project/vllm/pull/21915) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
 
-### 👤 Gamhang (@ahengljh) - 总贡献: 1
+**Issues (0 total)**
+_No public issues found._
 
-**Pull Requests (0 open, 1 merged)**
+### 👤 Gamhang (@ahengljh) - 总贡献: 0
+
+**Pull Requests (0 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
@@ -142,9 +139,9 @@ _No relevant pull requests found._
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
+### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 0
 
-**Pull Requests (0 open, 1 merged)**
+**Pull Requests (0 open, 0 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
