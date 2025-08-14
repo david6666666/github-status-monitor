@@ -36,7 +36,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "📊 Chore: Update stats and chart"
-          file_pattern: "README.md stats_chart.svg"
+          file_pattern: "README_data.md stats_chart.svg"
           # Optional: Use a specific author for the commit
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "actions@github.com"
