@@ -9,8 +9,6 @@ from github import Github
 USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan"]
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
-# The maximum number of items to display per user per category
-MAX_ITEMS_PER_TABLE = 5
 # The output filename for the chart
 CHART_FILENAME = "stats_chart.svg"
 # Start date for the search query to include older repositories
@@ -114,7 +112,7 @@ def generate_markdown(user_data):
         # PR Table
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
         
-        # [FIX] Process PRs by type to assign the correct state, then sort.
+        # Process PRs by type to assign the correct state, then sort.
         pr_rows = []
         
         # Process merged PRs
@@ -138,8 +136,8 @@ def generate_markdown(user_data):
             # Sort all PRs by creation date, descending
             pr_rows.sort(key=lambda x: x[0], reverse=True)
             
-            # Add top N rows to the markdown
-            for _, row_string in pr_rows[:MAX_ITEMS_PER_TABLE]:
+            # Add ALL rows to the markdown (removed MAX_ITEMS_PER_TABLE limitation)
+            for _, row_string in pr_rows:
                 markdown_text += row_string
         else:
             markdown_text += "_No relevant pull requests found._\n"
@@ -150,7 +148,8 @@ def generate_markdown(user_data):
         if stats['issues'].totalCount > 0:
             markdown_text += "| Title | Repository | State |\n"
             markdown_text += "| ----- | ---------- | ----- |\n"
-            for issue in stats['issues'][:MAX_ITEMS_PER_TABLE]:
+            # Show ALL issues (removed MAX_ITEMS_PER_TABLE limitation)
+            for issue in stats['issues']:
                 repo_name = issue.repository.full_name
                 title = issue.title.replace('|', '\|')
                 markdown_text += f"| [{title}]({issue.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{issue.state}` |\n"
