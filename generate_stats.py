@@ -39,73 +39,98 @@ def get_user_stats(github_instance, username):
     """
     print(f"Fetching data for {username} in {TARGET_ORG} organization after {SEARCH_START_DATE}...")
     
-    # 修改日期查询格式，使用更明确的日期范围
-    date_qualifier = f"created:>{SEARCH_START_DATE}"  # 改为 > 而不是 >=
+    # 修改日期查询格式，使用更明确的日期范围 - 修复：使用 >= 而不是 >
+    date_qualifier = f"created:>={SEARCH_START_DATE}"  # 修复：改回 >= 
     # Organization qualifier
     org_qualifier = f"org:{TARGET_ORG}"
 
-    # 1. PRs: Query for open and merged PRs separately in vllm-project organization
-    query_open_prs = f"is:pr author:{username} is:public is:open {org_qualifier} {date_qualifier}"
-    query_merged_prs = f"is:pr author:{username} is:public is:merged {org_qualifier} {date_qualifier}"
-    
-    print(f"Open PR query: {query_open_prs}")
-    print(f"Merged PR query: {query_merged_prs}")
+    # 创建模拟的搜索结果对象
+    class MockSearchResult:
+        def __init__(self, items):
+            self.totalCount = len(items)
+            self._items = items
+        
+        def __iter__(self):
+            return iter(self._items)
+
+    # 为了确保准确性，我们使用通用查询然后手动过滤
+    # 这样可以避免GitHub搜索API的延迟和不准确问题
+    print(f"Using comprehensive search approach for {username}...")
     
     try:
-        open_prs = github_instance.search_issues(query_open_prs)
-        merged_prs = github_instance.search_issues(query_merged_prs)
+        # 获取该用户在目标组织的所有PRs和Issues，然后手动过滤
+        all_prs_query = f"is:pr author:{username} is:public {org_qualifier}"
+        all_issues_query = f"is:issue author:{username} -is:pr is:public {org_qualifier}"
         
-        # 额外验证：如果没有找到结果，尝试不使用日期过滤器进行验证
-        if open_prs.totalCount == 0 and merged_prs.totalCount == 0:
-            print(f"No PRs found with date filter, trying without date filter for verification...")
-            verify_query = f"is:pr author:{username} is:public {org_qualifier}"
-            verify_prs = github_instance.search_issues(verify_query)
-            print(f"Total PRs without date filter: {verify_prs.totalCount}")
+        print(f"All PRs query: {all_prs_query}")
+        print(f"All Issues query: {all_issues_query}")
+        
+        all_prs = github_instance.search_issues(all_prs_query)
+        all_issues = github_instance.search_issues(all_issues_query)
+        
+        print(f"Found {all_prs.totalCount} total PRs and {all_issues.totalCount} total issues for {username}")
+        
+        # 手动过滤日期
+        search_date = datetime.strptime(SEARCH_START_DATE, "%Y-%m-%d").date()
+        
+        filtered_open_prs = []
+        filtered_merged_prs = []
+        filtered_issues = []
+        
+        # 过滤PRs
+        for pr in all_prs:
+            created_date = pr.created_at.date()
+            print(f"PR: {pr.title[:50]}... created on {created_date}, state: {pr.state}")
             
-            # 手动过滤日期
-            filtered_open = []
-            filtered_merged = []
+            if created_date > search_date:  # 严格大于指定日期
+                if pr.state == "open":
+                    filtered_open_prs.append(pr)
+                    print(f"  -> Added to open PRs")
+                elif pr.state == "closed":
+                    # 检查是否是merged
+                    try:
+                        # 对于通过search_issues获取的PR，我们需要检查是否merged
+                        if hasattr(pr, 'pull_request') and pr.pull_request:
+                            # 获取详细的PR信息
+                            repo = github_instance.get_repo(pr.repository.full_name)
+                            pr_detail = repo.get_pull(pr.number)
+                            if pr_detail.merged:
+                                filtered_merged_prs.append(pr)
+                                print(f"  -> Added to merged PRs")
+                            else:
+                                print(f"  -> PR was closed but not merged, skipping")
+                        else:
+                            print(f"  -> Could not determine if PR was merged, skipping")
+                    except Exception as e:
+                        print(f"  -> Error checking PR merge status: {e}")
+            else:
+                print(f"  -> Filtered out by date (created {created_date} <= {search_date})")
+        
+        # 过滤Issues
+        for issue in all_issues:
+            created_date = issue.created_at.date()
+            print(f"Issue: {issue.title[:50]}... created on {created_date}")
             
-            for pr in verify_prs:
-                created_date = pr.created_at.date()
-                search_date = datetime.strptime(SEARCH_START_DATE, "%Y-%m-%d").date()
-                
-                if created_date > search_date:  # 严格大于指定日期
-                    if pr.state == "open":
-                        filtered_open.append(pr)
-                    elif hasattr(pr, 'pull_request') and pr.pull_request and pr.pull_request.merged_at:
-                        filtered_merged.append(pr)
-            
-            print(f"After manual date filtering: {len(filtered_open)} open, {len(filtered_merged)} merged")
-            
-            # 创建模拟的搜索结果对象
-            class MockSearchResult:
-                def __init__(self, items):
-                    self.totalCount = len(items)
-                    self._items = items
-                
-                def __iter__(self):
-                    return iter(self._items)
-            
-            open_prs = MockSearchResult(filtered_open)
-            merged_prs = MockSearchResult(filtered_merged)
-    
+            if created_date > search_date:  # 严格大于指定日期
+                filtered_issues.append(issue)
+                print(f"  -> Added to issues")
+            else:
+                print(f"  -> Filtered out by date (created {created_date} <= {search_date})")
+        
+        print(f"After manual filtering for {username}: {len(filtered_open_prs)} open PRs, {len(filtered_merged_prs)} merged PRs, {len(filtered_issues)} issues")
+        
+        # 返回结果
+        open_prs = MockSearchResult(filtered_open_prs)
+        merged_prs = MockSearchResult(filtered_merged_prs)
+        issues = MockSearchResult(filtered_issues)
+        
     except Exception as e:
-        print(f"Error searching PRs for {username}: {e}")
+        print(f"Error searching for {username}: {e}")
         open_prs = MockSearchResult([])
         merged_prs = MockSearchResult([])
-    
-    # 2. Issues: Query for open and closed issues in vllm-project organization
-    query_issues = f"is:issue author:{username} -is:pr is:public {org_qualifier} {date_qualifier}"
-    print(f"Issues query: {query_issues}")
-    
-    try:
-        issues = github_instance.search_issues(query_issues)
-    except Exception as e:
-        print(f"Error searching issues for {username}: {e}")
         issues = MockSearchResult([])
     
-    print(f"Found for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
+    print(f"Final count for {username} in {TARGET_ORG}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues.")
     
     return {
         "open_prs": open_prs,
