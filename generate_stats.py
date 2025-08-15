@@ -225,6 +225,7 @@ def format_number(num):
 def generate_chart(user_data):
     """
     生成包含堆叠PR柱状图和独立Issue柱状图的图表，包含additions/deletions统计
+    修改：将所有字体颜色改为黑色加粗
     """
     print(f"Generating enhanced chart for ALL {len(user_data)} users...")
     
@@ -282,7 +283,7 @@ def generate_chart(user_data):
         f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
     ]
     
-    # 创建堆叠柱状图配置 - 调整字体大小以适应较小的图表
+    # 创建堆叠柱状图配置 - 修改：所有字体颜色改为黑色加粗
     chart_config = {
         "type": "bar",
         "data": {
@@ -319,10 +320,10 @@ def generate_chart(user_data):
             "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": title_lines,  # 修复：使用数组格式代替转义的换行符
+                "text": title_lines,
                 "fontSize": max(14, min(20, chart_width // 120)),
-                "fontColor": "#333",
-                "fontStyle": "bold",
+                "fontColor": "#000000",  # 修改：标题字体颜色改为黑色
+                "fontStyle": "bold",     # 修改：标题字体加粗
                 "padding": 25,
                 "lineHeight": 1.2
             },
@@ -333,15 +334,16 @@ def generate_chart(user_data):
                         "beginAtZero": True,
                         "stepSize": 1,
                         "fontSize": max(10, min(16, chart_width // 200)),
-                        "fontColor": "#333",
+                        "fontColor": "#000000",  # 修改：Y轴刻度字体颜色改为黑色
+                        "fontStyle": "bold",     # 修改：Y轴刻度字体加粗
                         "padding": 5
                     },
                     "scaleLabel": {
                         "display": True,
                         "labelString": "贡献数量",
                         "fontSize": max(12, min(18, chart_width // 150)),
-                        "fontColor": "#333",
-                        "fontStyle": "bold"
+                        "fontColor": "#000000",  # 修改：Y轴标签字体颜色改为黑色
+                        "fontStyle": "bold"      # 修改：Y轴标签字体加粗
                     },
                     "gridLines": {
                         "color": "rgba(0,0,0,0.15)",
@@ -354,12 +356,13 @@ def generate_chart(user_data):
                         "display": True,
                         "labelString": f"用户名称 (总代码变更: +{format_number(total_additions)} -{format_number(total_deletions)})",
                         "fontSize": max(12, min(18, chart_width // 150)),
-                        "fontColor": "#333",
-                        "fontStyle": "bold"
+                        "fontColor": "#000000",  # 修改：X轴标签字体颜色改为黑色
+                        "fontStyle": "bold"      # 修改：X轴标签字体加粗
                     },
                     "ticks": {
                         "fontSize": max(8, min(14, chart_width // 250)),
-                        "fontColor": "#333",
+                        "fontColor": "#000000",  # 修改：X轴刻度字体颜色改为黑色
+                        "fontStyle": "bold",     # 修改：X轴刻度字体加粗
                         "maxRotation": 45,
                         "minRotation": 45,
                         "padding": 5
@@ -373,7 +376,8 @@ def generate_chart(user_data):
                 "position": "top",
                 "labels": {
                     "fontSize": max(10, min(16, chart_width // 200)),
-                    "fontColor": "#333",
+                    "fontColor": "#000000",  # 修改：图例字体颜色改为黑色
+                    "fontStyle": "bold",     # 修改：图例字体加粗
                     "padding": 15,
                     "usePointStyle": True,
                     "pointStyle": "rect"
@@ -434,7 +438,7 @@ def generate_chart(user_data):
         if response.status_code == 200:
             with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"✅ Enhanced chart with additions/deletions saved successfully as {CHART_FILENAME}")
+            print(f"✅ Enhanced chart with black bold fonts saved successfully as {CHART_FILENAME}")
             print(f"   Chart size: {chart_width}x{chart_height}px with {len(usernames)} users displayed")
             print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
             print(f"   Code changes: +{format_number(total_additions)} -{format_number(total_deletions)}")
@@ -463,7 +467,7 @@ def generate_chart(user_data):
                 if response.status_code == 200:
                     with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
                         f.write(response.text)
-                    print(f"✅ Smaller enhanced chart saved successfully as {CHART_FILENAME}")
+                    print(f"✅ Smaller enhanced chart with black bold fonts saved successfully as {CHART_FILENAME}")
                 else:
                     print(f"❌ Even smaller chart failed: {response.status_code}")
                     
