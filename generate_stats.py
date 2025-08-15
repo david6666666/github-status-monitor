@@ -275,8 +275,12 @@ def generate_chart(user_data):
     
     print(f"Chart dimensions adjusted: {chart_width}x{chart_height}px (within QuickChart limits)")
     
-    # 创建带有总数标注的标题，包含additions/deletions
-    title_with_totals = f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户\\n总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs} | Issues: {total_issues}\\n代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
+    # 修复：使用数组格式来表示多行标题，这是Chart.js的正确方式
+    title_lines = [
+        f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户",
+        f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs} | Issues: {total_issues}",
+        f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
+    ]
     
     # 创建堆叠柱状图配置 - 调整字体大小以适应较小的图表
     chart_config = {
@@ -315,8 +319,8 @@ def generate_chart(user_data):
             "maintainAspectRatio": False,
             "title": {
                 "display": True,
-                "text": title_with_totals,
-                "fontSize": max(14, min(20, chart_width // 120)),  # 调整标题字体大小
+                "text": title_lines,  # 修复：使用数组格式代替转义的换行符
+                "fontSize": max(14, min(20, chart_width // 120)),
                 "fontColor": "#333",
                 "fontStyle": "bold",
                 "padding": 25,
