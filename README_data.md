@@ -1,18 +1,18 @@
 # GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-15 00:48:11 UTC
+Generated on: 2025-08-15 01:14:57 UTC
 
-**统计范围**: vllm-project 组织的所有贡献
+**统计范围**: vllm-project 组织的所有贡献（PRs, Issues, Commits）
 
 ![GitHub Stats Chart](stats_chart.svg)
 
 ---
 
-这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
+这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues + Commits）进行的排序。
 
 总共追踪了 12 个用户在 vllm-project 组织中的贡献情况。
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 
 **Pull Requests (4 open, 6 merged)**
 | Title | Repository | State | Created |
@@ -40,7 +40,17 @@ Generated on: 2025-08-15 00:48:11 UTC
 | [[Bug]: tp4 DeepSeek-V2-Lite, accuracy is error，"text":"....................................................................................................."](https://github.com/vllm-project/vllm-ascend/issues/894) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-19 |
 | [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-16 |
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 5
+**Commits (6 total, +130 additions, -43 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Docs] Update features/disagg_prefill, add v1 examples and development (#22165)](https://github.com/vllm-project/vllm/commit/289b18e670c2439dfc1f4f80df782de9ad112762) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-07 | `289b18e6` | +25 | -0 |
+| [[Bugfix] EPLB load statistics problem (#22167)](https://github.com/vllm-project/vllm/commit/4be02a37767f05a3fd27d66435d5cebea7a9bfe8) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-07 | `4be02a37` | +26 | -41 |
+| [[Doc] Added warning of speculating with draft model (#22047)](https://github.com/vllm-project/vllm/commit/49314869887e169be080201ab8bcda14e745c080) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-01 | `49314869` | +4 | -0 |
+| [[BugFix] Fix shared storage connector load kv only load attention layer (#21428)](https://github.com/vllm-project/vllm/commit/97d6c30cc965e70579bfdad27e7514592752096e) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-26 | `97d6c30c` | +10 | -2 |
+| [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL (#21530)](https://github.com/vllm-project/vllm/commit/97349fe2bc68de69550787135c1a8c6b85fc8d81) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-26 | `97349fe2` | +64 | -0 |
+| [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process (#21437)](https://github.com/vllm-project/vllm/commit/f8c15c4efb90d3c6aa879e6fa0f5abad9f80b9aa) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-24 | `f8c15c4e` | +1 | -0 |
+
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 9
 
 **Pull Requests (1 open, 4 merged)**
 | Title | Repository | State | Created |
@@ -54,7 +64,15 @@ Generated on: 2025-08-15 00:48:11 UTC
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
+**Commits (4 total, +40 additions, -22 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models (#21737)](https://github.com/vllm-project/vllm/commit/3a7e3bbdd255b470d37727a31cc0471aa0fe6ecb) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-12 | `3a7e3bbd` | +4 | -0 |
+| [[Doc] Fix a syntax error of example code in structured_outputs.md (#22045)](https://github.com/vllm-project/vllm/commit/79731a79f09dc7bbe34dc8afbe8ef2242fb94a05) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-01 | `79731a79` | +1 | -1 |
+| [[Docs] Fix the example code of streaming chat completions in reasoning (#21825)](https://github.com/vllm-project/vllm/commit/5c8fe389d6fb2b8776d4113d8334d8dd09f78733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-30 | `5c8fe389` | +12 | -14 |
+| [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thi](https://github.com/vllm-project/vllm/commit/7656cf4cf32b122cb0bf59a17b97a30e777065e0) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-28 | `7656cf4c` | +23 | -7 |
+
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created |
@@ -68,7 +86,12 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
+**Commits (1 total, +244 additions, -12 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Bugfix] SharedStorage Connector for V1 PD multimodal (#21611)](https://github.com/vllm-project/vllm/commit/4904e53c3277e92c881bf2a1442805bdc3da983f) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-30 | `4904e53c` | +244 | -12 |
+
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 5
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created |
@@ -82,6 +105,28 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
+**Commits (1 total, +1 additions, -1 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon (#21380](https://github.com/vllm-project/vllm/commit/9094d11c5d74db904dff9e9b1c63da5d73707eeb) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-26 | `9094d11c` | +1 | -1 |
+
+### 👤 wuhang (@wuhang2014) - 总贡献: 4
+
+**Pull Requests (0 open, 2 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 |
+| [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 |
+
+**Issues (0 total)**
+_No public issues found._
+
+**Commits (2 total, +159 additions, -83 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Bugfix] Add log prefix in non-dp mode engine core (#21889)](https://github.com/vllm-project/vllm/commit/e6680f9e25a433bcd754181705e72034ce6c470c) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-01 | `e6680f9e` | +75 | -81 |
+| [[Bugfix]check health for engine core process exiting unexpectedly (#21728)](https://github.com/vllm-project/vllm/commit/bccc43c0332cbd2e9b2cc6f7c83d319062f7cccd) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-07-28 | `bccc43c0` | +84 | -2 |
+
 ### 👤 knlnguyen1802 - 总贡献: 3
 
 **Pull Requests (0 open, 0 merged)**
@@ -93,6 +138,9 @@ _No relevant pull requests found._
 | [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
 | [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
+
+**Commits (0 total, +0 additions, -0 deletions)**
+_No commits found._
 
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 
@@ -106,16 +154,38 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 wuhang (@wuhang2014) - 总贡献: 2
+**Commits (0 total, +0 additions, -0 deletions)**
+_No commits found._
 
-**Pull Requests (0 open, 2 merged)**
+### 👤 Gamhang (@ahengljh) - 总贡献: 2
+
+**Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 |
-| [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 |
+| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
 
 **Issues (0 total)**
 _No public issues found._
+
+**Commits (1 total, +190 additions, -6 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [feat(multimodal): Add customizable background color for RGBA to RGB conversion (#22052)](https://github.com/vllm-project/vllm/commit/0a6d305e0f7b63b06c87bb1f7564ae8d148a3311) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-01 | `0a6d305e` | +190 | -6 |
+
+### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 2
+
+**Pull Requests (0 open, 1 merged)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
+
+**Issues (0 total)**
+_No public issues found._
+
+**Commits (1 total, +40 additions, -16 deletions)**
+| Message | Repository | Date | Hash | +Adds | -Dels |
+| ------- | ---------- | ---- | ---- | ----- | ----- |
+| [[Bugfix] Add proper comparison for package versions (#22314)](https://github.com/vllm-project/vllm/commit/609b533cb6f25f599fda94598bba446396498632) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | 2025-08-07 | `609b533c` | +40 | -16 |
 
 ### 👤 chickeyton - 总贡献: 2
 
@@ -128,6 +198,9 @@ _No relevant pull requests found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
+**Commits (0 total, +0 additions, -0 deletions)**
+_No commits found._
+
 ### 👤 GZQ (@Gongzq5) - 总贡献: 1
 
 **Pull Requests (1 open, 0 merged)**
@@ -137,6 +210,9 @@ _No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
+
+**Commits (0 total, +0 additions, -0 deletions)**
+_No commits found._
 
 ### 👤 R2-Y - 总贡献: 1
 
@@ -148,23 +224,6 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
 
-### 👤 Gamhang (@ahengljh) - 总贡献: 1
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 |
-
-**Issues (0 total)**
-_No public issues found._
+**Commits (0 total, +0 additions, -0 deletions)**
+_No commits found._
 
