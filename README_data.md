@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-15 08:16:16 UTC
+Generated on: 2025-08-15 09:12:59 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-15 08:16:16 UTC
 
 总共追踪了 12 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,317 行添加, -556 行删除
+**总代码变更统计**: +9,324 行添加, -561 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 **代码变更**: +1,350 行添加, -188 行删除
@@ -119,6 +119,20 @@ _No relevant pull requests found._
 **Issues (0 total)**
 _No public issues found._
 
+### 👤 R2-Y - 总贡献: 2
+**代码变更**: +7 行添加, -5 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 7 | 5 |
+| **Total for R2-Y** | | | | **7** | **5** |
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
+
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 **代码变更**: +132 行添加, -0 行删除
 
@@ -156,17 +170,6 @@ _No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
-
-### 👤 R2-Y - 总贡献: 1
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
 
 ### 👤 Gamhang (@ahengljh) - 总贡献: 1
 **代码变更**: +190 行添加, -6 行删除
