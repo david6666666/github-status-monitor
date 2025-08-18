@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-18 09:21:14 UTC
+Generated on: 2025-08-18 10:14:05 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-18 09:21:14 UTC
 
 总共追踪了 13 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,052 行添加, -558 行删除
+**总代码变更统计**: +9,051 行添加, -558 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 **代码变更**: +1,350 行添加, -188 行删除
@@ -106,13 +106,13 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
 ### 👤 R2-Y - 总贡献: 2
-**代码变更**: +23 行添加, -9 行删除
+**代码变更**: +22 行添加, -9 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[WIP][BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 23 | 9 |
-| **Total for R2-Y** | | | | **23** | **9** |
+| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 22 | 9 |
+| **Total for R2-Y** | | | | **22** | **9** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
