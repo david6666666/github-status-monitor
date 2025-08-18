@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-18 02:54:55 UTC
+Generated on: 2025-08-18 03:58:22 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -10,7 +10,7 @@ Generated on: 2025-08-18 02:54:55 UTC
 
 这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-总共追踪了 12 个用户在 vllm-project 组织中的贡献情况。
+总共追踪了 13 个用户在 vllm-project 组织中的贡献情况。
 
 **总代码变更统计**: +9,208 行添加, -565 行删除
 
@@ -191,4 +191,15 @@ _No public issues found._
 
 **Issues (0 total)**
 _No public issues found._
+
+### 👤 Gaohan123 - 总贡献: 1
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[RFC]: Add Multimodal Model Recipes (Qwen2.5-VL, Qwen2.5-Omni, InternVL, etc)](https://github.com/vllm-project/recipes/issues/10) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-01 |
 
