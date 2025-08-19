@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-19 14:19:44 UTC
+Generated on: 2025-08-19 15:19:26 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-19 14:19:44 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,637 行添加, -606 行删除
+**总代码变更统计**: +9,827 行添加, -612 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 19
 **代码变更**: +1,448 行添加, -228 行删除
@@ -169,6 +169,18 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
+### 👤 Gamhang (@ahengljh) - 总贡献: 1
+**代码变更**: +190 行添加, -6 行删除
+
+**Pull Requests (0 open, 1 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
+| **Total for Gamhang** | | | | **190** | **6** |
+
+**Issues (0 total)**
+_No public issues found._
+
 ### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
 **代码变更**: +40 行添加, -16 行删除
 
@@ -200,15 +212,6 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 123 | 0 |
 | **Total for Samit** | | | | **123** | **0** |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 Gamhang (@ahengljh) - 总贡献: 0
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
