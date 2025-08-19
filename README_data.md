@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-19 13:36:40 UTC
+Generated on: 2025-08-19 14:19:44 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-19 13:36:40 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,828 行添加, -612 行删除
+**总代码变更统计**: +9,637 行添加, -606 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 19
 **代码变更**: +1,448 行添加, -228 行删除
@@ -107,15 +107,15 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 3
-**代码变更**: +291 行添加, -90 行删除
+**代码变更**: +290 行添加, -90 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 132 | 7 |
+| [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 131 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **291** | **90** |
+| **Total for wuhang** | | | | **290** | **90** |
 
 **Issues (0 total)**
 _No public issues found._
@@ -169,18 +169,6 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 Gamhang (@ahengljh) - 总贡献: 1
-**代码变更**: +190 行添加, -6 行删除
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Gamhang** | | | | **190** | **6** |
-
-**Issues (0 total)**
-_No public issues found._
-
 ### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
 **代码变更**: +40 行添加, -16 行删除
 
@@ -212,6 +200,15 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 123 | 0 |
 | **Total for Samit** | | | | **123** | **0** |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 Gamhang (@ahengljh) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
