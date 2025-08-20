@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-20 08:23:23 UTC
+Generated on: 2025-08-20 09:25:55 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -92,19 +92,6 @@ _No public issues found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
-
-### 👤 knlnguyen1802 - 总贡献: 3
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
-
-**Issues (3 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
-| [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 3
 **代码变更**: +292 行添加, -90 行删除
@@ -212,6 +199,15 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 123 | 0 |
 | **Total for Samit** | | | | **123** | **0** |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 knlnguyen1802 - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
