@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-20 09:25:55 UTC
+Generated on: 2025-08-20 10:16:06 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-20 09:25:55 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,816 行添加, -606 行删除
+**总代码变更统计**: +9,819 行添加, -606 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 19
 **代码变更**: +1,442 行添加, -229 行删除
@@ -93,19 +93,33 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
-### 👤 wuhang (@wuhang2014) - 总贡献: 3
-**代码变更**: +292 行添加, -90 行删除
+### 👤 wuhang (@wuhang2014) - 总贡献: 4
+**代码变更**: +295 行添加, -90 行删除
 
-**Pull Requests (1 open, 2 merged)**
+**Pull Requests (2 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
 | [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **292** | **90** |
+| **Total for wuhang** | | | | **295** | **90** |
 
 **Issues (0 total)**
 _No public issues found._
+
+### 👤 knlnguyen1802 - 总贡献: 3
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+**Issues (3 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
+| [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
+| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
 
 ### 👤 R2-Y - 总贡献: 2
 **代码变更**: +22 行添加, -9 行删除
@@ -199,15 +213,6 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 123 | 0 |
 | **Total for Samit** | | | | **123** | **0** |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 knlnguyen1802 - 总贡献: 0
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
 
 **Issues (0 total)**
 _No public issues found._
