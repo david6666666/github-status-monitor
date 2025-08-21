@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-21 14:20:04 UTC
+Generated on: 2025-08-21 15:18:40 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-21 14:20:04 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,848 行添加, -604 行删除
+**总代码变更统计**: +9,960 行添加, -604 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 20
 **代码变更**: +1,544 行添加, -259 行删除
@@ -207,13 +207,13 @@ _No relevant pull requests found._
 | [[RFC]: Add Multimodal Model Recipes (Qwen2.5-VL, Qwen2.5-Omni, InternVL, etc)](https://github.com/vllm-project/recipes/issues/10) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-01 |
 
 ### 👤 Samit (@SamitHuang) - 总贡献: 1
-**代码变更**: +123 行添加, -0 行删除
+**代码变更**: +235 行添加, -0 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 123 | 0 |
-| **Total for Samit** | | | | **123** | **0** |
+| [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 235 | 0 |
+| **Total for Samit** | | | | **235** | **0** |
 
 **Issues (0 total)**
 _No public issues found._
