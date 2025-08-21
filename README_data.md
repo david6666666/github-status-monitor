@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-21 05:13:25 UTC
+Generated on: 2025-08-21 06:21:58 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-21 05:13:25 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,796 行添加, -583 行删除
+**总代码变更统计**: +9,795 行添加, -581 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 19
 **代码变更**: +1,441 行添加, -229 行删除
@@ -62,15 +62,15 @@ Generated on: 2025-08-21 05:13:25 UTC
 _No public issues found._
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +3,280 行添加, -204 行删除
+**代码变更**: +3,279 行添加, -202 行删除
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 327 | 165 |
+| [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 326 | 163 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,709 | 27 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **3,280** | **204** |
+| **Total for Chenguang Zheng** | | | | **3,279** | **202** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
