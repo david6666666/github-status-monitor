@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-22 06:17:25 UTC
+Generated on: 2025-08-22 07:12:26 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-22 06:17:25 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,969 行添加, -588 行删除
+**总代码变更统计**: +9,968 行添加, -588 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 20
 **代码变更**: +1,545 行添加, -259 行删除
@@ -24,7 +24,7 @@ Generated on: 2025-08-22 06:17:25 UTC
 | [[Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-19 | 91 | 41 |
 | [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 578 | 8 |
 | [[P/D][NIXL]NixlConnector Reliability Enhancement](https://github.com/vllm-project/vllm/pull/22866) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 90 | 42 |
-| [[Performance] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 370 | 90 |
+| [[Performance][EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 370 | 90 |
 | [[Bugfix] EPLB load statistics problem](https://github.com/vllm-project/vllm/pull/22167) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 26 | 41 |
 | [[Docs] Update features/disagg_prefill, add v1 examples and development](https://github.com/vllm-project/vllm/pull/22165) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 25 | 0 |
 | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 4 | 0 |
@@ -63,15 +63,15 @@ Generated on: 2025-08-22 06:17:25 UTC
 _No public issues found._
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +3,237 行添加, -179 行删除
+**代码变更**: +3,236 行添加, -179 行删除
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Feature] Support Encoder MM Cache: switch cache key from (req_id, input_id) to mm_hash](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 327 | 147 |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,666 | 20 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,665 | 20 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **3,237** | **179** |
+| **Total for Chenguang Zheng** | | | | **3,236** | **179** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
