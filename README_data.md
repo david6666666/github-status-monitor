@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-22 10:12:54 UTC
+Generated on: 2025-08-22 11:11:10 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -128,7 +128,7 @@ _No relevant pull requests found._
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 22 | 9 |
+| [[WIP][BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 22 | 9 |
 | **Total for R2-Y** | | | | **22** | **9** |
 
 **Issues (1 total)**
@@ -209,10 +209,10 @@ _No relevant pull requests found._
 ### 👤 Samit (@SamitHuang) - 总贡献: 1
 **代码变更**: +233 行添加, -0 行删除
 
-**Pull Requests (1 open, 0 merged)**
+**Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-19 | 233 | 0 |
+| [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 233 | 0 |
 | **Total for Samit** | | | | **233** | **0** |
 
 **Issues (0 total)**
