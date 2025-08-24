@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-24 14:10:45 UTC
+Generated on: 2025-08-24 15:10:54 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-24 14:10:45 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +10,267 行添加, -647 行删除
+**总代码变更统计**: +10,291 行添加, -648 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 20
 **代码变更**: +1,760 行添加, -284 行删除
@@ -63,31 +63,31 @@ Generated on: 2025-08-24 14:10:45 UTC
 _No public issues found._
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 5
-**代码变更**: +343 行添加, -116 行删除
+**代码变更**: +364 行添加, -117 行删除
 
 **Pull Requests (3 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [support mcp tools in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 48 | 26 |
+| [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 69 | 27 |
 | [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
 | [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **343** | **116** |
+| **Total for wuhang** | | | | **364** | **117** |
 
 **Issues (0 total)**
 _No public issues found._
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +3,274 行添加, -187 行删除
+**代码变更**: +3,277 行添加, -187 行删除
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 365 | 155 |
+| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 368 | 155 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,665 | 20 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **3,274** | **187** |
+| **Total for Chenguang Zheng** | | | | **3,277** | **187** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
