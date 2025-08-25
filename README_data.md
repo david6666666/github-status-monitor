@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-25 07:17:28 UTC
+Generated on: 2025-08-25 08:22:41 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-25 07:17:28 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +10,273 行添加, -643 行删除
+**总代码变更统计**: +10,362 行添加, -748 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 20
 **代码变更**: +1,769 行添加, -288 行删除
@@ -63,17 +63,17 @@ Generated on: 2025-08-25 07:17:28 UTC
 _No public issues found._
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 5
-**代码变更**: +339 行添加, -108 行删除
+**代码变更**: +428 行添加, -213 行删除
 
 **Pull Requests (3 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 44 | 18 |
+| [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 133 | 123 |
 | [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
 | [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **339** | **108** |
+| **Total for wuhang** | | | | **428** | **213** |
 
 **Issues (0 total)**
 _No public issues found._
@@ -81,10 +81,10 @@ _No public issues found._
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
 **代码变更**: +3,275 行添加, -187 行删除
 
-**Pull Requests (2 open, 1 merged)**
+**Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 | 366 | 155 |
+| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,665 | 20 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
 | **Total for Chenguang Zheng** | | | | **3,275** | **187** |
@@ -121,7 +121,7 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
 | [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-17 |
+| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 R2-Y - 总贡献: 2
 **代码变更**: +22 行添加, -9 行删除
