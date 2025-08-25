@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-25 13:34:09 UTC
+Generated on: 2025-08-25 14:19:07 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -156,7 +156,7 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-11 |
 
-### 👤 Gamhang (@ahengljh) - 总贡献: 2
+### 👤 Jinheng (@ahengljh) - 总贡献: 2
 **代码变更**: +541 行添加, -331 行删除
 
 **Pull Requests (1 open, 1 merged)**
@@ -164,7 +164,7 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 351 | 325 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Gamhang** | | | | **541** | **331** |
+| **Total for Jinheng** | | | | **541** | **331** |
 
 **Issues (0 total)**
 _No public issues found._
