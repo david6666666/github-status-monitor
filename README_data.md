@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-25 09:19:20 UTC
+Generated on: 2025-08-25 10:14:22 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-25 09:19:20 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +10,401 行添加, -769 行删除
+**总代码变更统计**: +10,793 行添加, -1,114 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 20
 **代码变更**: +1,808 行添加, -309 行删除
@@ -62,37 +62,38 @@ Generated on: 2025-08-25 09:19:20 UTC
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 wuhang (@wuhang2014) - 总贡献: 5
-**代码变更**: +428 行添加, -213 行删除
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
+**代码变更**: +3,285 行添加, -194 行删除
 
-**Pull Requests (3 open, 2 merged)**
+**Pull Requests (2 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 133 | 123 |
-| [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
-| [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
-| [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
-| [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **428** | **213** |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +3,275 行添加, -187 行删除
-
-**Pull Requests (1 open, 2 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[DOCS] Encoder Cache Manager](https://github.com/vllm-project/vllm/pull/23539) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 10 | 7 |
 | [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/21740) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-28 | 2,665 | 20 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **3,275** | **187** |
+| **Total for Chenguang Zheng** | | | | **3,285** | **194** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+
+### 👤 wuhang (@wuhang2014) - 总贡献: 5
+**代码变更**: +459 行添加, -226 行删除
+
+**Pull Requests (3 open, 2 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-24 | 164 | 136 |
+| [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
+| [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
+| [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
+| [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
+| **Total for wuhang** | | | | **459** | **226** |
+
+**Issues (0 total)**
+_No public issues found._
 
 ### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
 **代码变更**: +2,730 行添加, -4 行删除
@@ -137,6 +138,19 @@ _No relevant pull requests found._
 | ----- | ---------- | ----- | ------- |
 | [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
 
+### 👤 Gamhang (@ahengljh) - 总贡献: 2
+**代码变更**: +541 行添加, -331 行删除
+
+**Pull Requests (1 open, 1 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 351 | 325 |
+| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
+| **Total for Gamhang** | | | | **541** | **331** |
+
+**Issues (0 total)**
+_No public issues found._
+
 ### 👤 chickeyton - 总贡献: 2
 **代码变更**: +0 行添加, -0 行删除
 
@@ -171,18 +185,6 @@ _No relevant pull requests found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
-
-### 👤 Gamhang (@ahengljh) - 总贡献: 1
-**代码变更**: +190 行添加, -6 行删除
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Gamhang** | | | | **190** | **6** |
-
-**Issues (0 total)**
-_No public issues found._
 
 ### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
 **代码变更**: +40 行添加, -16 行删除
