@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-25 23:12:10 UTC
+Generated on: 2025-08-26 00:45:41 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-08-25 23:12:10 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,448 行添加, -1,184 行删除
+**总代码变更统计**: +12,389 行添加, -1,158 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 21
 **代码变更**: +2,162 行添加, -350 行删除
@@ -112,14 +112,11 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
-### 👤 knlnguyen1802 - 总贡献: 4
-**代码变更**: +59 行添加, -26 行删除
+### 👤 knlnguyen1802 - 总贡献: 3
+**代码变更**: +0 行添加, -0 行删除
 
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Refactor encoder cache allocate & Fix #23544](https://github.com/vllm-project/vllm/pull/23551) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 59 | 26 |
-| **Total for knlnguyen1802** | | | | **59** | **26** |
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
