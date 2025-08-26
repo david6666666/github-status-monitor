@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-26 06:17:31 UTC
+Generated on: 2025-08-26 07:19:01 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,14 +12,15 @@ Generated on: 2025-08-26 06:17:31 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,197 行添加, -1,153 行删除
+**总代码变更统计**: +12,352 行添加, -1,154 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 21
-**代码变更**: +2,181 行添加, -337 行删除
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 22
+**代码变更**: +2,336 行添加, -338 行删除
 
-**Pull Requests (6 open, 7 merged)**
+**Pull Requests (7 open, 7 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Seed] Add Seed-OSS Guide](https://github.com/vllm-project/recipes/pull/41) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-26 | 155 | 1 |
 | [[Spec Decode] Eagle support mrope](https://github.com/vllm-project/vllm/pull/23547) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 377 | 64 |
 | [[Model] Support DP for ViT on MiniCPM-V-4](https://github.com/vllm-project/vllm/pull/23327) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-21 | 105 | 30 |
 | [[WIP][Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-19 | 306 | 66 |
@@ -33,7 +34,7 @@ Generated on: 2025-08-26 06:17:31 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,181** | **337** |
+| **Total for WeiQing Chen** | | | | **2,336** | **338** |
 
 **Issues (8 total)**
 | Title | Repository | State | Created |
