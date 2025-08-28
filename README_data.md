@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-08-28 06:17:28 UTC
+Generated on: 2025-08-28 07:12:57 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,10 +12,10 @@ Generated on: 2025-08-28 06:17:28 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,404 行添加, -1,156 行删除
+**总代码变更统计**: +12,320 行添加, -1,170 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 22
-**代码变更**: +2,380 行添加, -338 行删除
+**代码变更**: +2,296 行添加, -352 行删除
 
 **Pull Requests (7 open, 7 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
@@ -23,7 +23,7 @@ Generated on: 2025-08-28 06:17:28 UTC
 | [[Seed] Add Seed-OSS Guide](https://github.com/vllm-project/recipes/pull/41) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-26 | 199 | 1 |
 | [[Spec Decode] Eagle support mrope](https://github.com/vllm-project/vllm/pull/23547) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 377 | 64 |
 | [[Model] Support DP for ViT on MiniCPM-V-4](https://github.com/vllm-project/vllm/pull/23327) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-21 | 105 | 30 |
-| [[WIP][Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-19 | 306 | 66 |
+| [[WIP][Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-19 | 222 | 80 |
 | [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 578 | 8 |
 | [[P/D][NIXL]NixlConnector Reliability Enhancement](https://github.com/vllm-project/vllm/pull/22866) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 109 | 29 |
 | [[Performance][EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 386 | 88 |
@@ -34,7 +34,7 @@ Generated on: 2025-08-28 06:17:28 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,380** | **338** |
+| **Total for WeiQing Chen** | | | | **2,296** | **352** |
 
 **Issues (8 total)**
 | Title | Repository | State | Created |
