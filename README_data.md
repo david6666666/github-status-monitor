@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-01 14:12:13 UTC
+Generated on: 2025-09-01 15:13:03 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,16 +12,16 @@ Generated on: 2025-09-01 14:12:13 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +13,689 行添加, -1,416 行删除
+**总代码变更统计**: +13,742 行添加, -1,458 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
-**代码变更**: +2,489 行添加, -428 行删除
+**代码变更**: +2,487 行添加, -432 行删除
 
 **Pull Requests (8 open, 8 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-29 | 18 | 13 |
-| [[Model] Support DP for ViT on Kimi-VL-A3B-Thinking-2506](https://github.com/vllm-project/vllm/pull/23817) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-28 | 159 | 58 |
+| [[Model] Support DP for ViT on Kimi-VL-A3B-Thinking-2506](https://github.com/vllm-project/vllm/pull/23817) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-28 | 157 | 62 |
 | [[Seed] Add Seed-OSS Guide](https://github.com/vllm-project/recipes/pull/41) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-26 | 199 | 1 |
 | [[Spec Decode] Eagle support mrope](https://github.com/vllm-project/vllm/pull/23547) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 377 | 64 |
 | [[Model] Support DP for ViT on MiniCPM-V-4](https://github.com/vllm-project/vllm/pull/23327) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-21 | 105 | 30 |
@@ -36,7 +36,7 @@ Generated on: 2025-09-01 14:12:13 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,489** | **428** |
+| **Total for WeiQing Chen** | | | | **2,487** | **432** |
 
 **Issues (8 total)**
 | Title | Repository | State | Created |
@@ -50,12 +50,13 @@ Generated on: 2025-09-01 14:12:13 UTC
 | [[Bug]: tp4 DeepSeek-V2-Lite, accuracy is error，"text":"....................................................................................................."](https://github.com/vllm-project/vllm-ascend/issues/894) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-19 |
 | [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-16 |
 
-### 👤 wuhang (@wuhang2014) - 总贡献: 7
-**代码变更**: +598 行添加, -253 行删除
+### 👤 wuhang (@wuhang2014) - 总贡献: 8
+**代码变更**: +653 行添加, -291 行删除
 
-**Pull Requests (4 open, 3 merged)**
+**Pull Requests (5 open, 3 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Spec Decoding]Support Spec Decoding Metrics in DP Mode](https://github.com/vllm-project/vllm/pull/24049) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-01 | 55 | 38 |
 | [[Doc][GPT-OSS]Background mode for built-in mcp tools](https://github.com/vllm-project/recipes/pull/45) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-30 | 1 | 1 |
 | [[Feature][Responses API]Support MCP tools with streaming mode + background mode](https://github.com/vllm-project/vllm/pull/23927) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-29 | 138 | 26 |
 | [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-24 | 164 | 136 |
@@ -63,7 +64,7 @@ Generated on: 2025-09-01 14:12:13 UTC
 | [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 133 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 84 | 2 |
-| **Total for wuhang** | | | | **598** | **253** |
+| **Total for wuhang** | | | | **653** | **291** |
 
 **Issues (0 total)**
 _No public issues found._
