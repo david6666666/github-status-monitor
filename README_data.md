@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-01 08:17:30 UTC
+Generated on: 2025-09-01 09:15:18 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-01 08:17:30 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +13,051 行添加, -1,302 行删除
+**总代码变更统计**: +13,465 行添加, -1,353 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,489 行添加, -428 行删除
@@ -143,6 +143,21 @@ _No relevant pull requests found._
 **Issues (0 total)**
 _No public issues found._
 
+### 👤 chickeyton - 总贡献: 3
+**代码变更**: +414 行添加, -51 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 414 | 51 |
+| **Total for chickeyton** | | | | **414** | **51** |
+
+**Issues (2 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
+| [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
+
 ### 👤 R2-Y - 总贡献: 2
 **代码变更**: +22 行添加, -9 行删除
 
@@ -170,18 +185,6 @@ _No public issues found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-11 |
-
-### 👤 chickeyton - 总贡献: 2
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
-
-**Issues (2 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
-| [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 GZQ (@Gongzq5) - 总贡献: 1
 **代码变更**: +1,620 行添加, -0 行删除
