@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-03 05:12:05 UTC
+Generated on: 2025-09-03 06:16:38 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-03 05:12:05 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +13,684 行添加, -1,444 行删除
+**总代码变更统计**: +13,678 行添加, -1,437 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,398 行添加, -410 行删除
@@ -160,13 +160,13 @@ _No public issues found._
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 R2-Y - 总贡献: 2
-**代码变更**: +244 行添加, -68 行删除
+**代码变更**: +238 行添加, -61 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[WIP][BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 244 | 68 |
-| **Total for R2-Y** | | | | **244** | **68** |
+| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 238 | 61 |
+| **Total for R2-Y** | | | | **238** | **61** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
