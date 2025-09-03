@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-02 23:11:11 UTC
+Generated on: 2025-09-03 00:42:28 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-02 23:11:11 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +13,656 行添加, -1,436 行删除
+**总代码变更统计**: +13,692 行添加, -1,443 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,398 行添加, -410 行删除
@@ -53,11 +53,11 @@ Generated on: 2025-09-02 23:11:11 UTC
 ### 👤 wuhang (@wuhang2014) - 总贡献: 8
 **代码变更**: +653 行添加, -291 行删除
 
-**Pull Requests (5 open, 3 merged)**
+**Pull Requests (4 open, 4 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Spec Decoding]Support Spec Decoding Metrics in DP Mode](https://github.com/vllm-project/vllm/pull/24049) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-01 | 55 | 38 |
-| [[Doc][GPT-OSS]Background mode for built-in mcp tools](https://github.com/vllm-project/recipes/pull/45) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-30 | 1 | 1 |
+| [[Doc][GPT-OSS]Background mode for built-in mcp tools](https://github.com/vllm-project/recipes/pull/45) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-30 | 1 | 1 |
 | [[Feature][Responses API]Support MCP tools with streaming mode + background mode](https://github.com/vllm-project/vllm/pull/23927) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-29 | 138 | 26 |
 | [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-24 | 164 | 136 |
 | [[Bugfix]Enable zmq router handover to handle scaling-up after scaling-down in EEP](https://github.com/vllm-project/vllm/pull/23247) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-20 | 3 | 0 |
@@ -69,18 +69,19 @@ Generated on: 2025-09-02 23:11:11 UTC
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 5
-**代码变更**: +55 行添加, -25 行删除
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 6
+**代码变更**: +91 行添加, -32 行删除
 
-**Pull Requests (1 open, 4 merged)**
+**Pull Requests (2 open, 4 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-09-02 | 36 | 7 |
 | [[Doc] Fix a syntax error of example code in structured_outputs.md](https://github.com/vllm-project/vllm/pull/22045) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 1 | 1 |
 | [[Docs] Fix the example code of streaming chat completions in reasoning](https://github.com/vllm-project/vllm/pull/21825) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-29 | 12 | 14 |
 | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 4 | 0 |
 | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 23 | 7 |
 | [[Bugfix] Fixed the missing metrics in output](https://github.com/vllm-project/vllm/pull/21444) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-23 | 15 | 3 |
-| **Total for Hongsheng Liu** | | | | **55** | **25** |
+| **Total for Hongsheng Liu** | | | | **91** | **32** |
 
 **Issues (0 total)**
 _No public issues found._
