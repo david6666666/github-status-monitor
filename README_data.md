@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-05 07:12:40 UTC
+Generated on: 2025-09-05 08:15:59 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-05 07:12:40 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +13,789 行添加, -1,416 行删除
+**总代码变更统计**: +13,810 行添加, -1,384 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,371 行添加, -373 行删除
@@ -120,14 +120,14 @@ _No public issues found._
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
 ### 👤 chickeyton - 总贡献: 4
-**代码变更**: +471 行添加, -59 行删除
+**代码变更**: +473 行添加, -60 行删除
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [add vllm:avg_prefill_comp_speed to Prometheus](https://github.com/vllm-project/vllm/pull/24299) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-05 | 52 | 4 |
+| [[Feat] add vllm:avg_prefill_comp_speed to Prometheus](https://github.com/vllm-project/vllm/pull/24299) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-05 | 54 | 5 |
 | [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 419 | 55 |
-| **Total for chickeyton** | | | | **471** | **59** |
+| **Total for chickeyton** | | | | **473** | **60** |
 
 **Issues (2 total)**
 | Title | Repository | State | Created |
@@ -149,27 +149,27 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 3
-**代码变更**: +348 行添加, -348 行删除
+**代码变更**: +348 行添加, -314 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 150 | 340 |
+| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 150 | 306 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Jinheng** | | | | **348** | **348** |
+| **Total for Jinheng** | | | | **348** | **314** |
 
 **Issues (0 total)**
 _No public issues found._
 
 ### 👤 R2-Y - 总贡献: 2
-**代码变更**: +238 行添加, -61 行删除
+**代码变更**: +257 行添加, -62 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 238 | 61 |
-| **Total for R2-Y** | | | | **238** | **61** |
+| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 257 | 62 |
+| **Total for R2-Y** | | | | **257** | **62** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
