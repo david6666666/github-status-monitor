@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-05 09:13:14 UTC
+Generated on: 2025-09-05 10:13:03 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-05 09:13:14 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +14,085 行添加, -1,510 行删除
+**总代码变更统计**: +14,091 行添加, -1,540 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,599 行添加, -446 行删除
@@ -120,14 +120,14 @@ _No public issues found._
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
 ### 👤 chickeyton - 总贡献: 4
-**代码变更**: +504 行添加, -64 行删除
+**代码变更**: +502 行添加, -65 行删除
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Feat] add vllm:avg_prefill_comp_speed to Prometheus](https://github.com/vllm-project/vllm/pull/24299) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-05 | 54 | 5 |
-| [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 450 | 59 |
-| **Total for chickeyton** | | | | **504** | **64** |
+| [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 448 | 60 |
+| **Total for chickeyton** | | | | **502** | **65** |
 
 **Issues (2 total)**
 | Title | Repository | State | Created |
@@ -149,15 +149,15 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 3
-**代码变更**: +364 行添加, -363 行删除
+**代码变更**: +372 行添加, -392 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 166 | 355 |
+| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 174 | 384 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Jinheng** | | | | **364** | **363** |
+| **Total for Jinheng** | | | | **372** | **392** |
 
 **Issues (0 total)**
 _No public issues found._
