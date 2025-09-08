@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-08 10:14:01 UTC
+Generated on: 2025-09-08 11:11:14 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-08 10:14:01 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +14,184 行添加, -1,618 行删除
+**总代码变更统计**: +14,184 行添加, -1,619 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,604 行添加, -467 行删除
@@ -151,15 +151,15 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 3
-**代码变更**: +301 行添加, -401 行删除
+**代码变更**: +301 行添加, -402 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 103 | 393 |
+| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 103 | 394 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Jinheng** | | | | **301** | **401** |
+| **Total for Jinheng** | | | | **301** | **402** |
 
 **Issues (0 total)**
 _No public issues found._
