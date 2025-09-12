@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-12 03:23:53 UTC
+Generated on: 2025-09-12 04:14:10 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-12 03:23:53 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +14,289 行添加, -1,630 行删除
+**总代码变更统计**: +14,294 行添加, -1,630 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +2,730 行添加, -472 行删除
@@ -124,14 +124,14 @@ _No public issues found._
 | [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
 ### 👤 chickeyton - 总贡献: 4
-**代码变更**: +526 行添加, -64 行删除
+**代码变更**: +531 行添加, -64 行删除
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Feat] add vllm:avg_prefill_comp_speed to Prometheus](https://github.com/vllm-project/vllm/pull/24299) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-05 | 60 | 4 |
-| [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 466 | 60 |
-| **Total for chickeyton** | | | | **526** | **64** |
+| [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 471 | 60 |
+| **Total for chickeyton** | | | | **531** | **64** |
 
 **Issues (2 total)**
 | Title | Repository | State | Created |
