@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-14 21:06:35 UTC
+Generated on: 2025-09-14 22:11:07 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -56,14 +56,14 @@ Generated on: 2025-09-14 21:06:35 UTC
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +849 行添加, -356 行删除
 
-**Pull Requests (6 open, 6 merged)**
+**Pull Requests (5 open, 7 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[gpt-oss]Support lazy init mcp session](https://github.com/vllm-project/vllm/pull/24388) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-07 | 59 | 29 |
 | [[CI][gpt-oss] Enable python tool tests in CI](https://github.com/vllm-project/vllm/pull/24315) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-05 | 51 | 24 |
 | [[Benchmarks]Accelerate random dataset generation](https://github.com/vllm-project/vllm/pull/24225) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-04 | 86 | 11 |
 | [[Doc][gpt-oss]Responses API supports streaming with built-in tools with MCP](https://github.com/vllm-project/recipes/pull/48) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-09-04 | 1 | 1 |
-| [[Spec Decoding]Support Spec Decoding Metrics in DP Mode](https://github.com/vllm-project/vllm/pull/24049) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-01 | 54 | 38 |
+| [[Spec Decoding]Support Spec Decoding Metrics in DP Mode](https://github.com/vllm-project/vllm/pull/24049) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-01 | 54 | 38 |
 | [[Doc][GPT-OSS]Background mode for built-in mcp tools](https://github.com/vllm-project/recipes/pull/45) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-30 | 1 | 1 |
 | [[Feature][Responses API]Support MCP tools with streaming mode + background mode](https://github.com/vllm-project/vllm/pull/23927) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-29 | 138 | 26 |
 | [[Feature][Responses API] Support MCP tool in background mode](https://github.com/vllm-project/vllm/pull/23494) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-24 | 164 | 136 |
