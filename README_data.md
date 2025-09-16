@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-16 04:14:45 UTC
+Generated on: 2025-09-16 05:13:18 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-09-16 04:14:45 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +14,314 行添加, -1,632 行删除
+**总代码变更统计**: +14,400 行添加, -1,654 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
 **代码变更**: +2,725 行添加, -472 行删除
@@ -76,18 +76,19 @@ Generated on: 2025-09-16 04:14:45 UTC
 **Issues (0 total)**
 _No public issues found._
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 5
-**代码变更**: +87 行添加, -35 行删除
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 6
+**代码变更**: +173 行添加, -57 行删除
 
-**Pull Requests (1 open, 4 merged)**
+**Pull Requests (2 open, 4 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[WIP][performance] DP for ViT in Intern S1 model](https://github.com/vllm-project/vllm/pull/24936) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-16 | 86 | 22 |
 | [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-09-02 | 47 | 13 |
 | [[Doc] Fix a syntax error of example code in structured_outputs.md](https://github.com/vllm-project/vllm/pull/22045) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 1 | 1 |
 | [[Docs] Fix the example code of streaming chat completions in reasoning](https://github.com/vllm-project/vllm/pull/21825) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-29 | 12 | 14 |
 | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 4 | 0 |
 | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 23 | 7 |
-| **Total for Hongsheng Liu** | | | | **87** | **35** |
+| **Total for Hongsheng Liu** | | | | **173** | **57** |
 
 **Issues (0 total)**
 _No public issues found._
