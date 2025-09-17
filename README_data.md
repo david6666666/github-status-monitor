@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-17 12:28:17 UTC
+Generated on: 2025-09-17 14:19:06 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -43,7 +43,7 @@ Generated on: 2025-09-17 12:28:17 UTC
 **Issues (9 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, benchmark failed mixed_qkv_spec.view shape '[5, -1, 2048]' is invalid for input of size 104448](https://github.com/vllm-project/vllm/issues/24730) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-12 |
+| [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, benchmark failed mixed_qkv_spec.view shape '[5, -1, 2048]' is invalid for input of size 104448](https://github.com/vllm-project/vllm/issues/24730) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-12 |
 | [[Bug]: EPLB load statistics problem](https://github.com/vllm-project/vllm/issues/21883) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-30 |
 | [[Feature]: Attention-FFN disaggregation](https://github.com/vllm-project/vllm/issues/21644) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-26 |
 | [[Bug]: After online_serving disagg_example_p2p_nccl_xpyd.sh cleanup, there is a zombie process](https://github.com/vllm-project/vllm/issues/21432) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-23 |
