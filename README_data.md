@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-18 12:25:14 UTC
+Generated on: 2025-09-18 13:33:39 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,10 +12,10 @@ Generated on: 2025-09-18 12:25:14 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +14,350 行添加, -1,766 行删除
+**总代码变更统计**: +14,322 行添加, -1,771 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 23
-**代码变更**: +2,724 行添加, -472 行删除
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
+**代码变更**: +2,696 行添加, -477 行删除
 
 **Pull Requests (6 open, 12 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
@@ -30,7 +30,7 @@ Generated on: 2025-09-18 12:25:14 UTC
 | [[Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-19 | 145 | 59 |
 | [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 806 | 81 |
 | [[P/D][NIXL]NixlConnector Reliability Enhancement](https://github.com/vllm-project/vllm/pull/22866) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 113 | 33 |
-| [[EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 430 | 72 |
+| [[EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 402 | 77 |
 | [[Bugfix] EPLB load statistics problem](https://github.com/vllm-project/vllm/pull/22167) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 26 | 41 |
 | [[Docs] Update features/disagg_prefill, add v1 examples and development](https://github.com/vllm-project/vllm/pull/22165) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 25 | 0 |
 | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 4 | 0 |
@@ -38,9 +38,9 @@ Generated on: 2025-09-18 12:25:14 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,724** | **472** |
+| **Total for WeiQing Chen** | | | | **2,696** | **477** |
 
-**Issues (5 total)**
+**Issues (9 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, benchmark failed mixed_qkv_spec.view shape '[5, -1, 2048]' is invalid for input of size 104448](https://github.com/vllm-project/vllm/issues/24730) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-12 |
@@ -48,6 +48,10 @@ Generated on: 2025-09-18 12:25:14 UTC
 | [[Feature]: Attention-FFN disaggregation](https://github.com/vllm-project/vllm/issues/21644) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-26 |
 | [[Bug]: After online_serving disagg_example_p2p_nccl_xpyd.sh cleanup, there is a zombie process](https://github.com/vllm-project/vllm/issues/21432) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-23 |
 | [[RFC]: EPLB Execution Optimization From pr 18343](https://github.com/vllm-project/vllm/issues/20805) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+| [[Bug]:DP Crash, After first request, process is crash, 'DPEngineCoreProc' object has no attribute 'dp_rank'](https://github.com/vllm-project/vllm-ascend/issues/1170) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-11 |
+| [[Bug]: deepseek-v2-lite tp=8 ep=8 accuracy is not correct](https://github.com/vllm-project/vllm-ascend/issues/1077) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-05 |
+| [[Bug]: tp4 DeepSeek-V2-Lite, accuracy is error，"text":"....................................................................................................."](https://github.com/vllm-project/vllm-ascend/issues/894) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-19 |
+| [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-16 |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +849 行添加, -356 行删除
