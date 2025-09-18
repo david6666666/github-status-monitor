@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-18 00:42:47 UTC
+Generated on: 2025-09-18 02:17:11 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -161,7 +161,7 @@ _No relevant pull requests found._
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[ISSUE 23474] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 125 | 474 |
+| [[Core] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 125 | 474 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
 | **Total for Jinheng** | | | | **323** | **482** |
 
