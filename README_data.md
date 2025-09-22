@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-22 06:18:21 UTC
+Generated on: 2025-09-22 07:13:53 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,10 +12,10 @@ Generated on: 2025-09-22 06:18:21 UTC
 
 总共追踪了 13 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +9,216 行添加, -1,900 行删除
+**总代码变更统计**: +9,230 行添加, -1,892 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 28
-**代码变更**: +2,672 行添加, -476 行删除
+**代码变更**: +2,665 行添加, -476 行删除
 
 **Pull Requests (5 open, 14 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
@@ -29,7 +29,7 @@ Generated on: 2025-09-22 06:18:21 UTC
 | [[Spec Decode] Eagle support mrope](https://github.com/vllm-project/vllm/pull/23547) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 377 | 64 |
 | [[Model] Support DP for ViT on MiniCPM-V-4](https://github.com/vllm-project/vllm/pull/23327) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-21 | 105 | 30 |
 | [[Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-19 | 145 | 59 |
-| [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 806 | 81 |
+| [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 799 | 81 |
 | [[P/D][NIXL]NixlConnector Reliability Enhancement](https://github.com/vllm-project/vllm/pull/22866) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 113 | 33 |
 | [[EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 401 | 77 |
 | [[Bugfix] EPLB load statistics problem](https://github.com/vllm-project/vllm/pull/22167) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 26 | 41 |
@@ -39,7 +39,7 @@ Generated on: 2025-09-22 06:18:21 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,672** | **476** |
+| **Total for WeiQing Chen** | | | | **2,665** | **476** |
 
 **Issues (9 total)**
 | Title | Repository | State | Created |
@@ -155,15 +155,15 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 3
-**代码变更**: +363 行添加, -659 行删除
+**代码变更**: +384 行添加, -651 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[Core] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 165 | 651 |
+| [[Core] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 186 | 643 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Jinheng** | | | | **363** | **659** |
+| **Total for Jinheng** | | | | **384** | **651** |
 
 **Issues (0 total)**
 _No public issues found._
