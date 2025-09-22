@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-22 09:21:23 UTC
+Generated on: 2025-09-22 10:19:55 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -10,12 +10,12 @@ Generated on: 2025-09-22 09:21:23 UTC
 
 这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
+总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,961 行添加, -1,896 行删除
+**总代码变更统计**: +13,627 行添加, -1,909 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 28
-**代码变更**: +2,665 行添加, -476 行删除
+**代码变更**: +2,736 行添加, -484 行删除
 
 **Pull Requests (5 open, 14 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
@@ -31,7 +31,7 @@ Generated on: 2025-09-22 09:21:23 UTC
 | [[Model] Support dp on ViT on GLM-4.5V](https://github.com/vllm-project/vllm/pull/23168) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-19 | 145 | 59 |
 | [[Multimodal][Speculative Decoding]Eagle Eagle3 mm support, enablement on qwen2.5vl](https://github.com/vllm-project/vllm/pull/22872) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 799 | 81 |
 | [[P/D][NIXL]NixlConnector Reliability Enhancement](https://github.com/vllm-project/vllm/pull/22866) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-14 | 113 | 33 |
-| [[EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 401 | 77 |
+| [[EPLB] EPLB Execution Optimization](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-04 | 472 | 85 |
 | [[Bugfix] EPLB load statistics problem](https://github.com/vllm-project/vllm/pull/22167) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 26 | 41 |
 | [[Docs] Update features/disagg_prefill, add v1 examples and development](https://github.com/vllm-project/vllm/pull/22165) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-04 | 25 | 0 |
 | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 4 | 0 |
@@ -39,7 +39,7 @@ Generated on: 2025-09-22 09:21:23 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **2,665** | **476** |
+| **Total for WeiQing Chen** | | | | **2,736** | **484** |
 
 **Issues (9 total)**
 | Title | Repository | State | Created |
@@ -110,6 +110,22 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
+### 👤 LJH-LBJ - 总贡献: 4
+**代码变更**: +1 行添加, -3 行删除
+
+**Pull Requests (0 open, 1 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
+| **Total for LJH-LBJ** | | | | **1** | **3** |
+
+**Issues (3 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Feature]: Add ViT memory/latency metrics, LLM prefill/decode latency, and TTFT tracing with environment switches](https://github.com/vllm-project/vllm/issues/25377) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-22 |
+| [[Usage]: How to run a benchmark with dataset FreedomIntelligence/ALLaVA-4V?](https://github.com/vllm-project/vllm/issues/23102) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-18 |
+| [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
+
 ### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
 **代码变更**: +2,730 行添加, -4 行删除
 
@@ -142,21 +158,6 @@ _No public issues found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
-### 👤 LJH-LBJ - 总贡献: 3
-**代码变更**: +1 行添加, -3 行删除
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
-| **Total for LJH-LBJ** | | | | **1** | **3** |
-
-**Issues (2 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Usage]: How to run a benchmark with dataset FreedomIntelligence/ALLaVA-4V?](https://github.com/vllm-project/vllm/issues/23102) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-18 |
-| [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
-
 ### 👤 knlnguyen1802 - 总贡献: 3
 **代码变更**: +0 行添加, -0 行删除
 
@@ -171,15 +172,15 @@ _No relevant pull requests found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 3
-**代码变更**: +384 行添加, -651 行删除
+**代码变更**: +359 行添加, -656 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
-| [[Core] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 186 | 643 |
+| [[Core] Remove lora additional vocabulary](https://github.com/vllm-project/vllm/pull/23540) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | 161 | 648 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
-| **Total for Jinheng** | | | | **384** | **651** |
+| **Total for Jinheng** | | | | **359** | **656** |
 
 **Issues (0 total)**
 _No public issues found._
@@ -221,6 +222,18 @@ _No public issues found._
 | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-12 | 3 | 2 |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 233 | 0 |
 | **Total for Samit** | | | | **236** | **2** |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 GZQ (@Gongzq5) - 总贡献: 1
+**代码变更**: +1,620 行添加, -0 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [A developer friendly tool for multi-instance deployment with Ray Implementation](https://github.com/vllm-project/vllm/pull/20761) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-10 | 1,620 | 0 |
+| **Total for GZQ** | | | | **1,620** | **0** |
 
 **Issues (0 total)**
 _No public issues found._
