@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-23 10:20:00 UTC
+Generated on: 2025-09-23 11:11:50 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -110,14 +110,14 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 LJH-LBJ - 总贡献: 4
+### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 4
 **代码变更**: +1 行添加, -3 行删除
 
 **Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
-| **Total for LJH-LBJ** | | | | **1** | **3** |
+| **Total for Junhong Liu** | | | | **1** | **3** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
