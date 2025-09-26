@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-09-26 07:13:42 UTC
+Generated on: 2025-09-26 08:19:53 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -42,7 +42,7 @@ Generated on: 2025-09-26 07:13:42 UTC
 **Issues (10 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, assert error, assert (m.num_reqs * (self.num_spec + 1) <= m.num_actual_tokens](https://github.com/vllm-project/vllm/issues/25647) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-25 |
+| [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, assert error, assert (m.num_reqs * (self.num_spec + 1) <= m.num_actual_tokens](https://github.com/vllm-project/vllm/issues/25647) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-25 |
 | [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, benchmark failed mixed_qkv_spec.view shape '[5, -1, 2048]' is invalid for input of size 104448](https://github.com/vllm-project/vllm/issues/24730) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-12 |
 | [[Bug]: EPLB load statistics problem](https://github.com/vllm-project/vllm/issues/21883) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-30 |
 | [[Feature]: Attention-FFN disaggregation](https://github.com/vllm-project/vllm/issues/21644) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-26 |
