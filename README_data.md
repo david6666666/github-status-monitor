@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-06 13:29:58 UTC
+Generated on: 2025-10-06 14:19:24 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -126,7 +126,7 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 3
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
 **代码变更**: +2,730 行添加, -4 行删除
 
 **Pull Requests (2 open, 1 merged)**
@@ -137,8 +137,10 @@ _No public issues found._
 | [[KVConnector][1/N] v1 kvcache connector with the Chariot-DS backend](https://github.com/vllm-project/vllm-ascend/pull/1080) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-05 | 1,105 | 3 |
 | **Total for Yeju Zhou** | | | | **2,730** | **4** |
 
-**Issues (0 total)**
-_No public issues found._
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
 
 ### 👤 knlnguyen1802 - 总贡献: 3
 **代码变更**: +0 行添加, -0 行删除
@@ -182,20 +184,6 @@ _No public issues found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
-### 👤 R2-Y - 总贡献: 2
-**代码变更**: +257 行添加, -62 行删除
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 257 | 62 |
-| **Total for R2-Y** | | | | **257** | **62** |
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
-
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 **代码变更**: +1,242 行添加, -3 行删除
 
@@ -231,6 +219,18 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [A developer friendly tool for multi-instance deployment with Ray Implementation](https://github.com/vllm-project/vllm/pull/20761) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-10 | 1,620 | 0 |
 | **Total for GZQ** | | | | **1,620** | **0** |
+
+**Issues (0 total)**
+_No public issues found._
+
+### 👤 R2-Y - 总贡献: 1
+**代码变更**: +257 行添加, -62 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 257 | 62 |
+| **Total for R2-Y** | | | | **257** | **62** |
 
 **Issues (0 total)**
 _No public issues found._
