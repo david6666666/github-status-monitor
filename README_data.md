@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-08 14:20:27 UTC
+Generated on: 2025-10-08 15:22:11 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-10-08 14:20:27 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,779 行添加, -1,592 行删除
+**总代码变更统计**: +12,154 行添加, -1,652 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
 **代码变更**: +1,684 行添加, -351 行删除
@@ -169,6 +169,21 @@ _No relevant pull requests found._
 **Issues (0 total)**
 _No public issues found._
 
+### 👤 chickeyton - 总贡献: 3
+**代码变更**: +375 行添加, -60 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | 375 | 60 |
+| **Total for chickeyton** | | | | **375** | **60** |
+
+**Issues (2 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
+| [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
+
 ### 👤 R2-Y - 总贡献: 2
 **代码变更**: +257 行添加, -62 行删除
 
@@ -196,18 +211,6 @@ _No public issues found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Feature]: Dynamic Chunked Pipeline Parallelism](https://github.com/vllm-project/vllm/issues/20808) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-11 |
-
-### 👤 chickeyton - 总贡献: 2
-**代码变更**: +0 行添加, -0 行删除
-
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
-
-**Issues (2 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
-| [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 Samit (@SamitHuang) - 总贡献: 2
 **代码变更**: +236 行添加, -2 行删除
