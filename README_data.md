@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-09 09:19:14 UTC
+Generated on: 2025-10-09 10:14:06 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -93,6 +93,23 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
+### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 5
+**代码变更**: +82 行添加, -11 行删除
+
+**Pull Requests (1 open, 1 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [Speed up mm processor kwargs per request](https://github.com/vllm-project/vllm/pull/25941) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-30 | 81 | 8 |
+| [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
+| **Total for Junhong Liu** | | | | **82** | **11** |
+
+**Issues (3 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Feature]: Add ViT memory/latency metrics, LLM prefill/decode latency, and TTFT tracing with environment switches](https://github.com/vllm-project/vllm/issues/25377) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-22 |
+| [[Usage]: How to run a benchmark with dataset FreedomIntelligence/ALLaVA-4V?](https://github.com/vllm-project/vllm/issues/23102) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-18 |
+| [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
+
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
 **代码变更**: +2,424 行添加, -188 行删除
 
@@ -166,19 +183,6 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
-
-### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 2
-**代码变更**: +82 行添加, -11 行删除
-
-**Pull Requests (1 open, 1 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Speed up mm processor kwargs per request](https://github.com/vllm-project/vllm/pull/25941) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-30 | 81 | 8 |
-| [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
-| **Total for Junhong Liu** | | | | **82** | **11** |
-
-**Issues (0 total)**
-_No public issues found._
 
 ### 👤 R2-Y - 总贡献: 2
 **代码变更**: +257 行添加, -62 行删除
