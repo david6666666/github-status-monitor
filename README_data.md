@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-09 11:12:25 UTC
+Generated on: 2025-10-09 12:25:26 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-10-09 11:12:25 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,067 行添加, -1,663 行删除
+**总代码变更统计**: +12,027 行添加, -1,661 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
 **代码变更**: +1,684 行添加, -351 行删除
@@ -94,14 +94,14 @@ _No public issues found._
 _No public issues found._
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 5
-**代码变更**: +82 行添加, -11 行删除
+**代码变更**: +42 行添加, -9 行删除
 
 **Pull Requests (1 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Speed up mm processor kwargs per request](https://github.com/vllm-project/vllm/pull/25941) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-30 | 81 | 8 |
+| [Speed up mm processor kwargs per request by splitint dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-10-09 | 41 | 6 |
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
-| **Total for Junhong Liu** | | | | **82** | **11** |
+| **Total for Junhong Liu** | | | | **42** | **9** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
