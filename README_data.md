@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-10 07:13:40 UTC
+Generated on: 2025-10-10 08:17:56 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,16 +12,15 @@ Generated on: 2025-10-10 07:13:40 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,591 行添加, -1,650 行删除
+**总代码变更统计**: +12,548 行添加, -1,646 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
-**代码变更**: +1,684 行添加, -340 行删除
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
+**代码变更**: +1,641 行添加, -336 行删除
 
-**Pull Requests (2 open, 15 merged)**
+**Pull Requests (1 open, 15 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
 | [[Docs] GSM8K Accuracy Evaluation doc update](https://github.com/vllm-project/vllm/pull/25360) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-22 | 1 | 1 |
-| [[VLM][Performance] Fast multimodal placeholder masking via vocabulary LUT buffer](https://github.com/vllm-project/vllm/pull/24711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-12 | 43 | 4 |
 | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-08 | 11 | 1 |
 | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-29 | 18 | 13 |
 | [[Model] Support DP for ViT on Kimi-VL-A3B-Thinking-2506](https://github.com/vllm-project/vllm/pull/23817) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-28 | 157 | 62 |
@@ -37,7 +36,7 @@ Generated on: 2025-10-10 07:13:40 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **1,684** | **340** |
+| **Total for WeiQing Chen** | | | | **1,641** | **336** |
 
 **Issues (10 total)**
 | Title | Repository | State | Created |
