@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-17 09:19:00 UTC
+Generated on: 2025-10-17 10:17:58 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -14,7 +14,7 @@ Generated on: 2025-10-17 09:19:00 UTC
 
 **总代码变更统计**: +21,534 行添加, -8,305 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 22
 **代码变更**: +1,626 行添加, -336 行删除
 
 **Pull Requests (1 open, 15 merged)**
@@ -38,7 +38,7 @@ Generated on: 2025-10-17 09:19:00 UTC
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
 | **Total for WeiQing Chen** | | | | **1,626** | **336** |
 
-**Issues (10 total)**
+**Issues (6 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[Bug]: 4xH800 Qwen/Qwen3-Next-80B-A3B-Instruct MTP, assert error, assert (m.num_reqs * (self.num_spec + 1) <= m.num_actual_tokens](https://github.com/vllm-project/vllm/issues/25647) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-25 |
@@ -47,10 +47,6 @@ Generated on: 2025-10-17 09:19:00 UTC
 | [[Feature]: Attention-FFN disaggregation](https://github.com/vllm-project/vllm/issues/21644) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-26 |
 | [[Bug]: After online_serving disagg_example_p2p_nccl_xpyd.sh cleanup, there is a zombie process](https://github.com/vllm-project/vllm/issues/21432) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-23 |
 | [[RFC]: EPLB Execution Optimization From pr 18343](https://github.com/vllm-project/vllm/issues/20805) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
-| [[Bug]:DP Crash, After first request, process is crash, 'DPEngineCoreProc' object has no attribute 'dp_rank'](https://github.com/vllm-project/vllm-ascend/issues/1170) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-11 |
-| [[Bug]: deepseek-v2-lite tp=8 ep=8 accuracy is not correct](https://github.com/vllm-project/vllm-ascend/issues/1077) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-06-05 |
-| [[Bug]: tp4 DeepSeek-V2-Lite, accuracy is error，"text":"....................................................................................................."](https://github.com/vllm-project/vllm-ascend/issues/894) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-19 |
-| [[Bug]: [dp4tp4ep16][DeepSeek-V2-Lite]RuntimeError: InnerRunOpApi:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:281 OPS function error: HcclAllGather, error code is 6](https://github.com/vllm-project/vllm-ascend/issues/886) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `closed` | 2025-05-16 |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +862 行添加, -391 行删除
