@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-20 03:45:01 UTC
+Generated on: 2025-10-20 04:19:39 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-10-20 03:45:01 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +21,534 行添加, -8,305 行删除
+**总代码变更统计**: +21,277 行添加, -8,243 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,626 行添加, -336 行删除
@@ -183,20 +183,6 @@ _No public issues found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
-### 👤 R2-Y - 总贡献: 2
-**代码变更**: +257 行添加, -62 行删除
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[BugFix] pp cannot run successfully under NixlConnector](https://github.com/vllm-project/vllm/pull/22976) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | 257 | 62 |
-| **Total for R2-Y** | | | | **257** | **62** |
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
-
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 **代码变更**: +1,242 行添加, -3 行删除
 
@@ -235,6 +221,17 @@ _No public issues found._
 
 **Issues (0 total)**
 _No public issues found._
+
+### 👤 R2-Y - 总贡献: 1
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[Bug]: PP+PD NixlConnector failed](https://github.com/vllm-project/vllm/issues/22430) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-07 |
 
 ### 👤 Syed Muhammad Bin Asif (@syedmba) - 总贡献: 1
 **代码变更**: +40 行添加, -16 行删除
