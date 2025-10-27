@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-27 11:13:02 UTC
+Generated on: 2025-10-27 12:25:23 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -125,7 +125,7 @@ _No public issues found._
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
+### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 3
 **代码变更**: +2,730 行添加, -4 行删除
 
 **Pull Requests (2 open, 1 merged)**
@@ -136,10 +136,8 @@ _No public issues found._
 | [[KVConnector][1/N] v1 kvcache connector with the Chariot-DS backend](https://github.com/vllm-project/vllm-ascend/pull/1080) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-05 | 1,105 | 3 |
 | **Total for Yeju Zhou** | | | | **2,730** | **4** |
 
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
+**Issues (0 total)**
+_No public issues found._
 
 ### 👤 knlnguyen1802 - 总贡献: 3
 **代码变更**: +0 行添加, -0 行删除
