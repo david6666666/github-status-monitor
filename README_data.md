@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-27 03:48:38 UTC
+Generated on: 2025-10-27 04:23:15 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-10-27 03:48:38 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +23,361 行添加, -8,248 行删除
+**总代码变更统计**: +23,380 行添加, -8,249 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,638 行添加, -336 行删除
@@ -93,14 +93,14 @@ _No public issues found._
 _No public issues found._
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 5
-**代码变更**: +80 行添加, -6 行删除
+**代码变更**: +91 行添加, -6 行删除
 
 **Pull Requests (1 open, 1 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-10-09 | 79 | 3 |
+| [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-10-09 | 90 | 3 |
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 1 | 3 |
-| **Total for Junhong Liu** | | | | **80** | **6** |
+| **Total for Junhong Liu** | | | | **91** | **6** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
@@ -110,15 +110,15 @@ _No public issues found._
 | [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +5,048 行添加, -205 行删除
+**代码变更**: +5,056 行添加, -206 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-19 | 4,438 | 38 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-19 | 4,446 | 39 |
 | [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **5,048** | **205** |
+| **Total for Chenguang Zheng** | | | | **5,056** | **206** |
 
 **Issues (1 total)**
 | Title | Repository | State | Created |
