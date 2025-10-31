@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-31 17:14:01 UTC
+Generated on: 2025-10-31 18:17:45 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -95,10 +95,10 @@ _No public issues found._
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
 **代码变更**: +5,212 行添加, -223 行删除
 
-**Pull Requests (2 open, 2 merged)**
+**Pull Requests (1 open, 3 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[bugfix] Missing cached item in beam search](https://github.com/vllm-project/vllm/pull/27874) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-10-31 | 10 | 18 |
+| [[bugfix] Missing cached item in beam search](https://github.com/vllm-project/vllm/pull/27874) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-10-31 | 10 | 18 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-19 | 4,592 | 38 |
 | [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
