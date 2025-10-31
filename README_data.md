@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-10-31 09:16:18 UTC
+Generated on: 2025-10-31 10:15:00 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-10-31 09:16:18 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +23,526 行添加, -8,248 行删除
+**总代码变更统计**: +23,536 行添加, -8,266 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,638 行添加, -336 行删除
@@ -92,6 +92,23 @@ _No public issues found._
 **Issues (0 total)**
 _No public issues found._
 
+### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
+**代码变更**: +5,212 行添加, -223 行删除
+
+**Pull Requests (2 open, 2 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[bugfix] Missing cached item in beam search](https://github.com/vllm-project/vllm/pull/27874) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-10-31 | 10 | 18 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-19 | 4,592 | 38 |
+| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
+| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
+| **Total for Chenguang Zheng** | | | | **5,212** | **223** |
+
+**Issues (1 total)**
+| Title | Repository | State | Created |
+| ----- | ---------- | ----- | ------- |
+| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 5
 **代码变更**: +91 行添加, -6 行删除
 
@@ -108,22 +125,6 @@ _No public issues found._
 | [[Feature]: Add ViT memory/latency metrics, LLM prefill/decode latency, and TTFT tracing with environment switches](https://github.com/vllm-project/vllm/issues/25377) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-09-22 |
 | [[Usage]: How to run a benchmark with dataset FreedomIntelligence/ALLaVA-4V?](https://github.com/vllm-project/vllm/issues/23102) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-18 |
 | [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
-
-### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 4
-**代码变更**: +5,202 行添加, -205 行删除
-
-**Pull Requests (1 open, 2 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-19 | 4,592 | 38 |
-| [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 366 | 155 |
-| [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | **5,202** | **205** |
-
-**Issues (1 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
 
 ### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
 **代码变更**: +2,730 行添加, -4 行删除
