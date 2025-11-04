@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-04 10:21:29 UTC
+Generated on: 2025-11-04 11:17:47 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-11-04 10:21:29 UTC
 
 总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +23,853 行添加, -8,267 行删除
+**总代码变更统计**: +23,876 行添加, -8,267 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,638 行添加, -336 行删除
@@ -185,15 +185,15 @@ _No public issues found._
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 Samit (@SamitHuang) - 总贡献: 3
-**代码变更**: +435 行添加, -2 行删除
+**代码变更**: +458 行添加, -2 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-04 | 199 | 0 |
+| [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-04 | 222 | 0 |
 | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-12 | 3 | 2 |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 233 | 0 |
-| **Total for Samit** | | | | **435** | **2** |
+| **Total for Samit** | | | | **458** | **2** |
 
 **Issues (0 total)**
 _No public issues found._
