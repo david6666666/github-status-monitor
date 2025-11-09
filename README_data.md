@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-09 00:50:12 UTC
+Generated on: 2025-11-09 02:31:17 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -107,7 +107,7 @@ _No public issues found._
 **Issues (1 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-11 |
+| [[RFC]: Prototype Separating Vision Encoder to Its Own Worker](https://github.com/vllm-project/vllm/issues/20799) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-11 |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 5
 **代码变更**: +156 行添加, -6 行删除
