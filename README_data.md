@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-12 07:14:49 UTC
+Generated on: 2025-11-12 08:20:53 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -10,9 +10,9 @@ Generated on: 2025-11-12 07:14:49 UTC
 
 这是根据在 **vllm-project** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。
 
-总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
+总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +15,346 行添加, -1,122 行删除
+**总代码变更统计**: +11,152 行添加, -1,120 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,888 行添加, -340 行删除
@@ -127,21 +127,21 @@ _No public issues found._
 | [[Usage]: How to run a benchmark with dataset FreedomIntelligence/ALLaVA-4V?](https://github.com/vllm-project/vllm/issues/23102) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-18 |
 | [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
 
-### 👤 Yeju Zhou (@zhouyeju) - 总贡献: 4
-**代码变更**: +2,730 行添加, -4 行删除
+### 👤 knlnguyen1802 - 总贡献: 4
+**代码变更**: +78 行添加, -1 行删除
 
-**Pull Requests (2 open, 1 merged)**
+**Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[Bugfix][Apple Silicon] fix missing symbols when build from source on Mac with Apple Silicon](https://github.com/vllm-project/vllm/pull/21380) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-22 | 1 | 1 |
-| [dLLM, short for distributed LLM, an easy-to-use tool for multi-node vllm deployment](https://github.com/vllm-project/vllm-ascend/pull/1280) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-18 | 1,624 | 0 |
-| [[KVConnector][1/N] v1 kvcache connector with the Chariot-DS backend](https://github.com/vllm-project/vllm-ascend/pull/1080) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-06-05 | 1,105 | 3 |
-| **Total for Yeju Zhou** | | | | **2,730** | **4** |
+| [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-12 | 78 | 1 |
+| **Total for knlnguyen1802** | | | | **78** | **1** |
 
-**Issues (1 total)**
+**Issues (3 total)**
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
-| [[RFC]: A developer friendly tool for multi-instance deployment with Ray](https://github.com/vllm-project/vllm/issues/20476) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-04 |
+| [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
+| [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
+| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 chickeyton - 总贡献: 4
 **代码变更**: +375 行添加, -60 行删除
@@ -159,11 +159,14 @@ _No public issues found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
-### 👤 knlnguyen1802 - 总贡献: 3
-**代码变更**: +0 行添加, -0 行删除
+### 👤 knlnguyen1802 - 总贡献: 4
+**代码变更**: +78 行添加, -1 行删除
 
-**Pull Requests (0 open, 0 merged)**
-_No relevant pull requests found._
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-12 | 78 | 1 |
+| **Total for knlnguyen1802** | | | | **78** | **1** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
@@ -209,18 +212,6 @@ _No public issues found._
 | [Add deprecation warning for lora_extra_vocab_size](https://github.com/vllm-project/vllm/pull/23635) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-26 | 8 | 2 |
 | [feat(multimodal): Add customizable background color for RGBA to RGB conversion](https://github.com/vllm-project/vllm/pull/22052) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 190 | 6 |
 | **Total for Jinheng** | | | | **198** | **8** |
-
-**Issues (0 total)**
-_No public issues found._
-
-### 👤 GZQ (@Gongzq5) - 总贡献: 1
-**代码变更**: +1,620 行添加, -0 行删除
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [A developer friendly tool for multi-instance deployment with Ray Implementation](https://github.com/vllm-project/vllm/pull/20761) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-10 | 1,620 | 0 |
-| **Total for GZQ** | | | | **1,620** | **0** |
 
 **Issues (0 total)**
 _No public issues found._
