@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-13 02:31:49 UTC
+Generated on: 2025-11-13 03:44:31 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-11-13 02:31:49 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,798 行添加, -1,302 行删除
+**总代码变更统计**: +11,782 行添加, -1,300 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,888 行添加, -340 行删除
@@ -128,14 +128,14 @@ _No public issues found._
 | [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
 
 ### 👤 knlnguyen1802 - 总贡献: 5
-**代码变更**: +401 行添加, -92 行删除
+**代码变更**: +393 行添加, -91 行删除
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 323 | 91 |
+| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
 | [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-12 | 78 | 1 |
-| **Total for knlnguyen1802** | | | | **401** | **92** |
+| **Total for knlnguyen1802** | | | | **393** | **91** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
@@ -145,14 +145,14 @@ _No public issues found._
 | [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
 
 ### 👤 knlnguyen1802 - 总贡献: 5
-**代码变更**: +401 行添加, -92 行删除
+**代码变更**: +393 行添加, -91 行删除
 
 **Pull Requests (2 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 323 | 91 |
+| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
 | [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-12 | 78 | 1 |
-| **Total for knlnguyen1802** | | | | **401** | **92** |
+| **Total for knlnguyen1802** | | | | **393** | **91** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
