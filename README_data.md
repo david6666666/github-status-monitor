@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-16 14:11:03 UTC
+Generated on: 2025-11-16 15:11:11 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -159,22 +159,6 @@ _No public issues found._
 | [feature: TTFT Routing](https://github.com/vllm-project/production-stack/issues/583) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-07-15 |
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
-### 👤 knlnguyen1802 - 总贡献: 4
-**代码变更**: +315 行添加, -90 行删除
-
-**Pull Requests (1 open, 0 merged)**
-| Title | Repository | State | Created | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
-| **Total for knlnguyen1802** | | | | **315** | **90** |
-
-**Issues (3 total)**
-| Title | Repository | State | Created |
-| ----- | ---------- | ----- | ------- |
-| [[Performance]: Long-Video Inference for Multimodal LLM](https://github.com/vllm-project/vllm/issues/22695) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-12 |
-| [[Feature]:  Multimodal Benchmarking Support (MMLM)](https://github.com/vllm-project/vllm/issues/21887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-30 |
-| [[RFC]: Reuse multimodal embeddings from encoder cache](https://github.com/vllm-project/vllm/issues/21113) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-07-17 |
-
 ### 👤 Samit (@SamitHuang) - 总贡献: 3
 **代码变更**: +414 行添加, -4 行删除
 
@@ -249,4 +233,16 @@ _No relevant pull requests found._
 | Title | Repository | State | Created |
 | ----- | ---------- | ----- | ------- |
 | [[RFC]: Add Multimodal Model Recipes (Qwen2.5-VL, Qwen2.5-Omni, InternVL, etc)](https://github.com/vllm-project/recipes/issues/10) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `open` | 2025-08-01 |
+
+### 👤 knlnguyen1802 - 总贡献: 1
+**代码变更**: +315 行添加, -90 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
+| **Total for knlnguyen1802** | | | | **315** | **90** |
+
+**Issues (0 total)**
+_No public issues found._
 
