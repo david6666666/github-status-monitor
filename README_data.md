@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-19 07:13:56 UTC
+Generated on: 2025-11-19 08:17:25 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-11-19 07:13:56 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,653 行添加, -1,295 行删除
+**总代码变更统计**: +11,661 行添加, -1,295 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 26
 **代码变更**: +1,911 行添加, -339 行删除
@@ -128,13 +128,13 @@ _No public issues found._
 | [[Bug]: AttributeError when I use speculative decoding beacuse of engine not available](https://github.com/vllm-project/vllm/issues/22645) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `closed` | 2025-08-11 |
 
 ### 👤 knlnguyen1802 - 总贡献: 4
-**代码变更**: +315 行添加, -90 行删除
+**代码变更**: +319 行添加, -90 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
-| **Total for knlnguyen1802** | | | | **315** | **90** |
+| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 319 | 90 |
+| **Total for knlnguyen1802** | | | | **319** | **90** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
@@ -160,13 +160,13 @@ _No public issues found._
 | [[RFC][FEATURE]: TTFT Routing](https://github.com/vllm-project/vllm/issues/20962) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-07-15 |
 
 ### 👤 knlnguyen1802 - 总贡献: 4
-**代码变更**: +315 行添加, -90 行删除
+**代码变更**: +319 行添加, -90 行删除
 
 **Pull Requests (1 open, 0 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 315 | 90 |
-| **Total for knlnguyen1802** | | | | **315** | **90** |
+| [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | 319 | 90 |
+| **Total for knlnguyen1802** | | | | **319** | **90** |
 
 **Issues (3 total)**
 | Title | Repository | State | Created |
