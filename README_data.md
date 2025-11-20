@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-20 10:14:09 UTC
+Generated on: 2025-11-20 11:12:58 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -178,10 +178,10 @@ _No public issues found._
 ### 👤 Samit (@SamitHuang) - 总贡献: 3
 **代码变更**: +418 行添加, -2 行删除
 
-**Pull Requests (1 open, 2 merged)**
+**Pull Requests (0 open, 3 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
-| [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-04 | 182 | 0 |
+| [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-04 | 182 | 0 |
 | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-12 | 3 | 2 |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 233 | 0 |
 | **Total for Samit** | | | | **418** | **2** |
