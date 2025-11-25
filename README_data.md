@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-25 08:18:05 UTC
+Generated on: 2025-11-25 09:16:27 UTC
 
 **统计范围**: vllm-project 组织的所有贡献（包含代码变更统计）
 
@@ -12,14 +12,15 @@ Generated on: 2025-11-25 08:18:05 UTC
 
 总共追踪了 14 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,826 行添加, -1,299 行删除
+**总代码变更统计**: +11,993 行添加, -1,303 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
-**代码变更**: +1,920 行添加, -341 行删除
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 28
+**代码变更**: +2,087 行添加, -345 行删除
 
-**Pull Requests (0 open, 17 merged)**
+**Pull Requests (1 open, 17 merged)**
 | Title | Repository | State | Created | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | --------- | --------- |
+| [[CI] Add Async Eplb nightly CI tests](https://github.com/vllm-project/vllm/pull/29385) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-25 | 167 | 4 |
 | [[Misc] remove useless v1 env](https://github.com/vllm-project/vllm/pull/29164) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-21 | 0 | 2 |
 | [[Docs] GSM8K Accuracy Evaluation doc update](https://github.com/vllm-project/vllm/pull/25360) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-22 | 1 | 1 |
 | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-08 | 11 | 1 |
@@ -37,7 +38,7 @@ Generated on: 2025-11-25 08:18:05 UTC
 | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-24 | 64 | 0 |
 | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 1 | 0 |
 | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-23 | 10 | 2 |
-| **Total for WeiQing Chen** | | | | **1,920** | **341** |
+| **Total for WeiQing Chen** | | | | **2,087** | **345** |
 
 **Issues (10 total)**
 | Title | Repository | State | Created |
