@@ -211,9 +211,9 @@ def classify_pr(title, repo_full_name):
         return "Performance"
     if any(kw in text for kw in ["refactor", "cleanup", "restructure"]):
         return "Refactor"
-    if any(kw in text for kw in ["test", "ci", "unit test", "integration test"]):
+    if any(kw in text for kw in ["test", "ci", "unit test", "integration test", "benchmark", "benchmarks"]):
         return "Test"
-    if any(kw in text for kw in ["feature", "add ", "support", "enable", "introduce"]):
+    if any(kw in text for kw in ["feature", "add ", "support", "enable", "introduce", "core", ]):
         return "Feature"
     return "Other"
 
