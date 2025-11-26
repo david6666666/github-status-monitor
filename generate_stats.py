@@ -65,13 +65,12 @@ def count_actual_items(search_result, item_type="items"):
 
 def get_user_stats_fallback(github_instance, username):
     """
-    备用方法：直接从组织的仓库中获取用户的PR和Issue统计
+    备用方法：直接从组织的仓库中获取用户的PR统计
     """
     print(f"  Using fallback method for {username}...")
     
     open_prs = []
     merged_prs = []
-    issues = []
     
     try:
         # 获取组织对象
@@ -89,17 +88,11 @@ def get_user_stats_fallback(github_instance, username):
                         elif pr.merged:
                             merged_prs.append(pr)
                 
-                # 获取该用户在此仓库中的Issues
-                all_issues = repo.get_issues(state='all')
-                for issue in all_issues:
-                    if issue.user.login == username and not issue.pull_request:
-                        issues.append(issue)
-                        
             except Exception as e:
                 print(f"    Error processing repo {repo.name}: {e}")
                 continue
                 
-        print(f"  Fallback results for {username}: {len(open_prs)} open PRs, {len(merged_prs)} merged PRs, {len(issues)} issues")
+        print(f"  Fallback results for {username}: {len(open_prs)} open PRs, {len(merged_prs)} merged PRs")
         
         # 创建包装对象
         class FallbackResult:
@@ -111,8 +104,7 @@ def get_user_stats_fallback(github_instance, username):
         
         return {
             "open_prs": FallbackResult(open_prs),
-            "merged_prs": FallbackResult(merged_prs),
-            "issues": FallbackResult(issues)
+            "merged_prs": FallbackResult(merged_prs)
         }
         
     except Exception as e:
@@ -127,13 +119,12 @@ def get_user_stats_fallback(github_instance, username):
         
         return {
             "open_prs": EmptyResult(),
-            "merged_prs": EmptyResult(),
-            "issues": EmptyResult()
+            "merged_prs": EmptyResult()
         }
 
 def get_user_stats(github_instance, username):
     """
-    Fetches PRs (open and merged) and Issues (open and closed) for a user.
+    Fetches PRs (open and merged) for a user.
     Includes all data from vllm-project organization (no date restrictions).
     """
     print(f"Fetching all data for {username} in {TARGET_ORG} organization...")
@@ -179,41 +170,12 @@ def get_user_stats(github_instance, username):
         # 使用备用方法
         return get_user_stats_fallback(github_instance, username)
     
-    # 2. Issues: Query for all issues in vllm-project organization
-    query_issues = f"is:issue author:{username} -is:pr is:public {org_qualifier}"
-    print(f"  Issues query: {query_issues}")
-    
-    # 添加延迟
-    time.sleep(1)
-    
-    try:
-        issues = github_instance.search_issues(query_issues)
-        print(f"    Issues totalCount: {issues.totalCount}")
-        
-        # 验证Issues计数
-        actual_issues_count, issues_items = count_actual_items(issues, "issues")
-        if issues.totalCount != actual_issues_count:
-            print(f"  ⚠️  Issues count mismatch: API={issues.totalCount}, Actual={actual_issues_count}")
-            issues.totalCount = actual_issues_count
-            
-    except Exception as e:
-        print(f"  ✗ Issues API Error for {username}: {type(e).__name__}: {e}")
-        # 创建空的Issues结果
-        class EmptyResult:
-            def __init__(self):
-                self.totalCount = 0
-                self._items = []
-            def __iter__(self):
-                return iter(self._items)
-        issues = EmptyResult()
-    
-    total_found = open_prs.totalCount + merged_prs.totalCount + issues.totalCount
-    print(f"  Final counts for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs, {issues.totalCount} issues (Total: {total_found})")
+    total_found = open_prs.totalCount + merged_prs.totalCount
+    print(f"  Final counts for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs (Total: {total_found})")
     
     return {
         "open_prs": open_prs,
-        "merged_prs": merged_prs,
-        "issues": issues
+        "merged_prs": merged_prs
     }
 
 def format_number(num):
@@ -224,7 +186,7 @@ def format_number(num):
 
 def generate_chart(user_data):
     """
-    生成包含堆叠PR柱状图和独立Issue柱状图的图表，包含additions/deletions统计
+    生成包含堆叠PR柱状图的图表，包含additions/deletions统计
     修改：将所有字体颜色改为黑色加粗
     """
     print(f"Generating enhanced chart for ALL {len(user_data)} users...")
@@ -233,12 +195,10 @@ def generate_chart(user_data):
     usernames = []
     open_pr_counts = []
     merged_pr_counts = []
-    issue_counts = []
     
     # 计算总数
     total_open_prs = 0
     total_merged_prs = 0
-    total_issues = 0
     total_additions = 0
     total_deletions = 0
     
@@ -246,24 +206,20 @@ def generate_chart(user_data):
         usernames.append(user['display_name'])
         open_count = user['stats']['open_prs'].totalCount
         merged_count = user['stats']['merged_prs'].totalCount
-        issue_count = user['stats']['issues'].totalCount
         user_additions = user.get('total_additions', 0)
         user_deletions = user.get('total_deletions', 0)
         
         open_pr_counts.append(open_count)
         merged_pr_counts.append(merged_count)
-        issue_counts.append(issue_count)
         
         total_open_prs += open_count
         total_merged_prs += merged_count
-        total_issues += issue_count
         total_additions += user_additions
         total_deletions += user_deletions
     
     print(f"Chart will display {len(usernames)} users: {usernames}")
     print(f"Chart data - Open PR counts: {open_pr_counts} (Total: {total_open_prs})")
     print(f"Chart data - Merged PR counts: {merged_pr_counts} (Total: {total_merged_prs})")
-    print(f"Chart data - Issue counts: {issue_counts} (Total: {total_issues})")
     print(f"Chart data - Total additions: {format_number(total_additions)}, Total deletions: {format_number(total_deletions)}")
     
     # 修复：确保宽度不超过 QuickChart 的限制 (3000px)
@@ -278,8 +234,8 @@ def generate_chart(user_data):
     
     # 修复：使用数组格式来表示多行标题，这是Chart.js的正确方式
     title_lines = [
-        f"{TARGET_ORG} 组织贡献统计 - 共{len(user_data)}位用户",
-        f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs} | Issues: {total_issues}",
+        f"{TARGET_ORG} 组织PR贡献统计 - 共{len(user_data)}位用户",
+        f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs}",
         f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
     ]
     
@@ -304,14 +260,6 @@ def generate_chart(user_data):
                     "borderColor": "rgba(40, 167, 69, 1)",
                     "borderWidth": 2,
                     "stack": "PRs"
-                },
-                {
-                    "label": f"Issues (总计: {total_issues})",
-                    "data": issue_counts,
-                    "backgroundColor": "rgba(220, 53, 69, 0.9)",
-                    "borderColor": "rgba(220, 53, 69, 1)",
-                    "borderWidth": 2,
-                    "stack": "Issues"
                 }
             ]
         },
@@ -416,7 +364,7 @@ def generate_chart(user_data):
     
     print(f"Sending enhanced chart request for {len(usernames)} users...")
     print(f"Chart dimensions: {chart_width}x{chart_height}px (within API limits)")
-    print(f"Total statistics: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
+    print(f"Total statistics: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}")
     print(f"Code changes: +{format_number(total_additions)} -{format_number(total_deletions)}")
     
     # 发送请求到QuickChart API
@@ -440,7 +388,7 @@ def generate_chart(user_data):
                 f.write(response.text)
             print(f"✅ Enhanced chart with black bold fonts saved successfully as {CHART_FILENAME}")
             print(f"   Chart size: {chart_width}x{chart_height}px with {len(usernames)} users displayed")
-            print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}, Issues: {total_issues}")
+            print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}")
             print(f"   Code changes: +{format_number(total_additions)} -{format_number(total_deletions)}")
         else:
             print(f"❌ Error generating chart: {response.status_code}")
@@ -478,7 +426,7 @@ def generate_chart(user_data):
 
 def generate_markdown(user_data):
     """生成包含additions/deletions统计的Markdown表格"""
-    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中的总贡献（Merged PRs + Open PRs + Issues）进行的排序。\n\n"
+    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
     markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_ORG} 组织中的贡献情况。\n\n"
     
     # 计算总的additions和deletions
@@ -551,21 +499,6 @@ def generate_markdown(user_data):
         else:
             markdown_text += "_No relevant pull requests found._\n"
         markdown_text += "\n"
-
-        # Issue Table
-        markdown_text += f"**Issues ({stats['issues'].totalCount} total)**\n"
-        if stats['issues'].totalCount > 0:
-            markdown_text += "| Title | Repository | State | Created |\n"
-            markdown_text += "| ----- | ---------- | ----- | ------- |\n"
-            # Show ALL issues
-            for issue in stats['issues']:
-                repo_name = issue.repository.full_name
-                title = issue.title.replace('|', '\|')
-                created_date = issue.created_at.strftime('%Y-%m-%d')
-                markdown_text += f"| [{title}]({issue.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `{issue.state}` | {created_date} |\n"
-        else:
-            markdown_text += "_No public issues found._\n"
-        markdown_text += "\n"
         
     return markdown_text
 
@@ -579,7 +512,7 @@ def create_fixed_readme(content):
     # Create the full README content with header
     readme_header = f"# Enhanced GitHub Stats Report - {TARGET_ORG} Organization\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
-    readme_header += f"**统计范围**: {TARGET_ORG} 组织的所有贡献（包含代码变更统计）\n\n"
+    readme_header += f"**统计范围**: {TARGET_ORG} 组织的所有 PR 贡献（包含代码变更统计）\n\n"
     readme_header += f"![Enhanced GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
@@ -599,7 +532,7 @@ if __name__ == "__main__":
         
     print(f"Starting Enhanced GitHub stats generation for {len(USERNAMES)} users...")
     print(f"Target organization: {TARGET_ORG}")
-    print(f"Including all contributions with additions/deletions tracking")
+    print(f"Including PR contributions with additions/deletions tracking")
     print(f"Users to track: {USERNAMES}")
     
     github = Github(GITHUB_TOKEN)
@@ -612,7 +545,7 @@ if __name__ == "__main__":
             
             display_name = get_user_display_name(github, username)
             stats = get_user_stats(github, username)
-            total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount + stats['issues'].totalCount
+            total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount
             
             # 获取PR的additions和deletions
             print(f"  Fetching additions/deletions for {username}'s PRs...")
