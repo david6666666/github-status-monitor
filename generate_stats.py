@@ -2,7 +2,7 @@ import os
 import re
 import requests
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from github import Github
 
 # =================================CONFIG=================================
@@ -33,7 +33,7 @@ def get_user_display_name(github_instance, username):
 
 def get_pr_additions_deletions(github_instance, pr):
     """
-    获取PR的additions和deletions数据
+    获取PR的additions、deletions以及合并时间
     """
     try:
         # 获取PR的详细信息
@@ -42,13 +42,14 @@ def get_pr_additions_deletions(github_instance, pr):
         
         additions = pr_detail.additions if pr_detail.additions is not None else 0
         deletions = pr_detail.deletions if pr_detail.deletions is not None else 0
+        merged_at = pr_detail.merged_at
         
         print(f"    PR #{pr.number}: +{additions} -{deletions}")
-        return additions, deletions
+        return additions, deletions, merged_at
         
     except Exception as e:
         print(f"    Error fetching additions/deletions for PR #{pr.number}: {e}")
-        return 0, 0
+        return 0, 0, None
 
 def count_actual_items(search_result, item_type="items"):
     """
@@ -183,6 +184,19 @@ def format_number(num):
     格式化数字，添加千位分隔符
     """
     return f"{num:,}"
+
+def format_datetime(dt):
+    """
+    将datetime格式化为字符串，若不存在则返回“-”
+    """
+    if not dt:
+        return "-"
+    try:
+        if dt.tzinfo:
+            dt = dt.astimezone(timezone.utc)
+        return dt.strftime('%Y-%m-%d %H:%M:%S UTC')
+    except Exception:
+        return "-"
 
 def generate_chart(user_data):
     """
@@ -451,7 +465,7 @@ def generate_markdown(user_data):
         
         markdown_text += f"**代码变更**: +{format_number(user_additions)} 行添加, -{format_number(user_deletions)} 行删除\n\n"
         
-        # PR Table with additions/deletions
+        # PR Table with additions/deletions and merged time
         markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
         
         # Process PRs by type to assign the correct state, then sort.
@@ -462,12 +476,14 @@ def generate_markdown(user_data):
             repo_name = pr.repository.full_name
             title = pr.title.replace('|', '\|')
             created_date = pr.created_at.strftime('%Y-%m-%d')
+            merged_at = getattr(pr, '_merged_at', None) or getattr(pr, 'merged_at', None)
+            merged_date = format_datetime(merged_at)
             
             # 获取PR的additions和deletions (如果已存储)
             additions = getattr(pr, '_additions', 0)
             deletions = getattr(pr, '_deletions', 0)
             
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} | {format_number(additions)} | {format_number(deletions)} |\n"
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
             pr_rows.append((pr.created_at, row_string))
             
         # Process open PRs
@@ -475,17 +491,19 @@ def generate_markdown(user_data):
             repo_name = pr.repository.full_name
             title = pr.title.replace('|', '\|')
             created_date = pr.created_at.strftime('%Y-%m-%d')
+            merged_at = getattr(pr, '_merged_at', None) or getattr(pr, 'merged_at', None)
+            merged_date = format_datetime(merged_at)
             
             # 获取PR的additions和deletions (如果已存储)
             additions = getattr(pr, '_additions', 0)
             deletions = getattr(pr, '_deletions', 0)
             
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} | {format_number(additions)} | {format_number(deletions)} |\n"
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
             pr_rows.append((pr.created_at, row_string))
 
         if pr_rows:
-            markdown_text += "| Title | Repository | State | Created | Additions | Deletions |\n"
-            markdown_text += "| ----- | ---------- | ----- | ------- | --------- | --------- |\n"
+            markdown_text += "| Title | Repository | State | Created | Merged | Additions | Deletions |\n"
+            markdown_text += "| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |\n"
             
             # Sort all PRs by creation date, descending
             pr_rows.sort(key=lambda x: x[0], reverse=True)
@@ -495,7 +513,7 @@ def generate_markdown(user_data):
                 markdown_text += row_string
                 
             # Add user totals row
-            markdown_text += f"| **Total for {display_name}** | | | | **{format_number(user_additions)}** | **{format_number(user_deletions)}** |\n"
+            markdown_text += f"| **Total for {display_name}** | | | | - | **{format_number(user_additions)}** | **{format_number(user_deletions)}** |\n"
         else:
             markdown_text += "_No relevant pull requests found._\n"
         markdown_text += "\n"
@@ -555,9 +573,10 @@ if __name__ == "__main__":
             # 处理merged PRs
             for pr in stats['merged_prs']:
                 try:
-                    additions, deletions = get_pr_additions_deletions(github, pr)
+                    additions, deletions, merged_at = get_pr_additions_deletions(github, pr)
                     pr._additions = additions
                     pr._deletions = deletions
+                    pr._merged_at = merged_at
                     user_total_additions += additions
                     user_total_deletions += deletions
                     time.sleep(0.5)  # API rate limiting
@@ -565,13 +584,15 @@ if __name__ == "__main__":
                     print(f"    Error processing merged PR #{pr.number}: {e}")
                     pr._additions = 0
                     pr._deletions = 0
+                    pr._merged_at = None
             
             # 处理open PRs
             for pr in stats['open_prs']:
                 try:
-                    additions, deletions = get_pr_additions_deletions(github, pr)
+                    additions, deletions, merged_at = get_pr_additions_deletions(github, pr)
                     pr._additions = additions
                     pr._deletions = deletions
+                    pr._merged_at = merged_at
                     user_total_additions += additions
                     user_total_deletions += deletions
                     time.sleep(0.5)  # API rate limiting
@@ -579,6 +600,7 @@ if __name__ == "__main__":
                     print(f"    Error processing open PR #{pr.number}: {e}")
                     pr._additions = 0
                     pr._deletions = 0
+                    pr._merged_at = None
             
             all_user_data.append({
                 "username": username,
