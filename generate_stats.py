@@ -567,15 +567,31 @@ def generate_markdown(user_data):
 
     if aggregated_prs:
         markdown_text += "### 📊 PR 总览（按分类排序）\n"
-        markdown_text += "| Title | Repository | User | State | Created | Merged | Category | Additions | Deletions |\n"
-        markdown_text += "| ----- | ---------- | ---- | ----- | ------- | ------ | -------- | --------- | --------- |\n"
-        aggregated_prs.sort(key=lambda x: (x["category"], x["created_at"] or datetime.min), reverse=False)
+        markdown_text += "| Category | Title | Repository | User | State | Created | Merged | Additions | Deletions |\n"
+        markdown_text += "| -------- | ----- | ---------- | ---- | ----- | ------- | ------ | --------- | --------- |\n"
+
+        category_priority = {
+            "Feature": 0,
+            "Performance": 1,
+            "Bugfix": 2,
+            "Docs": 3,
+            "Other": 4,
+            "Test": 5
+        }
+
+        def sort_key(pr):
+            cat_idx = category_priority.get(pr["category"], 6)
+            created = pr["created_at"] or datetime.min
+            return (cat_idx, created)
+
+        aggregated_prs.sort(key=sort_key)
+
         for pr in aggregated_prs:
             created_date = pr["created_at"].strftime('%Y-%m-%d') if pr["created_at"] else "-"
             merged_date = format_datetime(pr["merged_at"])
             markdown_text += (
-                f"| [{pr['title']}]({pr['url']}) | [{pr['repo']}](https://github.com/{pr['repo']}) | "
-                f"`{pr['user']}` | `{pr['state']}` | {created_date} | {merged_date} | {pr['category']} | "
+                f"| {pr['category']} | [{pr['title']}]({pr['url']}) | [{pr['repo']}](https://github.com/{pr['repo']}) | "
+                f"`{pr['user']}` | `{pr['state']}` | {created_date} | {merged_date} | "
                 f"{format_number(pr['additions'])} | {format_number(pr['deletions'])} |\n"
             )
         markdown_text += "\n"
