@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-27 11:11:59 UTC
+Generated on: 2025-11-27 11:58:17 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -10,9 +10,9 @@ Generated on: 2025-11-27 11:11:59 UTC
 
 这是根据在 **vllm-project** 组织中的 PR 贡献（Merged PRs + Open PRs）进行的排序。
 
-总共追踪了 15 个用户在 vllm-project 组织中的贡献情况。
+总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +11,596 行添加, -1,212 行删除
+**总代码变更统计**: +11,662 行添加, -1,216 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 **代码变更**: +2,087 行添加, -345 行删除
@@ -155,6 +155,15 @@ Generated on: 2025-11-27 11:11:59 UTC
 | [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | - | 375 | 60 |
 | **Total for chickeyton** | | | | - | **375** | **60** |
 
+### 👤 amy-why-3459 - 总贡献: 1
+**代码变更**: +66 行添加, -4 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Merged | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-11-13 | - | 66 | 4 |
+| **Total for amy-why-3459** | | | | - | **66** | **4** |
+
 ### 👤 R2-Y - 总贡献: 0
 **代码变更**: +0 行添加, -0 行删除
 
@@ -179,6 +188,48 @@ _No relevant pull requests found._
 **Pull Requests (0 open, 0 merged)**
 _No relevant pull requests found._
 
+### 👤 dengyunyang (@Bounty-hunter) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 Alicia (@congw729) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 zhuangzl (@godnight) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 herotai214 - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 John Liu BUAA (@JohnLiu97Huawei) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 Zhou Taichang (@tzhouam) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
+### 👤 Zeng Chuang (@zengchuang-hw) - 总贡献: 0
+**代码变更**: +0 行添加, -0 行删除
+
+**Pull Requests (0 open, 0 merged)**
+_No relevant pull requests found._
+
 ### 📊 PR 总览（按分类排序）
 | Category | Title | Repository | User | State | Created | Merged | Additions | Deletions |
 | -------- | ----- | ---------- | ---- | ----- | ------- | ------ | --------- | --------- |
@@ -198,6 +249,7 @@ _No relevant pull requests found._
 | Feature | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `fake0fan` | `merged` | 2025-09-19 | 2025-11-12 02:58:34 UTC | 5,025 | 41 |
 | Feature | [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-11-04 | 2025-11-20 11:01:03 UTC | 182 | 0 |
 | Feature | [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `knlnguyen1802` | `open` | 2025-11-13 | - | 319 | 90 |
+| Feature | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `amy-why-3459` | `open` | 2025-11-13 | - | 66 | 4 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
 | Performance | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-29 | 2025-09-03 19:14:30 UTC | 18 | 13 |
 | Performance | [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `hsliuustc0106` | `open` | 2025-09-02 | - | 47 | 13 |
