@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-11-30 00:55:26 UTC
+Generated on: 2025-11-30 02:54:29 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-11-30 00:55:26 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +12,117 行添加, -1,243 行删除
+**总代码变更统计**: +12,125 行添加, -1,243 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 **代码变更**: +2,087 行添加, -345 行删除
@@ -61,19 +61,19 @@ Generated on: 2025-11-30 00:55:26 UTC
 | **Total for wuhang** | | | | - | **862** | **391** |
 
 ### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 7
-**代码变更**: +263 行添加, -57 行删除
+**代码变更**: +271 行添加, -57 行删除
 
 **Pull Requests (3 open, 4 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [vllm-omni post init and roadmap updates](https://github.com/vllm-project/vllm-project.github.io/pull/123) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `open` | 2025-11-28 | - | 90 | 0 |
+| [vllm-omni post init and roadmap updates](https://github.com/vllm-project/vllm-project.github.io/pull/123) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `open` | 2025-11-28 | - | 98 | 0 |
 | [[WIP][performance] DP for ViT in Intern S1 model](https://github.com/vllm-project/vllm/pull/24936) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-16 | - | 86 | 22 |
 | [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-09-02 | - | 47 | 13 |
 | [[Doc] Fix a syntax error of example code in structured_outputs.md](https://github.com/vllm-project/vllm/pull/22045) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-01 | 2025-08-01 07:01:22 UTC | 1 | 1 |
 | [[Docs] Fix the example code of streaming chat completions in reasoning](https://github.com/vllm-project/vllm/pull/21825) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-29 | 2025-07-30 12:11:58 UTC | 12 | 14 |
 | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
-| **Total for Hongsheng Liu** | | | | - | **263** | **57** |
+| **Total for Hongsheng Liu** | | | | - | **271** | **57** |
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 5
 **代码变更**: +5,648 行添加, -233 行删除
@@ -283,7 +283,7 @@ _No relevant pull requests found._
 | Other | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
 | Other | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `LJH-LBJ` | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
 | Other | [[Misc] remove useless v1 env](https://github.com/vllm-project/vllm/pull/29164) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-11-21 | 2025-11-21 09:41:20 UTC | 0 | 2 |
-| Other | [vllm-omni post init and roadmap updates](https://github.com/vllm-project/vllm-project.github.io/pull/123) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `hsliuustc0106` | `open` | 2025-11-28 | - | 90 | 0 |
+| Other | [vllm-omni post init and roadmap updates](https://github.com/vllm-project/vllm-project.github.io/pull/123) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `hsliuustc0106` | `open` | 2025-11-28 | - | 98 | 0 |
 | Test | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `SamitHuang` | `merged` | 2025-08-19 | 2025-08-22 10:56:12 UTC | 233 | 0 |
 | Test | [[Seed] Add Seed-OSS Guide](https://github.com/vllm-project/recipes/pull/41) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `david6666666` | `merged` | 2025-08-26 | 2025-08-28 08:14:21 UTC | 199 | 1 |
 | Test | [[Benchmarks]Accelerate random dataset generation](https://github.com/vllm-project/vllm/pull/24225) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `wuhang2014` | `open` | 2025-09-04 | - | 86 | 11 |
