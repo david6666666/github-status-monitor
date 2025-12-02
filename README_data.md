@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-02 09:20:58 UTC
+Generated on: 2025-12-02 10:17:32 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-02 09:20:58 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +60,940 行添加, -13,947 行删除
+**总代码变更统计**: +61,305 行添加, -13,972 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 18
 **代码变更**: +2,087 行添加, -345 行删除
@@ -85,12 +85,13 @@ Generated on: 2025-12-02 09:20:58 UTC
 | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
 | **Total for Hongsheng Liu** | | | | - | **11,048** | **1,486** |
 
-### 👤 Samit (@SamitHuang) - 总贡献: 13
-**代码变更**: +3,322 行添加, -296 行删除
+### 👤 Samit (@SamitHuang) - 总贡献: 14
+**代码变更**: +3,687 行添加, -321 行删除
 
-**Pull Requests (0 open, 13 merged)**
+**Pull Requests (1 open, 13 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Misc] Qwen-Omni support offline inference with local files](https://github.com/vllm-project/vllm-omni/pull/167) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-02 | - | 365 | 25 |
 | [[Bugfix] Fix Qwen3-Omni gradio audio input bug](https://github.com/vllm-project/vllm-omni/pull/147) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-01 | 2025-12-01 13:52:31 UTC | 4 | 2 |
 | [[Bugfix] Fix redundant shm broadcast warnings in diffusion workers](https://github.com/vllm-project/vllm-omni/pull/133) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-01 | 2025-12-01 07:17:57 UTC | 2 | 2 |
 | [[Misc][WIP] Support qwen-omni online inference with local video/audio/image path](https://github.com/vllm-project/vllm-omni/pull/131) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-01 | 2025-12-01 08:30:23 UTC | 483 | 76 |
@@ -104,7 +105,7 @@ Generated on: 2025-12-02 09:20:58 UTC
 | [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-04 | 2025-11-20 11:01:03 UTC | 182 | 0 |
 | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 2025-08-22 10:56:12 UTC | 233 | 0 |
-| **Total for Samit** | | | | - | **3,322** | **296** |
+| **Total for Samit** | | | | - | **3,687** | **321** |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +862 行添加, -391 行删除
@@ -333,6 +334,7 @@ _No relevant pull requests found._
 | Feature | [[Feature] Support Gradio Demo for Qwen3-Omni](https://github.com/vllm-project/vllm-omni/pull/116) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-11-30 | 2025-11-30 12:44:04 UTC | 16 | 14 |
 | Feature | [[Misc][WIP] Support qwen-omni online inference with local video/audio/image path](https://github.com/vllm-project/vllm-omni/pull/131) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-01 | 2025-12-01 08:30:23 UTC | 483 | 76 |
 | Feature | [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `jiangkuaixue123` | `open` | 2025-12-01 | - | 2,129 | 61 |
+| Feature | [[Misc] Qwen-Omni support offline inference with local files](https://github.com/vllm-project/vllm-omni/pull/167) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-02 | - | 365 | 25 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
 | Performance | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-29 | 2025-09-03 19:14:30 UTC | 18 | 13 |
 | Performance | [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `hsliuustc0106` | `open` | 2025-09-02 | - | 47 | 13 |
