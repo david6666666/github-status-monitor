@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-03 12:25:08 UTC
+Generated on: 2025-12-03 13:34:36 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -256,10 +256,10 @@ Generated on: 2025-12-03 12:25:08 UTC
 ### 👤 amy-why-3459 - 总贡献: 1
 **代码变更**: +73 行添加, -11 行删除
 
-**Pull Requests (1 open, 0 merged)**
+**Pull Requests (0 open, 1 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-11-13 | - | 73 | 11 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-11-13 | 2025-12-03 12:48:45 UTC | 73 | 11 |
 | **Total for amy-why-3459** | | | | - | **73** | **11** |
 
 ### 👤 tangtiangu - 总贡献: 0
@@ -328,7 +328,7 @@ _No relevant pull requests found._
 | Feature | [[Feature] add support for Qwen3-omni](https://github.com/vllm-project/vllm-omni/pull/55) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-11-11 | 2025-11-29 20:44:01 UTC | 8,063 | 477 |
 | Feature | [[Feature] Add Gradio Demo for Qwen2.5Omni](https://github.com/vllm-project/vllm-omni/pull/60) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-11-11 | 2025-11-26 01:23:47 UTC | 574 | 0 |
 | Feature | [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `knlnguyen1802` | `open` | 2025-11-13 | - | 319 | 90 |
-| Feature | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `amy-why-3459` | `open` | 2025-11-13 | - | 73 | 11 |
+| Feature | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `amy-why-3459` | `merged` | 2025-11-13 | 2025-12-03 12:48:45 UTC | 73 | 11 |
 | Feature | [[Feature] Support online inference](https://github.com/vllm-project/vllm-omni/pull/64) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-11-14 | 2025-11-17 06:44:10 UTC | 0 | 0 |
 | Feature | [[Feature] support multimodal inputs with multiple requests](https://github.com/vllm-project/vllm-omni/pull/76) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-11-20 | 2025-11-24 08:02:44 UTC | 1,450 | 974 |
 | Feature | [[Diffusion] Support Multi-image Generation and Add Web UI Demo for QwenImage](https://github.com/vllm-project/vllm-omni/pull/97) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-11-28 | 2025-11-29 12:19:50 UTC | 341 | 22 |
