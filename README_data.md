@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-15 00:57:34 UTC
+Generated on: 2025-12-15 02:58:20 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -173,7 +173,7 @@ Generated on: 2025-12-15 00:57:34 UTC
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[CI] Adjust folder](https://github.com/vllm-project/vllm-omni/pull/300) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-12 | 2025-12-12 09:19:24 UTC | 1 | 1 |
-| [[WIP] [CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-11 | - | 272 | 0 |
+| [[CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-11 | - | 272 | 0 |
 | [[Docker] Create a symlink.](https://github.com/vllm-project/vllm-omni/pull/169) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-02 | 2025-12-03 02:28:15 UTC | 2 | 0 |
 | [[Doc] Add installation part for pre built docker.](https://github.com/vllm-project/vllm-omni/pull/141) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-01 | 2025-12-04 08:04:18 UTC | 25 | 1 |
 | [[Fix] Resolve comments & update vLLM-Omni name usages.](https://github.com/vllm-project/vllm-omni/pull/123) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-30 | 2025-12-01 00:04:47 UTC | 10 | 16 |
@@ -473,7 +473,7 @@ _No relevant pull requests found._
 | Test | [[CI] Add Qwen3-omni offline UT](https://github.com/vllm-project/vllm-omni/pull/216) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-05 | 2025-12-08 10:11:39 UTC | 314 | 9 |
 | Test | [[CI] Qwen2.5 omni online test](https://github.com/vllm-project/vllm-omni/pull/237) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `open` | 2025-12-08 | - | 503 | 1 |
 | Test | [[CI] Qwen3-Omni online test](https://github.com/vllm-project/vllm-omni/pull/257) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-09 | 2025-12-12 06:25:52 UTC | 326 | 28 |
-| Test | [[WIP] [CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2025-12-11 | - | 272 | 0 |
+| Test | [[CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2025-12-11 | - | 272 | 0 |
 | Test | [[CI] Adjust folder](https://github.com/vllm-project/vllm-omni/pull/300) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2025-12-12 | 2025-12-12 09:19:24 UTC | 1 | 1 |
 | Refactor | [[Worker]Refactor GPU diffusion model runner and worker](https://github.com/vllm-project/vllm-omni/pull/16) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2025-10-22 | 2025-10-24 03:11:02 UTC | 408 | 168 |
 | Refactor | [[Engine]Refactor output processing for multimodal capabilities in vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/20) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2025-10-22 | 2025-10-24 03:25:23 UTC | 396 | 200 |
