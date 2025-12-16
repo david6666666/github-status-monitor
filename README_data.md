@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-16 15:20:17 UTC
+Generated on: 2025-12-16 16:20:49 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-16 15:20:17 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +73,681 行添加, -18,572 行删除
+**总代码变更统计**: +73,653 行添加, -18,572 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,466 行添加, -422 行删除
@@ -187,20 +187,20 @@ Generated on: 2025-12-16 15:20:17 UTC
 | **Total for Alicia** | | | | - | **418** | **129** |
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 8
-**代码变更**: +8,564 行添加, -253 行删除
+**代码变更**: +8,536 行添加, -253 行删除
 
 **Pull Requests (1 open, 7 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Blog] Encoder Disaggregation for Scalable Multimodal Model Serving](https://github.com/vllm-project/vllm-project.github.io/pull/135) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `merged` | 2025-12-15 | 2025-12-15 10:53:52 UTC | 377 | 0 |
-| [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-09 | - | 2,536 | 20 |
+| [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-09 | - | 2,508 | 20 |
 | [[bugfix] qwen2.5 omni does not support chunked prefill now](https://github.com/vllm-project/vllm-omni/pull/193) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-05 04:12:18 UTC | 3 | 0 |
 | [[CI/Build] Fix crash due to removed VLLM_USE_V1 attribute in EPD](https://github.com/vllm-project/vllm/pull/28521) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-12 | 2025-11-12 07:09:33 UTC | 3 | 7 |
 | [[bugfix] Missing cached item in beam search](https://github.com/vllm-project/vllm/pull/27874) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-10-31 | 2025-10-31 17:34:28 UTC | 10 | 18 |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 2025-11-12 02:58:34 UTC | 5,025 | 41 |
 | [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 2025-08-25 07:41:17 UTC | 366 | 155 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 2025-07-30 16:18:37 UTC | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | - | **8,564** | **253** |
+| **Total for Chenguang Zheng** | | | | - | **8,536** | **253** |
 
 ### 👤 rein yang (@R2-Y) - 总贡献: 4
 **代码变更**: +8,977 行添加, -523 行删除
@@ -228,11 +228,11 @@ Generated on: 2025-12-16 15:20:17 UTC
 ### 👤 dengyunyang (@Bounty-hunter) - 总贡献: 3
 **代码变更**: +279 行添加, -115 行删除
 
-**Pull Requests (2 open, 1 merged)**
+**Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[BugFix] Failed to print DEBUG level log](https://github.com/vllm-project/vllm-omni/pull/307) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-14 | 2025-12-15 07:13:37 UTC | 24 | 1 |
-| [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-12 | - | 168 | 112 |
+| [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-12 | 2025-12-16 15:41:43 UTC | 168 | 112 |
 | [[WIP] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-08 | - | 87 | 2 |
 | **Total for dengyunyang** | | | | - | **279** | **115** |
 
@@ -376,9 +376,9 @@ _No relevant pull requests found._
 | Feature | [[feature] extend DBO to XBO](https://github.com/vllm-project/vllm/pull/30120) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `jiangkuaixue123` | `merged` | 2025-12-05 | 2025-12-16 05:04:01 UTC | 133 | 73 |
 | Feature | [[Feature] Omni Connector + ray supported](https://github.com/vllm-project/vllm-omni/pull/215) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `natureofnature` | `merged` | 2025-12-05 | 2025-12-10 12:15:03 UTC | 2,662 | 190 |
 | Feature | [[Diffusion] Add cache-dit and unify diffusion cache backend interface](https://github.com/vllm-project/vllm-omni/pull/250) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-09 | 2025-12-15 07:10:45 UTC | 1,645 | 368 |
-| Feature | [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `open` | 2025-12-09 | - | 2,536 | 20 |
+| Feature | [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `open` | 2025-12-09 | - | 2,508 | 20 |
 | Feature | [[Feature] Support output modalities control per request](https://github.com/vllm-project/vllm-omni/pull/298) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2025-12-12 | - | 364 | 65 |
-| Feature | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `open` | 2025-12-12 | - | 168 | 112 |
+| Feature | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `merged` | 2025-12-12 | 2025-12-16 15:41:43 UTC | 168 | 112 |
 | Feature | [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-15 | 2025-12-16 10:09:16 UTC | 61 | 4 |
 | Feature | [[Model]  Support Qwen-Image-Edit 2509 ( multi-image input edit)](https://github.com/vllm-project/vllm-omni/pull/330) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-16 | - | 903 | 21 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
