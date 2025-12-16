@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-16 09:22:45 UTC
+Generated on: 2025-12-16 10:19:34 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-16 09:22:45 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +72,153 行添加, -16,171 行删除
+**总代码变更统计**: +72,150 行添加, -16,171 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 24
 **代码变更**: +2,466 行添加, -422 行删除
@@ -49,11 +49,11 @@ Generated on: 2025-12-16 09:22:45 UTC
 ### 👤 Samit (@SamitHuang) - 总贡献: 20
 **代码变更**: +7,490 行添加, -916 行删除
 
-**Pull Requests (2 open, 18 merged)**
+**Pull Requests (1 open, 19 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Model]  Support Qwen-Image-Edit 2509 ( multi-image input edit)](https://github.com/vllm-project/vllm-omni/pull/330) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-16 | - | 904 | 20 |
-| [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-15 | - | 61 | 4 |
+| [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-15 | 2025-12-16 10:09:16 UTC | 61 | 4 |
 | [[Misc] Fix docs and update image edit example with cache-dit](https://github.com/vllm-project/vllm-omni/pull/318) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-15 | 2025-12-15 13:43:29 UTC | 145 | 188 |
 | [[Diffusion] Add cache-dit and unify diffusion cache backend interface](https://github.com/vllm-project/vllm-omni/pull/250) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-09 | 2025-12-15 07:10:45 UTC | 1,645 | 368 |
 | [[Docs] Add basic usage examples for diffusion](https://github.com/vllm-project/vllm-omni/pull/222) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-06 | 2025-12-08 08:00:25 UTC | 26 | 5 |
@@ -148,12 +148,12 @@ Generated on: 2025-12-16 09:22:45 UTC
 | **Total for wuhang** | | | | - | **862** | **391** |
 
 ### 👤 Zhou Taichang (@tzhouam) - 总贡献: 12
-**代码变更**: +11,310 行添加, -1,902 行删除
+**代码变更**: +11,297 行添加, -1,902 行删除
 
 **Pull Requests (1 open, 11 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Benchmark] Benchmark Running Samples for Qwen3 Omni and Dataset Preparation](https://github.com/vllm-project/vllm-omni/pull/212) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-05 | - | 912 | 0 |
+| [[Benchmark] Benchmark Running Samples for Qwen3 Omni and Dataset Preparation](https://github.com/vllm-project/vllm-omni/pull/212) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-05 | - | 899 | 0 |
 | [[Engine] Remove Diffusion_XX which duplicates with Generation_XX](https://github.com/vllm-project/vllm-omni/pull/163) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-02 | 2025-12-05 03:04:24 UTC | 15 | 992 |
 | [[Bug-fix] Fix Bugs in Qwen3/Qwen2.5 Omni Rebased Support](https://github.com/vllm-project/vllm-omni/pull/114) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-30 | 2025-11-30 10:15:10 UTC | 60 | 1 |
 | [[Feature] Multi Request Stream for Sync Mode](https://github.com/vllm-project/vllm-omni/pull/51) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-08 | 2025-11-13 02:14:27 UTC | 2,090 | 190 |
@@ -165,7 +165,7 @@ Generated on: 2025-12-16 09:22:45 UTC
 | [[Worker]Refactor GPU diffusion model runner and worker](https://github.com/vllm-project/vllm-omni/pull/16) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 03:11:02 UTC | 408 | 168 |
 | [[Worker]Feat/ar gpu worker and model runner](https://github.com/vllm-project/vllm-omni/pull/15) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 03:04:31 UTC | 645 | 0 |
 | [[Model]Add Qwen2.5-Omni model components](https://github.com/vllm-project/vllm-omni/pull/12) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:15:42 UTC | 4,774 | 0 |
-| **Total for Zhou Taichang** | | | | - | **11,310** | **1,902** |
+| **Total for Zhou Taichang** | | | | - | **11,297** | **1,902** |
 
 ### 👤 Alicia (@congw729) - 总贡献: 10
 **代码变更**: +418 行添加, -129 行删除
@@ -225,15 +225,15 @@ Generated on: 2025-12-16 09:22:45 UTC
 | **Total for knlnguyen1802** | | | | - | **757** | **112** |
 
 ### 👤 dengyunyang (@Bounty-hunter) - 总贡献: 3
-**代码变更**: +267 行添加, -115 行删除
+**代码变更**: +277 行添加, -115 行删除
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[BugFix] Failed to print DEBUG level log](https://github.com/vllm-project/vllm-omni/pull/307) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-14 | 2025-12-15 07:13:37 UTC | 24 | 1 |
-| [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-12 | - | 159 | 112 |
+| [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-12 | - | 169 | 112 |
 | [[WIP] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-08 | - | 84 | 2 |
-| **Total for dengyunyang** | | | | - | **267** | **115** |
+| **Total for dengyunyang** | | | | - | **277** | **115** |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 2
 **代码变更**: +156 行添加, -6 行删除
@@ -377,8 +377,8 @@ _No relevant pull requests found._
 | Feature | [[Diffusion] Add cache-dit and unify diffusion cache backend interface](https://github.com/vllm-project/vllm-omni/pull/250) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-09 | 2025-12-15 07:10:45 UTC | 1,645 | 368 |
 | Feature | [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `open` | 2025-12-09 | - | 2,603 | 21 |
 | Feature | [[Feature] Support output modalities control per request](https://github.com/vllm-project/vllm-omni/pull/298) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2025-12-12 | - | 364 | 65 |
-| Feature | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `open` | 2025-12-12 | - | 159 | 112 |
-| Feature | [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-15 | - | 61 | 4 |
+| Feature | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `open` | 2025-12-12 | - | 169 | 112 |
+| Feature | [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-15 | 2025-12-16 10:09:16 UTC | 61 | 4 |
 | Feature | [[Model]  Support Qwen-Image-Edit 2509 ( multi-image input edit)](https://github.com/vllm-project/vllm-omni/pull/330) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-16 | - | 904 | 20 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
 | Performance | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-29 | 2025-09-03 19:14:30 UTC | 18 | 13 |
@@ -474,7 +474,7 @@ _No relevant pull requests found._
 | Test | [[CI] Add script for building wheel.](https://github.com/vllm-project/vllm-omni/pull/75) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2025-11-19 | 2025-11-24 06:57:06 UTC | 0 | 0 |
 | Test | [[CI] Add Async Eplb nightly CI tests](https://github.com/vllm-project/vllm/pull/29385) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-11-25 | 2025-12-03 09:51:08 UTC | 167 | 4 |
 | Test | [[CI]Add version number.](https://github.com/vllm-project/vllm-omni/pull/87) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2025-11-26 | 2025-11-27 09:41:22 UTC | 0 | 0 |
-| Test | [[Benchmark] Benchmark Running Samples for Qwen3 Omni and Dataset Preparation](https://github.com/vllm-project/vllm-omni/pull/212) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `open` | 2025-12-05 | - | 912 | 0 |
+| Test | [[Benchmark] Benchmark Running Samples for Qwen3 Omni and Dataset Preparation](https://github.com/vllm-project/vllm-omni/pull/212) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `open` | 2025-12-05 | - | 899 | 0 |
 | Test | [[CI] Add Qwen3-omni offline UT](https://github.com/vllm-project/vllm-omni/pull/216) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-05 | 2025-12-08 10:11:39 UTC | 314 | 9 |
 | Test | [[CI] Qwen3-Omni online test](https://github.com/vllm-project/vllm-omni/pull/257) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-09 | 2025-12-12 06:25:52 UTC | 326 | 28 |
 | Test | [[CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2025-12-11 | 2025-12-15 06:29:40 UTC | 272 | 0 |
