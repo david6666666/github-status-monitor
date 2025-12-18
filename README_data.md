@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-18 21:16:43 UTC
+Generated on: 2025-12-18 22:17:23 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -176,10 +176,10 @@ Generated on: 2025-12-18 21:16:43 UTC
 ### 👤 Alicia (@congw729) - 总贡献: 11
 **代码变更**: +521 行添加, -229 行删除
 
-**Pull Requests (1 open, 10 merged)**
+**Pull Requests (0 open, 11 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Doc] Rewrite checklist & update docs.](https://github.com/vllm-project/vllm-omni/pull/360) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-18 | - | 103 | 100 |
+| [[Doc] Rewrite checklist & update docs.](https://github.com/vllm-project/vllm-omni/pull/360) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-18 22:11:55 UTC | 103 | 100 |
 | [[CI] Adjust folder](https://github.com/vllm-project/vllm-omni/pull/300) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-12 | 2025-12-12 09:19:24 UTC | 1 | 1 |
 | [[CI] Test file requirements (dir sturcture & coding style).](https://github.com/vllm-project/vllm-omni/pull/270) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-11 | 2025-12-15 06:29:40 UTC | 272 | 0 |
 | [[Docker] Create a symlink.](https://github.com/vllm-project/vllm-omni/pull/169) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-02 | 2025-12-03 02:28:15 UTC | 2 | 0 |
@@ -462,7 +462,7 @@ _No relevant pull requests found._
 | Docs | [update docs/readme.md and design folder](https://github.com/vllm-project/vllm-omni/pull/234) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-08 | 2025-12-08 08:24:17 UTC | 23 | 2 |
 | Docs | [update desgin docs](https://github.com/vllm-project/vllm-omni/pull/269) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-11 | 2025-12-11 02:22:34 UTC | 231 | 207 |
 | Docs | [[Doc] update offline inference doc and offline_inference examples](https://github.com/vllm-project/vllm-omni/pull/274) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-11 | 2025-12-11 12:06:18 UTC | 148 | 11 |
-| Docs | [[Doc] Rewrite checklist & update docs.](https://github.com/vllm-project/vllm-omni/pull/360) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2025-12-18 | - | 103 | 100 |
+| Docs | [[Doc] Rewrite checklist & update docs.](https://github.com/vllm-project/vllm-omni/pull/360) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2025-12-18 | 2025-12-18 22:11:55 UTC | 103 | 100 |
 | Docs | [[Entrypoints] Support Qwen-Image-Edit 2509 online serving & update doc](https://github.com/vllm-project/vllm-omni/pull/368) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2025-12-18 | - | 150 | 36 |
 | Other | [init the folder directories for vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/1) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-09-11 | 2025-09-11 08:18:53 UTC | 677 | 59 |
 | Other | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
