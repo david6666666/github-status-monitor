@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-19 04:31:58 UTC
+Generated on: 2025-12-19 05:19:53 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-19 04:31:58 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +77,787 行添加, -19,003 行删除
+**总代码变更统计**: +77,784 行添加, -19,003 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 27
 **代码变更**: +5,003 行添加, -461 行删除
@@ -234,15 +234,15 @@ Generated on: 2025-12-19 04:31:58 UTC
 | **Total for rein yang** | | | | - | **9,201** | **524** |
 
 ### 👤 dengyunyang (@Bounty-hunter) - 总贡献: 3
-**代码变更**: +311 行添加, -116 行删除
+**代码变更**: +308 行添加, -116 行删除
 
 **Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[BugFix] Failed to print DEBUG level log](https://github.com/vllm-project/vllm-omni/pull/307) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-14 | 2025-12-15 07:13:37 UTC | 24 | 1 |
 | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-12 | 2025-12-16 15:41:43 UTC | 168 | 112 |
-| [[BugFix] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-08 | - | 119 | 3 |
-| **Total for dengyunyang** | | | | - | **311** | **116** |
+| [[BugFix] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-08 | - | 116 | 3 |
+| **Total for dengyunyang** | | | | - | **308** | **116** |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 2
 **代码变更**: +156 行添加, -6 行删除
@@ -433,7 +433,7 @@ _No relevant pull requests found._
 | Bugfix | [[bugfix] qwen2.5 omni does not support chunked prefill now](https://github.com/vllm-project/vllm-omni/pull/193) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `merged` | 2025-12-04 | 2025-12-05 04:12:18 UTC | 3 | 0 |
 | Bugfix | [[Bugfix] Support passing vllm cli args to online serving in vLLM-Omni](https://github.com/vllm-project/vllm-omni/pull/206) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-12-05 | 2025-12-08 06:59:53 UTC | 131 | 36 |
 | Bugfix | [[Bugfix] Fix ci bug for qwen2.5-omni](https://github.com/vllm-project/vllm-omni/pull/230) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-12-07 | 2025-12-07 18:43:49 UTC | 13 | 12 |
-| Bugfix | [[BugFix] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `Bounty-hunter` | `open` | 2025-12-08 | - | 119 | 3 |
+| Bugfix | [[BugFix] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `Bounty-hunter` | `open` | 2025-12-08 | - | 116 | 3 |
 | Bugfix | [[typo] fix doc readme](https://github.com/vllm-project/vllm-omni/pull/242) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-08 | 2025-12-08 14:23:20 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] Qwen2.5-omni Qwen3-omni online gradio.py example fix](https://github.com/vllm-project/vllm-omni/pull/249) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-09 | 2025-12-09 09:38:12 UTC | 102 | 10 |
 | Bugfix | [[Bugfix]multi-GPU tp scenarios, devices: "0,1" uses physical IDs instead of logical IDs](https://github.com/vllm-project/vllm-omni/pull/253) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-09 | 2025-12-09 13:04:30 UTC | 86 | 6 |
