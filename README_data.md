@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-25 04:02:45 UTC
+Generated on: 2025-12-25 04:35:58 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-25 04:02:45 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +84,350 行添加, -21,692 行删除
+**总代码变更统计**: +84,326 行添加, -21,704 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 29
 **代码变更**: +4,173 行添加, -494 行删除
@@ -186,12 +186,12 @@ Generated on: 2025-12-25 04:02:45 UTC
 | **Total for Zhou Taichang** | | | | - | **13,049** | **4,443** |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 13
-**代码变更**: +939 行添加, -403 行删除
+**代码变更**: +909 行添加, -413 行删除
 
 **Pull Requests (5 open, 8 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-25 | - | 77 | 12 |
+| [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-25 | - | 47 | 22 |
 | [[gpt-oss]Support lazy init mcp session](https://github.com/vllm-project/vllm/pull/24388) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-07 | - | 99 | 62 |
 | [[CI][gpt-oss] Enable python tool tests in CI](https://github.com/vllm-project/vllm/pull/24315) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-05 | 2025-10-06 04:20:07 UTC | 24 | 26 |
 | [[Benchmarks]Accelerate random dataset generation](https://github.com/vllm-project/vllm/pull/24225) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-04 | - | 86 | 11 |
@@ -204,7 +204,7 @@ Generated on: 2025-12-25 04:02:45 UTC
 | [[Bugfix]Fix EEP scale-up functionality](https://github.com/vllm-project/vllm/pull/22953) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-15 | - | 133 | 7 |
 | [[Bugfix] Add log prefix in non-dp mode engine core](https://github.com/vllm-project/vllm/pull/21889) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-30 | 2025-08-01 09:04:16 UTC | 75 | 81 |
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 2025-07-28 13:17:31 UTC | 84 | 2 |
-| **Total for wuhang** | | | | - | **939** | **403** |
+| **Total for wuhang** | | | | - | **909** | **413** |
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 9
 **代码变更**: +10,752 行添加, -1,399 行删除
@@ -264,15 +264,16 @@ Generated on: 2025-12-25 04:02:45 UTC
 | [[BugFix] skip language model in Encoder](https://github.com/vllm-project/vllm/pull/30242) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-12-08 | 2025-12-22 13:25:59 UTC | 116 | 3 |
 | **Total for dengyunyang** | | | | - | **2,690** | **732** |
 
-### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 2
-**代码变更**: +156 行添加, -6 行删除
+### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 3
+**代码变更**: +162 行添加, -8 行删除
 
-**Pull Requests (0 open, 2 merged)**
+**Pull Requests (1 open, 2 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[BugFix] initial sampling_params_list  when offline inference](https://github.com/vllm-project/vllm-omni/pull/468) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-25 | - | 6 | 2 |
 | [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-10-09 | 2025-11-06 23:51:28 UTC | 155 | 3 |
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
-| **Total for Junhong Liu** | | | | - | **156** | **6** |
+| **Total for Junhong Liu** | | | | - | **162** | **8** |
 
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 **代码变更**: +3,904 行添加, -193 行删除
@@ -425,7 +426,7 @@ _No relevant pull requests found._
 | Performance | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-09-08 | 2025-09-09 07:24:11 UTC | 11 | 1 |
 | Performance | [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `LJH-LBJ` | `merged` | 2025-10-09 | 2025-11-06 23:51:28 UTC | 155 | 3 |
 | Performance | [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2025-12-18 | - | 686 | 0 |
-| Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `open` | 2025-12-25 | - | 77 | 12 |
+| Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `open` | 2025-12-25 | - | 47 | 22 |
 | Bugfix | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-26 14:07:41 UTC | 10 | 2 |
 | Bugfix | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-24 03:42:11 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
@@ -475,6 +476,7 @@ _No relevant pull requests found._
 | Bugfix | [[Bugfix] Fix image size logging bug for multiple image input](https://github.com/vllm-project/vllm-omni/pull/384) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-19 | 2025-12-19 22:49:58 UTC | 0 | 1 |
 | Bugfix | [[Docs] Fix get started and installation docs](https://github.com/vllm-project/vllm-omni/pull/428) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-23 | - | 7 | 2 |
 | Bugfix | [[Docs] fix doc image loading error](https://github.com/vllm-project/vllm-omni/pull/446) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-24 | 2025-12-24 04:08:29 UTC | 2 | 2 |
+| Bugfix | [[BugFix] initial sampling_params_list  when offline inference](https://github.com/vllm-project/vllm-omni/pull/468) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2025-12-25 | - | 6 | 2 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | Docs | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-01 | 2025-08-01 09:11:56 UTC | 4 | 0 |
