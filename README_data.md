@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-25 15:17:25 UTC
+Generated on: 2025-12-25 16:21:07 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -17,14 +17,14 @@ Generated on: 2025-12-25 15:17:25 UTC
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 29
 **代码变更**: +4,150 行添加, -494 行删除
 
-**Pull Requests (2 open, 27 merged)**
+**Pull Requests (1 open, 28 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[WIP] [Entrypoints] add video online serving](https://github.com/vllm-project/vllm-omni/pull/437) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-23 | - | 539 | 21 |
 | [[Doc] update diffusion_acceleration.md & FAQ memory troubleshooting](https://github.com/vllm-project/vllm-omni/pull/406) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-22 | 2025-12-23 07:09:25 UTC | 68 | 12 |
 | [[Entrypoints] Support Qwen-Image-Edit 2509 online serving & update doc](https://github.com/vllm-project/vllm-omni/pull/368) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-19 08:50:32 UTC | 382 | 37 |
 | [[Entrypoints] online serving support usp args](https://github.com/vllm-project/vllm-omni/pull/366) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-19 03:59:07 UTC | 32 | 2 |
-| [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-18 | - | 663 | 0 |
+| [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-25 15:50:47 UTC | 663 | 0 |
 | [[Doc] fix offline inference and online serving describe](https://github.com/vllm-project/vllm-omni/pull/285) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-11 | 2025-12-12 07:14:53 UTC | 24 | 33 |
 | [[Doc] update offline inference doc and offline_inference examples](https://github.com/vllm-project/vllm-omni/pull/274) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-11 | 2025-12-11 12:06:18 UTC | 148 | 11 |
 | [[Misc] fix stage config describe and yaml format](https://github.com/vllm-project/vllm-omni/pull/265) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-10 | 2025-12-11 00:34:52 UTC | 17 | 17 |
@@ -188,10 +188,10 @@ Generated on: 2025-12-25 15:17:25 UTC
 ### 👤 wuhang (@wuhang2014) - 总贡献: 13
 **代码变更**: +909 行添加, -413 行删除
 
-**Pull Requests (5 open, 8 merged)**
+**Pull Requests (4 open, 9 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-25 | - | 47 | 22 |
+| [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-25 | 2025-12-25 15:54:42 UTC | 47 | 22 |
 | [[gpt-oss]Support lazy init mcp session](https://github.com/vllm-project/vllm/pull/24388) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-07 | - | 99 | 62 |
 | [[CI][gpt-oss] Enable python tool tests in CI](https://github.com/vllm-project/vllm/pull/24315) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-05 | 2025-10-06 04:20:07 UTC | 24 | 26 |
 | [[Benchmarks]Accelerate random dataset generation](https://github.com/vllm-project/vllm/pull/24225) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-09-04 | - | 86 | 11 |
@@ -425,8 +425,8 @@ _No relevant pull requests found._
 | Performance | [[Multi-modality][performance] enable DP for ViT in Qwen-2.5-VL](https://github.com/vllm-project/vllm-ascend/pull/2709) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `hsliuustc0106` | `open` | 2025-09-02 | - | 47 | 13 |
 | Performance | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-09-08 | 2025-09-09 07:24:11 UTC | 11 | 1 |
 | Performance | [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `LJH-LBJ` | `merged` | 2025-10-09 | 2025-11-06 23:51:28 UTC | 155 | 3 |
-| Performance | [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2025-12-18 | - | 663 | 0 |
-| Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `open` | 2025-12-25 | - | 47 | 22 |
+| Performance | [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-18 | 2025-12-25 15:50:47 UTC | 663 | 0 |
+| Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `merged` | 2025-12-25 | 2025-12-25 15:54:42 UTC | 47 | 22 |
 | Bugfix | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-26 14:07:41 UTC | 10 | 2 |
 | Bugfix | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-24 03:42:11 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
