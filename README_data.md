@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2025-12-27 08:20:20 UTC
+Generated on: 2025-12-27 09:18:32 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2025-12-27 08:20:20 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +84,555 行添加, -22,026 行删除
+**总代码变更统计**: +84,557 行添加, -22,028 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 29
 **代码变更**: +4,131 行添加, -499 行删除
@@ -274,6 +274,17 @@ Generated on: 2025-12-27 08:20:20 UTC
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
 | **Total for Junhong Liu** | | | | - | **169** | **61** |
 
+### 👤 jiangkuaixue123 - 总贡献: 3
+**代码变更**: +2,749 行添加, -193 行删除
+
+**Pull Requests (2 open, 1 merged)**
+| Title | Repository | State | Created | Merged | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[bugfix] fix typo of _skip_all_reduce_across_dp_group](https://github.com/vllm-project/vllm-ascend/pull/5435) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `open` | 2025-12-27 | - | 2 | 2 |
+| [[feature] extend DBO to XBO](https://github.com/vllm-project/vllm/pull/30120) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-12-05 | 2025-12-16 05:04:01 UTC | 133 | 73 |
+| [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-01 | - | 2,614 | 118 |
+| **Total for jiangkuaixue123** | | | | - | **2,749** | **193** |
+
 ### 👤 NATURE (@natureofnature) - 总贡献: 2
 **代码变更**: +3,904 行添加, -193 行删除
 
@@ -303,16 +314,6 @@ Generated on: 2025-12-27 08:20:20 UTC
 | [[Bugfix] Fix removal of old logs when stats are enabled](https://github.com/vllm-project/vllm-omni/pull/84) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-24 | 2025-11-28 07:58:16 UTC | 2 | 2 |
 | [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 | 2025-08-07 03:31:03 UTC | 40 | 16 |
 | **Total for Syed Muhammad Bin Asif** | | | | - | **42** | **18** |
-
-### 👤 jiangkuaixue123 - 总贡献: 2
-**代码变更**: +2,747 行添加, -191 行删除
-
-**Pull Requests (1 open, 1 merged)**
-| Title | Repository | State | Created | Merged | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[feature] extend DBO to XBO](https://github.com/vllm-project/vllm/pull/30120) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-12-05 | 2025-12-16 05:04:01 UTC | 133 | 73 |
-| [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-01 | - | 2,614 | 118 |
-| **Total for jiangkuaixue123** | | | | - | **2,747** | **191** |
 
 ### 👤 chickeyton - 总贡献: 1
 **代码变更**: +375 行添加, -60 行删除
@@ -475,6 +476,7 @@ _No relevant pull requests found._
 | Bugfix | [[Docs] Fix get started and installation docs](https://github.com/vllm-project/vllm-omni/pull/428) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2025-12-23 | - | 7 | 2 |
 | Bugfix | [[Docs] fix doc image loading error](https://github.com/vllm-project/vllm-omni/pull/446) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2025-12-24 | 2025-12-24 04:08:29 UTC | 2 | 2 |
 | Bugfix | [[BugFix] initial sampling_params_list  when offline inference](https://github.com/vllm-project/vllm-omni/pull/468) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `merged` | 2025-12-25 | 2025-12-26 05:54:12 UTC | 13 | 55 |
+| Bugfix | [[bugfix] fix typo of _skip_all_reduce_across_dp_group](https://github.com/vllm-project/vllm-ascend/pull/5435) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `jiangkuaixue123` | `open` | 2025-12-27 | - | 2 | 2 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | Docs | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-01 | 2025-08-01 09:11:56 UTC | 4 | 0 |
