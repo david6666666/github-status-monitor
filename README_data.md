@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-02 03:00:01 UTC
+Generated on: 2026-01-02 04:06:26 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -89,10 +89,10 @@ Generated on: 2026-01-02 03:00:01 UTC
 ### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 22
 **代码变更**: +11,518 行添加, -2,677 行删除
 
-**Pull Requests (2 open, 20 merged)**
+**Pull Requests (1 open, 21 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Core] omni refactor: optimize stage initialization polling and troubleshooting logs](https://github.com/vllm-project/vllm-omni/pull/575) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-01 | - | 36 | 35 |
+| [[Core] omni refactor: optimize stage initialization polling and troubleshooting logs](https://github.com/vllm-project/vllm-omni/pull/575) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-01 | 2026-01-02 03:31:31 UTC | 36 | 35 |
 | [[docs] update adding models docs](https://github.com/vllm-project/vllm-omni/pull/563) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-31 | 2025-12-31 05:42:11 UTC | 5 | 19 |
 | [update qwen-omni docs](https://github.com/vllm-project/vllm-omni/pull/559) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-31 | 2025-12-31 04:07:23 UTC | 12 | 42 |
 | [update docs](https://github.com/vllm-project/vllm-omni/pull/536) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-30 13:55:33 UTC | 25 | 74 |
@@ -442,7 +442,7 @@ _No relevant pull requests found._
 | Performance | [[Benchmark] DiT models Performance benchmark(T2I/I2I/T2V/TI2V)](https://github.com/vllm-project/vllm-omni/pull/362) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-18 | 2025-12-25 15:50:47 UTC | 663 | 0 |
 | Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `merged` | 2025-12-25 | 2025-12-25 15:54:42 UTC | 47 | 22 |
 | Performance | [[WIP] Optimize Batch Input Preparation and Batching Loop in Stage Worker](https://github.com/vllm-project/vllm-omni/pull/550) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2025-12-30 | - | 34 | 27 |
-| Performance | [[Core] omni refactor: optimize stage initialization polling and troubleshooting logs](https://github.com/vllm-project/vllm-omni/pull/575) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `open` | 2026-01-01 | - | 36 | 35 |
+| Performance | [[Core] omni refactor: optimize stage initialization polling and troubleshooting logs](https://github.com/vllm-project/vllm-omni/pull/575) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2026-01-01 | 2026-01-02 03:31:31 UTC | 36 | 35 |
 | Bugfix | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-26 14:07:41 UTC | 10 | 2 |
 | Bugfix | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-24 03:42:11 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
