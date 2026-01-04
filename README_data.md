@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-04 06:25:21 UTC
+Generated on: 2026-01-04 07:22:17 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-04 06:25:21 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +88,081 行添加, -22,996 行删除
+**总代码变更统计**: +88,125 行添加, -22,996 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 32
 **代码变更**: +4,379 行添加, -556 行删除
@@ -55,13 +55,13 @@ Generated on: 2026-01-04 06:25:21 UTC
 | **Total for WeiQing Chen** | | | | - | **4,379** | **556** |
 
 ### 👤 Samit (@SamitHuang) - 总贡献: 27
-**代码变更**: +9,296 行添加, -1,485 行删除
+**代码变更**: +9,340 行添加, -1,485 行删除
 
-**Pull Requests (2 open, 25 merged)**
+**Pull Requests (1 open, 26 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 793 | 1 |
-| [[Docs] Fix diffusion acceleration docs](https://github.com/vllm-project/vllm-omni/pull/591) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 4 | 2 |
+| [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 837 | 1 |
+| [[Docs] Fix diffusion acceleration docs](https://github.com/vllm-project/vllm-omni/pull/591) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-03 | 2026-01-04 07:11:43 UTC | 4 | 2 |
 | [[Misc] Fix Qwen-Omni multiple prompt running scripts](https://github.com/vllm-project/vllm-omni/pull/579) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-02 | 2026-01-02 10:50:54 UTC | 12 | 2 |
 | [[Docs] Update recipe for qwen-image-edit-2511](https://github.com/vllm-project/recipes/pull/182) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-12-23 | 2025-12-23 14:24:59 UTC | 16 | 2 |
 | [[Misc] Add Qwen-Image-Edit-2511 running script](https://github.com/vllm-project/vllm-omni/pull/440) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-23 | 2025-12-23 15:26:16 UTC | 18 | 2 |
@@ -87,7 +87,7 @@ Generated on: 2026-01-04 06:25:21 UTC
 | [[RL] Add Pause and Resume Generation for Asynchronous RL Training](https://github.com/vllm-project/vllm/pull/28037) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-04 | 2025-11-20 11:01:03 UTC | 182 | 0 |
 | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 2025-08-22 10:56:12 UTC | 233 | 0 |
-| **Total for Samit** | | | | - | **9,296** | **1,485** |
+| **Total for Samit** | | | | - | **9,340** | **1,485** |
 
 ### 👤 Gao Han (@Gaohan123) - 总贡献: 24
 **代码变更**: +14,434 行添加, -8,905 行删除
@@ -502,7 +502,7 @@ _No relevant pull requests found._
 | Bugfix | [[Doc] fix quickstart](https://github.com/vllm-project/vllm-omni/pull/548) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-30 | 2025-12-31 01:46:44 UTC | 6 | 3 |
 | Bugfix | [[Bugfix]fix proces close problem for omni class](https://github.com/vllm-project/vllm-omni/pull/554) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-12-30 | 2025-12-30 19:23:54 UTC | 8 | 2 |
 | Bugfix | [[Misc] Fix Qwen-Omni multiple prompt running scripts](https://github.com/vllm-project/vllm-omni/pull/579) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-02 | 2026-01-02 10:50:54 UTC | 12 | 2 |
-| Bugfix | [[Docs] Fix diffusion acceleration docs](https://github.com/vllm-project/vllm-omni/pull/591) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2026-01-03 | - | 4 | 2 |
+| Bugfix | [[Docs] Fix diffusion acceleration docs](https://github.com/vllm-project/vllm-omni/pull/591) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-03 | 2026-01-04 07:11:43 UTC | 4 | 2 |
 | Bugfix | [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-03 | - | 146 | 179 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
@@ -537,7 +537,7 @@ _No relevant pull requests found._
 | Docs | [[docs] update adding models docs](https://github.com/vllm-project/vllm-omni/pull/563) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-31 | 2025-12-31 05:42:11 UTC | 5 | 19 |
 | Docs | [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2026-01-02 | - | 513 | 45 |
 | Docs | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-03 | - | 446 | 2 |
-| Docs | [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2026-01-03 | - | 793 | 1 |
+| Docs | [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2026-01-03 | - | 837 | 1 |
 | Other | [init the folder directories for vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/1) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-09-11 | 2025-09-11 08:18:53 UTC | 677 | 59 |
 | Other | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
 | Other | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `LJH-LBJ` | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
