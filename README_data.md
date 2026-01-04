@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-04 12:26:56 UTC
+Generated on: 2026-01-04 13:31:32 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,16 +12,16 @@ Generated on: 2026-01-04 12:26:56 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +88,386 行添加, -23,022 行删除
+**总代码变更统计**: +88,382 行添加, -23,002 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 34
 **代码变更**: +4,423 行添加, -594 行删除
 
-**Pull Requests (2 open, 32 merged)**
+**Pull Requests (1 open, 33 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Misc] fix ring att log](https://github.com/vllm-project/vllm-omni/pull/610) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-04 | 2026-01-04 11:56:50 UTC | 2 | 2 |
-| [[Doc] fix i2i online serving doc](https://github.com/vllm-project/vllm-omni/pull/608) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-04 | - | 42 | 36 |
+| [[Doc] fix i2i online serving doc](https://github.com/vllm-project/vllm-omni/pull/608) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-04 | 2026-01-04 12:45:28 UTC | 42 | 36 |
 | [[Doc] fix quickstart](https://github.com/vllm-project/vllm-omni/pull/548) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-31 01:46:44 UTC | 6 | 3 |
 | [[Misc] Add Qwen-Image-2512](https://github.com/vllm-project/vllm-omni/pull/547) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-31 07:03:24 UTC | 5 | 3 |
 | [[Bugfix] t2i online fix cache configuration failure and errors in `/v1/images/generation` endpoint.](https://github.com/vllm-project/vllm-omni/pull/499) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-27 | 2025-12-30 08:50:30 UTC | 296 | 50 |
@@ -92,12 +92,12 @@ Generated on: 2026-01-04 12:26:56 UTC
 | **Total for Samit** | | | | - | **9,371** | **1,485** |
 
 ### 👤 Gao Han (@Gaohan123) - 总贡献: 24
-**代码变更**: +14,434 行添加, -8,905 行删除
+**代码变更**: +14,430 行添加, -8,885 行删除
 
 **Pull Requests (2 open, 22 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 146 | 179 |
+| [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 142 | 159 |
 | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 446 | 2 |
 | [[Bugfix]fix proces close problem for omni class](https://github.com/vllm-project/vllm-omni/pull/554) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-30 19:23:54 UTC | 8 | 2 |
 | [[Feature]Basic version of supporting streaming output](https://github.com/vllm-project/vllm-omni/pull/367) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-31 14:02:04 UTC | 1,572 | 248 |
@@ -121,7 +121,7 @@ Generated on: 2026-01-04 12:26:56 UTC
 | [add precommit](https://github.com/vllm-project/vllm-omni/pull/32) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-24 | 2025-10-24 09:04:50 UTC | 3,371 | 2,208 |
 | [[Model] Add end2end example and documentation for qwen2.5-omni](https://github.com/vllm-project/vllm-omni/pull/14) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:40:02 UTC | 879 | 96 |
 | [[Engine] Add entrypoint class and stage management](https://github.com/vllm-project/vllm-omni/pull/13) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:38:16 UTC | 420 | 640 |
-| **Total for Gao Han** | | | | - | **14,434** | **8,905** |
+| **Total for Gao Han** | | | | - | **14,430** | **8,885** |
 
 ### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 21
 **代码变更**: +11,471 行添加, -2,664 行删除
@@ -504,8 +504,8 @@ _No relevant pull requests found._
 | Bugfix | [[Bugfix]fix proces close problem for omni class](https://github.com/vllm-project/vllm-omni/pull/554) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-12-30 | 2025-12-30 19:23:54 UTC | 8 | 2 |
 | Bugfix | [[Misc] Fix Qwen-Omni multiple prompt running scripts](https://github.com/vllm-project/vllm-omni/pull/579) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-02 | 2026-01-02 10:50:54 UTC | 12 | 2 |
 | Bugfix | [[Docs] Fix diffusion acceleration docs](https://github.com/vllm-project/vllm-omni/pull/591) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-03 | 2026-01-04 07:11:43 UTC | 4 | 2 |
-| Bugfix | [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-03 | - | 146 | 179 |
-| Bugfix | [[Doc] fix i2i online serving doc](https://github.com/vllm-project/vllm-omni/pull/608) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2026-01-04 | - | 42 | 36 |
+| Bugfix | [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-03 | - | 142 | 159 |
+| Bugfix | [[Doc] fix i2i online serving doc](https://github.com/vllm-project/vllm-omni/pull/608) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-01-04 | 2026-01-04 12:45:28 UTC | 42 | 36 |
 | Bugfix | [[Misc] fix ring att log](https://github.com/vllm-project/vllm-omni/pull/610) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-01-04 | 2026-01-04 11:56:50 UTC | 2 | 2 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
