@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-05 03:12:59 UTC
+Generated on: 2026-01-05 04:55:57 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-05 03:12:59 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +88,445 行添加, -23,003 行删除
+**总代码变更统计**: +88,502 行添加, -23,004 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 35
 **代码变更**: +4,424 行添加, -595 行删除
@@ -95,11 +95,11 @@ Generated on: 2026-01-05 03:12:59 UTC
 ### 👤 Gao Han (@Gaohan123) - 总贡献: 24
 **代码变更**: +14,430 行添加, -8,885 行删除
 
-**Pull Requests (1 open, 23 merged)**
+**Pull Requests (0 open, 24 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-03 | 2026-01-05 01:17:07 UTC | 142 | 159 |
-| [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-03 | - | 446 | 2 |
+| [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-03 | 2026-01-05 03:56:10 UTC | 446 | 2 |
 | [[Bugfix]fix proces close problem for omni class](https://github.com/vllm-project/vllm-omni/pull/554) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-30 19:23:54 UTC | 8 | 2 |
 | [[Feature]Basic version of supporting streaming output](https://github.com/vllm-project/vllm-omni/pull/367) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-18 | 2025-12-31 14:02:04 UTC | 1,572 | 248 |
 | [[Misc] Fix left comments for PR298](https://github.com/vllm-project/vllm-omni/pull/346) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-17 | 2025-12-17 14:40:21 UTC | 19 | 22 |
@@ -240,18 +240,18 @@ Generated on: 2026-01-05 03:12:59 UTC
 | **Total for Chenguang Zheng** | | | | - | **11,007** | **1,495** |
 
 ### 👤 knlnguyen1802 - 总贡献: 6
-**代码变更**: +1,359 行添加, -152 行删除
+**代码变更**: +1,416 行添加, -153 行删除
 
 **Pull Requests (3 open, 3 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [Support sleep, wake_up and load_weights for Omni Diffusion](https://github.com/vllm-project/vllm-omni/pull/376) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-19 | - | 325 | 6 |
 | [RPC support for OmniDiffusion](https://github.com/vllm-project/vllm-omni/pull/371) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-19 | 2025-12-25 14:26:30 UTC | 168 | 31 |
-| [RPC support for OmniLLM](https://github.com/vllm-project/vllm-omni/pull/355) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-18 | - | 109 | 3 |
+| [RPC support for OmniLLM](https://github.com/vllm-project/vllm-omni/pull/355) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-18 | - | 166 | 4 |
 | [[Bugfix] Init early toch cuda](https://github.com/vllm-project/vllm-omni/pull/185) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-04 03:38:52 UTC | 2 | 1 |
 | [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | - | 319 | 90 |
 | [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-12 | 2025-12-01 18:18:07 UTC | 436 | 21 |
-| **Total for knlnguyen1802** | | | | - | **1,359** | **152** |
+| **Total for knlnguyen1802** | | | | - | **1,416** | **153** |
 
 ### 👤 rein yang (@R2-Y) - 总贡献: 6
 **代码变更**: +9,855 行添加, -527 行删除
@@ -433,7 +433,7 @@ _No relevant pull requests found._
 | Feature | [[Feature] Send response with request id](https://github.com/vllm-project/vllm-omni/pull/301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `merged` | 2025-12-12 | 2025-12-16 15:41:43 UTC | 168 | 112 |
 | Feature | [[Model] Support Qwen-Image-Edit 2511](https://github.com/vllm-project/vllm-omni/pull/321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-15 | 2025-12-16 10:09:16 UTC | 61 | 4 |
 | Feature | [[Model]  Support Qwen-Image-Edit 2509 ( multi-image input edit)](https://github.com/vllm-project/vllm-omni/pull/330) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-16 | 2025-12-18 10:16:33 UTC | 904 | 20 |
-| Feature | [RPC support for OmniLLM](https://github.com/vllm-project/vllm-omni/pull/355) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `knlnguyen1802` | `open` | 2025-12-18 | - | 109 | 3 |
+| Feature | [RPC support for OmniLLM](https://github.com/vllm-project/vllm-omni/pull/355) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `knlnguyen1802` | `open` | 2025-12-18 | - | 166 | 4 |
 | Feature | [[Entrypoints] online serving support usp args](https://github.com/vllm-project/vllm-omni/pull/366) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-18 | 2025-12-19 03:59:07 UTC | 32 | 2 |
 | Feature | [[Feature]Basic version of supporting streaming output](https://github.com/vllm-project/vllm-omni/pull/367) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2025-12-18 | 2025-12-31 14:02:04 UTC | 1,572 | 248 |
 | Feature | [RPC support for OmniDiffusion](https://github.com/vllm-project/vllm-omni/pull/371) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `knlnguyen1802` | `merged` | 2025-12-19 | 2025-12-25 14:26:30 UTC | 168 | 31 |
@@ -543,7 +543,7 @@ _No relevant pull requests found._
 | Docs | [update qwen-omni docs](https://github.com/vllm-project/vllm-omni/pull/559) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-31 | 2025-12-31 04:07:23 UTC | 12 | 42 |
 | Docs | [[docs] update adding models docs](https://github.com/vllm-project/vllm-omni/pull/563) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-31 | 2025-12-31 05:42:11 UTC | 5 | 19 |
 | Docs | [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2026-01-02 | - | 513 | 45 |
-| Docs | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-03 | - | 446 | 2 |
+| Docs | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2026-01-03 | 2026-01-05 03:56:10 UTC | 446 | 2 |
 | Docs | [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2026-01-03 | - | 868 | 1 |
 | Other | [init the folder directories for vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/1) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-09-11 | 2025-09-11 08:18:53 UTC | 677 | 59 |
 | Other | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
