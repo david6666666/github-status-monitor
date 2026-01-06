@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-06 08:24:32 UTC
+Generated on: 2026-01-06 09:25:25 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-06 08:24:32 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +88,806 行添加, -23,182 行删除
+**总代码变更统计**: +88,885 行添加, -23,269 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 35
 **代码变更**: +4,424 行添加, -595 行删除
@@ -94,12 +94,13 @@ Generated on: 2026-01-06 08:24:32 UTC
 | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `merged` | 2025-08-19 | 2025-08-22 10:56:12 UTC | 233 | 0 |
 | **Total for Samit** | | | | - | **9,487** | **1,561** |
 
-### 👤 Gao Han (@Gaohan123) - 总贡献: 24
-**代码变更**: +14,430 行添加, -8,885 行删除
+### 👤 Gao Han (@Gaohan123) - 总贡献: 25
+**代码变更**: +14,507 行添加, -8,885 行删除
 
-**Pull Requests (0 open, 24 merged)**
+**Pull Requests (1 open, 24 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Misc] Fix docs display problem of streaming mode and other related issues](https://github.com/vllm-project/vllm-omni/pull/667) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-06 | - | 77 | 0 |
 | [[Bugfix] Support both list and generator mode & fix unnecessary error log](https://github.com/vllm-project/vllm-omni/pull/599) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-03 | 2026-01-05 01:17:07 UTC | 142 | 159 |
 | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-03 | 2026-01-05 03:56:10 UTC | 446 | 2 |
 | [[Bugfix]fix proces close problem for omni class](https://github.com/vllm-project/vllm-omni/pull/554) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-30 19:23:54 UTC | 8 | 2 |
@@ -124,7 +125,7 @@ Generated on: 2026-01-06 08:24:32 UTC
 | [add precommit](https://github.com/vllm-project/vllm-omni/pull/32) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-24 | 2025-10-24 09:04:50 UTC | 3,371 | 2,208 |
 | [[Model] Add end2end example and documentation for qwen2.5-omni](https://github.com/vllm-project/vllm-omni/pull/14) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:40:02 UTC | 879 | 96 |
 | [[Engine] Add entrypoint class and stage management](https://github.com/vllm-project/vllm-omni/pull/13) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:38:16 UTC | 420 | 640 |
-| **Total for Gao Han** | | | | - | **14,430** | **8,885** |
+| **Total for Gao Han** | | | | - | **14,507** | **8,885** |
 
 ### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 21
 **代码变更**: +11,471 行添加, -2,664 行删除
@@ -226,12 +227,12 @@ Generated on: 2026-01-06 08:24:32 UTC
 | **Total for wuhang** | | | | - | **1,009** | **407** |
 
 ### 👤 Chenguang Zheng (@fake0fan) - 总贡献: 10
-**代码变更**: +11,007 行添加, -1,522 行删除
+**代码变更**: +11,009 行添加, -1,609 行删除
 
 **Pull Requests (1 open, 9 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[BUGFIX] Delete the CUDA context in the stage process.](https://github.com/vllm-project/vllm-omni/pull/661) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-06 | - | 0 | 27 |
+| [[BUGFIX] Delete the CUDA context in the stage process.](https://github.com/vllm-project/vllm-omni/pull/661) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-06 | - | 2 | 114 |
 | [[Core] Supports stage abstraction in the diffusion model](https://github.com/vllm-project/vllm-omni/pull/391) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-20 | 2025-12-26 12:59:33 UTC | 2,473 | 1,242 |
 | [[Blog] Encoder Disaggregation for Scalable Multimodal Model Serving](https://github.com/vllm-project/vllm-project.github.io/pull/135) | [vllm-project/vllm-project.github.io](https://github.com/vllm-project/vllm-project.github.io) | `merged` | 2025-12-15 | 2025-12-15 10:53:52 UTC | 377 | 0 |
 | [[Entrypoints] Support Online Serving for Diffusion-only Models](https://github.com/vllm-project/vllm-omni/pull/259) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-09 | 2025-12-17 09:40:45 UTC | 2,506 | 20 |
@@ -241,7 +242,7 @@ Generated on: 2026-01-06 08:24:32 UTC
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm/pull/25233) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 2025-11-12 02:58:34 UTC | 5,025 | 41 |
 | [[Core][Multimodal] Track encode cache entries by mm_hash and enable embedding sharing between requests](https://github.com/vllm-project/vllm/pull/22711) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-12 | 2025-08-25 07:41:17 UTC | 366 | 155 |
 | [[Bugfix] SharedStorage Connector for V1 PD multimodal](https://github.com/vllm-project/vllm/pull/21611) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 2025-07-30 16:18:37 UTC | 244 | 12 |
-| **Total for Chenguang Zheng** | | | | - | **11,007** | **1,522** |
+| **Total for Chenguang Zheng** | | | | - | **11,009** | **1,609** |
 
 ### 👤 knlnguyen1802 - 总贡献: 7
 **代码变更**: +1,527 行添加, -153 行删除
@@ -522,8 +523,9 @@ _No relevant pull requests found._
 | Bugfix | [[Docs] Fix diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/645) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-05 | 2026-01-05 11:07:36 UTC | 109 | 71 |
 | Bugfix | [[Bug fix] fix e2e_total_tokens and e2e_total_time_ms](https://github.com/vllm-project/vllm-omni/pull/648) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-01-05 | - | 40 | 13 |
 | Bugfix | [[BugFix] token2wav code out of range](https://github.com/vllm-project/vllm-omni/pull/655) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `merged` | 2026-01-05 | 2026-01-06 03:05:08 UTC | 17 | 0 |
-| Bugfix | [[BUGFIX] Delete the CUDA context in the stage process.](https://github.com/vllm-project/vllm-omni/pull/661) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `open` | 2026-01-06 | - | 0 | 27 |
+| Bugfix | [[BUGFIX] Delete the CUDA context in the stage process.](https://github.com/vllm-project/vllm-omni/pull/661) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `open` | 2026-01-06 | - | 2 | 114 |
 | Bugfix | [[Bugfix] Validate temperature in talker stage for issue#494](https://github.com/vllm-project/vllm-omni/pull/666) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `JohnLiu97Huawei` | `open` | 2026-01-06 | - | 4 | 0 |
+| Bugfix | [[Misc] Fix docs display problem of streaming mode and other related issues](https://github.com/vllm-project/vllm-omni/pull/667) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-01-06 | - | 77 | 0 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | Docs | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-01 | 2025-08-01 09:11:56 UTC | 4 | 0 |
