@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-07 08:24:32 UTC
+Generated on: 2026-01-07 09:26:51 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-07 08:24:32 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +89,844 行添加, -23,943 行删除
+**总代码变更统计**: +89,840 行添加, -23,943 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 35
 **代码变更**: +4,424 行添加, -595 行删除
@@ -344,16 +344,6 @@ Generated on: 2026-01-07 08:24:32 UTC
 | [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 | 2025-08-07 03:31:03 UTC | 40 | 16 |
 | **Total for Syed Muhammad Bin Asif** | | | | - | **42** | **18** |
 
-### 👤 John Liu BUAA (@JohnLiu97Huawei) - 总贡献: 2
-**代码变更**: +56 行添加, -0 行删除
-
-**Pull Requests (2 open, 0 merged)**
-| Title | Repository | State | Created | Merged | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Bugfix] Validate temperature in talker stage for issue#494](https://github.com/vllm-project/vllm-omni/pull/666) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-06 | - | 4 | 0 |
-| [[docs] Add aarch64 installation guide for Mooncake](https://github.com/vllm-project/vllm-omni/pull/538) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-30 | - | 52 | 0 |
-| **Total for John Liu BUAA** | | | | - | **56** | **0** |
-
 ### 👤 chickeyton - 总贡献: 1
 **代码变更**: +375 行添加, -60 行删除
 
@@ -371,6 +361,15 @@ Generated on: 2026-01-07 08:24:32 UTC
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-11-13 | 2025-12-03 12:48:45 UTC | 73 | 11 |
 | **Total for amy-why-3459** | | | | - | **73** | **11** |
+
+### 👤 John Liu BUAA (@JohnLiu97Huawei) - 总贡献: 1
+**代码变更**: +52 行添加, -0 行删除
+
+**Pull Requests (1 open, 0 merged)**
+| Title | Repository | State | Created | Merged | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[docs] Add aarch64 installation guide for Mooncake](https://github.com/vllm-project/vllm-omni/pull/538) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-30 | - | 52 | 0 |
+| **Total for John Liu BUAA** | | | | - | **52** | **0** |
 
 ### 👤 tangtiangu - 总贡献: 0
 **代码变更**: +0 行添加, -0 行删除
@@ -525,7 +524,6 @@ _No relevant pull requests found._
 | Bugfix | [[Bug fix] fix e2e_total_tokens and e2e_total_time_ms](https://github.com/vllm-project/vllm-omni/pull/648) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-01-05 | - | 41 | 14 |
 | Bugfix | [[BugFix] token2wav code out of range](https://github.com/vllm-project/vllm-omni/pull/655) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `merged` | 2026-01-05 | 2026-01-06 03:05:08 UTC | 17 | 0 |
 | Bugfix | [[BUGFIX] Delete the CUDA context in the stage process.](https://github.com/vllm-project/vllm-omni/pull/661) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `merged` | 2026-01-06 | 2026-01-06 14:22:04 UTC | 1 | 58 |
-| Bugfix | [[Bugfix] Validate temperature in talker stage for issue#494](https://github.com/vllm-project/vllm-omni/pull/666) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `JohnLiu97Huawei` | `open` | 2026-01-06 | - | 4 | 0 |
 | Bugfix | [[Misc] Fix docs display problem of streaming mode and other related issues](https://github.com/vllm-project/vllm-omni/pull/667) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2026-01-06 | 2026-01-06 14:32:46 UTC | 77 | 0 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
