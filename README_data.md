@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-09 08:41:54 UTC
+Generated on: 2026-01-09 09:44:35 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-09 08:41:54 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +90,693 行添加, -24,118 行删除
+**总代码变更统计**: +90,699 行添加, -24,117 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 35
 **代码变更**: +4,424 行添加, -595 行删除
@@ -185,13 +185,13 @@ Generated on: 2026-01-09 08:41:54 UTC
 | **Total for Zhou Taichang** | | | | - | **13,279** | **4,597** |
 
 ### 👤 Alicia (@congw729) - 总贡献: 17
-**代码变更**: +1,730 行添加, -437 行删除
+**代码变更**: +1,736 行添加, -436 行删除
 
 **Pull Requests (2 open, 15 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[CI] Add pytest markers in config files.](https://github.com/vllm-project/vllm-omni/pull/719) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-09 | - | 264 | 17 |
-| [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-02 | - | 842 | 53 |
+| [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-02 | - | 848 | 52 |
 | [[Docs] Update installation method.](https://github.com/vllm-project/vllm-omni/pull/448) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-24 | 2025-12-24 04:51:19 UTC | 21 | 6 |
 | [[Doc] Refine the document.](https://github.com/vllm-project/vllm-omni/pull/403) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-22 | 2025-12-22 13:29:40 UTC | 59 | 130 |
 | [[CI] Skip build wheel CI test for specific type files.](https://github.com/vllm-project/vllm-omni/pull/401) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-22 | 2025-12-22 11:17:37 UTC | 21 | 0 |
@@ -207,7 +207,7 @@ Generated on: 2026-01-09 08:41:54 UTC
 | [[CI]Add version number.](https://github.com/vllm-project/vllm-omni/pull/87) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-26 | 2025-11-27 09:41:22 UTC | 0 | 0 |
 | [[CI] Add script for building wheel.](https://github.com/vllm-project/vllm-omni/pull/75) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-19 | 2025-11-24 06:57:06 UTC | 0 | 0 |
 | [CI Workflows.](https://github.com/vllm-project/vllm-omni/pull/50) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-06 | 2025-11-17 10:13:06 UTC | 0 | 0 |
-| **Total for Alicia** | | | | - | **1,730** | **437** |
+| **Total for Alicia** | | | | - | **1,736** | **436** |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +923 行添加, -396 行删除
@@ -560,7 +560,7 @@ _No relevant pull requests found._
 | Docs | [update docs](https://github.com/vllm-project/vllm-omni/pull/536) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-30 | 2025-12-30 13:55:33 UTC | 25 | 74 |
 | Docs | [update qwen-omni docs](https://github.com/vllm-project/vllm-omni/pull/559) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-31 | 2025-12-31 04:07:23 UTC | 12 | 42 |
 | Docs | [[docs] update adding models docs](https://github.com/vllm-project/vllm-omni/pull/563) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-12-31 | 2025-12-31 05:42:11 UTC | 5 | 19 |
-| Docs | [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2026-01-02 | - | 842 | 53 |
+| Docs | [[WIP] Add pytest markers to current tests and update the doc.](https://github.com/vllm-project/vllm-omni/pull/577) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2026-01-02 | - | 848 | 52 |
 | Docs | [[Docs] Add docs for AutoRegressive module design](https://github.com/vllm-project/vllm-omni/pull/589) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2026-01-03 | 2026-01-05 03:56:10 UTC | 446 | 2 |
 | Docs | [[Docs] Add diffusion module design doc](https://github.com/vllm-project/vllm-omni/pull/592) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-01-03 | 2026-01-05 06:33:18 UTC | 868 | 1 |
 | Docs | [[Docs] Remove multi-request streaming design document and update ray-based execution documentation structure](https://github.com/vllm-project/vllm-omni/pull/641) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2026-01-05 | 2026-01-05 11:09:06 UTC | 10 | 61 |
