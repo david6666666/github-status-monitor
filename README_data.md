@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-10 07:33:24 UTC
+Generated on: 2026-01-10 08:39:45 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-10 07:33:24 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +90,717 行添加, -24,117 行删除
+**总代码变更统计**: +91,452 行添加, -24,474 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 35
 **代码变更**: +4,424 行添加, -595 行删除
@@ -349,6 +349,16 @@ Generated on: 2026-01-10 07:33:24 UTC
 | [[Bugfix] Add proper comparison for package versions](https://github.com/vllm-project/vllm/pull/22314) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-08-06 | 2025-08-07 03:31:03 UTC | 40 | 16 |
 | **Total for Syed Muhammad Bin Asif** | | | | - | **42** | **18** |
 
+### 👤 amy-why-3459 - 总贡献: 2
+**代码变更**: +808 行添加, -368 行删除
+
+**Pull Requests (1 open, 1 merged)**
+| Title | Repository | State | Created | Merged | Additions | Deletions |
+| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[WIP]Support async computation and communication across stages by chunks](https://github.com/vllm-project/vllm-omni/pull/727) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-10 | - | 735 | 357 |
+| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-11-13 | 2025-12-03 12:48:45 UTC | 73 | 11 |
+| **Total for amy-why-3459** | | | | - | **808** | **368** |
+
 ### 👤 chickeyton - 总贡献: 1
 **代码变更**: +375 行添加, -60 行删除
 
@@ -357,15 +367,6 @@ Generated on: 2026-01-10 07:33:24 UTC
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Feat][Router] Add TTFT Routing](https://github.com/vllm-project/production-stack/pull/670) | [vllm-project/production-stack](https://github.com/vllm-project/production-stack) | `open` | 2025-09-01 | - | 375 | 60 |
 | **Total for chickeyton** | | | | - | **375** | **60** |
-
-### 👤 amy-why-3459 - 总贡献: 1
-**代码变更**: +73 行添加, -11 行删除
-
-**Pull Requests (0 open, 1 merged)**
-| Title | Repository | State | Created | Merged | Additions | Deletions |
-| ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Core] Encoder separation for Encode-Prefill-Decode Disaggregation](https://github.com/vllm-project/vllm-ascend/pull/4176) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-11-13 | 2025-12-03 12:48:45 UTC | 73 | 11 |
-| **Total for amy-why-3459** | | | | - | **73** | **11** |
 
 ### 👤 tangtiangu - 总贡献: 0
 **代码变更**: +0 行添加, -0 行删除
@@ -457,6 +458,7 @@ _No relevant pull requests found._
 | Feature | [[Misc] Add Qwen-Image-2512](https://github.com/vllm-project/vllm-omni/pull/547) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2025-12-30 | 2025-12-31 07:03:24 UTC | 5 | 3 |
 | Feature | [Dev/add i2i bash](https://github.com/vllm-project/vllm-omni/pull/623) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2026-01-05 | 2026-01-05 06:17:08 UTC | 62 | 0 |
 | Feature | [[WIP] Clean code in Qwen 3 Omni and add warning for talker temperature.](https://github.com/vllm-project/vllm-omni/pull/688) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `open` | 2026-01-07 | - | 63 | 86 |
+| Feature | [[WIP]Support async computation and communication across stages by chunks](https://github.com/vllm-project/vllm-omni/pull/727) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `open` | 2026-01-10 | - | 735 | 357 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
 | Performance | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-29 | 2025-09-03 19:14:30 UTC | 18 | 13 |
 | Performance | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-09-08 | 2025-09-09 07:24:11 UTC | 11 | 1 |
