@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-01-19 09:49:53 UTC
+Generated on: 2026-01-19 10:43:15 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-01-19 09:49:53 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +102,704 行添加, -26,853 行删除
+**总代码变更统计**: +102,900 行添加, -26,910 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 37
 **代码变更**: +9,151 行添加, -643 行删除
@@ -256,12 +256,13 @@ Generated on: 2026-01-19 09:49:53 UTC
 | [[Bugfix]check health for engine core process exiting unexpectedly](https://github.com/vllm-project/vllm/pull/21728) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 2025-07-28 13:17:31 UTC | 84 | 2 |
 | **Total for wuhang** | | | | - | **690** | **395** |
 
-### 👤 knlnguyen1802 - 总贡献: 9
-**代码变更**: +2,818 行添加, -951 行删除
+### 👤 knlnguyen1802 - 总贡献: 10
+**代码变更**: +2,894 行添加, -1,008 行删除
 
-**Pull Requests (4 open, 5 merged)**
+**Pull Requests (5 open, 5 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[EC Connector] Optimize remote cache check in scheduler](https://github.com/vllm-project/vllm/pull/32585) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2026-01-19 | - | 76 | 57 |
 | [[Misc] Support WorkerWrapperBase for DiffusionWorker and support extension of DiffusionWorker](https://github.com/vllm-project/vllm-omni/pull/764) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-13 | - | 147 | 14 |
 | [[Misc] Refactor the omni stage worker busy loop and omni diffusion worker busy loop 1/N](https://github.com/vllm-project/vllm-omni/pull/682) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-07 | - | 1,144 | 784 |
 | [[Docs] Guide for using sleep mode and enable sleep mode](https://github.com/vllm-project/vllm-omni/pull/660) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-06 | 2026-01-06 09:31:51 UTC | 62 | 0 |
@@ -271,7 +272,7 @@ Generated on: 2026-01-19 09:49:53 UTC
 | [[Bugfix] Init early toch cuda](https://github.com/vllm-project/vllm-omni/pull/185) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-04 03:38:52 UTC | 2 | 1 |
 | [[RL] Support weight update with multi ipc handles + zmq](https://github.com/vllm-project/vllm/pull/28607) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-11-13 | - | 319 | 90 |
 | [[Bugfix] Missing cached item in the MultiModalReceiverCache](https://github.com/vllm-project/vllm/pull/28525) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-11-12 | 2025-12-01 18:18:07 UTC | 436 | 21 |
-| **Total for knlnguyen1802** | | | | - | **2,818** | **951** |
+| **Total for knlnguyen1802** | | | | - | **2,894** | **1,008** |
 
 ### 👤 dengyunyang (@Bounty-hunter) - 总贡献: 9
 **代码变更**: +4,155 行添加, -1,804 行删除
@@ -320,15 +321,15 @@ Generated on: 2026-01-19 09:49:53 UTC
 | **Total for rein yang** | | | | - | **9,855** | **527** |
 
 ### 👤 NATURE (@natureofnature) - 总贡献: 3
-**代码变更**: +4,062 行添加, -203 行删除
+**代码变更**: +4,182 行添加, -203 行删除
 
 **Pull Requests (2 open, 1 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[WIP]auto device allocation for ray mode](https://github.com/vllm-project/vllm-omni/pull/844) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-19 | - | 158 | 10 |
+| [Auto device allocation for ray mode](https://github.com/vllm-project/vllm-omni/pull/844) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-19 | - | 278 | 10 |
 | [[Feature] Omni Connector + ray supported](https://github.com/vllm-project/vllm-omni/pull/215) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-05 | 2025-12-10 12:15:03 UTC | 2,662 | 190 |
 | [[Feature] DCCP supported](https://github.com/vllm-project/vllm/pull/23545) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-08-25 | - | 1,242 | 3 |
-| **Total for NATURE** | | | | - | **4,062** | **203** |
+| **Total for NATURE** | | | | - | **4,182** | **203** |
 
 ### 👤 jiangkuaixue123 - 总贡献: 3
 **代码变更**: +2,749 行添加, -193 行删除
@@ -484,6 +485,7 @@ _No relevant pull requests found._
 | Performance | [[Perf] Optimise tensor concat perf in output processor](https://github.com/vllm-project/vllm-omni/pull/467) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `merged` | 2025-12-25 | 2025-12-25 15:54:42 UTC | 47 | 22 |
 | Performance | [Optimize Batch Input Preparation and Batching Loop in Stage Worker](https://github.com/vllm-project/vllm-omni/pull/550) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2025-12-30 | - | 34 | 27 |
 | Performance | [[Core] omni refactor: optimize stage initialization polling and troubleshooting logs](https://github.com/vllm-project/vllm-omni/pull/575) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2026-01-01 | 2026-01-02 03:31:31 UTC | 36 | 35 |
+| Performance | [[EC Connector] Optimize remote cache check in scheduler](https://github.com/vllm-project/vllm/pull/32585) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `knlnguyen1802` | `open` | 2026-01-19 | - | 76 | 57 |
 | Bugfix | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-26 14:07:41 UTC | 10 | 2 |
 | Bugfix | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-24 03:42:11 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
@@ -615,7 +617,7 @@ _No relevant pull requests found._
 | Other | [[WIP] raise error when stage startup timeout](https://github.com/vllm-project/vllm-omni/pull/699) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Bounty-hunter` | `open` | 2026-01-08 | - | 21 | 5 |
 | Other | [[Misc] Group omni arguments into OmniConfig section](https://github.com/vllm-project/vllm-omni/pull/744) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fake0fan` | `merged` | 2026-01-12 | 2026-01-12 15:20:20 UTC | 27 | 20 |
 | Other | [Dev/rebase 0.14.0](https://github.com/vllm-project/vllm-omni/pull/813) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `open` | 2026-01-16 | - | 824 | 651 |
-| Other | [[WIP]auto device allocation for ray mode](https://github.com/vllm-project/vllm-omni/pull/844) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `natureofnature` | `open` | 2026-01-19 | - | 158 | 10 |
+| Other | [Auto device allocation for ray mode](https://github.com/vllm-project/vllm-omni/pull/844) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `natureofnature` | `open` | 2026-01-19 | - | 278 | 10 |
 | Test | [Add Qwen2.5VL Guide](https://github.com/vllm-project/recipes/pull/30) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `SamitHuang` | `merged` | 2025-08-19 | 2025-08-22 10:56:12 UTC | 233 | 0 |
 | Test | [[Seed] Add Seed-OSS Guide](https://github.com/vllm-project/recipes/pull/41) | [vllm-project/recipes](https://github.com/vllm-project/recipes) | `david6666666` | `merged` | 2025-08-26 | 2025-08-28 08:14:21 UTC | 199 | 1 |
 | Test | [[CI][gpt-oss] Enable python tool tests in CI](https://github.com/vllm-project/vllm/pull/24315) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `wuhang2014` | `merged` | 2025-09-05 | 2025-10-06 04:20:07 UTC | 24 | 26 |
