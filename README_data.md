@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-02-10 14:54:43 UTC
+Generated on: 2026-02-10 16:33:58 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-02-10 14:54:43 UTC
 
 总共追踪了 23 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +140,807 行添加, -31,840 行删除
+**总代码变更统计**: +140,808 行添加, -31,839 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 44
 **代码变更**: +11,821 行添加, -748 行删除
@@ -300,12 +300,12 @@ Generated on: 2026-02-10 14:54:43 UTC
 | **Total for dengyunyang** | | | | - | **5,298** | **1,977** |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 13
-**代码变更**: +2,281 行添加, -902 行删除
+**代码变更**: +2,282 行添加, -901 行删除
 
 **Pull Requests (6 open, 7 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Bugfix] fix record audio generated frame in offline infer](https://github.com/vllm-project/vllm-omni/pull/1312) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-10 | - | 13 | 8 |
+| [[Bugfix] fix record audio generated frame in offline infer](https://github.com/vllm-project/vllm-omni/pull/1312) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-10 | - | 14 | 7 |
 | [[Doc] Optimize vLLM-Omni metrics documentation](https://github.com/vllm-project/vllm-omni/pull/1311) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-10 | - | 23 | 9 |
 | [Fix yield token metrics](https://github.com/vllm-project/vllm-omni/pull/1292) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-09 | - | 61 | 5 |
 | [[Bugfix] Robust Audio Data Handling in _create_audio_choice](https://github.com/vllm-project/vllm-omni/pull/1222) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-05 | - | 3 | 6 |
@@ -318,7 +318,7 @@ Generated on: 2026-02-10 14:54:43 UTC
 | [[BugFix] initial sampling_params_list  when offline inference](https://github.com/vllm-project/vllm-omni/pull/468) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-25 | 2025-12-26 05:54:12 UTC | 13 | 55 |
 | [Speed up mm processor kwargs per request by spliting dynamic and static kwargs](https://github.com/vllm-project/vllm/pull/26483) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-10-09 | 2025-11-06 23:51:28 UTC | 155 | 3 |
 | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
-| **Total for Junhong Liu** | | | | - | **2,281** | **902** |
+| **Total for Junhong Liu** | | | | - | **2,282** | **901** |
 
 ### 👤 wuhang (@wuhang2014) - 总贡献: 12
 **代码变更**: +1,363 行添加, -453 行删除
@@ -664,7 +664,7 @@ _No relevant pull requests found._
 | Bugfix | [[BugFix] Fixed the issue where ignore_eos was not working.](https://github.com/vllm-project/vllm-omni/pull/1286) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-02-09 | 2026-02-10 08:08:20 UTC | 12 | 14 |
 | Bugfix | [[Bugfix] fix precision issues of qwen3-omni when enable async_chunk without system prompt](https://github.com/vllm-project/vllm-omni/pull/1288) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `open` | 2026-02-09 | - | 55 | 4 |
 | Bugfix | [Fix yield token metrics](https://github.com/vllm-project/vllm-omni/pull/1292) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-02-09 | - | 61 | 5 |
-| Bugfix | [[Bugfix] fix record audio generated frame in offline infer](https://github.com/vllm-project/vllm-omni/pull/1312) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-02-10 | - | 13 | 8 |
+| Bugfix | [[Bugfix] fix record audio generated frame in offline infer](https://github.com/vllm-project/vllm-omni/pull/1312) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-02-10 | - | 14 | 7 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | Docs | [[Doc] Added warning of speculating with draft model](https://github.com/vllm-project/vllm/pull/22047) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-01 | 2025-08-01 09:11:56 UTC | 4 | 0 |
