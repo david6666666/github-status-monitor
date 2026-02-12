@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-02-11 23:56:00 UTC
+Generated on: 2026-02-12 01:37:07 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-02-11 23:56:00 UTC
 
 总共追踪了 31 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +168,911 行添加, -38,570 行删除
+**总代码变更统计**: +168,851 行添加, -38,565 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 44
 **代码变更**: +12,521 行添加, -747 行删除
@@ -482,17 +482,17 @@ Generated on: 2026-02-11 23:56:00 UTC
 | **Total for ChenWenjing** | | | | - | **2,707** | **416** |
 
 ### 👤 John Liu BUAA (@kechengliu97) - 总贡献: 5
-**代码变更**: +184 行添加, -29 行删除
+**代码变更**: +124 行添加, -24 行删除
 
 **Pull Requests (3 open, 2 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Bugfix] reused metrics to modify the API Server token statistics in Stream Response](https://github.com/vllm-project/vllm-omni/pull/1301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-10 | - | 65 | 8 |
+| [[Bugfix] reused metrics to modify the API Server token statistics in Stream Response](https://github.com/vllm-project/vllm-omni/pull/1301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-10 | - | 5 | 3 |
 | [[Bugfix] Refined Token Accounting Across Modalities in API Server for stream](https://github.com/vllm-project/vllm-omni/pull/1077) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-01-29 | - | 21 | 3 |
 | [[Perf] Fuse Q/K/V Linear with QKVParallelLinear in Qwen2.5Omni DiTAttention](https://github.com/vllm-project/vllm-omni/pull/884) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-21 | 2026-01-21 09:24:06 UTC | 43 | 10 |
 | [[Perf] Optimize the Qwen2.5-Omni Model thinker-to-talker-proj with nn.Linear](https://github.com/vllm-project/vllm-omni/pull/825) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-17 | 2026-01-17 11:47:11 UTC | 3 | 8 |
 | [[docs] Add aarch64 installation guide for Mooncake](https://github.com/vllm-project/vllm-omni/pull/538) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2025-12-30 | - | 52 | 0 |
-| **Total for John Liu BUAA** | | | | - | **184** | **29** |
+| **Total for John Liu BUAA** | | | | - | **124** | **24** |
 
 ### 👤 Jinheng (@ahengljh) - 总贡献: 4
 **代码变更**: +1,638 行添加, -137 行删除
@@ -815,7 +815,7 @@ _No relevant pull requests found._
 | Bugfix | [[BugFix] Fixed the issue where ignore_eos was not working.](https://github.com/vllm-project/vllm-omni/pull/1286) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-02-09 | 2026-02-10 08:08:20 UTC | 12 | 14 |
 | Bugfix | [[Bugfix] fix precision issues of qwen3-omni when enable async_chunk without system prompt](https://github.com/vllm-project/vllm-omni/pull/1288) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `R2-Y` | `merged` | 2026-02-09 | 2026-02-11 02:03:41 UTC | 55 | 4 |
 | Bugfix | [Fix yield token metrics and opt metrics record stats](https://github.com/vllm-project/vllm-omni/pull/1292) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `merged` | 2026-02-09 | 2026-02-11 16:52:06 UTC | 162 | 39 |
-| Bugfix | [[Bugfix] reused metrics to modify the API Server token statistics in Stream Response](https://github.com/vllm-project/vllm-omni/pull/1301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `kechengliu97` | `open` | 2026-02-10 | - | 65 | 8 |
+| Bugfix | [[Bugfix] reused metrics to modify the API Server token statistics in Stream Response](https://github.com/vllm-project/vllm-omni/pull/1301) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `kechengliu97` | `open` | 2026-02-10 | - | 5 | 3 |
 | Bugfix | [[Bugfix] fix record audio generated frame in offline infer](https://github.com/vllm-project/vllm-omni/pull/1312) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `open` | 2026-02-10 | - | 14 | 9 |
 | Docs | [[Docs] add offline serving multi-modal video input expamle Qwen2.5-VL](https://github.com/vllm-project/vllm/pull/21530) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-24 | 2025-07-26 01:37:32 UTC | 64 | 0 |
 | Docs | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
