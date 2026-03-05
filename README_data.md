@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-03-05 07:15:54 UTC
+Generated on: 2026-03-05 08:15:38 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-03-05 07:15:54 UTC
 
 总共追踪了 31 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +190,735 行添加, -41,680 行删除
+**总代码变更统计**: +190,709 行添加, -41,680 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 48
 **代码变更**: +12,939 行添加, -788 行删除
@@ -280,7 +280,7 @@ Generated on: 2026-03-05 07:15:54 UTC
 | **Total for Gao Han** | | | | - | **24,246** | **8,963** |
 
 ### 👤 wangyu (@yenuo26) - 总贡献: 21
-**代码变更**: +9,659 行添加, -2,741 行删除
+**代码变更**: +9,631 行添加, -2,741 行删除
 
 **Pull Requests (2 open, 19 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
@@ -288,7 +288,7 @@ Generated on: 2026-03-05 07:15:54 UTC
 | [[Test] Nightly Buildkite Pytest Test Case Statistics And Send HTML Report By Email](https://github.com/vllm-project/vllm-omni/pull/1674) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-03-05 | - | 1,022 | 5 |
 | [[CI] Modify some CI test cases to run on L4 environment to reduce H100 resource usage.](https://github.com/vllm-project/vllm-omni/pull/1543) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-27 | 2026-02-28 06:41:52 UTC | 103 | 129 |
 | [[Test] Reduce Perf test case and fix modify stage config](https://github.com/vllm-project/vllm-omni/pull/1449) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-24 | 2026-02-26 06:20:58 UTC | 43 | 154 |
-| [[Doc] Add the test guide document. [skip ci]](https://github.com/vllm-project/vllm-omni/pull/1376) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-14 | - | 107 | 8 |
+| [[Doc] Add the test guide document. [skip ci]](https://github.com/vllm-project/vllm-omni/pull/1376) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-02-14 | - | 79 | 8 |
 | [[Test] Fix expansion and example test case for qwen3-omni](https://github.com/vllm-project/vllm-omni/pull/1358) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-12 | 2026-02-14 11:43:38 UTC | 431 | 375 |
 | [[Test] Add Omni Model Performance Benchmark Test](https://github.com/vllm-project/vllm-omni/pull/1321) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-11 | 2026-02-12 15:11:58 UTC | 696 | 38 |
 | [[Test] L2 & L3 Test Case Stratification Design for Omni Model](https://github.com/vllm-project/vllm-omni/pull/1272) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-09 | 2026-02-12 01:56:35 UTC | 1,196 | 1,186 |
@@ -306,7 +306,7 @@ Generated on: 2026-03-05 07:15:54 UTC
 | [[Test] Add full test for Qwen3-Omni-30B-A3B-Instruct](https://github.com/vllm-project/vllm-omni/pull/720) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-09 | 2026-01-16 13:16:43 UTC | 555 | 0 |
 | [[Test] Add initial multi modal cases of Qwen2.5-VL-7B-Instruct for disaggregated encoder ](https://github.com/vllm-project/vllm-ascend/pull/5301) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-12-23 | 2026-02-06 09:30:18 UTC | 1,361 | 1 |
 | [[TEST]Add initial multi modal cases of Qwen2.5-VL-32B-Instruct for nightly test](https://github.com/vllm-project/vllm-ascend/pull/3707) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-10-24 | 2025-10-24 09:12:06 UTC | 115 | 5 |
-| **Total for wangyu** | | | | - | **9,659** | **2,741** |
+| **Total for wangyu** | | | | - | **9,631** | **2,741** |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - 总贡献: 18
 **代码变更**: +2,634 行添加, -997 行删除
@@ -540,7 +540,7 @@ Generated on: 2026-03-05 07:15:54 UTC
 | **Total for Jinheng** | | | | - | **5,242** | **275** |
 
 ### 👤 jiangkuaixue123 - 总贡献: 4
-**代码变更**: +3,041 行添加, -183 行删除
+**代码变更**: +3,043 行添加, -183 行删除
 
 **Pull Requests (1 open, 3 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
@@ -548,8 +548,8 @@ Generated on: 2026-03-05 07:15:54 UTC
 | [[Bugfix] Fix ubatch wrapper num_tokens calculate](https://github.com/vllm-project/vllm/pull/33694) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2026-02-03 | 2026-02-04 16:41:45 UTC | 1 | 3 |
 | [[bugfix] fix typo of _skip_all_reduce_across_dp_group](https://github.com/vllm-project/vllm-ascend/pull/5435) | [vllm-project/vllm-ascend](https://github.com/vllm-project/vllm-ascend) | `merged` | 2025-12-27 | 2025-12-27 09:50:05 UTC | 2 | 2 |
 | [[feature] extend DBO to XBO](https://github.com/vllm-project/vllm/pull/30120) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-12-05 | 2025-12-16 05:04:01 UTC | 133 | 73 |
-| [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-01 | - | 2,905 | 105 |
-| **Total for jiangkuaixue123** | | | | - | **3,041** | **183** |
+| [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `open` | 2025-12-01 | - | 2,907 | 105 |
+| **Total for jiangkuaixue123** | | | | - | **3,043** | **183** |
 
 ### 👤 Sihao Li (@GG-li) - 总贡献: 4
 **代码变更**: +240 行添加, -56 行删除
@@ -682,7 +682,7 @@ _No relevant pull requests found._
 | Feature | [[Diffusion] Support Multi-image Generation and Add Web UI Demo for QwenImage](https://github.com/vllm-project/vllm-omni/pull/97) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-11-28 | 2025-11-29 12:19:50 UTC | 341 | 22 |
 | Feature | [[Feature] Support Gradio Demo for Qwen3-Omni](https://github.com/vllm-project/vllm-omni/pull/116) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-11-30 | 2025-11-30 12:44:04 UTC | 16 | 14 |
 | Feature | [[Misc][WIP] Support qwen-omni online inference with local video/audio/image path](https://github.com/vllm-project/vllm-omni/pull/131) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-01 | 2025-12-01 08:30:23 UTC | 483 | 76 |
-| Feature | [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `jiangkuaixue123` | `open` | 2025-12-01 | - | 2,905 | 105 |
+| Feature | [[Feature] AFD basic implemetation ](https://github.com/vllm-project/vllm/pull/29772) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `jiangkuaixue123` | `open` | 2025-12-01 | - | 2,907 | 105 |
 | Feature | [[Misc] Qwen-Omni support offline inference with local files](https://github.com/vllm-project/vllm-omni/pull/167) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-02 | 2025-12-02 11:05:45 UTC | 365 | 25 |
 | Feature | [[Model] Add Qwen-Image-Edit](https://github.com/vllm-project/vllm-omni/pull/196) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2025-12-04 | 2025-12-08 08:19:27 UTC | 1,022 | 10 |
 | Feature | [[feature] extend DBO to XBO](https://github.com/vllm-project/vllm/pull/30120) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `jiangkuaixue123` | `merged` | 2025-12-05 | 2025-12-16 05:04:01 UTC | 133 | 73 |
@@ -938,7 +938,7 @@ _No relevant pull requests found._
 | Docs | [[WIP] [CI] Add documents' types to skip buildkite CI.](https://github.com/vllm-project/vllm-omni/pull/1284) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `open` | 2026-02-09 | - | 333 | 316 |
 | Docs | [[Doc] Optimize vLLM-Omni metrics documentation](https://github.com/vllm-project/vllm-omni/pull/1311) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `LJH-LBJ` | `merged` | 2026-02-10 | 2026-02-24 12:27:30 UTC | 26 | 18 |
 | Docs | [[Doc] [skip ci]Sync.](https://github.com/vllm-project/vllm-omni/pull/1363) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `congw729` | `merged` | 2026-02-13 | 2026-02-27 09:28:35 UTC | 1,119 | 138 |
-| Docs | [[Doc] Add the test guide document. [skip ci]](https://github.com/vllm-project/vllm-omni/pull/1376) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `open` | 2026-02-14 | - | 107 | 8 |
+| Docs | [[Doc] Add the test guide document. [skip ci]](https://github.com/vllm-project/vllm-omni/pull/1376) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `open` | 2026-02-14 | - | 79 | 8 |
 | Docs | [[Doc] Update GPU installation commands](https://github.com/vllm-project/vllm-omni/pull/1434) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2026-02-23 | 2026-02-23 05:54:57 UTC | 26 | 2 |
 | Docs | [[Doc][Test][Misc] ComfyUI test, more screenshot, and code cleaning](https://github.com/vllm-project/vllm-omni/pull/1435) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fhfuih` | `merged` | 2026-02-23 | 2026-02-26 13:03:55 UTC | 2,067 | 166 |
 | Docs | [[CI] Update Dockerfile for vllm-omni CI image and remove obsolete dep…](https://github.com/vllm-project/vllm-omni/pull/1491) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2026-02-26 | 2026-02-26 06:36:03 UTC | 1 | 25 |
