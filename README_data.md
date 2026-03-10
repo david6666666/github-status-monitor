@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-03-10 14:35:10 UTC
+Generated on: 2026-03-10 15:18:43 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-03-10 14:35:10 UTC
 
 总共追踪了 31 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +195,873 行添加, -42,568 行删除
+**总代码变更统计**: +195,936 行添加, -44,428 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 50
 **代码变更**: +13,526 行添加, -809 行删除
@@ -210,12 +210,13 @@ Generated on: 2026-03-10 14:35:10 UTC
 | [CI Workflows.](https://github.com/vllm-project/vllm-omni/pull/50) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-06 | 2025-11-17 10:13:06 UTC | 0 | 0 |
 | **Total for Alicia** | | | | - | **5,587** | **1,669** |
 
-### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 32
-**代码变更**: +13,354 行添加, -2,721 行删除
+### 👤 Hongsheng Liu (@hsliuustc0106) - 总贡献: 33
+**代码变更**: +13,417 行添加, -4,581 行删除
 
-**Pull Requests (0 open, 32 merged)**
+**Pull Requests (1 open, 32 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [Revert "Add online serving to Stable Audio Diffusion and introduce `v1/audio/generate` endpoint"](https://github.com/vllm-project/vllm-omni/pull/1789) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-03-10 | - | 63 | 1,860 |
 | [[skip ci] Update slides link](https://github.com/vllm-project/vllm-omni/pull/1730) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-08 | 2026-03-08 12:45:54 UTC | 1 | 1 |
 | [docs: Announce vllm-omni-skills community project](https://github.com/vllm-project/vllm-omni/pull/1651) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-04 | 2026-03-04 12:56:50 UTC | 2 | 1 |
 | [Revert "[misc] Feature/pr reviewer auto trigger&update model"](https://github.com/vllm-project/vllm-omni/pull/1432) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-22 | 2026-02-22 23:52:09 UTC | 10 | 15 |
@@ -248,7 +249,7 @@ Generated on: 2026-03-10 14:35:10 UTC
 | [[Docs] Fix the example code of streaming chat completions in reasoning](https://github.com/vllm-project/vllm/pull/21825) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-29 | 2025-07-30 12:11:58 UTC | 12 | 14 |
 | [[Doc] Added unmentioned required option "method" in the usage of EAGLE-3 based models](https://github.com/vllm-project/vllm/pull/21737) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-28 | 2025-08-12 07:14:51 UTC | 4 | 0 |
 | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
-| **Total for Hongsheng Liu** | | | | - | **13,354** | **2,721** |
+| **Total for Hongsheng Liu** | | | | - | **13,417** | **4,581** |
 
 ### 👤 Gao Han (@Gaohan123) - 总贡献: 28
 **代码变更**: +24,246 行添加, -8,963 行删除
@@ -765,6 +766,7 @@ _No relevant pull requests found._
 | Feature | [feat: add vllm-prefix-cache-bench skill, update README.md](https://github.com/vllm-project/vllm-skills/pull/15) | [vllm-project/vllm-skills](https://github.com/vllm-project/vllm-skills) | `cyr20040123` | `open` | 2026-03-06 | - | 140 | 12 |
 | Feature | [[Quantization] feat: add qwen-image gguf adapter](https://github.com/vllm-project/vllm-omni/pull/1755) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2026-03-09 | - | 215 | 5 |
 | Feature | [[Quantization] feat: add wan2.2 multi-source gguf support](https://github.com/vllm-project/vllm-omni/pull/1756) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2026-03-09 | - | 372 | 16 |
+| Feature | [Revert "Add online serving to Stable Audio Diffusion and introduce `v1/audio/generate` endpoint"](https://github.com/vllm-project/vllm-omni/pull/1789) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `open` | 2026-03-10 | - | 63 | 1,860 |
 | Performance | [[EPLB] Optimize EPLB for Async Rearrange Experts ](https://github.com/vllm-project/vllm/pull/22179) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-04 | 2025-11-24 14:08:29 UTC | 778 | 77 |
 | Performance | [[Feature][P/D]: Optimize NIXL Connector xfer Launch](https://github.com/vllm-project/vllm/pull/23887) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-08-29 | 2025-09-03 19:14:30 UTC | 18 | 13 |
 | Performance | [[Performance][MM] Building the inverse permutation in O(n) time in Qwen2_5_VisionTransformer](https://github.com/vllm-project/vllm/pull/24443) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-09-08 | 2025-09-09 07:24:11 UTC | 11 | 1 |
