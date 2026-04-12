@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-04-11 01:51:47 UTC
+Generated on: 2026-04-12 01:59:49 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -14,12 +14,13 @@ Generated on: 2026-04-11 01:51:47 UTC
 
 **总代码变更统计**: +261,555 行添加, -68,778 行删除
 
-### 👤 WeiQing Chen (@david6666666) - 总贡献: 75
+### 👤 WeiQing Chen (@david6666666) - 总贡献: 76
 **代码变更**: +21,226 行添加, -982 行删除
 
-**Pull Requests (3 open, 72 merged)**
+**Pull Requests (4 open, 72 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Docs] Update WeChat QR code for community support](https://github.com/vllm-project/vllm-omni/pull/2701) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-12 | - | 0 | 0 |
 | [[cherry-pick release/v0.18.0post1][Bugfix] Fix Qwen-Image min-size normalization for tiny requests (#2637)](https://github.com/vllm-project/vllm-omni/pull/2648) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-09 | 2026-04-09 13:04:39 UTC | 65 | 18 |
 | [[Bugfix] Fix Qwen-Image min-size normalization for tiny requests](https://github.com/vllm-project/vllm-omni/pull/2637) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-09 | 2026-04-09 12:51:02 UTC | 65 | 18 |
 | [[cherry-pick release/v0.18.0post1][Bugfix] Enforce --max-generated-image-size on /v1/images/generations…](https://github.com/vllm-project/vllm-omni/pull/2625) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-09 | 2026-04-09 06:42:24 UTC | 49 | 21 |
@@ -100,7 +101,7 @@ Generated on: 2026-04-11 01:51:47 UTC
 ### 👤 Samit (@SamitHuang) - 总贡献: 49
 **代码变更**: +13,733 行添加, -2,003 行删除
 
-**Pull Requests (2 open, 47 merged)**
+**Pull Requests (1 open, 48 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Refactor] Use trajectory_* fields for Qwen-Image structured RL outputs](https://github.com/vllm-project/vllm-omni/pull/2513) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-06 | 2026-04-09 10:06:40 UTC | 35 | 10 |
@@ -108,7 +109,7 @@ Generated on: 2026-04-11 01:51:47 UTC
 | [[Doc] Improve diffusion generation parameter docs for online serving](https://github.com/vllm-project/vllm-omni/pull/2051) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-20 | 2026-03-26 15:12:17 UTC | 568 | 167 |
 | [[Feat][Benchmark] Add synchronous video generation endpoint POST /v1/videos/sync for benchmark test](https://github.com/vllm-project/vllm-omni/pull/2049) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-20 | 2026-04-01 02:47:34 UTC | 421 | 62 |
 | [[Bugfix] Fix config misalignment between offline and online diffusion inference (Wan2.2, Qwen-Image series)](https://github.com/vllm-project/vllm-omni/pull/1979) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-18 | 2026-03-19 08:00:27 UTC | 40 | 22 |
-| [[Doc] Add LTX-2 online serving deployment recipes with optimization benchmarks](https://github.com/vllm-project/vllm-omni/pull/1971) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-03-18 | - | 348 | 8 |
+| [[Doc] Add LTX-2 online serving deployment recipes with optimization benchmarks](https://github.com/vllm-project/vllm-omni/pull/1971) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-18 | 2026-04-11 08:50:03 UTC | 348 | 8 |
 | [[New Model][Skill Eval] Add Stable Diffusion v1.5 as first UNet-based diffusion model](https://github.com/vllm-project/vllm-omni/pull/1924) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-03-16 | - | 316 | 3 |
 | [[Docs] Add Wan2.1-T2V as supported video generation models](https://github.com/vllm-project/vllm-omni/pull/1920) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-16 | 2026-03-20 06:14:20 UTC | 10 | 3 |
 | [ [Test] L4 complete diffusion feature test for Qwen-Image models](https://github.com/vllm-project/vllm-omni/pull/1869) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-13 | 2026-03-27 06:03:50 UTC | 155 | 0 |
@@ -1168,7 +1169,7 @@ _No relevant pull requests found._
 | Docs | [[skip CI][Docs] Add Qwen3-Omni and Qwen3-TTS performance blog and figures](https://github.com/vllm-project/vllm-omni/pull/1837) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Shirley125` | `open` | 2026-03-12 | - | 539 | 0 |
 | Docs | [[Docs][CI] doc update & L4 example test for text-to-image page](https://github.com/vllm-project/vllm-omni/pull/1910) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fhfuih` | `merged` | 2026-03-16 | 2026-03-23 08:26:54 UTC | 871 | 220 |
 | Docs | [[Docs] Add Wan2.1-T2V as supported video generation models](https://github.com/vllm-project/vllm-omni/pull/1920) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-03-16 | 2026-03-20 06:14:20 UTC | 10 | 3 |
-| Docs | [[Doc] Add LTX-2 online serving deployment recipes with optimization benchmarks](https://github.com/vllm-project/vllm-omni/pull/1971) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `open` | 2026-03-18 | - | 348 | 8 |
+| Docs | [[Doc] Add LTX-2 online serving deployment recipes with optimization benchmarks](https://github.com/vllm-project/vllm-omni/pull/1971) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-03-18 | 2026-04-11 08:50:03 UTC | 348 | 8 |
 | Docs | [[Docs] Update WeChat QR code for community support](https://github.com/vllm-project/vllm-omni/pull/1974) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-03-18 | 2026-03-18 05:55:51 UTC | 0 | 0 |
 | Docs | [[Doc] Update docs and dockerfiles for rebase of vllm v0.18.0](https://github.com/vllm-project/vllm-omni/pull/2038) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `tzhouam` | `merged` | 2026-03-20 | 2026-03-21 13:21:34 UTC | 24 | 43 |
 | Docs | [[Doc] Improve diffusion generation parameter docs for online serving](https://github.com/vllm-project/vllm-omni/pull/2051) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-03-20 | 2026-03-26 15:12:17 UTC | 568 | 167 |
@@ -1182,6 +1183,7 @@ _No relevant pull requests found._
 | Docs | [[Docs] Add multi-thread weight loading documentation](https://github.com/vllm-project/vllm-omni/pull/2445) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `SamitHuang` | `merged` | 2026-04-02 | 2026-04-09 07:54:23 UTC | 64 | 1 |
 | Docs | [[Docs] Update WeChat QR code for community support](https://github.com/vllm-project/vllm-omni/pull/2481) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-04-04 | 2026-04-04 16:21:20 UTC | 0 | 0 |
 | Docs | [[Test] Test whether CI can be correctly skipped when the committed files only contain documentation.](https://github.com/vllm-project/vllm-omni/pull/2534) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `merged` | 2026-04-07 | 2026-04-07 02:47:44 UTC | 1 | 1 |
+| Docs | [[Docs] Update WeChat QR code for community support](https://github.com/vllm-project/vllm-omni/pull/2701) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `open` | 2026-04-12 | - | 0 | 0 |
 | Other | [init the folder directories for vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/1) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2025-09-11 | 2025-09-11 08:18:53 UTC | 677 | 59 |
 | Other | [[Model] Switch to Fused RMSNorm in GLM-4.1V model](https://github.com/vllm-project/vllm/pull/24733) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `SamitHuang` | `merged` | 2025-09-12 | 2025-09-12 16:12:23 UTC | 3 | 2 |
 | Other | [Remove Redundant Assignment in Qwen3_VisionPatchMerger](https://github.com/vllm-project/vllm/pull/25224) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `LJH-LBJ` | `merged` | 2025-09-19 | 2025-09-19 18:15:13 UTC | 1 | 3 |
