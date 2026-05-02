@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project Organization
 
-Generated on: 2026-05-01 02:35:48 UTC
+Generated on: 2026-05-02 02:12:44 UTC
 
 **统计范围**: vllm-project 组织的所有 PR 贡献（包含代码变更统计）
 
@@ -12,7 +12,7 @@ Generated on: 2026-05-01 02:35:48 UTC
 
 总共追踪了 31 个用户在 vllm-project 组织中的贡献情况。
 
-**总代码变更统计**: +306,728 行添加, -98,320 行删除
+**总代码变更统计**: +306,726 行添加, -98,320 行删除
 
 ### 👤 WeiQing Chen (@david6666666) - 总贡献: 94
 **代码变更**: +27,709 行添加, -3,138 行删除
@@ -406,12 +406,12 @@ Generated on: 2026-05-01 02:35:48 UTC
 | **Total for Hongsheng Liu** | | | | - | **16,124** | **6,470** |
 
 ### 👤 Gao Han (@Gaohan123) - 总贡献: 37
-**代码变更**: +24,387 行添加, -9,227 行删除
+**代码变更**: +24,385 行添加, -9,227 行删除
 
-**Pull Requests (3 open, 34 merged)**
+**Pull Requests (2 open, 35 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[CI failed]Revert "[Config Refactor] Derive deploy override fields from stage config"](https://github.com/vllm-project/vllm-omni/pull/3287) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-30 | - | 62 | 129 |
+| [[CI failed]Revert "[Config Refactor] Derive deploy override fields from stage config"](https://github.com/vllm-project/vllm-omni/pull/3287) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-30 | 2026-05-01 03:39:54 UTC | 60 | 129 |
 | [[CI] Skip advanced model test on CI failure](https://github.com/vllm-project/vllm-omni/pull/2879) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-17 | - | 1 | 0 |
 | [[CI] Skip img2img test due to L3 CI failure](https://github.com/vllm-project/vllm-omni/pull/2258) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-03-27 | - | 1 | 0 |
 | [[CI] Skip tests due to L3 CI failure](https://github.com/vllm-project/vllm-omni/pull/2245) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-03-27 | 2026-03-27 02:35:35 UTC | 3 | 1 |
@@ -448,17 +448,17 @@ Generated on: 2026-05-01 02:35:48 UTC
 | [add precommit](https://github.com/vllm-project/vllm-omni/pull/32) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-24 | 2025-10-24 09:04:50 UTC | 3,371 | 2,208 |
 | [[Model] Add end2end example and documentation for qwen2.5-omni](https://github.com/vllm-project/vllm-omni/pull/14) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:40:02 UTC | 879 | 96 |
 | [[Engine] Add entrypoint class and stage management](https://github.com/vllm-project/vllm-omni/pull/13) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-10-22 | 2025-10-24 02:38:16 UTC | 420 | 640 |
-| **Total for Gao Han** | | | | - | **24,387** | **9,227** |
+| **Total for Gao Han** | | | | - | **24,385** | **9,227** |
 
 ### 👤 amy-why-3459 - 总贡献: 33
 **代码变更**: +7,520 行添加, -2,508 行删除
 
-**Pull Requests (2 open, 31 merged)**
+**Pull Requests (1 open, 32 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3203) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-28 | - | 414 | 99 |
+| [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3203) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-28 | 2026-05-01 14:47:24 UTC | 414 | 99 |
 | [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3164) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-27 | 2026-04-28 03:59:27 UTC | 276 | 99 |
-| [[WIP][BugFix] Fix the chunked prefill issue in thinker](https://github.com/vllm-project/vllm-omni/pull/3147) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-25 | - | 53 | 69 |
+| [[BugFix] Fix the issue of thinker requests being preempted, causing shape mismatch.](https://github.com/vllm-project/vllm-omni/pull/3147) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-04-25 | - | 53 | 69 |
 | [[Docs] Modify Qwen3-Omni's recipe](https://github.com/vllm-project/vllm-omni/pull/3109) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-24 | 2026-04-27 13:41:13 UTC | 207 | 53 |
 | [[Refactor] Remove redundant benchmarks from Qwen3-Omni](https://github.com/vllm-project/vllm-omni/pull/3108) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-24 | 2026-04-24 13:22:03 UTC | 0 | 689 |
 | [[Refactor] Remove the default value "mp" from distributed_executor_backend.](https://github.com/vllm-project/vllm-omni/pull/3007) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-22 | 2026-04-25 03:48:03 UTC | 10 | 6 |
@@ -1048,7 +1048,7 @@ _No relevant pull requests found._
 | Performance | [[CI][Perf] Add nightly PR labels, consolidate pipeline, and switch benchmark flag to --test-config-file](https://github.com/vllm-project/vllm-omni/pull/2816) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `merged` | 2026-04-15 | 2026-04-16 03:13:41 UTC | 493 | 534 |
 | Performance | [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3164) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-04-27 | 2026-04-28 03:59:27 UTC | 276 | 99 |
 | Performance | [Revert "[perf]Qwen3-Omni performance optimization"](https://github.com/vllm-project/vllm-omni/pull/3202) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `hsliuustc0106` | `merged` | 2026-04-28 | 2026-04-28 05:23:29 UTC | 99 | 276 |
-| Performance | [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3203) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `open` | 2026-04-28 | - | 414 | 99 |
+| Performance | [[perf]Qwen3-Omni performance optimization](https://github.com/vllm-project/vllm-omni/pull/3203) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-04-28 | 2026-05-01 14:47:24 UTC | 414 | 99 |
 | Bugfix | [[BugFix] Fix shared storage connector load kv only load attention layer](https://github.com/vllm-project/vllm/pull/21428) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-26 14:07:41 UTC | 10 | 2 |
 | Bugfix | [[Bugfix] Fix example disagg_example_p2p_nccl_xpyd.sh zombie process](https://github.com/vllm-project/vllm/pull/21437) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `david6666666` | `merged` | 2025-07-23 | 2025-07-24 03:42:11 UTC | 1 | 0 |
 | Bugfix | [[Bugfix] [issue-21565] Fix the incompatibility issue with stream and named function calling when Thinking is disabled](https://github.com/vllm-project/vllm/pull/21573) | [vllm-project/vllm](https://github.com/vllm-project/vllm) | `hsliuustc0106` | `merged` | 2025-07-25 | 2025-07-28 05:43:50 UTC | 23 | 7 |
@@ -1225,7 +1225,7 @@ _No relevant pull requests found._
 | Bugfix | [[release v0.18.0.post1] Fix default sampling params for /v1/videos](https://github.com/vllm-project/vllm-omni/pull/3021) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-04-22 | 2026-04-23 03:29:54 UTC | 116 | 20 |
 | Bugfix | [[Bugfix] Fix default sampling params for /v1/videos on main](https://github.com/vllm-project/vllm-omni/pull/3049) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `david6666666` | `merged` | 2026-04-23 | 2026-04-23 03:31:14 UTC | 149 | 16 |
 | Bugfix | [[bugfix][CI] Diffusers backend update](https://github.com/vllm-project/vllm-omni/pull/3096) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `fhfuih` | `open` | 2026-04-24 | - | 1,310 | 447 |
-| Bugfix | [[WIP][BugFix] Fix the chunked prefill issue in thinker](https://github.com/vllm-project/vllm-omni/pull/3147) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `open` | 2026-04-25 | - | 53 | 69 |
+| Bugfix | [[BugFix] Fix the issue of thinker requests being preempted, causing shape mismatch.](https://github.com/vllm-project/vllm-omni/pull/3147) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `open` | 2026-04-25 | - | 53 | 69 |
 | Bugfix | [[Bugfix][CI] fix file name too long error in  Omni · Doc Test with H100](https://github.com/vllm-project/vllm-omni/pull/3209) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `merged` | 2026-04-28 | 2026-04-28 12:26:03 UTC | 56 | 22 |
 | Bugfix | [[Bugfix] Support diffusion worker dead detect when use inline engine](https://github.com/vllm-project/vllm-omni/pull/3214) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `open` | 2026-04-28 | - | 182 | 22 |
 | Bugfix | [[Bugfix][CI] Enhance get_open_port function to handle port binding more robustly](https://github.com/vllm-project/vllm-omni/pull/3216) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `yenuo26` | `merged` | 2026-04-28 | 2026-04-30 06:27:06 UTC | 32 | 4 |
@@ -1518,5 +1518,5 @@ _No relevant pull requests found._
 | Refactor | [[Refactor] Remove the default value "mp" from distributed_executor_backend.](https://github.com/vllm-project/vllm-omni/pull/3007) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-04-22 | 2026-04-25 03:48:03 UTC | 10 | 6 |
 | Refactor | [[Refactor] Remove redundant benchmarks from Qwen3-Omni](https://github.com/vllm-project/vllm-omni/pull/3108) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `amy-why-3459` | `merged` | 2026-04-24 | 2026-04-24 13:22:03 UTC | 0 | 689 |
 | Refactor | [[Entrypoint][Refactor] Make field type hint more concrete](https://github.com/vllm-project/vllm-omni/pull/3139) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `wuhang2014` | `open` | 2026-04-25 | - | 64 | 36 |
-| Refactor | [[CI failed]Revert "[Config Refactor] Derive deploy override fields from stage config"](https://github.com/vllm-project/vllm-omni/pull/3287) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `open` | 2026-04-30 | - | 62 | 129 |
+| Refactor | [[CI failed]Revert "[Config Refactor] Derive deploy override fields from stage config"](https://github.com/vllm-project/vllm-omni/pull/3287) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `Gaohan123` | `merged` | 2026-04-30 | 2026-05-01 03:39:54 UTC | 60 | 129 |
 
