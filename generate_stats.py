@@ -198,25 +198,6 @@ def format_datetime(dt):
     except Exception:
         return "-"
 
-def classify_pr(title, repo_full_name):
-    """
-    根据标题和仓库名对 PR 进行简单分类
-    """
-    text = f"{title} {repo_full_name}".lower()
-    if any(kw in text for kw in ["bugfix", "bug fix", "fix ", "fix:", "hotfix"]):
-        return "Bugfix"
-    if any(kw in text for kw in ["doc", "docs", "documentation", "[doc]"]):
-        return "Docs"
-    if any(kw in text for kw in ["perf", "performance", "optimiz", "speed", "throughput"]):
-        return "Performance"
-    if any(kw in text for kw in ["refactor", "cleanup", "restructure"]):
-        return "Refactor"
-    if any(kw in text for kw in ["test", "ci", "unit test", "integration test", "benchmark", "benchmarks"]):
-        return "Test"
-    if any(kw in text for kw in ["feature", "add ", "support", "enable", "introduce", "core", ]):
-        return "Feature"
-    return "Other"
-
 def generate_chart(user_data):
     """
     生成包含堆叠PR柱状图的图表，包含additions/deletions统计
@@ -468,8 +449,6 @@ def generate_markdown(user_data):
     
     markdown_text += f"**总代码变更统计**: +{format_number(total_all_additions)} 行添加, -{format_number(total_all_deletions)} 行删除\n\n"
 
-    aggregated_prs = []
-
     for user in user_data:
         username = user['username']
         display_name = user['display_name']
@@ -499,7 +478,6 @@ def generate_markdown(user_data):
             created_date = pr.created_at.strftime('%Y-%m-%d')
             merged_at = getattr(pr, '_merged_at', None) or getattr(pr, 'merged_at', None)
             merged_date = format_datetime(merged_at)
-            category = classify_pr(title, repo_name)
             
             # 获取PR的additions和deletions (如果已存储)
             additions = getattr(pr, '_additions', 0)
@@ -507,18 +485,6 @@ def generate_markdown(user_data):
             
             row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
             pr_rows.append((pr.created_at, row_string))
-            aggregated_prs.append({
-                "title": title,
-                "repo": repo_name,
-                "url": pr.html_url,
-                "state": "merged",
-                "created_at": pr.created_at,
-                "merged_at": merged_at,
-                "additions": additions,
-                "deletions": deletions,
-                "user": username,
-                "category": category
-            })
             
         # Process open PRs
         for pr in stats['open_prs']:
@@ -527,7 +493,6 @@ def generate_markdown(user_data):
             created_date = pr.created_at.strftime('%Y-%m-%d')
             merged_at = getattr(pr, '_merged_at', None) or getattr(pr, 'merged_at', None)
             merged_date = format_datetime(merged_at)
-            category = classify_pr(title, repo_name)
             
             # 获取PR的additions和deletions (如果已存储)
             additions = getattr(pr, '_additions', 0)
@@ -535,18 +500,6 @@ def generate_markdown(user_data):
             
             row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
             pr_rows.append((pr.created_at, row_string))
-            aggregated_prs.append({
-                "title": title,
-                "repo": repo_name,
-                "url": pr.html_url,
-                "state": "open",
-                "created_at": pr.created_at,
-                "merged_at": merged_at,
-                "additions": additions,
-                "deletions": deletions,
-                "user": username,
-                "category": category
-            })
 
         if pr_rows:
             markdown_text += "| Title | Repository | State | Created | Merged | Additions | Deletions |\n"
@@ -563,37 +516,6 @@ def generate_markdown(user_data):
             markdown_text += f"| **Total for {display_name}** | | | | - | **{format_number(user_additions)}** | **{format_number(user_deletions)}** |\n"
         else:
             markdown_text += "_No relevant pull requests found._\n"
-        markdown_text += "\n"
-
-    if aggregated_prs:
-        markdown_text += "### 📊 PR 总览（按分类排序）\n"
-        markdown_text += "| Category | Title | Repository | User | State | Created | Merged | Additions | Deletions |\n"
-        markdown_text += "| -------- | ----- | ---------- | ---- | ----- | ------- | ------ | --------- | --------- |\n"
-
-        category_priority = {
-            "Feature": 0,
-            "Performance": 1,
-            "Bugfix": 2,
-            "Docs": 3,
-            "Other": 4,
-            "Test": 5
-        }
-
-        def sort_key(pr):
-            cat_idx = category_priority.get(pr["category"], 6)
-            created = pr["created_at"] or datetime.min
-            return (cat_idx, created)
-
-        aggregated_prs.sort(key=sort_key)
-
-        for pr in aggregated_prs:
-            created_date = pr["created_at"].strftime('%Y-%m-%d') if pr["created_at"] else "-"
-            merged_date = format_datetime(pr["merged_at"])
-            markdown_text += (
-                f"| {pr['category']} | [{pr['title']}]({pr['url']}) | [{pr['repo']}](https://github.com/{pr['repo']}) | "
-                f"`{pr['user']}` | `{pr['state']}` | {created_date} | {merged_date} | "
-                f"{format_number(pr['additions'])} | {format_number(pr['deletions'])} |\n"
-            )
         markdown_text += "\n"
 
     return markdown_text
