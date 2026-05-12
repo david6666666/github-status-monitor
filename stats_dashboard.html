@@ -1,0 +1,1762 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vllm-project PR Contribution Dashboard</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --ink: #171411;
+      --muted: #6d665e;
+      --line: #d8d0c4;
+      --panel: #fffaf0;
+      --panel-strong: #fff4d9;
+      --accent: #006b5f;
+      --accent-2: #bb3e03;
+      --shadow: 0 24px 60px rgba(48, 39, 27, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(23,20,17,0.035) 1px, transparent 1px),
+        linear-gradient(rgba(23,20,17,0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1480px, calc(100% - 40px)); margin: 0 auto; padding: 34px 0 56px; }
+    .topline {
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+    }
+    .mark { font: 700 13px/1.1 "Trebuchet MS", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+    .timestamp { color: var(--muted); font: 12px/1.4 "Trebuchet MS", sans-serif; }
+    .hero { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 28px; padding: 42px 0 26px; }
+    h1 {
+      font-size: clamp(42px, 7vw, 104px);
+      line-height: 0.88;
+      margin: 0;
+      max-width: 900px;
+      letter-spacing: 0;
+    }
+    .summary-strip {
+      align-self: end;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 118px;
+      padding: 18px;
+    }
+    .metric span, .eyebrow, th, .muted, dt {
+      color: var(--muted);
+      font: 700 11px/1.35 "Trebuchet MS", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .metric strong { display: block; font-size: clamp(28px, 4vw, 54px); line-height: 1; margin-top: 14px; }
+    .section { margin-top: 22px; }
+    .section-head { align-items: end; display: flex; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+    h2 { font-size: clamp(24px, 3vw, 42px); line-height: 1; margin: 0; }
+    .groups { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .group-card {
+      background: var(--panel-strong);
+      border: 1px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+      min-height: 180px;
+      padding: 17px;
+    }
+    .group-card h3 { font-size: 42px; line-height: 1; margin: 12px 0 24px; }
+    dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0; }
+    dd { font-size: 22px; margin: 4px 0 0; }
+    .chart-panel, .table-panel {
+      background: rgba(255, 250, 240, 0.88);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .chart-panel { padding: 18px; }
+    .chart-panel img { display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: middle; }
+    th { background: #eee5d7; position: sticky; top: 0; z-index: 1; }
+    tbody tr:hover { background: #fff3d4; }
+    .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    .rank { color: var(--accent-2); font-size: 22px; font-weight: 700; width: 58px; }
+    .person, .pr-title { font-weight: 700; }
+    .person:hover, .pr-title:hover { color: var(--accent); }
+    .muted { display: block; margin-top: 3px; text-transform: none; letter-spacing: 0; }
+    .pill, .state {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      display: inline-flex;
+      font: 700 11px/1 "Trebuchet MS", sans-serif;
+      padding: 7px 9px;
+      white-space: nowrap;
+    }
+    .pill { background: #fff; }
+    .state.open { background: #fff1b8; border-color: #b88a00; color: #644b00; }
+    .state.merged { background: #dff4e8; border-color: #4d9b70; color: #14552f; }
+    .bar { background: #e7ded0; height: 10px; min-width: 90px; overflow: hidden; }
+    .bar span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); display: block; height: 100%; }
+    .table-scroll { max-height: 760px; overflow: auto; }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .summary-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 24px, 1480px); padding-top: 20px; }
+      .topline, .section-head { align-items: flex-start; flex-direction: column; }
+      .groups, .summary-strip { grid-template-columns: 1fr; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topline">
+      <div class="mark">vllm-project contribution monitor</div>
+      <div class="timestamp">Generated 2026-05-12 04:15:44 UTC</div>
+    </header>
+
+    <section class="hero">
+      <h1>PR contribution dashboard</h1>
+      <div class="summary-strip">
+        <div class="metric"><span>Tracked users</span><strong>39</strong></div>
+        <div class="metric"><span>Total PRs</span><strong>852</strong></div>
+        <div class="metric"><span>Open PRs</span><strong>70</strong></div>
+        <div class="metric"><span>Merged PRs</span><strong>782</strong></div>
+      </div>
+    </section>
+
+    <section class="section groups">
+      
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">HUAWEI</p>
+              <h3>711</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>33</dd></div>
+              <div><dt>Open</dt><dd>65</dd></div>
+              <div><dt>Merged</dt><dd>646</dd></div>
+              <div><dt>Share</dt><dd>83.5%</dd></div>
+            </dl>
+          </article>
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">阿里PAI</p>
+              <h3>63</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>3</dd></div>
+              <div><dt>Open</dt><dd>3</dd></div>
+              <div><dt>Merged</dt><dd>60</dd></div>
+              <div><dt>Share</dt><dd>7.4%</dd></div>
+            </dl>
+          </article>
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">蚂蚁</p>
+              <h3>15</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>1</dd></div>
+              <div><dt>Open</dt><dd>1</dd></div>
+              <div><dt>Merged</dt><dd>14</dd></div>
+              <div><dt>Share</dt><dd>1.8%</dd></div>
+            </dl>
+          </article>
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">小米</p>
+              <h3>16</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>1</dd></div>
+              <div><dt>Open</dt><dd>0</dd></div>
+              <div><dt>Merged</dt><dd>16</dd></div>
+              <div><dt>Share</dt><dd>1.9%</dd></div>
+            </dl>
+          </article>
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">智谱</p>
+              <h3>47</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>1</dd></div>
+              <div><dt>Open</dt><dd>1</dd></div>
+              <div><dt>Merged</dt><dd>46</dd></div>
+              <div><dt>Share</dt><dd>5.5%</dd></div>
+            </dl>
+          </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Contribution Volume</h2>
+        <p class="timestamp">Code delta: +484,672 / -134,815</p>
+      </div>
+      <div class="chart-panel">
+        <img src="stats_chart.svg" alt="vllm-project contribution chart">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Contributor Ranking</h2>
+        <p class="timestamp">Sorted by total open and merged PRs</p>
+      </div>
+      <div class="table-panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Contributor</th><th>Affiliation</th><th class="num">Total</th>
+              <th class="num">Open</th><th class="num">Merged</th><th class="num">Add</th><th class="num">Del</th><th>Scale</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="rank">1</td>
+            <td>
+              <a class="person" href="https://github.com/david6666666">WeiQing Chen</a>
+              <span class="muted">@david6666666</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">96</td>
+            <td class="num">4</td>
+            <td class="num">92</td>
+            <td class="num">+28,102</td>
+            <td class="num">-3,229</td>
+            <td><div class="bar"><span style="width: 100.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">2</td>
+            <td>
+              <a class="person" href="https://github.com/yenuo26">wangyu</a>
+              <span class="muted">@yenuo26</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">64</td>
+            <td class="num">2</td>
+            <td class="num">62</td>
+            <td class="num">+25,678</td>
+            <td class="num">-16,395</td>
+            <td><div class="bar"><span style="width: 66.7%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">3</td>
+            <td>
+              <a class="person" href="https://github.com/SamitHuang">Samit</a>
+              <span class="muted">@SamitHuang</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">53</td>
+            <td class="num">2</td>
+            <td class="num">51</td>
+            <td class="num">+14,504</td>
+            <td class="num">-2,116</td>
+            <td><div class="bar"><span style="width: 55.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">4</td>
+            <td>
+              <a class="person" href="https://github.com/tzhouam">Zhou Taichang</a>
+              <span class="muted">@tzhouam</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">49</td>
+            <td class="num">3</td>
+            <td class="num">46</td>
+            <td class="num">+39,195</td>
+            <td class="num">-10,730</td>
+            <td><div class="bar"><span style="width: 51.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">5</td>
+            <td>
+              <a class="person" href="https://github.com/JaredforReal">Jared Wen</a>
+              <span class="muted">@JaredforReal</span>
+            </td>
+            <td><span class="pill">智谱</span></td>
+            <td class="num">47</td>
+            <td class="num">1</td>
+            <td class="num">46</td>
+            <td class="num">+32,926</td>
+            <td class="num">-7,042</td>
+            <td><div class="bar"><span style="width: 49.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">6</td>
+            <td>
+              <a class="person" href="https://github.com/congw729">Alicia</a>
+              <span class="muted">@congw729</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">46</td>
+            <td class="num">1</td>
+            <td class="num">45</td>
+            <td class="num">+9,224</td>
+            <td class="num">-1,679</td>
+            <td><div class="bar"><span style="width: 47.9%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">7</td>
+            <td>
+              <a class="person" href="https://github.com/hsliuustc0106">Hongsheng Liu</a>
+              <span class="muted">@hsliuustc0106</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">43</td>
+            <td class="num">1</td>
+            <td class="num">42</td>
+            <td class="num">+16,127</td>
+            <td class="num">-6,584</td>
+            <td><div class="bar"><span style="width: 44.8%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">8</td>
+            <td>
+              <a class="person" href="https://github.com/Gaohan123">Gao Han</a>
+              <span class="muted">@Gaohan123</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">38</td>
+            <td class="num">2</td>
+            <td class="num">36</td>
+            <td class="num">+24,387</td>
+            <td class="num">-9,229</td>
+            <td><div class="bar"><span style="width: 39.6%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">9</td>
+            <td>
+              <a class="person" href="https://github.com/amy-why-3459">amy-why-3459</a>
+              <span class="muted">@amy-why-3459</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">37</td>
+            <td class="num">3</td>
+            <td class="num">34</td>
+            <td class="num">+8,203</td>
+            <td class="num">-3,022</td>
+            <td><div class="bar"><span style="width: 38.5%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">10</td>
+            <td>
+              <a class="person" href="https://github.com/Sy0307">Sy03</a>
+              <span class="muted">@Sy0307</span>
+            </td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="num">35</td>
+            <td class="num">2</td>
+            <td class="num">33</td>
+            <td class="num">+115,887</td>
+            <td class="num">-38,279</td>
+            <td><div class="bar"><span style="width: 36.5%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">11</td>
+            <td>
+              <a class="person" href="https://github.com/LJH-LBJ">Junhong Liu</a>
+              <span class="muted">@LJH-LBJ</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">27</td>
+            <td class="num">4</td>
+            <td class="num">23</td>
+            <td class="num">+4,440</td>
+            <td class="num">-2,220</td>
+            <td><div class="bar"><span style="width: 28.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">12</td>
+            <td>
+              <a class="person" href="https://github.com/Bounty-hunter">dengyunyang</a>
+              <span class="muted">@Bounty-hunter</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">26</td>
+            <td class="num">2</td>
+            <td class="num">24</td>
+            <td class="num">+11,794</td>
+            <td class="num">-2,342</td>
+            <td><div class="bar"><span style="width: 27.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">13</td>
+            <td>
+              <a class="person" href="https://github.com/wtomin">Didan Deng</a>
+              <span class="muted">@wtomin</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">26</td>
+            <td class="num">3</td>
+            <td class="num">23</td>
+            <td class="num">+18,668</td>
+            <td class="num">-3,771</td>
+            <td><div class="bar"><span style="width: 27.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">14</td>
+            <td>
+              <a class="person" href="https://github.com/fhfuih">Zeyu Huang | 黃澤宇</a>
+              <span class="muted">@fhfuih</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">23</td>
+            <td class="num">1</td>
+            <td class="num">22</td>
+            <td class="num">+14,185</td>
+            <td class="num">-4,172</td>
+            <td><div class="bar"><span style="width: 24.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">15</td>
+            <td>
+              <a class="person" href="https://github.com/wuhang2014">wuhang</a>
+              <span class="muted">@wuhang2014</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">19</td>
+            <td class="num">3</td>
+            <td class="num">16</td>
+            <td class="num">+6,953</td>
+            <td class="num">-1,012</td>
+            <td><div class="bar"><span style="width: 19.8%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">16</td>
+            <td>
+              <a class="person" href="https://github.com/fake0fan">Chenguang Zheng</a>
+              <span class="muted">@fake0fan</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">19</td>
+            <td class="num">1</td>
+            <td class="num">18</td>
+            <td class="num">+21,389</td>
+            <td class="num">-11,240</td>
+            <td><div class="bar"><span style="width: 19.8%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">17</td>
+            <td>
+              <a class="person" href="https://github.com/R2-Y">rein yang</a>
+              <span class="muted">@R2-Y</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">19</td>
+            <td class="num">1</td>
+            <td class="num">18</td>
+            <td class="num">+12,233</td>
+            <td class="num">-1,806</td>
+            <td><div class="bar"><span style="width: 19.8%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">18</td>
+            <td>
+              <a class="person" href="https://github.com/bjf-frz">bjf-frz</a>
+              <span class="muted">@bjf-frz</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">17</td>
+            <td class="num">4</td>
+            <td class="num">13</td>
+            <td class="num">+6,272</td>
+            <td class="num">-908</td>
+            <td><div class="bar"><span style="width: 17.7%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">19</td>
+            <td>
+              <a class="person" href="https://github.com/ZeldaHuang">Ziming Huang</a>
+              <span class="muted">@ZeldaHuang</span>
+            </td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="num">17</td>
+            <td class="num">0</td>
+            <td class="num">17</td>
+            <td class="num">+1,503</td>
+            <td class="num">-1,047</td>
+            <td><div class="bar"><span style="width: 17.7%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">20</td>
+            <td>
+              <a class="person" href="https://github.com/knlnguyen1802">knlnguyen1802</a>
+              <span class="muted">@knlnguyen1802</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">16</td>
+            <td class="num">4</td>
+            <td class="num">12</td>
+            <td class="num">+8,515</td>
+            <td class="num">-433</td>
+            <td><div class="bar"><span style="width: 16.7%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">21</td>
+            <td>
+              <a class="person" href="https://github.com/qibaoyuan">Baoyuan Qi</a>
+              <span class="muted">@qibaoyuan</span>
+            </td>
+            <td><span class="pill">小米</span></td>
+            <td class="num">16</td>
+            <td class="num">0</td>
+            <td class="num">16</td>
+            <td class="num">+9,740</td>
+            <td class="num">-185</td>
+            <td><div class="bar"><span style="width: 16.7%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">22</td>
+            <td>
+              <a class="person" href="https://github.com/natureofnature">NATURE</a>
+              <span class="muted">@natureofnature</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">15</td>
+            <td class="num">2</td>
+            <td class="num">13</td>
+            <td class="num">+17,730</td>
+            <td class="num">-1,149</td>
+            <td><div class="bar"><span style="width: 15.6%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">23</td>
+            <td>
+              <a class="person" href="https://github.com/ApsarasX">ApsarasX</a>
+              <span class="muted">@ApsarasX</span>
+            </td>
+            <td><span class="pill">蚂蚁</span></td>
+            <td class="num">15</td>
+            <td class="num">1</td>
+            <td class="num">14</td>
+            <td class="num">+400</td>
+            <td class="num">-166</td>
+            <td><div class="bar"><span style="width: 15.6%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">24</td>
+            <td>
+              <a class="person" href="https://github.com/NumberWan">NumberWan</a>
+              <span class="muted">@NumberWan</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">14</td>
+            <td class="num">3</td>
+            <td class="num">11</td>
+            <td class="num">+2,609</td>
+            <td class="num">-196</td>
+            <td><div class="bar"><span style="width: 14.6%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">25</td>
+            <td>
+              <a class="person" href="https://github.com/Shirley125">ChenWenjing</a>
+              <span class="muted">@Shirley125</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">12</td>
+            <td class="num">2</td>
+            <td class="num">10</td>
+            <td class="num">+5,216</td>
+            <td class="num">-586</td>
+            <td><div class="bar"><span style="width: 12.5%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">26</td>
+            <td>
+              <a class="person" href="https://github.com/iwzbi">catcat</a>
+              <span class="muted">@iwzbi</span>
+            </td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="num">11</td>
+            <td class="num">1</td>
+            <td class="num">10</td>
+            <td class="num">+1,521</td>
+            <td class="num">-187</td>
+            <td><div class="bar"><span style="width: 11.5%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">27</td>
+            <td>
+              <a class="person" href="https://github.com/TaffyOfficial">TaffyOfficial</a>
+              <span class="muted">@TaffyOfficial</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">10</td>
+            <td class="num">6</td>
+            <td class="num">4</td>
+            <td class="num">+6,830</td>
+            <td class="num">-648</td>
+            <td><div class="bar"><span style="width: 10.4%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">28</td>
+            <td>
+              <a class="person" href="https://github.com/mxuax">XU Mingshi</a>
+              <span class="muted">@mxuax</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">10</td>
+            <td class="num">0</td>
+            <td class="num">10</td>
+            <td class="num">+6,220</td>
+            <td class="num">-1,036</td>
+            <td><div class="bar"><span style="width: 10.4%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">29</td>
+            <td>
+              <a class="person" href="https://github.com/chickeyton">chickeyton</a>
+              <span class="muted">@chickeyton</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">6</td>
+            <td class="num">4</td>
+            <td class="num">2</td>
+            <td class="num">+1,691</td>
+            <td class="num">-834</td>
+            <td><div class="bar"><span style="width: 6.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">30</td>
+            <td>
+              <a class="person" href="https://github.com/cyr20040123">Yiran CHENG</a>
+              <span class="muted">@cyr20040123</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">5</td>
+            <td class="num">0</td>
+            <td class="num">5</td>
+            <td class="num">+617</td>
+            <td class="num">-37</td>
+            <td><div class="bar"><span style="width: 5.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">31</td>
+            <td>
+              <a class="person" href="https://github.com/AndyZhou952">Andy Zhou</a>
+              <span class="muted">@AndyZhou952</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">5</td>
+            <td class="num">0</td>
+            <td class="num">5</td>
+            <td class="num">+3,583</td>
+            <td class="num">-1,016</td>
+            <td><div class="bar"><span style="width: 5.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">32</td>
+            <td>
+              <a class="person" href="https://github.com/jiangkuaixue123">jiangkuaixue123</a>
+              <span class="muted">@jiangkuaixue123</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">4</td>
+            <td class="num">1</td>
+            <td class="num">3</td>
+            <td class="num">+3,043</td>
+            <td class="num">-183</td>
+            <td><div class="bar"><span style="width: 4.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">33</td>
+            <td>
+              <a class="person" href="https://github.com/spencerr221">Bingyu (Spencer) Liu</a>
+              <span class="muted">@spencerr221</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">4</td>
+            <td class="num">1</td>
+            <td class="num">3</td>
+            <td class="num">+2,854</td>
+            <td class="num">-324</td>
+            <td><div class="bar"><span style="width: 4.2%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">34</td>
+            <td>
+              <a class="person" href="https://github.com/yangjianjuan">yangjianjuan</a>
+              <span class="muted">@yangjianjuan</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">3</td>
+            <td class="num">2</td>
+            <td class="num">1</td>
+            <td class="num">+246</td>
+            <td class="num">-0</td>
+            <td><div class="bar"><span style="width: 3.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">35</td>
+            <td>
+              <a class="person" href="https://github.com/herotai214">herotai214</a>
+              <span class="muted">@herotai214</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">2</td>
+            <td class="num">2</td>
+            <td class="num">0</td>
+            <td class="num">+321</td>
+            <td class="num">-10</td>
+            <td><div class="bar"><span style="width: 2.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">36</td>
+            <td>
+              <a class="person" href="https://github.com/hadipash">Rustam Khadipash</a>
+              <span class="muted">@hadipash</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">2</td>
+            <td class="num">1</td>
+            <td class="num">1</td>
+            <td class="num">+1,830</td>
+            <td class="num">-1,002</td>
+            <td><div class="bar"><span style="width: 2.1%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">37</td>
+            <td>
+              <a class="person" href="https://github.com/zhtmike">Cheung Ka Wai</a>
+              <span class="muted">@zhtmike</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">1</td>
+            <td class="num">0</td>
+            <td class="num">1</td>
+            <td class="num">+36</td>
+            <td class="num">-0</td>
+            <td><div class="bar"><span style="width: 1.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">38</td>
+            <td>
+              <a class="person" href="https://github.com/tangtiangu">tangtiangu</a>
+              <span class="muted">@tangtiangu</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">+0</td>
+            <td class="num">-0</td>
+            <td><div class="bar"><span style="width: 0.0%"></span></div></td>
+          </tr>
+          <tr>
+            <td class="rank">39</td>
+            <td>
+              <a class="person" href="https://github.com/zengchuang-hw">Zeng Chuang</a>
+              <span class="muted">@zengchuang-hw</span>
+            </td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+            <td class="num">+0</td>
+            <td class="num">-0</td>
+            <td><div class="bar"><span style="width: 0.0%"></span></div></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Recent Pull Requests</h2>
+        <p class="timestamp">Latest 80 PRs across tracked contributors</p>
+      </div>
+      <div class="table-panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Pull Request</th><th>State</th><th>Affiliation</th><th>User</th>
+              <th>Created</th><th class="num">Add</th><th class="num">Del</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3534">[Nightly CI] Remove TP case</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@NumberWan</td>
+            <td>2026-05-12</td>
+            <td class="num">+1</td>
+            <td class="num">-46</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3533">[Bugfix, rl] Diffusion worker SIGKILL under Ray actor (exitcode -9)</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@knlnguyen1802</td>
+            <td>2026-05-12</td>
+            <td class="num">+1,340</td>
+            <td class="num">-28</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3532">[bugfix] streaming input adapt async scheduling </a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Shirley125</td>
+            <td>2026-05-12</td>
+            <td class="num">+9</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3530">[Rebase] Rebase main to vllm main</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@tzhouam</td>
+            <td>2026-05-12</td>
+            <td class="num">+1,562</td>
+            <td class="num">-101</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3516">[Bugfix] Align the AR and DiT prompt formatting across both online and offline modes.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Bounty-hunter</td>
+            <td>2026-05-11</td>
+            <td class="num">+49</td>
+            <td class="num">-18</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3507">[CI] skip failing diffusion and accuracy cases (#3432, #3256, #3257, #3488)</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-05-11</td>
+            <td class="num">+15</td>
+            <td class="num">-2</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3502">[CI][Accuracy] Add Qwen-Image-2512 Qwen-Image-Edit-2511 pixel accuracy tests</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-05-11</td>
+            <td class="num">+340</td>
+            <td class="num">-82</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3501">[Tests] Splitting Qwen3-omni&#x27;s performance test cases</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-05-11</td>
+            <td class="num">+554</td>
+            <td class="num">-455</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3500">[Bug][Hunyuanimage 3.0] fix different AR encode behavior  between online and offline</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Bounty-hunter</td>
+            <td>2026-05-11</td>
+            <td class="num">+21</td>
+            <td class="num">-2</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3494">Fix diffusion engine cleanup lifecycle</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@wuhang2014</td>
+            <td>2026-05-11</td>
+            <td class="num">+283</td>
+            <td class="num">-25</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3492">[Feature] Add precomputed custom voices for Qwen3-TTS and VoxCPM2</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="muted">@Sy0307</td>
+            <td>2026-05-11</td>
+            <td class="num">+1,298</td>
+            <td class="num">-26</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3485">[Perf] Fix Qwen3-TTS latency regression</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="muted">@Sy0307</td>
+            <td>2026-05-10</td>
+            <td class="num">+316</td>
+            <td class="num">-86</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3474">[New Model] Add AgiBot GO-1-Air diffusion-policy VLA (Phase 1, LP disabled)</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-05-10</td>
+            <td class="num">+2,130</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3467">[CI][Bugfix] Use get_open_port for Ulysses perf and diffusion benchmark to fix port conflict</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-05-09</td>
+            <td class="num">+5</td>
+            <td class="num">-17</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3461">[SKILL]Add diffusion perf skill</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-05-09</td>
+            <td class="num">+944</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3460">[Fix] Fix RMSNorm inductor KeyError under HSDP + torch.compile</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@LJH-LBJ</td>
+            <td>2026-05-09</td>
+            <td class="num">+59</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3459">[CI] Refine nightly pytest command in Omni · Function Test with H100 to avoid duplicate testing.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-05-09</td>
+            <td class="num">+1</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3455">[CI][Nightly] Shard nightly Diffusion X2I H100 lanes and centralize shard definitions</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@wuhang2014</td>
+            <td>2026-05-08</td>
+            <td class="num">+264</td>
+            <td class="num">-18</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3451">[Test] Add L4 diffusion feature test for GLM-Image</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@herotai214</td>
+            <td>2026-05-08</td>
+            <td class="num">+166</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3446">[CI] Remove VLLM_TEST_CLEAN_GPU_MEMORY to avoid environment variable pollution that causes unnecessary GPU detection, thereby slowing down test case execution.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-05-08</td>
+            <td class="num">+54</td>
+            <td class="num">-156</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3444">[Feature] HunyuanImage-3.0 IT2I: multi-image input + prompt API cleanup</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-05-08</td>
+            <td class="num">+1,927</td>
+            <td class="num">-435</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3438">[BugFix] Modify the splicing method of streaming audio output.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-05-08</td>
+            <td class="num">+57</td>
+            <td class="num">-6</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3421">[Precision] Force FP32 in Qwen Image AdaLayerNorm + native RMSNorm</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@tzhouam</td>
+            <td>2026-05-07</td>
+            <td class="num">+49</td>
+            <td class="num">-19</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3417">[bugfix][ci] avoid Whisper transcript deduplication in realtime audio test</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Shirley125</td>
+            <td>2026-05-07</td>
+            <td class="num">+4</td>
+            <td class="num">-2</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3414">[Misc] Clean logs for image gen task</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@wuhang2014</td>
+            <td>2026-05-07</td>
+            <td class="num">+21</td>
+            <td class="num">-19</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3412">[Example] Add online serving setup for HunyuanImage-3.0-Instruct</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-05-07</td>
+            <td class="num">+557</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3407">[Clean] Remove multi-replica Bagel CI and related docs/configs </a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@fake0fan</td>
+            <td>2026-05-07</td>
+            <td class="num">+1</td>
+            <td class="num">-154</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3403">[chore] Update command to download dataset from huggingface-cli to hf</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Gaohan123</td>
+            <td>2026-05-07</td>
+            <td class="num">+2</td>
+            <td class="num">-2</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3401">Revert &quot;[Perf] Optimize RMSNorm in Z-Image&quot;</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@hsliuustc0106</td>
+            <td>2026-05-07</td>
+            <td class="num">+3</td>
+            <td class="num">-114</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3395">[bugfix][hunyuaniamge] Fix parameter issue introduced during PR #3107 rebase</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Bounty-hunter</td>
+            <td>2026-05-07</td>
+            <td class="num">+3</td>
+            <td class="num">-7</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3385">[BugFix] Fixed a precision issue with one-word answers.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-05-06</td>
+            <td class="num">+51</td>
+            <td class="num">-46</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3384">[Bugfix] Fix for multi-stage CLI overrides, which cause features like HSDP not working for multi-stage models</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@herotai214</td>
+            <td>2026-05-06</td>
+            <td class="num">+155</td>
+            <td class="num">-10</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3381">[fix bug] add default limit for image generation</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@LJH-LBJ</td>
+            <td>2026-05-06</td>
+            <td class="num">+58</td>
+            <td class="num">-4</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3379">[bugfix, rl] Fix race condition bug on async running for diffusion model </a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@knlnguyen1802</td>
+            <td>2026-05-06</td>
+            <td class="num">+693</td>
+            <td class="num">-130</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3378">Update CODEOWNERS feature reviewers</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-05-06</td>
+            <td class="num">+61</td>
+            <td class="num">-12</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3376">[BugFix][CI] Change max_tokens from 150 to 2048</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-05-06</td>
+            <td class="num">+6</td>
+            <td class="num">-3</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3373">[Hunyuanimage-3.0] Accuracy fix</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Bounty-hunter</td>
+            <td>2026-05-06</td>
+            <td class="num">+3</td>
+            <td class="num">-17</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3368">Update WeChat QR code</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-05-06</td>
+            <td class="num">+0</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3364">[Bugfix] Align MR V2 runners with vLLM 0.20.0</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="muted">@Sy0307</td>
+            <td>2026-05-05</td>
+            <td class="num">+50,766</td>
+            <td class="num">-17,337</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3352">[bugfix][CI] Fix qwen image performance degradation w/ vllm 0.20 &amp; CUDA 13.0</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@fhfuih</td>
+            <td>2026-05-05</td>
+            <td class="num">+209</td>
+            <td class="num">-4</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3350">[Bugfix] Propagate seed to Qwen3-TTS Fast AR sampler</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="muted">@Sy0307</td>
+            <td>2026-05-05</td>
+            <td class="num">+124</td>
+            <td class="num">-26</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3346">[Feature][Hunyuan image 3.0] AR + DIT with kv reuse.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Bounty-hunter</td>
+            <td>2026-05-05</td>
+            <td class="num">+1,193</td>
+            <td class="num">-130</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3342">hotfix #3257 GEdit-Bench judge (Qwen3-VL-30B-A3B-Instruct-AWQ) crashes </a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@chickeyton</td>
+            <td>2026-05-05</td>
+            <td class="num">+85</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3332">[Test][HunyuanImage3] Add e2e offline I2T smoke test</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-05-04</td>
+            <td class="num">+95</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3299">[Bugfix][Fish Speech] Flatten Fast AR RoPE positions</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">阿里PAI</span></td>
+            <td class="muted">@Sy0307</td>
+            <td>2026-05-01</td>
+            <td class="num">+1</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3287">[CI failed]Revert &quot;[Config Refactor] Derive deploy override fields from stage config&quot;</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@Gaohan123</td>
+            <td>2026-04-30</td>
+            <td class="num">+60</td>
+            <td class="num">-129</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3273">[WIP][Debug] vLLM cu129 base image Test</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-30</td>
+            <td class="num">+2</td>
+            <td class="num">-2</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3272">Revert &quot;[Quantization] Enable FP8 online quantization for Z-image text encoder&quot;</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@hsliuustc0106</td>
+            <td>2026-04-30</td>
+            <td class="num">+19</td>
+            <td class="num">-188</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3271">[Recipes]update Wan2.2-I2V gpu part</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-04-30</td>
+            <td class="num">+63</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3270">[WIP][Perf]add adaln fused op in triton</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-04-30</td>
+            <td class="num">+186</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3246">[CI][Bugfix] Improve e2e latency logging, update response classes to include detailed latency documentation and add startup time logging</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-29</td>
+            <td class="num">+179</td>
+            <td class="num">-75</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3243">[Bugfix][HunyuanImage3] Fix offline AR garbage output by switching to Instruct chat template</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-04-29</td>
+            <td class="num">+814</td>
+            <td class="num">-69</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3232">[Rebase] Rebase to vllm 0.20.0</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@tzhouam</td>
+            <td>2026-04-29</td>
+            <td class="num">+1,191</td>
+            <td class="num">-273</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3216">[Bugfix][CI] Enhance get_open_port function to handle port binding more robustly</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-28</td>
+            <td class="num">+32</td>
+            <td class="num">-4</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3214">[Bugfix] Support diffusion worker dead detect when use inline engine</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@wuhang2014</td>
+            <td>2026-04-28</td>
+            <td class="num">+166</td>
+            <td class="num">-22</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3213">Update WeChat QR code</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-04-28</td>
+            <td class="num">+0</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3211">[CI] remove skip in test_z_image_expansion and test_qwen3_omni_expansion</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-28</td>
+            <td class="num">+2</td>
+            <td class="num">-3</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3209">[Bugfix][CI] fix file name too long error in  Omni · Doc Test with H100</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-28</td>
+            <td class="num">+56</td>
+            <td class="num">-22</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3207">[Bugfix] Fix stage device mapping failure when logical IDs exceed visible device count</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-04-28</td>
+            <td class="num">+62</td>
+            <td class="num">-5</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3204">Revert &quot;[Doc][Frontend][Model][VoxCPM2] Support instructions and per-request cfg_value&quot;</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@hsliuustc0106</td>
+            <td>2026-04-28</td>
+            <td class="num">+9</td>
+            <td class="num">-472</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3203">[perf]Qwen3-Omni performance optimization</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-04-28</td>
+            <td class="num">+414</td>
+            <td class="num">-99</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3202">Revert &quot;[perf]Qwen3-Omni performance optimization&quot;</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@hsliuustc0106</td>
+            <td>2026-04-28</td>
+            <td class="num">+99</td>
+            <td class="num">-276</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3200">[Docs] Update quantization guides</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-04-28</td>
+            <td class="num">+799</td>
+            <td class="num">-1,177</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3196">[Docs] Add performance profiling step to add-diffusion-model skill</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@SamitHuang</td>
+            <td>2026-04-28</td>
+            <td class="num">+9</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3190">[CI]Skip failing text_to_image README examples in CI due to subprocess exit issue</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-27</td>
+            <td class="num">+18</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3175">[Quantization][tools] Add diffusion quantization output comparison tool</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@david6666666</td>
+            <td>2026-04-27</td>
+            <td class="num">+768</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3171">[CI] skip MOSS-TTS-Nano E2E Test</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@yenuo26</td>
+            <td>2026-04-27</td>
+            <td class="num">+21</td>
+            <td class="num">-21</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3165">[Bugfix] Fix GLM-Image prior token debug logging</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-04-27</td>
+            <td class="num">+3</td>
+            <td class="num">-1</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3164">[perf]Qwen3-Omni performance optimization</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-04-27</td>
+            <td class="num">+276</td>
+            <td class="num">-99</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3147">[BugFix] Fix the issue of thinker requests being preempted, causing shape mismatch.</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-04-25</td>
+            <td class="num">+68</td>
+            <td class="num">-73</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3139">[Entrypoint][Refactor] Make field type hint more concrete</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@wuhang2014</td>
+            <td>2026-04-25</td>
+            <td class="num">+64</td>
+            <td class="num">-36</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3137">[Refactor]Rename diffusion benchmark backend to endpoint</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-04-25</td>
+            <td class="num">+318</td>
+            <td class="num">-84</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3109">[Docs] Modify Qwen3-Omni&#x27;s recipe</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-04-24</td>
+            <td class="num">+207</td>
+            <td class="num">-53</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3108">[Refactor] Remove redundant benchmarks from Qwen3-Omni</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@amy-why-3459</td>
+            <td>2026-04-24</td>
+            <td class="num">+0</td>
+            <td class="num">-689</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm/pull/40797">[Feature] Warm up readonly multimodal processor during renderer startup</a>
+              <span class="muted">vllm-project/vllm</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@fake0fan</td>
+            <td>2026-04-24</td>
+            <td class="num">+368</td>
+            <td class="num">-27</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3104">Add Hunyuan Image3 Instruct t2i L3 dummy guard</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@TaffyOfficial</td>
+            <td>2026-04-24</td>
+            <td class="num">+172</td>
+            <td class="num">-0</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3096">[bugfix][CI] Diffusers backend update</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@fhfuih</td>
+            <td>2026-04-24</td>
+            <td class="num">+1,362</td>
+            <td class="num">-447</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3089">[Feature] XiaomiMiMo/MiMo-V2.5-ASR support</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state merged">merged</span></td>
+            <td><span class="pill">小米</span></td>
+            <td class="muted">@qibaoyuan</td>
+            <td>2026-04-24</td>
+            <td class="num">+13</td>
+            <td class="num">-4</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm-omni/pull/3069">[Enhancement] Modify --log-stats</a>
+              <span class="muted">vllm-project/vllm-omni</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@bjf-frz</td>
+            <td>2026-04-23</td>
+            <td class="num">+1,311</td>
+            <td class="num">-258</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="pr-title" href="https://github.com/vllm-project/vllm/pull/40695">[EC Connector] Mooncake EC Connector for Distributed Encoder-Cache Transfer</a>
+              <span class="muted">vllm-project/vllm</span>
+            </td>
+            <td><span class="state open">open</span></td>
+            <td><span class="pill">HUAWEI</span></td>
+            <td class="muted">@fake0fan</td>
+            <td>2026-04-23</td>
+            <td class="num">+4,653</td>
+            <td class="num">-177</td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
