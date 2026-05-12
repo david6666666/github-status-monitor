@@ -6,8 +6,20 @@ from datetime import datetime, timezone
 from github import Github
 
 # =================================CONFIG=================================
-# The GitHub usernames you want to track
-USERNAMES = ["david6666666", "hsliuustc0106", "fake0fan", "LJH-LBJ", "knlnguyen1802", "R2-Y", "natureofnature", "ahengljh", "wuhang2014", "chickeyton", "Gaohan123", "SamitHuang", "jiangkuaixue123", "tangtiangu", "amy-why-3459", "Bounty-hunter", "congw729", "godnight", "herotai214", "JohnLiu97Huawei", "tzhouam", "zengchuang-hw", "cyr20040123", "fhfuih", "futurenitian", "GG-li", "kechengliu97", "mxuax", "Shirley125", "yenuo26", "erfgss"]
+# GitHub usernames grouped by affiliation
+USER_GROUPS = {
+    "HUAWEI": ["david6666666", "jiangkuaixue123", "tangtiangu", "bjf-frz", "yangjianjuan ", "wuhang2014", "yenuo26", "hsliuustc0106", "amy-why-3459", "zengchuang-hw", "Shirley125", "LJH-LBJ", "Bounty-hunter", "fake0fan", "R2-Y", "natureofnature", "chickeyton", "Gaohan123", "congw729", "herotai214", "TaffyOfficial", "tzhouam", "NumberWan", "spencerr221", "fhfuih", "SamitHuang", "knlnguyen1802", "hadipash", "cyr20040123", "AndyZhou952", "wtomin", "mxuax", "zhtmike"],
+    "阿里PAI": ["ZeldaHuang", "iwzbi", "Sy0307"],
+    "蚂蚁": ["ApsarasX"],
+    "小米": ["qibaoyuan"],
+    "智谱": ["JaredforReal"],
+}
+USERNAMES = [username.strip() for usernames in USER_GROUPS.values() for username in usernames]
+USER_AFFILIATIONS = {
+    username.strip(): affiliation
+    for affiliation, usernames in USER_GROUPS.items()
+    for username in usernames
+}
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
@@ -184,6 +196,42 @@ def format_number(num):
     格式化数字，添加千位分隔符
     """
     return f"{num:,}"
+
+def summarize_by_affiliation(user_data):
+    summaries = {}
+
+    for affiliation in USER_GROUPS:
+        summaries[affiliation] = {
+            "users": 0,
+            "total_contributions": 0,
+            "open_prs": 0,
+            "merged_prs": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+        }
+
+    for user in user_data:
+        affiliation = user.get('affiliation', 'Unknown')
+        if affiliation not in summaries:
+            summaries[affiliation] = {
+                "users": 0,
+                "total_contributions": 0,
+                "open_prs": 0,
+                "merged_prs": 0,
+                "total_additions": 0,
+                "total_deletions": 0,
+            }
+
+        stats = user['stats']
+        summary = summaries[affiliation]
+        summary["users"] += 1
+        summary["total_contributions"] += user['total_contributions']
+        summary["open_prs"] += stats['open_prs'].totalCount
+        summary["merged_prs"] += stats['merged_prs'].totalCount
+        summary["total_additions"] += user.get('total_additions', 0)
+        summary["total_deletions"] += user.get('total_deletions', 0)
+
+    return summaries
 
 def format_datetime(dt):
     """
@@ -448,6 +496,18 @@ def generate_markdown(user_data):
     total_all_deletions = sum(user.get('total_deletions', 0) for user in user_data)
     
     markdown_text += f"**总代码变更统计**: +{format_number(total_all_additions)} 行添加, -{format_number(total_all_deletions)} 行删除\n\n"
+    markdown_text += "## 按归属统计\n\n"
+    markdown_text += "| 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |\n"
+    markdown_text += "| ---- | ------ | --------- | -------- | ---------- | --------- | --------- |\n"
+
+    for affiliation, summary in summarize_by_affiliation(user_data).items():
+        markdown_text += (
+            f"| {affiliation} | {summary['users']} | {summary['total_contributions']} | "
+            f"{summary['open_prs']} | {summary['merged_prs']} | "
+            f"{format_number(summary['total_additions'])} | {format_number(summary['total_deletions'])} |\n"
+        )
+
+    markdown_text += "\n"
 
     for user in user_data:
         username = user['username']
@@ -456,12 +516,13 @@ def generate_markdown(user_data):
         total_contributions = user['total_contributions']
         user_additions = user.get('total_additions', 0)
         user_deletions = user.get('total_deletions', 0)
+        affiliation = user.get('affiliation', 'Unknown')
         
         # 显示用户名和显示名称，包含代码变更统计
         if display_name != username:
-            markdown_text += f"### 👤 {display_name} (@{username}) - 总贡献: {total_contributions}\n"
+            markdown_text += f"### 👤 {display_name} (@{username}) - {affiliation} - 总贡献: {total_contributions}\n"
         else:
-            markdown_text += f"### 👤 {username} - 总贡献: {total_contributions}\n"
+            markdown_text += f"### 👤 {username} - {affiliation} - 总贡献: {total_contributions}\n"
         
         markdown_text += f"**代码变更**: +{format_number(user_additions)} 行添加, -{format_number(user_deletions)} 行删除\n\n"
         
@@ -604,6 +665,7 @@ if __name__ == "__main__":
             
             all_user_data.append({
                 "username": username,
+                "affiliation": USER_AFFILIATIONS.get(username, "Unknown"),
                 "display_name": display_name,
                 "stats": stats,
                 "total_contributions": total_contributions,
@@ -638,11 +700,20 @@ if __name__ == "__main__":
         user_deletions = user.get('total_deletions', 0)
         total_all_additions += user_additions
         total_all_deletions += user_deletions
-        print(f"  {user['display_name']} (@{user['username']}): {user['total_contributions']} contributions, +{format_number(user_additions)} -{format_number(user_deletions)}")
+        print(f"  {user['display_name']} (@{user['username']}, {user.get('affiliation', 'Unknown')}): {user['total_contributions']} contributions, +{format_number(user_additions)} -{format_number(user_deletions)}")
     
     print(f"\nOverall totals:")
     print(f"  Total contributions: {sum(user['total_contributions'] for user in all_user_data)}")
     print(f"  Total code changes: +{format_number(total_all_additions)} -{format_number(total_all_deletions)}")
+
+    print(f"\nAffiliation summary:")
+    for affiliation, summary in summarize_by_affiliation(all_user_data).items():
+        print(
+            f"  {affiliation}: {summary['users']} users, "
+            f"{summary['total_contributions']} contributions "
+            f"({summary['open_prs']} open, {summary['merged_prs']} merged), "
+            f"+{format_number(summary['total_additions'])} -{format_number(summary['total_deletions'])}"
+        )
     
     print(f"\nGenerating enhanced chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
