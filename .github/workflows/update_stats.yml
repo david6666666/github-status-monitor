@@ -1,6 +1,12 @@
 name: Update GitHub Stats
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - generate_stats.py
+      - .github/workflows/update_stats.yml
   schedule:
     # Runs every day
     - cron: '0 0 * * *'

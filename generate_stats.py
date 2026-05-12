@@ -27,8 +27,8 @@ GITHUB_TOKEN = os.getenv('GH_PAT')
 CHART_FILENAME = "stats_chart.svg"
 # The output filename for the standalone HTML dashboard
 HTML_FILENAME = "stats_dashboard.html"
-# Target organization - only vllm-project
-TARGET_ORG = "vllm-project"
+# Target repository - only vllm-project/vllm-omni
+TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed README filename
 README_FILENAME = "README_data.md"
 # =======================================================================
@@ -89,24 +89,14 @@ def get_user_stats_fallback(github_instance, username):
     merged_prs = []
     
     try:
-        # 获取组织对象
-        org = github_instance.get_organization(TARGET_ORG)
-        
-        # 遍历组织中的所有仓库
-        for repo in org.get_repos():
-            try:
-                # 获取该用户在此仓库中的PRs
-                all_prs = repo.get_pulls(state='all')
-                for pr in all_prs:
-                    if pr.user.login == username:
-                        if pr.state == 'open':
-                            open_prs.append(pr)
-                        elif pr.merged:
-                            merged_prs.append(pr)
-                
-            except Exception as e:
-                print(f"    Error processing repo {repo.name}: {e}")
-                continue
+        repo = github_instance.get_repo(TARGET_REPO)
+        all_prs = repo.get_pulls(state='all')
+        for pr in all_prs:
+            if pr.user.login == username:
+                if pr.state == 'open':
+                    open_prs.append(pr)
+                elif pr.merged:
+                    merged_prs.append(pr)
                 
         print(f"  Fallback results for {username}: {len(open_prs)} open PRs, {len(merged_prs)} merged PRs")
         
@@ -143,14 +133,13 @@ def get_user_stats(github_instance, username):
     Fetches PRs (open and merged) for a user.
     Includes all data from vllm-project organization (no date restrictions).
     """
-    print(f"Fetching all data for {username} in {TARGET_ORG} organization...")
+    print(f"Fetching all data for {username} in {TARGET_REPO} repository...")
     
-    # Organization qualifier
-    org_qualifier = f"org:{TARGET_ORG}"
+    repo_qualifier = f"repo:{TARGET_REPO}"
 
-    # 1. PRs: Query for open and merged PRs separately in vllm-project organization
-    query_open_prs = f"is:pr author:{username} is:public is:open {org_qualifier}"
-    query_merged_prs = f"is:pr author:{username} is:public is:merged {org_qualifier}"
+    # 1. PRs: Query for open and merged PRs separately in the target repository
+    query_open_prs = f"is:pr author:{username} is:public is:open {repo_qualifier}"
+    query_merged_prs = f"is:pr author:{username} is:public is:merged {repo_qualifier}"
     
     print(f"  Open PR query: {query_open_prs}")
     print(f"  Merged PR query: {query_merged_prs}")
@@ -299,7 +288,7 @@ def generate_chart(user_data):
     
     # 修复：使用数组格式来表示多行标题，这是Chart.js的正确方式
     title_lines = [
-        f"{TARGET_ORG} 组织PR贡献统计 - 共{len(user_data)}位用户",
+        f"{TARGET_REPO} PR贡献统计 - 共{len(user_data)}位用户",
         f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs}",
         f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
     ]
@@ -491,8 +480,8 @@ def generate_chart(user_data):
 
 def generate_markdown(user_data):
     """生成包含additions/deletions统计的Markdown表格"""
-    markdown_text = f"这是根据在 **{TARGET_ORG}** 组织中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
-    markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_ORG} 组织中的贡献情况。\n\n"
+    markdown_text = f"这是根据在 **{TARGET_REPO}** 仓库中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
+    markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_REPO} 仓库中的贡献情况。\n\n"
     
     # 计算总的additions和deletions
     total_all_additions = sum(user.get('total_additions', 0) for user in user_data)
@@ -592,9 +581,9 @@ def create_fixed_readme(content):
         print(f"Removed existing {README_FILENAME}")
     
     # Create the full README content with header
-    readme_header = f"# Enhanced GitHub Stats Report - {TARGET_ORG} Organization\n\n"
+    readme_header = f"# Enhanced GitHub Stats Report - {TARGET_REPO}\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
-    readme_header += f"**统计范围**: {TARGET_ORG} 组织的所有 PR 贡献（包含代码变更统计）\n\n"
+    readme_header += f"**统计范围**: {TARGET_REPO} 仓库的所有 PR 贡献（包含代码变更统计）\n\n"
     readme_header += f"![Enhanced GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
@@ -620,6 +609,23 @@ def create_dashboard_html(user_data):
     total_additions = sum(user.get('total_additions', 0) for user in user_data)
     total_deletions = sum(user.get('total_deletions', 0) for user in user_data)
     max_contributions = max((user['total_contributions'] for user in user_data), default=1)
+
+    try:
+        with open(CHART_FILENAME, 'r', encoding='utf-8') as f:
+            chart_markup = f'<div class="chart-svg">{f.read()}</div>'
+    except OSError:
+        chart_markup = (
+            f'<div class="chart-placeholder">'
+            f'{escape(CHART_FILENAME)} is not available in this generated view.'
+            f'</div>'
+        )
+
+    filter_buttons = ['<button class="filter-btn active" type="button" data-filter="all">All</button>']
+    for affiliation in affiliation_summaries:
+        filter_buttons.append(
+            f'<button class="filter-btn" type="button" data-filter="{escape(affiliation, quote=True)}">'
+            f'{escape(affiliation)}</button>'
+        )
 
     group_cards = []
     for affiliation, summary in affiliation_summaries.items():
@@ -647,7 +653,7 @@ def create_dashboard_html(user_data):
         total = user['total_contributions']
         bar_width = (total / max_contributions * 100) if max_contributions else 0
         leaderboard_rows.append(f"""
-          <tr>
+          <tr data-affiliation="{escape(affiliation, quote=True)}">
             <td class="rank">{rank}</td>
             <td>
               <a class="person" href="https://github.com/{escape(username)}">{escape(display_name)}</a>
@@ -683,7 +689,7 @@ def create_dashboard_html(user_data):
     for pr in recent_prs[:80]:
         created_date = pr["created_at"].strftime('%Y-%m-%d') if pr["created_at"] else "-"
         recent_rows.append(f"""
-          <tr>
+          <tr data-affiliation="{escape(pr['affiliation'], quote=True)}">
             <td>
               <a class="pr-title" href="{escape(pr['url'])}">{escape(pr['title'])}</a>
               <span class="muted">{escape(pr['repo'])}</span>
@@ -701,7 +707,7 @@ def create_dashboard_html(user_data):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(TARGET_ORG)} PR Contribution Dashboard</title>
+  <title>{escape(TARGET_REPO)} PR Contribution Dashboard</title>
   <style>
     :root {{
       --bg: #f6f2ea;
@@ -768,6 +774,26 @@ def create_dashboard_html(user_data):
     .section {{ margin-top: 22px; }}
     .section-head {{ align-items: end; display: flex; justify-content: space-between; gap: 18px; margin-bottom: 12px; }}
     h2 {{ font-size: clamp(24px, 3vw, 42px); line-height: 1; margin: 0; }}
+    .filters {{
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 0;
+    }}
+    .filter-btn {{
+      background: #fffaf0;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      cursor: pointer;
+      font: 700 12px/1 "Trebuchet MS", sans-serif;
+      padding: 11px 14px;
+      text-transform: uppercase;
+    }}
+    .filter-btn.active, .filter-btn:hover {{
+      background: var(--ink);
+      color: #fffaf0;
+    }}
     .groups {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }}
     .group-card {{
       background: var(--panel-strong);
@@ -787,10 +813,14 @@ def create_dashboard_html(user_data):
     }}
     .chart-panel {{ padding: 18px; }}
     .chart-panel img {{ display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }}
+    .chart-svg {{ background: white; border: 1px solid var(--line); overflow-x: auto; }}
+    .chart-svg svg {{ display: block; height: auto; max-width: none; width: 100%; }}
+    .chart-placeholder {{ background: white; border: 1px solid var(--line); color: var(--muted); padding: 22px; }}
     table {{ border-collapse: collapse; width: 100%; }}
     th, td {{ border-bottom: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: middle; }}
     th {{ background: #eee5d7; position: sticky; top: 0; z-index: 1; }}
     tbody tr:hover {{ background: #fff3d4; }}
+    tr[hidden] {{ display: none; }}
     .num {{ font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }}
     .rank {{ color: var(--accent-2); font-size: 22px; font-weight: 700; width: 58px; }}
     .person, .pr-title {{ font-weight: 700; }}
@@ -826,7 +856,7 @@ def create_dashboard_html(user_data):
 <body>
   <main class="shell">
     <header class="topline">
-      <div class="mark">{escape(TARGET_ORG)} contribution monitor</div>
+      <div class="mark">{escape(TARGET_REPO)} contribution monitor</div>
       <div class="timestamp">Generated {generated_at}</div>
     </header>
 
@@ -844,13 +874,17 @@ def create_dashboard_html(user_data):
       {''.join(group_cards)}
     </section>
 
+    <nav class="filters" aria-label="Filter by affiliation">
+      {''.join(filter_buttons)}
+    </nav>
+
     <section class="section">
       <div class="section-head">
         <h2>Contribution Volume</h2>
         <p class="timestamp">Code delta: +{format_number(total_additions)} / -{format_number(total_deletions)}</p>
       </div>
       <div class="chart-panel">
-        <img src="{escape(CHART_FILENAME)}" alt="{escape(TARGET_ORG)} contribution chart">
+        {chart_markup}
       </div>
     </section>
 
@@ -890,6 +924,20 @@ def create_dashboard_html(user_data):
       </div>
     </section>
   </main>
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterableRows = document.querySelectorAll('tr[data-affiliation]');
+
+    filterButtons.forEach((button) => {{
+      button.addEventListener('click', () => {{
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.toggle('active', item === button));
+        filterableRows.forEach((row) => {{
+          row.hidden = filter !== 'all' && row.dataset.affiliation !== filter;
+        }});
+      }});
+    }});
+  </script>
 </body>
 </html>
 """
@@ -906,7 +954,7 @@ if __name__ == "__main__":
         raise ValueError("GH_PAT environment variable not set.")
         
     print(f"Starting Enhanced GitHub stats generation for {len(USERNAMES)} users...")
-    print(f"Target organization: {TARGET_ORG}")
+    print(f"Target repository: {TARGET_REPO}")
     print(f"Including PR contributions with additions/deletions tracking")
     print(f"Users to track: {USERNAMES}")
     
