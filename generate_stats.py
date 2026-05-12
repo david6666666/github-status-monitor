@@ -3,6 +3,7 @@ import re
 import requests
 import time
 from datetime import datetime, timezone
+from html import escape
 from github import Github
 
 # =================================CONFIG=================================
@@ -24,6 +25,8 @@ USER_AFFILIATIONS = {
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
 CHART_FILENAME = "stats_chart.svg"
+# The output filename for the standalone HTML dashboard
+HTML_FILENAME = "stats_dashboard.html"
 # Target organization - only vllm-project
 TARGET_ORG = "vllm-project"
 # Fixed README filename
@@ -605,6 +608,299 @@ def create_fixed_readme(content):
     print(f"README file size: {os.path.getsize(README_FILENAME)} bytes")
     return README_FILENAME
 
+def create_dashboard_html(user_data):
+    """Creates a standalone HTML dashboard for the generated stats."""
+    generated_at = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+    affiliation_summaries = summarize_by_affiliation(user_data)
+
+    total_users = len(user_data)
+    total_contributions = sum(user['total_contributions'] for user in user_data)
+    total_open_prs = sum(user['stats']['open_prs'].totalCount for user in user_data)
+    total_merged_prs = sum(user['stats']['merged_prs'].totalCount for user in user_data)
+    total_additions = sum(user.get('total_additions', 0) for user in user_data)
+    total_deletions = sum(user.get('total_deletions', 0) for user in user_data)
+    max_contributions = max((user['total_contributions'] for user in user_data), default=1)
+
+    group_cards = []
+    for affiliation, summary in affiliation_summaries.items():
+        share = (summary['total_contributions'] / total_contributions * 100) if total_contributions else 0
+        group_cards.append(f"""
+          <article class="group-card">
+            <div>
+              <p class="eyebrow">{escape(affiliation)}</p>
+              <h3>{format_number(summary['total_contributions'])}</h3>
+            </div>
+            <dl>
+              <div><dt>Users</dt><dd>{summary['users']}</dd></div>
+              <div><dt>Open</dt><dd>{format_number(summary['open_prs'])}</dd></div>
+              <div><dt>Merged</dt><dd>{format_number(summary['merged_prs'])}</dd></div>
+              <div><dt>Share</dt><dd>{share:.1f}%</dd></div>
+            </dl>
+          </article>""")
+
+    leaderboard_rows = []
+    for rank, user in enumerate(user_data, start=1):
+        username = user['username']
+        display_name = user['display_name']
+        affiliation = user.get('affiliation', 'Unknown')
+        stats = user['stats']
+        total = user['total_contributions']
+        bar_width = (total / max_contributions * 100) if max_contributions else 0
+        leaderboard_rows.append(f"""
+          <tr>
+            <td class="rank">{rank}</td>
+            <td>
+              <a class="person" href="https://github.com/{escape(username)}">{escape(display_name)}</a>
+              <span class="muted">@{escape(username)}</span>
+            </td>
+            <td><span class="pill">{escape(affiliation)}</span></td>
+            <td class="num">{format_number(total)}</td>
+            <td class="num">{format_number(stats['open_prs'].totalCount)}</td>
+            <td class="num">{format_number(stats['merged_prs'].totalCount)}</td>
+            <td class="num">+{format_number(user.get('total_additions', 0))}</td>
+            <td class="num">-{format_number(user.get('total_deletions', 0))}</td>
+            <td><div class="bar"><span style="width: {bar_width:.1f}%"></span></div></td>
+          </tr>""")
+
+    recent_prs = []
+    for user in user_data:
+        for state, prs in (("merged", user['stats']['merged_prs']), ("open", user['stats']['open_prs'])):
+            for pr in prs:
+                recent_prs.append({
+                    "title": pr.title,
+                    "url": pr.html_url,
+                    "repo": pr.repository.full_name,
+                    "state": state,
+                    "created_at": pr.created_at,
+                    "additions": getattr(pr, '_additions', 0),
+                    "deletions": getattr(pr, '_deletions', 0),
+                    "user": user['username'],
+                    "affiliation": user.get('affiliation', 'Unknown'),
+                })
+
+    recent_prs.sort(key=lambda pr: pr["created_at"] or datetime.min, reverse=True)
+    recent_rows = []
+    for pr in recent_prs[:80]:
+        created_date = pr["created_at"].strftime('%Y-%m-%d') if pr["created_at"] else "-"
+        recent_rows.append(f"""
+          <tr>
+            <td>
+              <a class="pr-title" href="{escape(pr['url'])}">{escape(pr['title'])}</a>
+              <span class="muted">{escape(pr['repo'])}</span>
+            </td>
+            <td><span class="state {escape(pr['state'])}">{escape(pr['state'])}</span></td>
+            <td><span class="pill">{escape(pr['affiliation'])}</span></td>
+            <td class="muted">@{escape(pr['user'])}</td>
+            <td>{created_date}</td>
+            <td class="num">+{format_number(pr['additions'])}</td>
+            <td class="num">-{format_number(pr['deletions'])}</td>
+          </tr>""")
+
+    html_content = f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(TARGET_ORG)} PR Contribution Dashboard</title>
+  <style>
+    :root {{
+      --bg: #f6f2ea;
+      --ink: #171411;
+      --muted: #6d665e;
+      --line: #d8d0c4;
+      --panel: #fffaf0;
+      --panel-strong: #fff4d9;
+      --accent: #006b5f;
+      --accent-2: #bb3e03;
+      --shadow: 0 24px 60px rgba(48, 39, 27, 0.12);
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(23,20,17,0.035) 1px, transparent 1px),
+        linear-gradient(rgba(23,20,17,0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }}
+    a {{ color: inherit; text-decoration: none; }}
+    .shell {{ width: min(1480px, calc(100% - 40px)); margin: 0 auto; padding: 34px 0 56px; }}
+    .topline {{
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+    }}
+    .mark {{ font: 700 13px/1.1 "Trebuchet MS", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }}
+    .timestamp {{ color: var(--muted); font: 12px/1.4 "Trebuchet MS", sans-serif; }}
+    .hero {{ display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 28px; padding: 42px 0 26px; }}
+    h1 {{
+      font-size: clamp(42px, 7vw, 104px);
+      line-height: 0.88;
+      margin: 0;
+      max-width: 900px;
+      letter-spacing: 0;
+    }}
+    .summary-strip {{
+      align-self: end;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }}
+    .metric {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 118px;
+      padding: 18px;
+    }}
+    .metric span, .eyebrow, th, .muted, dt {{
+      color: var(--muted);
+      font: 700 11px/1.35 "Trebuchet MS", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }}
+    .metric strong {{ display: block; font-size: clamp(28px, 4vw, 54px); line-height: 1; margin-top: 14px; }}
+    .section {{ margin-top: 22px; }}
+    .section-head {{ align-items: end; display: flex; justify-content: space-between; gap: 18px; margin-bottom: 12px; }}
+    h2 {{ font-size: clamp(24px, 3vw, 42px); line-height: 1; margin: 0; }}
+    .groups {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }}
+    .group-card {{
+      background: var(--panel-strong);
+      border: 1px solid var(--ink);
+      box-shadow: 8px 8px 0 var(--ink);
+      min-height: 180px;
+      padding: 17px;
+    }}
+    .group-card h3 {{ font-size: 42px; line-height: 1; margin: 12px 0 24px; }}
+    dl {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0; }}
+    dd {{ font-size: 22px; margin: 4px 0 0; }}
+    .chart-panel, .table-panel {{
+      background: rgba(255, 250, 240, 0.88);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }}
+    .chart-panel {{ padding: 18px; }}
+    .chart-panel img {{ display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }}
+    table {{ border-collapse: collapse; width: 100%; }}
+    th, td {{ border-bottom: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: middle; }}
+    th {{ background: #eee5d7; position: sticky; top: 0; z-index: 1; }}
+    tbody tr:hover {{ background: #fff3d4; }}
+    .num {{ font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }}
+    .rank {{ color: var(--accent-2); font-size: 22px; font-weight: 700; width: 58px; }}
+    .person, .pr-title {{ font-weight: 700; }}
+    .person:hover, .pr-title:hover {{ color: var(--accent); }}
+    .muted {{ display: block; margin-top: 3px; text-transform: none; letter-spacing: 0; }}
+    .pill, .state {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      display: inline-flex;
+      font: 700 11px/1 "Trebuchet MS", sans-serif;
+      padding: 7px 9px;
+      white-space: nowrap;
+    }}
+    .pill {{ background: #fff; }}
+    .state.open {{ background: #fff1b8; border-color: #b88a00; color: #644b00; }}
+    .state.merged {{ background: #dff4e8; border-color: #4d9b70; color: #14552f; }}
+    .bar {{ background: #e7ded0; height: 10px; min-width: 90px; overflow: hidden; }}
+    .bar span {{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); display: block; height: 100%; }}
+    .table-scroll {{ max-height: 760px; overflow: auto; }}
+    @media (max-width: 980px) {{
+      .hero {{ grid-template-columns: 1fr; }}
+      .groups {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .summary-strip {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+    }}
+    @media (max-width: 640px) {{
+      .shell {{ width: min(100% - 24px, 1480px); padding-top: 20px; }}
+      .topline, .section-head {{ align-items: flex-start; flex-direction: column; }}
+      .groups, .summary-strip {{ grid-template-columns: 1fr; }}
+      th, td {{ padding: 10px; }}
+    }}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topline">
+      <div class="mark">{escape(TARGET_ORG)} contribution monitor</div>
+      <div class="timestamp">Generated {generated_at}</div>
+    </header>
+
+    <section class="hero">
+      <h1>PR contribution dashboard</h1>
+      <div class="summary-strip">
+        <div class="metric"><span>Tracked users</span><strong>{format_number(total_users)}</strong></div>
+        <div class="metric"><span>Total PRs</span><strong>{format_number(total_contributions)}</strong></div>
+        <div class="metric"><span>Open PRs</span><strong>{format_number(total_open_prs)}</strong></div>
+        <div class="metric"><span>Merged PRs</span><strong>{format_number(total_merged_prs)}</strong></div>
+      </div>
+    </section>
+
+    <section class="section groups">
+      {''.join(group_cards)}
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Contribution Volume</h2>
+        <p class="timestamp">Code delta: +{format_number(total_additions)} / -{format_number(total_deletions)}</p>
+      </div>
+      <div class="chart-panel">
+        <img src="{escape(CHART_FILENAME)}" alt="{escape(TARGET_ORG)} contribution chart">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Contributor Ranking</h2>
+        <p class="timestamp">Sorted by total open and merged PRs</p>
+      </div>
+      <div class="table-panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Contributor</th><th>Affiliation</th><th class="num">Total</th>
+              <th class="num">Open</th><th class="num">Merged</th><th class="num">Add</th><th class="num">Del</th><th>Scale</th>
+            </tr>
+          </thead>
+          <tbody>{''.join(leaderboard_rows)}</tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Recent Pull Requests</h2>
+        <p class="timestamp">Latest 80 PRs across tracked contributors</p>
+      </div>
+      <div class="table-panel table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Pull Request</th><th>State</th><th>Affiliation</th><th>User</th>
+              <th>Created</th><th class="num">Add</th><th class="num">Del</th>
+            </tr>
+          </thead>
+          <tbody>{''.join(recent_rows)}</tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+    with open(HTML_FILENAME, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    print(f"HTML dashboard created successfully: {HTML_FILENAME}")
+    print(f"HTML dashboard file size: {os.path.getsize(HTML_FILENAME)} bytes")
+    return HTML_FILENAME
+
 if __name__ == "__main__":
     if not GITHUB_TOKEN:
         raise ValueError("GH_PAT environment variable not set.")
@@ -719,7 +1015,9 @@ if __name__ == "__main__":
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data)
     readme_filename = create_fixed_readme(markdown_output)
+    html_filename = create_dashboard_html(all_user_data)
 
     print(f"\n✅ All enhanced tasks completed successfully. README saved as: {readme_filename}")
     print(f"Enhanced chart saved as: {CHART_FILENAME}")
+    print(f"HTML dashboard saved as: {html_filename}")
     print(f"Processed users: {[user['username'] for user in all_user_data]}")

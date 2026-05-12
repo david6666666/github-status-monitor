@@ -43,8 +43,8 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📊 Chore: Update stats and chart"
-          file_pattern: "README_data.md stats_chart.svg"
+          commit_message: "📊 Chore: Update stats, chart, and dashboard"
+          file_pattern: "README_data.md stats_chart.svg stats_dashboard.html"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "actions@github.com"
           push_options: '--force-with-lease'
