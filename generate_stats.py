@@ -225,6 +225,158 @@ def summarize_by_affiliation(user_data):
 
     return summaries
 
+def _empty_release_affiliation_stats():
+    return {
+        affiliation: {
+            "commit_count": 0,
+            "review_count": 0,
+            "reviewed_pr_count": 0,
+            "commit_users": {},
+            "review_users": {},
+        }
+        for affiliation in USER_GROUPS
+    }
+
+def _release_time(release):
+    dt = release.published_at or release.created_at
+    if dt and dt.tzinfo:
+        dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
+    return dt
+
+def get_latest_release_contribution_stats(github_instance):
+    """
+    Collect commit and review contributions for the latest formal release window.
+    Formal release means non-draft and non-prerelease GitHub releases.
+    """
+    print(f"Collecting latest formal release contribution stats for {TARGET_REPO}...")
+
+    repo = github_instance.get_repo(TARGET_REPO)
+    formal_releases = []
+    for release in repo.get_releases():
+        if not release.draft and not release.prerelease:
+            formal_releases.append(release)
+        if len(formal_releases) >= 2:
+            break
+
+    if len(formal_releases) < 2:
+        print("  Not enough formal releases found to build release contribution stats.")
+        return None
+
+    latest_release = formal_releases[0]
+    previous_release = formal_releases[1]
+    latest_time = _release_time(latest_release)
+    previous_time = _release_time(previous_release)
+    if not latest_time or not previous_time:
+        print("  Release timestamps are incomplete; skipping release contribution stats.")
+        return None
+
+    affiliation_stats = _empty_release_affiliation_stats()
+    user_stats = {
+        username: {
+            "username": username,
+            "affiliation": USER_AFFILIATIONS.get(username, "Unknown"),
+            "commit_count": 0,
+            "review_count": 0,
+            "reviewed_pr_count": 0,
+        }
+        for username in USERNAMES
+    }
+
+    compare = repo.compare(previous_release.tag_name, latest_release.tag_name)
+    total_commits = len(compare.commits)
+    tracked_commits = 0
+
+    for commit in compare.commits:
+        author = getattr(commit, "author", None)
+        login = getattr(author, "login", None) if author else None
+        if not login or login not in USER_AFFILIATIONS:
+            continue
+
+        affiliation = USER_AFFILIATIONS[login]
+        tracked_commits += 1
+        affiliation_stats[affiliation]["commit_count"] += 1
+        affiliation_stats[affiliation]["commit_users"][login] = (
+            affiliation_stats[affiliation]["commit_users"].get(login, 0) + 1
+        )
+        user_stats[login]["commit_count"] += 1
+
+    start_date = previous_time.strftime('%Y-%m-%d')
+    end_date = latest_time.strftime('%Y-%m-%d')
+    query = f"repo:{TARGET_REPO} is:pr is:merged merged:{start_date}..{end_date}"
+    print(f"  Release PR review query: {query}")
+
+    merged_pr_issues = list(github_instance.search_issues(query))
+    total_reviews = 0
+    tracked_reviews = 0
+    reviewed_prs_by_user = {username: set() for username in USERNAMES}
+    reviewed_prs_by_affiliation = {affiliation: set() for affiliation in USER_GROUPS}
+
+    for issue in merged_pr_issues:
+        try:
+            pr = repo.get_pull(issue.number)
+            for review in pr.get_reviews():
+                submitted_at = review.submitted_at
+                if not submitted_at:
+                    continue
+                if submitted_at.tzinfo:
+                    submitted_at = submitted_at.astimezone(timezone.utc).replace(tzinfo=None)
+                if submitted_at < previous_time or submitted_at > latest_time:
+                    continue
+
+                total_reviews += 1
+                reviewer = review.user.login if review.user else None
+                if not reviewer or reviewer not in USER_AFFILIATIONS:
+                    continue
+
+                affiliation = USER_AFFILIATIONS[reviewer]
+                tracked_reviews += 1
+                affiliation_stats[affiliation]["review_count"] += 1
+                affiliation_stats[affiliation]["review_users"][reviewer] = (
+                    affiliation_stats[affiliation]["review_users"].get(reviewer, 0) + 1
+                )
+                user_stats[reviewer]["review_count"] += 1
+                reviewed_prs_by_user[reviewer].add(issue.number)
+                reviewed_prs_by_affiliation[affiliation].add(issue.number)
+        except Exception as e:
+            print(f"    Error processing reviews for PR #{issue.number}: {e}")
+            continue
+
+    for affiliation, pr_numbers in reviewed_prs_by_affiliation.items():
+        affiliation_stats[affiliation]["reviewed_pr_count"] = len(pr_numbers)
+    for username, pr_numbers in reviewed_prs_by_user.items():
+        user_stats[username]["reviewed_pr_count"] = len(pr_numbers)
+
+    user_rows = [
+        stats for stats in user_stats.values()
+        if stats["commit_count"] or stats["review_count"] or stats["reviewed_pr_count"]
+    ]
+    user_rows.sort(
+        key=lambda item: (item["commit_count"] + item["review_count"], item["commit_count"]),
+        reverse=True,
+    )
+
+    print(
+        f"  Latest formal release window: {previous_release.tag_name} -> {latest_release.tag_name}; "
+        f"tracked commits {tracked_commits}/{total_commits}, tracked reviews {tracked_reviews}/{total_reviews}"
+    )
+
+    return {
+        "latest_tag": latest_release.tag_name,
+        "previous_tag": previous_release.tag_name,
+        "latest_name": getattr(latest_release, "title", None) or getattr(latest_release, "name", None) or latest_release.tag_name,
+        "previous_name": getattr(previous_release, "title", None) or getattr(previous_release, "name", None) or previous_release.tag_name,
+        "latest_published_at": latest_time,
+        "previous_published_at": previous_time,
+        "compare_url": f"https://github.com/{TARGET_REPO}/compare/{previous_release.tag_name}...{latest_release.tag_name}",
+        "merged_pr_count": len(merged_pr_issues),
+        "total_commits": total_commits,
+        "tracked_commits": tracked_commits,
+        "total_reviews": total_reviews,
+        "tracked_reviews": tracked_reviews,
+        "affiliations": affiliation_stats,
+        "users": user_rows,
+    }
+
 def format_datetime(dt):
     """
     将datetime格式化为字符串，若不存在则返回“-”
@@ -478,7 +630,7 @@ def generate_chart(user_data):
     except Exception as e:
         print(f"❌ Unexpected error generating chart: {e}")
 
-def generate_markdown(user_data):
+def generate_markdown(user_data, release_stats=None):
     """生成包含additions/deletions统计的Markdown表格"""
     markdown_text = f"这是根据在 **{TARGET_REPO}** 仓库中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
     markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_REPO} 仓库中的贡献情况。\n\n"
@@ -500,6 +652,30 @@ def generate_markdown(user_data):
         )
 
     markdown_text += "\n"
+
+    if release_stats:
+        markdown_text += (
+            f"## 当前最新正式版本贡献统计: {release_stats['latest_tag']}\n\n"
+            f"区间: [{release_stats['previous_tag']}...{release_stats['latest_tag']}]({release_stats['compare_url']})  \n"
+            f"发布时间: {format_datetime(release_stats['previous_published_at'])} -> "
+            f"{format_datetime(release_stats['latest_published_at'])}\n\n"
+        )
+        markdown_text += (
+            f"Tracked commits: {format_number(release_stats['tracked_commits'])}/"
+            f"{format_number(release_stats['total_commits'])}; "
+            f"Tracked reviews: {format_number(release_stats['tracked_reviews'])}/"
+            f"{format_number(release_stats['total_reviews'])}; "
+            f"Merged PRs in window: {format_number(release_stats['merged_pr_count'])}\n\n"
+        )
+        markdown_text += "| 归属 | Commit Count | Review Count | Reviewed PRs |\n"
+        markdown_text += "| ---- | ------------ | ------------ | ------------ |\n"
+        for affiliation, summary in release_stats["affiliations"].items():
+            markdown_text += (
+                f"| {affiliation} | {format_number(summary['commit_count'])} | "
+                f"{format_number(summary['review_count'])} | "
+                f"{format_number(summary['reviewed_pr_count'])} |\n"
+            )
+        markdown_text += "\n"
 
     for user in user_data:
         username = user['username']
@@ -597,7 +773,7 @@ def create_fixed_readme(content):
     print(f"README file size: {os.path.getsize(README_FILENAME)} bytes")
     return README_FILENAME
 
-def create_dashboard_html(user_data):
+def create_dashboard_html(user_data, release_stats=None):
     """Creates a standalone HTML dashboard for the generated stats."""
     generated_at = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
     affiliation_summaries = summarize_by_affiliation(user_data)
@@ -626,6 +802,62 @@ def create_dashboard_html(user_data):
             f'<button class="filter-btn" type="button" data-filter="{escape(affiliation, quote=True)}">'
             f'{escape(affiliation)}</button>'
         )
+
+    if release_stats:
+        release_group_rows = []
+        for affiliation, summary in release_stats["affiliations"].items():
+            release_group_rows.append(f"""
+          <tr>
+            <td><span class="pill">{escape(affiliation)}</span></td>
+            <td class="num">{format_number(summary['commit_count'])}</td>
+            <td class="num">{format_number(summary['review_count'])}</td>
+            <td class="num">{format_number(summary['reviewed_pr_count'])}</td>
+          </tr>""")
+
+        release_user_rows = []
+        for user in release_stats["users"][:30]:
+            release_user_rows.append(f"""
+          <tr>
+            <td class="person">@{escape(user['username'])}</td>
+            <td><span class="pill">{escape(user['affiliation'])}</span></td>
+            <td class="num">{format_number(user['commit_count'])}</td>
+            <td class="num">{format_number(user['review_count'])}</td>
+            <td class="num">{format_number(user['reviewed_pr_count'])}</td>
+          </tr>""")
+
+        release_section = f"""
+    <section class="section">
+      <div class="section-head">
+        <h2>Current Release Contributions</h2>
+        <p class="timestamp">
+          <a href="{escape(release_stats['compare_url'])}">
+            {escape(release_stats['previous_tag'])}...{escape(release_stats['latest_tag'])}
+          </a>
+        </p>
+      </div>
+      <div class="release-grid">
+        <div class="metric"><span>Latest formal release</span><strong>{escape(release_stats['latest_tag'])}</strong></div>
+        <div class="metric"><span>Tracked commits</span><strong>{format_number(release_stats['tracked_commits'])}</strong></div>
+        <div class="metric"><span>Tracked reviews</span><strong>{format_number(release_stats['tracked_reviews'])}</strong></div>
+        <div class="metric"><span>Merged PRs</span><strong>{format_number(release_stats['merged_pr_count'])}</strong></div>
+      </div>
+      <div class="release-tables">
+        <div class="table-panel">
+          <table>
+            <thead><tr><th>Affiliation</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th></tr></thead>
+            <tbody>{''.join(release_group_rows)}</tbody>
+          </table>
+        </div>
+        <div class="table-panel">
+          <table>
+            <thead><tr><th>User</th><th>Affiliation</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th></tr></thead>
+            <tbody>{''.join(release_user_rows)}</tbody>
+          </table>
+        </div>
+      </div>
+    </section>"""
+    else:
+        release_section = ""
 
     group_cards = []
     for affiliation, summary in affiliation_summaries.items():
@@ -795,6 +1027,8 @@ def create_dashboard_html(user_data):
       color: #fffaf0;
     }}
     .groups {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }}
+    .release-grid {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }}
+    .release-tables {{ display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 12px; }}
     .group-card {{
       background: var(--panel-strong);
       border: 1px solid var(--ink);
@@ -843,6 +1077,7 @@ def create_dashboard_html(user_data):
     @media (max-width: 980px) {{
       .hero {{ grid-template-columns: 1fr; }}
       .groups {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .release-grid, .release-tables {{ grid-template-columns: 1fr; }}
       .summary-strip {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
     }}
     @media (max-width: 640px) {{
@@ -873,6 +1108,8 @@ def create_dashboard_html(user_data):
     <section class="section groups">
       {''.join(group_cards)}
     </section>
+
+    {release_section}
 
     <nav class="filters" aria-label="Filter by affiliation">
       {''.join(filter_buttons)}
@@ -1058,12 +1295,18 @@ if __name__ == "__main__":
             f"({summary['open_prs']} open, {summary['merged_prs']} merged), "
             f"+{format_number(summary['total_additions'])} -{format_number(summary['total_deletions'])}"
         )
+
+    try:
+        latest_release_stats = get_latest_release_contribution_stats(github)
+    except Exception as e:
+        print(f"Error collecting latest release contribution stats: {e}")
+        latest_release_stats = None
     
     print(f"\nGenerating enhanced chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
-    markdown_output = generate_markdown(all_user_data)
+    markdown_output = generate_markdown(all_user_data, latest_release_stats)
     readme_filename = create_fixed_readme(markdown_output)
-    html_filename = create_dashboard_html(all_user_data)
+    html_filename = create_dashboard_html(all_user_data, latest_release_stats)
 
     print(f"\n✅ All enhanced tasks completed successfully. README saved as: {readme_filename}")
     print(f"Enhanced chart saved as: {CHART_FILENAME}")
