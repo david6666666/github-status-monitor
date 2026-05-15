@@ -283,10 +283,11 @@ def get_latest_release_contribution_stats(github_instance):
     }
 
     compare = repo.compare(previous_release.tag_name, latest_release.tag_name)
-    total_commits = len(compare.commits)
+    compare_commits = list(compare.commits)
+    total_commits = len(compare_commits)
     tracked_commits = 0
 
-    for commit in compare.commits:
+    for commit in compare_commits:
         author = getattr(commit, "author", None)
         login = getattr(author, "login", None) if author else None
         if not login or login not in USER_AFFILIATIONS:
@@ -653,9 +654,12 @@ def generate_markdown(user_data, release_stats=None):
 
     markdown_text += "\n"
 
-    if release_stats:
+    markdown_text += "## 当前最新正式版本贡献统计\n\n"
+    if not release_stats:
+        markdown_text += "_Release contribution stats unavailable. Check the GitHub Actions log for details._\n\n"
+    else:
         markdown_text += (
-            f"## 当前最新正式版本贡献统计: {release_stats['latest_tag']}\n\n"
+            f"版本: **{release_stats['latest_tag']}**  \n"
             f"区间: [{release_stats['previous_tag']}...{release_stats['latest_tag']}]({release_stats['compare_url']})  \n"
             f"发布时间: {format_datetime(release_stats['previous_published_at'])} -> "
             f"{format_datetime(release_stats['latest_published_at'])}\n\n"
@@ -857,7 +861,16 @@ def create_dashboard_html(user_data, release_stats=None):
       </div>
     </section>"""
     else:
-        release_section = ""
+        release_section = """
+    <section class="section">
+      <div class="section-head">
+        <h2>Current Release Contributions</h2>
+        <p class="timestamp">Release stats unavailable</p>
+      </div>
+      <div class="table-panel release-empty">
+        Release contribution stats could not be collected in this run. Check the GitHub Actions log for details.
+      </div>
+    </section>"""
 
     group_cards = []
     for affiliation, summary in affiliation_summaries.items():
@@ -1045,6 +1058,7 @@ def create_dashboard_html(user_data, release_stats=None):
       box-shadow: var(--shadow);
       overflow: hidden;
     }}
+    .release-empty {{ color: var(--muted); padding: 18px; }}
     .chart-panel {{ padding: 18px; }}
     .chart-panel img {{ display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }}
     .chart-svg {{ background: white; border: 1px solid var(--line); overflow-x: auto; }}
