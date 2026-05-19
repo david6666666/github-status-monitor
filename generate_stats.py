@@ -243,31 +243,28 @@ def _release_time(release):
         dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
     return dt
 
-def get_latest_release_contribution_stats(github_instance):
-    """
-    Collect commit and review contributions for the latest formal release window.
-    Formal release means non-draft and non-prerelease GitHub releases.
-    """
-    print(f"Collecting latest formal release contribution stats for {TARGET_REPO}...")
-
-    repo = github_instance.get_repo(TARGET_REPO)
+def _get_formal_releases(repo, count=2):
     formal_releases = []
     for release in repo.get_releases():
         if not release.draft and not release.prerelease:
             formal_releases.append(release)
-        if len(formal_releases) >= 2:
+        if len(formal_releases) >= count:
             break
+    return formal_releases
 
-    if len(formal_releases) < 2:
-        print("  Not enough formal releases found to build release contribution stats.")
-        return None
-
-    latest_release = formal_releases[0]
-    previous_release = formal_releases[1]
-    latest_time = _release_time(latest_release)
-    previous_time = _release_time(previous_release)
-    if not latest_time or not previous_time:
-        print("  Release timestamps are incomplete; skipping release contribution stats.")
+def _collect_release_window_stats(
+    github_instance,
+    repo,
+    base_release,
+    head_ref,
+    end_time,
+    section_title,
+    headline_label,
+    headline_value,
+):
+    base_time = _release_time(base_release)
+    if not base_time or not end_time:
+        print(f"  Release timestamps are incomplete; skipping {section_title}.")
         return None
 
     affiliation_stats = _empty_release_affiliation_stats()
@@ -282,7 +279,7 @@ def get_latest_release_contribution_stats(github_instance):
         for username in USERNAMES
     }
 
-    compare = repo.compare(previous_release.tag_name, latest_release.tag_name)
+    compare = repo.compare(base_release.tag_name, head_ref)
     compare_commits = list(compare.commits)
     total_commits = len(compare_commits)
     tracked_commits = 0
@@ -301,8 +298,8 @@ def get_latest_release_contribution_stats(github_instance):
         )
         user_stats[login]["commit_count"] += 1
 
-    start_date = previous_time.strftime('%Y-%m-%d')
-    end_date = latest_time.strftime('%Y-%m-%d')
+    start_date = base_time.strftime('%Y-%m-%d')
+    end_date = end_time.strftime('%Y-%m-%d')
     query = f"repo:{TARGET_REPO} is:pr is:merged merged:{start_date}..{end_date}"
     print(f"  Release PR review query: {query}")
 
@@ -321,7 +318,7 @@ def get_latest_release_contribution_stats(github_instance):
                     continue
                 if submitted_at.tzinfo:
                     submitted_at = submitted_at.astimezone(timezone.utc).replace(tzinfo=None)
-                if submitted_at < previous_time or submitted_at > latest_time:
+                if submitted_at < base_time or submitted_at > end_time:
                     continue
 
                 total_reviews += 1
@@ -357,18 +354,19 @@ def get_latest_release_contribution_stats(github_instance):
     )
 
     print(
-        f"  Latest formal release window: {previous_release.tag_name} -> {latest_release.tag_name}; "
+        f"  {section_title}: {base_release.tag_name} -> {head_ref}; "
         f"tracked commits {tracked_commits}/{total_commits}, tracked reviews {tracked_reviews}/{total_reviews}"
     )
 
     return {
-        "latest_tag": latest_release.tag_name,
-        "previous_tag": previous_release.tag_name,
-        "latest_name": getattr(latest_release, "title", None) or getattr(latest_release, "name", None) or latest_release.tag_name,
-        "previous_name": getattr(previous_release, "title", None) or getattr(previous_release, "name", None) or previous_release.tag_name,
-        "latest_published_at": latest_time,
-        "previous_published_at": previous_time,
-        "compare_url": f"https://github.com/{TARGET_REPO}/compare/{previous_release.tag_name}...{latest_release.tag_name}",
+        "section_title": section_title,
+        "headline_label": headline_label,
+        "headline_value": headline_value,
+        "latest_tag": head_ref,
+        "previous_tag": base_release.tag_name,
+        "latest_published_at": end_time,
+        "previous_published_at": base_time,
+        "compare_url": f"https://github.com/{TARGET_REPO}/compare/{base_release.tag_name}...{head_ref}",
         "merged_pr_count": len(merged_pr_issues),
         "total_commits": total_commits,
         "tracked_commits": tracked_commits,
@@ -377,6 +375,50 @@ def get_latest_release_contribution_stats(github_instance):
         "affiliations": affiliation_stats,
         "users": user_rows,
     }
+
+def get_release_contribution_stats(github_instance):
+    """
+    Collect commit and review contributions for the last formal release and
+    current main branch development window.
+    """
+    print(f"Collecting release contribution stats for {TARGET_REPO}...")
+
+    repo = github_instance.get_repo(TARGET_REPO)
+    formal_releases = _get_formal_releases(repo, count=2)
+    if len(formal_releases) < 2:
+        print("  Not enough formal releases found to build release contribution stats.")
+        return None, None
+
+    latest_release = formal_releases[0]
+    previous_release = formal_releases[1]
+    latest_time = _release_time(latest_release)
+    previous_time = _release_time(previous_release)
+    now_utc = datetime.now(timezone.utc).replace(tzinfo=None)
+    if not latest_time or not previous_time:
+        print("  Release timestamps are incomplete; skipping release contribution stats.")
+        return None, None
+
+    last_release_stats = _collect_release_window_stats(
+        github_instance=github_instance,
+        repo=repo,
+        base_release=previous_release,
+        head_ref=latest_release.tag_name,
+        end_time=latest_time,
+        section_title="Last Release Contributions",
+        headline_label="Last formal release",
+        headline_value=latest_release.tag_name,
+    )
+    current_release_stats = _collect_release_window_stats(
+        github_instance=github_instance,
+        repo=repo,
+        base_release=latest_release,
+        head_ref="main",
+        end_time=now_utc,
+        section_title="Current Release Contributions",
+        headline_label="Current head",
+        headline_value="main",
+    )
+    return last_release_stats, current_release_stats
 
 def format_datetime(dt):
     """
@@ -631,7 +673,36 @@ def generate_chart(user_data):
     except Exception as e:
         print(f"❌ Unexpected error generating chart: {e}")
 
-def generate_markdown(user_data, release_stats=None):
+def _append_release_markdown(markdown_text, release_stats, fallback_title):
+    markdown_text += f"## {fallback_title}\n\n"
+    if not release_stats:
+        markdown_text += "_Release contribution stats unavailable. Check the GitHub Actions log for details._\n\n"
+        return markdown_text
+
+    markdown_text += (
+        f"区间: [{release_stats['previous_tag']}...{release_stats['latest_tag']}]({release_stats['compare_url']})  \n"
+        f"时间: {format_datetime(release_stats['previous_published_at'])} -> "
+        f"{format_datetime(release_stats['latest_published_at'])}\n\n"
+    )
+    markdown_text += (
+        f"Tracked commits: {format_number(release_stats['tracked_commits'])}/"
+        f"{format_number(release_stats['total_commits'])}; "
+        f"Tracked reviews: {format_number(release_stats['tracked_reviews'])}/"
+        f"{format_number(release_stats['total_reviews'])}; "
+        f"Merged PRs in window: {format_number(release_stats['merged_pr_count'])}\n\n"
+    )
+    markdown_text += "| 归属 | Commit Count | Review Count | Reviewed PRs |\n"
+    markdown_text += "| ---- | ------------ | ------------ | ------------ |\n"
+    for affiliation, summary in release_stats["affiliations"].items():
+        markdown_text += (
+            f"| {affiliation} | {format_number(summary['commit_count'])} | "
+            f"{format_number(summary['review_count'])} | "
+            f"{format_number(summary['reviewed_pr_count'])} |\n"
+        )
+    markdown_text += "\n"
+    return markdown_text
+
+def generate_markdown(user_data, last_release_stats=None, current_release_stats=None):
     """生成包含additions/deletions统计的Markdown表格"""
     markdown_text = f"这是根据在 **{TARGET_REPO}** 仓库中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
     markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_REPO} 仓库中的贡献情况。\n\n"
@@ -654,32 +725,12 @@ def generate_markdown(user_data, release_stats=None):
 
     markdown_text += "\n"
 
-    markdown_text += "## 当前最新正式版本贡献统计\n\n"
-    if not release_stats:
-        markdown_text += "_Release contribution stats unavailable. Check the GitHub Actions log for details._\n\n"
-    else:
-        markdown_text += (
-            f"版本: **{release_stats['latest_tag']}**  \n"
-            f"区间: [{release_stats['previous_tag']}...{release_stats['latest_tag']}]({release_stats['compare_url']})  \n"
-            f"发布时间: {format_datetime(release_stats['previous_published_at'])} -> "
-            f"{format_datetime(release_stats['latest_published_at'])}\n\n"
-        )
-        markdown_text += (
-            f"Tracked commits: {format_number(release_stats['tracked_commits'])}/"
-            f"{format_number(release_stats['total_commits'])}; "
-            f"Tracked reviews: {format_number(release_stats['tracked_reviews'])}/"
-            f"{format_number(release_stats['total_reviews'])}; "
-            f"Merged PRs in window: {format_number(release_stats['merged_pr_count'])}\n\n"
-        )
-        markdown_text += "| 归属 | Commit Count | Review Count | Reviewed PRs |\n"
-        markdown_text += "| ---- | ------------ | ------------ | ------------ |\n"
-        for affiliation, summary in release_stats["affiliations"].items():
-            markdown_text += (
-                f"| {affiliation} | {format_number(summary['commit_count'])} | "
-                f"{format_number(summary['review_count'])} | "
-                f"{format_number(summary['reviewed_pr_count'])} |\n"
-            )
-        markdown_text += "\n"
+    markdown_text = _append_release_markdown(
+        markdown_text, last_release_stats, "Last Release Contributions"
+    )
+    markdown_text = _append_release_markdown(
+        markdown_text, current_release_stats, "Current Release Contributions"
+    )
 
     for user in user_data:
         username = user['username']
@@ -777,7 +828,7 @@ def create_fixed_readme(content):
     print(f"README file size: {os.path.getsize(README_FILENAME)} bytes")
     return README_FILENAME
 
-def create_dashboard_html(user_data, release_stats=None):
+def create_dashboard_html(user_data, last_release_stats=None, current_release_stats=None):
     """Creates a standalone HTML dashboard for the generated stats."""
     generated_at = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
     affiliation_summaries = summarize_by_affiliation(user_data)
@@ -807,7 +858,19 @@ def create_dashboard_html(user_data, release_stats=None):
             f'{escape(affiliation)}</button>'
         )
 
-    if release_stats:
+    def render_release_section(release_stats, fallback_title):
+        if not release_stats:
+            return f"""
+    <section class="section">
+      <div class="section-head">
+        <h2>{escape(fallback_title)}</h2>
+        <p class="timestamp">Release stats unavailable</p>
+      </div>
+      <div class="table-panel release-empty">
+        Release contribution stats could not be collected in this run. Check the GitHub Actions log for details.
+      </div>
+    </section>"""
+
         release_group_rows = []
         for affiliation, summary in release_stats["affiliations"].items():
             release_group_rows.append(f"""
@@ -829,10 +892,10 @@ def create_dashboard_html(user_data, release_stats=None):
             <td class="num">{format_number(user['reviewed_pr_count'])}</td>
           </tr>""")
 
-        release_section = f"""
+        return f"""
     <section class="section">
       <div class="section-head">
-        <h2>Current Release Contributions</h2>
+        <h2>{escape(release_stats['section_title'])}</h2>
         <p class="timestamp">
           <a href="{escape(release_stats['compare_url'])}">
             {escape(release_stats['previous_tag'])}...{escape(release_stats['latest_tag'])}
@@ -840,7 +903,7 @@ def create_dashboard_html(user_data, release_stats=None):
         </p>
       </div>
       <div class="release-grid">
-        <div class="metric"><span>Latest formal release</span><strong>{escape(release_stats['latest_tag'])}</strong></div>
+        <div class="metric"><span>{escape(release_stats['headline_label'])}</span><strong>{escape(release_stats['headline_value'])}</strong></div>
         <div class="metric"><span>Tracked commits</span><strong>{format_number(release_stats['tracked_commits'])}</strong></div>
         <div class="metric"><span>Tracked reviews</span><strong>{format_number(release_stats['tracked_reviews'])}</strong></div>
         <div class="metric"><span>Merged PRs</span><strong>{format_number(release_stats['merged_pr_count'])}</strong></div>
@@ -860,17 +923,11 @@ def create_dashboard_html(user_data, release_stats=None):
         </div>
       </div>
     </section>"""
-    else:
-        release_section = """
-    <section class="section">
-      <div class="section-head">
-        <h2>Current Release Contributions</h2>
-        <p class="timestamp">Release stats unavailable</p>
-      </div>
-      <div class="table-panel release-empty">
-        Release contribution stats could not be collected in this run. Check the GitHub Actions log for details.
-      </div>
-    </section>"""
+
+    release_sections = (
+        render_release_section(last_release_stats, "Last Release Contributions")
+        + render_release_section(current_release_stats, "Current Release Contributions")
+    )
 
     group_cards = []
     for affiliation, summary in affiliation_summaries.items():
@@ -1123,7 +1180,7 @@ def create_dashboard_html(user_data, release_stats=None):
       {''.join(group_cards)}
     </section>
 
-    {release_section}
+    {release_sections}
 
     <nav class="filters" aria-label="Filter by affiliation">
       {''.join(filter_buttons)}
@@ -1311,16 +1368,17 @@ if __name__ == "__main__":
         )
 
     try:
-        latest_release_stats = get_latest_release_contribution_stats(github)
+        last_release_stats, current_release_stats = get_release_contribution_stats(github)
     except Exception as e:
-        print(f"Error collecting latest release contribution stats: {e}")
-        latest_release_stats = None
+        print(f"Error collecting release contribution stats: {e}")
+        last_release_stats = None
+        current_release_stats = None
     
     print(f"\nGenerating enhanced chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
-    markdown_output = generate_markdown(all_user_data, latest_release_stats)
+    markdown_output = generate_markdown(all_user_data, last_release_stats, current_release_stats)
     readme_filename = create_fixed_readme(markdown_output)
-    html_filename = create_dashboard_html(all_user_data, latest_release_stats)
+    html_filename = create_dashboard_html(all_user_data, last_release_stats, current_release_stats)
 
     print(f"\n✅ All enhanced tasks completed successfully. README saved as: {readme_filename}")
     print(f"Enhanced chart saved as: {CHART_FILENAME}")
