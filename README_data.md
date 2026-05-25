@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project/vllm-omni
 
-Generated on: 2026-05-24 02:40:38 UTC
+Generated on: 2026-05-25 02:49:00 UTC
 
 **统计范围**: vllm-project/vllm-omni 仓库的所有 PR 贡献（包含代码变更统计）
 
@@ -12,14 +12,14 @@ Generated on: 2026-05-24 02:40:38 UTC
 
 总共追踪了 39 个用户在 vllm-project/vllm-omni 仓库中的贡献情况。
 
-**总代码变更统计**: +466,920 行添加, -133,710 行删除
+**总代码变更统计**: +466,809 行添加, -133,726 行删除
 
 ## 按归属统计
 
 | 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |
 | ---- | ------ | --------- | -------- | ---------- | --------- | --------- |
 | HUAWEI | 33 | 691 | 60 | 631 | 322,427 | 91,220 |
-| 阿里PAI | 3 | 63 | 4 | 59 | 125,633 | 39,796 |
+| 阿里PAI | 3 | 63 | 4 | 59 | 125,522 | 39,812 |
 | 蚂蚁 | 1 | 3 | 0 | 3 | 79 | 6 |
 | 小米 | 1 | 14 | 0 | 14 | 9,728 | 183 |
 | 智谱 | 1 | 6 | 0 | 6 | 9,053 | 2,505 |
@@ -42,13 +42,13 @@ Tracked commits: 163/466; Tracked reviews: 936/2,143; Merged PRs in window: 506
 ## Current Release Contributions
 
 区间: [v0.20.0...main](https://github.com/vllm-project/vllm-omni/compare/v0.20.0...main)  
-时间: 2026-05-07 06:25:58 UTC -> 2026-05-24 02:27:26 UTC
+时间: 2026-05-07 06:25:58 UTC -> 2026-05-25 02:35:32 UTC
 
-Tracked commits: 74/175; Tracked reviews: 384/625; Merged PRs in window: 180
+Tracked commits: 74/179; Tracked reviews: 388/636; Merged PRs in window: 184
 
 | 归属 | Commit Count | Review Count | Reviewed PRs |
 | ---- | ------------ | ------------ | ------------ |
-| HUAWEI | 70 | 380 | 109 |
+| HUAWEI | 70 | 384 | 112 |
 | 阿里PAI | 3 | 4 | 3 |
 | 蚂蚁 | 0 | 0 | 0 |
 | 小米 | 1 | 0 | 0 |
@@ -535,12 +535,12 @@ Tracked commits: 74/175; Tracked reviews: 384/625; Merged PRs in window: 180
 | **Total for Gao Han** | | | | - | **24,387** | **9,229** |
 
 ### 👤 Sy03 (@Sy0307) - 阿里PAI - 总贡献: 38
-**代码变更**: +122,700 行添加, -38,557 行删除
+**代码变更**: +122,589 行添加, -38,573 行删除
 
 **Pull Requests (2 open, 36 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[TTS][Perf] Optimize Fish Speech S2 Pro high-concurrency serving](https://github.com/vllm-project/vllm-omni/pull/3773) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-20 | - | 3,550 | 77 |
+| [[TTS][Perf] Optimize Fish Speech S2 Pro high-concurrency serving](https://github.com/vllm-project/vllm-omni/pull/3773) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-20 | - | 3,439 | 93 |
 | [[Bugfix][Qwen3-Omni] Handle short Code2Wav chunk outputs](https://github.com/vllm-project/vllm-omni/pull/3687) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-18 | 2026-05-18 18:59:23 UTC | 45 | 13 |
 | [[TTS][Perf] Optimize Qwen3-TTS high-concurrency serving](https://github.com/vllm-project/vllm-omni/pull/3662) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-16 | 2026-05-17 20:59:00 UTC | 2,705 | 149 |
 | [[Feature] Add precomputed custom voices and Qwen3-TTS ref-context cache](https://github.com/vllm-project/vllm-omni/pull/3492) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-11 | - | 1,811 | 65 |
@@ -578,7 +578,7 @@ Tracked commits: 74/175; Tracked reviews: 384/625; Merged PRs in window: 180
 | [[Feat]: Offline inference supports async_chunk](https://github.com/vllm-project/vllm-omni/pull/1415) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-20 | 2026-03-09 03:33:38 UTC | 708 | 0 |
 | [[Feature] : Support disaggregated inference pipeline for Qwen3_TTS](https://github.com/vllm-project/vllm-omni/pull/1161) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-02 | 2026-02-20 23:36:44 UTC | 2,966 | 2,588 |
 | [[Feat] : Support Async chunk cleanup](https://github.com/vllm-project/vllm-omni/pull/1087) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-29 | 2026-02-27 06:39:33 UTC | 381 | 22 |
-| **Total for Sy03** | | | | - | **122,700** | **38,557** |
+| **Total for Sy03** | | | | - | **122,589** | **38,573** |
 
 ### 👤 dengyunyang (@Bounty-hunter) - HUAWEI - 总贡献: 29
 **代码变更**: +11,125 行添加, -1,515 行删除
