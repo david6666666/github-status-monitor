@@ -14,13 +14,14 @@ USER_GROUPS = {
     "蚂蚁": ["ApsarasX"],
     "小米": ["qibaoyuan"],
     "智谱": ["JaredforReal"],
+    "Committer": ["Gaohan123", "hsliuustc0106", "david6666666", "gcanlin", "Isotr0py", "linyueqian", "lishunyang12", "princepride", "RuixiangMa", "SamitHuang", "tzhouam", "wtomin", "ZeldaHuang", "ZJY0516", "yuanheng-zhao", "Sy0307", "alex-jw-brooks"],
 }
-USERNAMES = [username.strip() for usernames in USER_GROUPS.values() for username in usernames]
 USER_AFFILIATIONS = {
     username.strip(): affiliation
     for affiliation, usernames in USER_GROUPS.items()
     for username in usernames
 }
+USERNAMES = list(USER_AFFILIATIONS)
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
