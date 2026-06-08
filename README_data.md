@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project/vllm-omni
 
-Generated on: 2026-06-08 08:53:55 UTC
+Generated on: 2026-06-08 10:20:49 UTC
 
 **统计范围**: vllm-project/vllm-omni 仓库的所有 PR 贡献（包含代码变更统计）
 
@@ -12,18 +12,18 @@ Generated on: 2026-06-08 08:53:55 UTC
 
 总共追踪了 48 个用户在 vllm-project/vllm-omni 仓库中的贡献情况。
 
-**总代码变更统计**: +687,707 行添加, -190,189 行删除
+**总代码变更统计**: +687,719 行添加, -190,201 行删除
 
 ## 按归属统计
 
 | 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |
 | ---- | ------ | --------- | -------- | ---------- | --------- | --------- |
-| HUAWEI | 33 | 748 | 57 | 691 | 336,240 | 93,830 |
+| HUAWEI | 33 | 748 | 56 | 692 | 336,252 | 93,842 |
 | 阿里PAI | 3 | 68 | 5 | 63 | 165,321 | 40,785 |
 | 蚂蚁 | 1 | 3 | 0 | 3 | 79 | 6 |
 | 小米 | 1 | 14 | 0 | 14 | 9,728 | 183 |
 | 智谱 | 1 | 6 | 0 | 6 | 9,053 | 2,505 |
-| Committer | 17 | 811 | 63 | 748 | 473,307 | 130,186 |
+| Committer | 17 | 811 | 62 | 749 | 473,307 | 130,188 |
 
 ## Last Release Contributions
 
@@ -32,54 +32,54 @@ Generated on: 2026-06-08 08:53:55 UTC
 
 Tracked commits: 183/339; Tracked reviews: 1,090/1,478; Tracked code delta: +72,445/-21,189; Merged PRs in window: 346
 
-Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(additions + deletions) share. Commit share reflects delivery, review share reflects quality influence, and code-line share reflects change scale with log compression so large mechanical changes do not dominate.
+Scoring: Contribution score = 30% commit share + 35% review share + 35% code churn share, where code churn is additions + deletions. Commit share reflects delivery, review share reflects quality influence, and code churn linearly reflects change scale.
 
 | Affiliation | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| HUAWEI | 54.3% | 128 | 792 | 231 | 39,415 | 12,539 | 51,954 |
-| Committer | 42.6% | 84 | 806 | 289 | 38,311 | 10,326 | 48,637 |
-| 阿里PAI | 2.7% | 6 | 28 | 10 | 11,059 | 671 | 11,730 |
-| 小米 | 0.3% | 1 | 0 | 0 | 775 | 33 | 808 |
+| HUAWEI | 50.7% | 128 | 792 | 231 | 39,415 | 12,539 | 51,954 |
+| Committer | 43.9% | 84 | 806 | 289 | 38,311 | 10,326 | 48,637 |
+| 阿里PAI | 5.1% | 6 | 28 | 10 | 11,059 | 671 | 11,730 |
+| 小米 | 0.4% | 1 | 0 | 0 | 775 | 33 | 808 |
 | 蚂蚁 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 | 智谱 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 
 | User | Labels | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------ | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| @hsliuustc0106 | HUAWEI, Committer | 9.6% | 5 | 254 | 136 | 85 | 49 | 134 |
-| @david6666666 | HUAWEI, Committer | 7.9% | 17 | 73 | 39 | 3,075 | 443 | 3,518 |
-| @gcanlin | Committer | 7.4% | 12 | 98 | 58 | 2,626 | 989 | 3,615 |
-| @Bounty-hunter | HUAWEI | 6.3% | 12 | 65 | 23 | 2,505 | 430 | 2,935 |
-| @amy-why-3459 | HUAWEI | 6.0% | 13 | 48 | 18 | 932 | 810 | 1,742 |
-| @linyueqian | Committer | 5.8% | 11 | 58 | 40 | 1,830 | 4,315 | 6,145 |
-| @yenuo26 | HUAWEI | 5.0% | 11 | 30 | 24 | 9,595 | 4,998 | 14,593 |
-| @Gaohan123 | HUAWEI, Committer | 4.0% | 2 | 104 | 75 | 3 | 320 | 323 |
-| @alex-jw-brooks | Committer | 3.9% | 9 | 20 | 11 | 1,741 | 2,036 | 3,777 |
-| @wuhang2014 | HUAWEI | 3.4% | 7 | 28 | 8 | 1,615 | 643 | 2,258 |
-| @bjf-frz | HUAWEI | 3.3% | 8 | 14 | 6 | 1,849 | 251 | 2,100 |
-| @Shirley125 | HUAWEI | 2.9% | 7 | 14 | 3 | 1,288 | 244 | 1,532 |
-| @Sy0307 | 阿里PAI, Committer | 2.8% | 6 | 9 | 4 | 11,059 | 671 | 11,730 |
-| @yuanheng-zhao | Committer | 2.7% | 6 | 12 | 7 | 1,093 | 367 | 1,460 |
-| @RuixiangMa | Committer | 2.5% | 6 | 14 | 12 | 2,119 | 61 | 2,180 |
-| @lishunyang12 | Committer | 2.4% | 2 | 46 | 22 | 7,945 | 159 | 8,104 |
-| @tzhouam | HUAWEI, Committer | 2.4% | 3 | 34 | 3 | 2,257 | 799 | 3,056 |
-| @TaffyOfficial | HUAWEI | 2.3% | 5 | 11 | 3 | 2,607 | 612 | 3,219 |
-| @NumberWan | HUAWEI | 2.1% | 6 | 3 | 2 | 515 | 63 | 578 |
-| @knlnguyen1802 | HUAWEI | 2.0% | 5 | 0 | 0 | 2,628 | 204 | 2,832 |
-| @natureofnature | HUAWEI | 1.8% | 4 | 9 | 4 | 4,303 | 401 | 4,704 |
-| @fhfuih | HUAWEI | 1.5% | 3 | 17 | 8 | 39 | 119 | 158 |
-| @SamitHuang | HUAWEI, Committer | 1.3% | 2 | 16 | 7 | 405 | 61 | 466 |
-| @wtomin | HUAWEI, Committer | 1.3% | 1 | 27 | 7 | 231 | 37 | 268 |
-| @zengchuang-hw | HUAWEI | 1.3% | 4 | 2 | 2 | 103 | 74 | 177 |
-| @princepride | Committer | 1.2% | 2 | 16 | 14 | 3,842 | 19 | 3,861 |
-| @congw729 | HUAWEI | 1.2% | 3 | 10 | 9 | 58 | 41 | 99 |
-| @fake0fan | HUAWEI | 1.1% | 3 | 4 | 4 | 16 | 167 | 183 |
-| @R2-Y | HUAWEI | 0.9% | 3 | 1 | 1 | 32 | 3 | 35 |
-| @hadipash | HUAWEI | 0.9% | 1 | 13 | 1 | 1,980 | 1,008 | 2,988 |
-| @chickeyton | HUAWEI | 0.8% | 1 | 12 | 1 | 3,013 | 762 | 3,775 |
+| @hsliuustc0106 | HUAWEI, Committer | 9.0% | 5 | 254 | 136 | 85 | 49 | 134 |
+| @yenuo26 | HUAWEI | 8.2% | 11 | 30 | 24 | 9,595 | 4,998 | 14,593 |
+| @gcanlin | Committer | 6.5% | 12 | 98 | 58 | 2,626 | 989 | 3,615 |
+| @david6666666 | HUAWEI, Committer | 6.4% | 17 | 73 | 39 | 3,075 | 443 | 3,518 |
+| @linyueqian | Committer | 6.0% | 11 | 58 | 40 | 1,830 | 4,315 | 6,145 |
+| @Sy0307 | 阿里PAI, Committer | 5.7% | 6 | 9 | 4 | 11,059 | 671 | 11,730 |
+| @Bounty-hunter | HUAWEI | 5.2% | 12 | 65 | 23 | 2,505 | 430 | 2,935 |
+| @lishunyang12 | Committer | 4.8% | 2 | 46 | 22 | 7,945 | 159 | 8,104 |
+| @amy-why-3459 | HUAWEI | 4.3% | 13 | 48 | 18 | 932 | 810 | 1,742 |
+| @Gaohan123 | HUAWEI, Committer | 3.8% | 2 | 104 | 75 | 3 | 320 | 323 |
+| @alex-jw-brooks | Committer | 3.5% | 9 | 20 | 11 | 1,741 | 2,036 | 3,777 |
+| @wuhang2014 | HUAWEI | 2.9% | 7 | 28 | 8 | 1,615 | 643 | 2,258 |
+| @tzhouam | HUAWEI, Committer | 2.7% | 3 | 34 | 3 | 2,257 | 799 | 3,056 |
+| @natureofnature | HUAWEI | 2.7% | 4 | 9 | 4 | 4,303 | 401 | 4,704 |
+| @bjf-frz | HUAWEI | 2.5% | 8 | 14 | 6 | 1,849 | 251 | 2,100 |
+| @TaffyOfficial | HUAWEI | 2.4% | 5 | 11 | 3 | 2,607 | 612 | 3,219 |
+| @princepride | Committer | 2.3% | 2 | 16 | 14 | 3,842 | 19 | 3,861 |
+| @RuixiangMa | Committer | 2.2% | 6 | 14 | 12 | 2,119 | 61 | 2,180 |
+| @Shirley125 | HUAWEI | 2.2% | 7 | 14 | 3 | 1,288 | 244 | 1,532 |
+| @chickeyton | HUAWEI | 2.0% | 1 | 12 | 1 | 3,013 | 762 | 3,775 |
+| @yuanheng-zhao | Committer | 1.9% | 6 | 12 | 7 | 1,093 | 367 | 1,460 |
+| @knlnguyen1802 | HUAWEI | 1.9% | 5 | 0 | 0 | 2,628 | 204 | 2,832 |
+| @hadipash | HUAWEI | 1.7% | 1 | 13 | 1 | 1,980 | 1,008 | 2,988 |
+| @NumberWan | HUAWEI | 1.3% | 6 | 3 | 2 | 515 | 63 | 578 |
+| @wtomin | HUAWEI, Committer | 1.1% | 1 | 27 | 7 | 231 | 37 | 268 |
+| @fhfuih | HUAWEI | 1.1% | 3 | 17 | 8 | 39 | 119 | 158 |
+| @SamitHuang | HUAWEI, Committer | 1.0% | 2 | 16 | 7 | 405 | 61 | 466 |
+| @congw729 | HUAWEI | 0.8% | 3 | 10 | 9 | 58 | 41 | 99 |
+| @zengchuang-hw | HUAWEI | 0.8% | 4 | 2 | 2 | 103 | 74 | 177 |
+| @fake0fan | HUAWEI | 0.7% | 3 | 4 | 4 | 16 | 167 | 183 |
 | @ZeldaHuang | 阿里PAI, Committer | 0.6% | 0 | 19 | 6 | 0 | 0 | 0 |
-| @qibaoyuan | 小米 | 0.4% | 1 | 0 | 0 | 775 | 33 | 808 |
-| @herotai214 | HUAWEI | 0.4% | 1 | 1 | 1 | 222 | 0 | 222 |
-| @LJH-LBJ | HUAWEI | 0.4% | 1 | 1 | 1 | 59 | 0 | 59 |
+| @R2-Y | HUAWEI | 0.5% | 3 | 1 | 1 | 32 | 3 | 35 |
+| @qibaoyuan | 小米 | 0.5% | 1 | 0 | 0 | 775 | 33 | 808 |
+| @herotai214 | HUAWEI | 0.3% | 1 | 1 | 1 | 222 | 0 | 222 |
+| @LJH-LBJ | HUAWEI | 0.2% | 1 | 1 | 1 | 59 | 0 | 59 |
 | @ZJY0516 | Committer | 0.2% | 0 | 5 | 5 | 0 | 0 | 0 |
 | @zhtmike | HUAWEI | 0.0% | 0 | 1 | 1 | 0 | 0 | 0 |
 | @Isotr0py | Committer | 0.0% | 0 | 1 | 1 | 0 | 0 | 0 |
@@ -87,16 +87,16 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 ## Current Release Contributions
 
 区间: [v0.22.0...main](https://github.com/vllm-project/vllm-omni/compare/v0.22.0...main)  
-时间: 2026-06-06 01:45:45 UTC -> 2026-06-08 08:43:49 UTC
+时间: 2026-06-06 01:45:45 UTC -> 2026-06-08 10:11:20 UTC
 
 Tracked commits: 6/11; Tracked reviews: 18/19; Tracked code delta: +2,208/-370; Merged PRs in window: 12
 
-Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(additions + deletions) share. Commit share reflects delivery, review share reflects quality influence, and code-line share reflects change scale with log compression so large mechanical changes do not dominate.
+Scoring: Contribution score = 30% commit share + 35% review share + 35% code churn share, where code churn is additions + deletions. Commit share reflects delivery, review share reflects quality influence, and code churn linearly reflects change scale.
 
 | Affiliation | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| Committer | 61.3% | 5 | 18 | 7 | 1,997 | 16 | 2,013 |
-| HUAWEI | 36.5% | 3 | 11 | 4 | 466 | 355 | 821 |
+| Committer | 63.9% | 5 | 18 | 7 | 1,997 | 16 | 2,013 |
+| HUAWEI | 33.8% | 3 | 11 | 4 | 466 | 355 | 821 |
 | 阿里PAI | 2.3% | 0 | 2 | 2 | 0 | 0 | 0 |
 | 蚂蚁 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 | 小米 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -104,11 +104,11 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 
 | User | Labels | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------ | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| @hsliuustc0106 | HUAWEI, Committer | 31.2% | 1 | 10 | 3 | 255 | 1 | 256 |
-| @linyueqian | Committer | 28.4% | 2 | 4 | 2 | 135 | 7 | 142 |
-| @lishunyang12 | Committer | 15.4% | 1 | 1 | 1 | 1,607 | 8 | 1,615 |
-| @amy-why-3459 | HUAWEI | 12.5% | 1 | 0 | 0 | 211 | 354 | 565 |
-| @david6666666 | HUAWEI, Committer | 8.6% | 1 | 1 | 1 | 0 | 0 | 0 |
+| @lishunyang12 | Committer | 28.9% | 1 | 1 | 1 | 1,607 | 8 | 1,615 |
+| @hsliuustc0106 | HUAWEI, Committer | 27.9% | 1 | 10 | 3 | 255 | 1 | 256 |
+| @linyueqian | Committer | 19.7% | 2 | 4 | 2 | 135 | 7 | 142 |
+| @amy-why-3459 | HUAWEI | 12.7% | 1 | 0 | 0 | 211 | 354 | 565 |
+| @david6666666 | HUAWEI, Committer | 6.9% | 1 | 1 | 1 | 0 | 0 | 0 |
 | @Sy0307 | 阿里PAI, Committer | 3.9% | 0 | 2 | 2 | 0 | 0 | 0 |
 
 ### 👤 WeiQing Chen (@david6666666) - HUAWEI, Committer - 总贡献: 93
@@ -888,13 +888,13 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | **Total for amy-why-3459** | | | | - | **9,084** | **3,689** |
 
 ### 👤 Hongsheng Liu (@hsliuustc0106) - HUAWEI, Committer - 总贡献: 45
-**代码变更**: +16,179 行添加, -6,630 行删除
+**代码变更**: +16,177 行添加, -6,630 行删除
 
-**Pull Requests (4 open, 41 merged)**
+**Pull Requests (3 open, 42 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [docs: update README and supported models for v0.22.0 release](https://github.com/vllm-project/vllm-omni/pull/4233) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-07 | - | 10 | 0 |
-| [[Doc] Add precheck-pr Claude Code skill](https://github.com/vllm-project/vllm-omni/pull/4216) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-06 | - | 255 | 1 |
+| [docs: update README and supported models for v0.22.0 release](https://github.com/vllm-project/vllm-omni/pull/4233) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-07 | - | 8 | 0 |
+| [[Doc] Add precheck-pr Claude Code skill](https://github.com/vllm-project/vllm-omni/pull/4216) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-06 | 2026-06-08 08:41:33 UTC | 255 | 1 |
 | [Update CUDA Docker base image to vLLM v0.21.0](https://github.com/vllm-project/vllm-omni/pull/3859) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-25 | 2026-05-26 13:00:06 UTC | 1 | 1 |
 | [[WIP] Optimize Helios accuracy-maintained path](https://github.com/vllm-project/vllm-omni/pull/3800) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-21 | - | 728 | 20 |
 | [Add new committers to governance page](https://github.com/vllm-project/vllm-omni/pull/3749) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-20 | 2026-05-21 14:06:02 UTC | 26 | 3 |
@@ -938,7 +938,7 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | [init main repo structure and demonstrate the AR + DiT demo for omni models](https://github.com/vllm-project/vllm-omni/pull/6) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-09-25 | 2025-09-30 09:46:56 UTC | 4,603 | 232 |
 | [initialization for core APIs](https://github.com/vllm-project/vllm-omni/pull/2) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-09-16 | 2025-09-25 01:13:32 UTC | 5,017 | 139 |
 | [init the folder directories for vLLM-omni](https://github.com/vllm-project/vllm-omni/pull/1) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-09-11 | 2025-09-11 08:18:53 UTC | 677 | 59 |
-| **Total for Hongsheng Liu** | | | | - | **16,179** | **6,630** |
+| **Total for Hongsheng Liu** | | | | - | **16,177** | **6,630** |
 
 ### 👤 Sy03 (@Sy0307) - 阿里PAI, Committer - 总贡献: 43
 **代码变更**: +162,399 行添加, -39,560 行删除
@@ -1214,13 +1214,13 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | **Total for SYLAR** | | | | - | **25,808** | **5,166** |
 
 ### 👤 Zeyu Huang | 黃澤宇 (@fhfuih) - HUAWEI - 总贡献: 28
-**代码变更**: +18,549 行添加, -4,355 行删除
+**代码变更**: +18,561 行添加, -4,365 行删除
 
 **Pull Requests (3 open, 25 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[CI][bugfix]: Improve Qwen Image accuracy test with diffusers attn alignment](https://github.com/vllm-project/vllm-omni/pull/4143) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-04 | 2026-06-05 14:07:27 UTC | 5 | 2 |
-| [[skip ci] Add width and height args to offline i2i example script](https://github.com/vllm-project/vllm-omni/pull/4031) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-01 | - | 28 | 2 |
+| [[skip ci] Add width and height args to offline i2i example script](https://github.com/vllm-project/vllm-omni/pull/4031) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-01 | - | 40 | 12 |
 | [[CI] Rectify L2~L4 Qwen Image Edit series tests](https://github.com/vllm-project/vllm-omni/pull/3901) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-27 | 2026-05-28 10:33:31 UTC | 18 | 115 |
 | [[feat] Streaming diffusion video generation output](https://github.com/vllm-project/vllm-omni/pull/3737) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-19 | - | 4,297 | 62 |
 | [[bugfix] Fix diffusers backend input bug after #2913](https://github.com/vllm-project/vllm-omni/pull/3644) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-05-15 | 2026-05-15 09:55:09 UTC | 16 | 2 |
@@ -1247,7 +1247,7 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | [[Doc] complete the clarification on batch image generation](https://github.com/vllm-project/vllm-omni/pull/567) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-31 | 2025-12-31 10:34:02 UTC | 36 | 0 |
 | [[Doc] clarify that batch image generation is currently unsupported](https://github.com/vllm-project/vllm-omni/pull/564) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-31 | 2025-12-31 08:00:55 UTC | 2 | 0 |
 | [[Doc] fix diagrams in Architecture Overview page](https://github.com/vllm-project/vllm-omni/pull/430) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-23 | 2025-12-23 10:20:43 UTC | 4 | 4 |
-| **Total for Zeyu Huang | 黃澤宇** | | | | - | **18,549** | **4,355** |
+| **Total for Zeyu Huang | 黃澤宇** | | | | - | **18,561** | **4,365** |
 
 ### 👤 bjf-frz - HUAWEI - 总贡献: 26
 **代码变更**: +8,399 行添加, -1,198 行删除
@@ -1284,12 +1284,12 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | **Total for bjf-frz** | | | | - | **8,399** | **1,198** |
 
 ### 👤 Didan Deng (@wtomin) - HUAWEI, Committer - 总贡献: 26
-**代码变更**: +18,364 行添加, -3,731 行删除
+**代码变更**: +18,366 行添加, -3,733 行删除
 
 **Pull Requests (3 open, 23 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[doc] Update diffusion model feature support matrix](https://github.com/vllm-project/vllm-omni/pull/3721) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-19 | - | 15 | 12 |
+| [[doc] Update diffusion model feature support matrix](https://github.com/vllm-project/vllm-omni/pull/3721) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-05-19 | - | 17 | 14 |
 | [[CI] Remove small resolution test in Qwen-Image Perf test when vae patch parallel is enabled](https://github.com/vllm-project/vllm-omni/pull/2872) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-17 | 2026-04-20 16:29:33 UTC | 0 | 16 |
 | [[Test] Qwen-Image Perf Test with High Concurrency ](https://github.com/vllm-project/vllm-omni/pull/2822) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-15 | 2026-05-26 02:56:02 UTC | 231 | 37 |
 | [[Bugfix] Update Flux2-dev & Dynin_omni L4 e2e test](https://github.com/vllm-project/vllm-omni/pull/2723) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-13 | 2026-04-13 12:50:39 UTC | 5 | 7 |
@@ -1315,7 +1315,7 @@ Scoring: Contribution score = 40% commit share + 35% review share + 25% log1p(ad
 | [[Diffusion][Feature] CFG parallel support for Qwen-Image](https://github.com/vllm-project/vllm-omni/pull/444) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-24 | 2026-01-06 09:34:50 UTC | 523 | 145 |
 | [[Diffusion][Bug-Fix]: Fix Ulysses SP Accurary Error](https://github.com/vllm-project/vllm-omni/pull/377) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-19 | 2025-12-22 09:48:39 UTC | 752 | 204 |
 | [[Diffusion]: Diffusion Ulysses-Sequence-Parallelism support](https://github.com/vllm-project/vllm-omni/pull/189) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-17 07:41:31 UTC | 3,515 | 63 |
-| **Total for Didan Deng** | | | | - | **18,364** | **3,731** |
+| **Total for Didan Deng** | | | | - | **18,366** | **3,733** |
 
 ### 👤 Junhong Liu (@LJH-LBJ) - HUAWEI - 总贡献: 25
 **代码变更**: +4,499 行添加, -2,151 行删除
