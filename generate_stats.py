@@ -16,12 +16,15 @@ USER_GROUPS = {
     "智谱": ["JaredforReal"],
     "Committer": ["Gaohan123", "hsliuustc0106", "david6666666", "gcanlin", "Isotr0py", "linyueqian", "lishunyang12", "princepride", "RuixiangMa", "SamitHuang", "tzhouam", "wtomin", "ZeldaHuang", "ZJY0516", "yuanheng-zhao", "Sy0307", "alex-jw-brooks"],
 }
+USER_LABELS = {}
+for affiliation, usernames in USER_GROUPS.items():
+    for username in usernames:
+        USER_LABELS.setdefault(username.strip(), []).append(affiliation)
+USERNAMES = list(USER_LABELS)
 USER_AFFILIATIONS = {
-    username.strip(): affiliation
-    for affiliation, usernames in USER_GROUPS.items()
-    for username in usernames
+    username: labels[0]
+    for username, labels in USER_LABELS.items()
 }
-USERNAMES = list(USER_AFFILIATIONS)
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
@@ -190,6 +193,12 @@ def format_number(num):
     """
     return f"{num:,}"
 
+def get_affiliation_labels(username):
+    return USER_LABELS.get(username, [USER_AFFILIATIONS.get(username, "Unknown")])
+
+def format_affiliation_labels(labels):
+    return ", ".join(labels)
+
 def summarize_by_affiliation(user_data):
     summaries = {}
 
@@ -204,25 +213,27 @@ def summarize_by_affiliation(user_data):
         }
 
     for user in user_data:
-        affiliation = user.get('affiliation', 'Unknown')
-        if affiliation not in summaries:
-            summaries[affiliation] = {
-                "users": 0,
-                "total_contributions": 0,
-                "open_prs": 0,
-                "merged_prs": 0,
-                "total_additions": 0,
-                "total_deletions": 0,
-            }
-
+        affiliations = user.get('affiliations') or [user.get('affiliation', 'Unknown')]
         stats = user['stats']
-        summary = summaries[affiliation]
-        summary["users"] += 1
-        summary["total_contributions"] += user['total_contributions']
-        summary["open_prs"] += stats['open_prs'].totalCount
-        summary["merged_prs"] += stats['merged_prs'].totalCount
-        summary["total_additions"] += user.get('total_additions', 0)
-        summary["total_deletions"] += user.get('total_deletions', 0)
+
+        for affiliation in affiliations:
+            if affiliation not in summaries:
+                summaries[affiliation] = {
+                    "users": 0,
+                    "total_contributions": 0,
+                    "open_prs": 0,
+                    "merged_prs": 0,
+                    "total_additions": 0,
+                    "total_deletions": 0,
+                }
+
+            summary = summaries[affiliation]
+            summary["users"] += 1
+            summary["total_contributions"] += user['total_contributions']
+            summary["open_prs"] += stats['open_prs'].totalCount
+            summary["merged_prs"] += stats['merged_prs'].totalCount
+            summary["total_additions"] += user.get('total_additions', 0)
+            summary["total_deletions"] += user.get('total_deletions', 0)
 
     return summaries
 
@@ -273,6 +284,7 @@ def _collect_release_window_stats(
         username: {
             "username": username,
             "affiliation": USER_AFFILIATIONS.get(username, "Unknown"),
+            "affiliations": get_affiliation_labels(username),
             "commit_count": 0,
             "review_count": 0,
             "reviewed_pr_count": 0,
@@ -291,12 +303,12 @@ def _collect_release_window_stats(
         if not login or login not in USER_AFFILIATIONS:
             continue
 
-        affiliation = USER_AFFILIATIONS[login]
         tracked_commits += 1
-        affiliation_stats[affiliation]["commit_count"] += 1
-        affiliation_stats[affiliation]["commit_users"][login] = (
-            affiliation_stats[affiliation]["commit_users"].get(login, 0) + 1
-        )
+        for affiliation in get_affiliation_labels(login):
+            affiliation_stats[affiliation]["commit_count"] += 1
+            affiliation_stats[affiliation]["commit_users"][login] = (
+                affiliation_stats[affiliation]["commit_users"].get(login, 0) + 1
+            )
         user_stats[login]["commit_count"] += 1
 
     start_date = base_time.strftime('%Y-%m-%d')
@@ -327,15 +339,16 @@ def _collect_release_window_stats(
                 if not reviewer or reviewer not in USER_AFFILIATIONS:
                     continue
 
-                affiliation = USER_AFFILIATIONS[reviewer]
                 tracked_reviews += 1
-                affiliation_stats[affiliation]["review_count"] += 1
-                affiliation_stats[affiliation]["review_users"][reviewer] = (
-                    affiliation_stats[affiliation]["review_users"].get(reviewer, 0) + 1
-                )
+                for affiliation in get_affiliation_labels(reviewer):
+                    affiliation_stats[affiliation]["review_count"] += 1
+                    affiliation_stats[affiliation]["review_users"][reviewer] = (
+                        affiliation_stats[affiliation]["review_users"].get(reviewer, 0) + 1
+                    )
                 user_stats[reviewer]["review_count"] += 1
                 reviewed_prs_by_user[reviewer].add(issue.number)
-                reviewed_prs_by_affiliation[affiliation].add(issue.number)
+                for affiliation in get_affiliation_labels(reviewer):
+                    reviewed_prs_by_affiliation[affiliation].add(issue.number)
         except Exception as e:
             print(f"    Error processing reviews for PR #{issue.number}: {e}")
             continue
@@ -740,7 +753,7 @@ def generate_markdown(user_data, last_release_stats=None, current_release_stats=
         total_contributions = user['total_contributions']
         user_additions = user.get('total_additions', 0)
         user_deletions = user.get('total_deletions', 0)
-        affiliation = user.get('affiliation', 'Unknown')
+        affiliation = format_affiliation_labels(user.get('affiliations') or [user.get('affiliation', 'Unknown')])
         
         # 显示用户名和显示名称，包含代码变更统计
         if display_name != username:
@@ -859,6 +872,12 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
             f'{escape(affiliation)}</button>'
         )
 
+    def affiliation_attr(labels):
+        return escape("|".join(labels), quote=True)
+
+    def affiliation_pills(labels):
+        return "".join(f'<span class="pill">{escape(label)}</span>' for label in labels)
+
     def render_release_section(release_stats, fallback_title):
         if not release_stats:
             return f"""
@@ -875,7 +894,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
         release_group_rows = []
         for affiliation, summary in release_stats["affiliations"].items():
             release_group_rows.append(f"""
-          <tr>
+          <tr data-affiliations="{escape(affiliation, quote=True)}">
             <td><span class="pill">{escape(affiliation)}</span></td>
             <td class="num">{format_number(summary['commit_count'])}</td>
             <td class="num">{format_number(summary['review_count'])}</td>
@@ -883,11 +902,12 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
           </tr>""")
 
         release_user_rows = []
-        for user in release_stats["users"][:30]:
+        for user in release_stats["users"]:
+            affiliations = user.get('affiliations') or [user.get('affiliation', 'Unknown')]
             release_user_rows.append(f"""
-          <tr>
+          <tr data-affiliations="{affiliation_attr(affiliations)}">
             <td class="person">@{escape(user['username'])}</td>
-            <td><span class="pill">{escape(user['affiliation'])}</span></td>
+            <td><div class="pill-list">{affiliation_pills(affiliations)}</div></td>
             <td class="num">{format_number(user['commit_count'])}</td>
             <td class="num">{format_number(user['review_count'])}</td>
             <td class="num">{format_number(user['reviewed_pr_count'])}</td>
@@ -951,18 +971,18 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
     for rank, user in enumerate(user_data, start=1):
         username = user['username']
         display_name = user['display_name']
-        affiliation = user.get('affiliation', 'Unknown')
+        affiliations = user.get('affiliations') or [user.get('affiliation', 'Unknown')]
         stats = user['stats']
         total = user['total_contributions']
         bar_width = (total / max_contributions * 100) if max_contributions else 0
         leaderboard_rows.append(f"""
-          <tr data-affiliation="{escape(affiliation, quote=True)}">
+          <tr data-affiliations="{affiliation_attr(affiliations)}">
             <td class="rank">{rank}</td>
             <td>
               <a class="person" href="https://github.com/{escape(username)}">{escape(display_name)}</a>
               <span class="muted">@{escape(username)}</span>
             </td>
-            <td><span class="pill">{escape(affiliation)}</span></td>
+            <td><div class="pill-list">{affiliation_pills(affiliations)}</div></td>
             <td class="num">{format_number(total)}</td>
             <td class="num">{format_number(stats['open_prs'].totalCount)}</td>
             <td class="num">{format_number(stats['merged_prs'].totalCount)}</td>
@@ -985,20 +1005,22 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
                     "deletions": getattr(pr, '_deletions', 0),
                     "user": user['username'],
                     "affiliation": user.get('affiliation', 'Unknown'),
+                    "affiliations": user.get('affiliations') or [user.get('affiliation', 'Unknown')],
                 })
 
     recent_prs.sort(key=lambda pr: pr["created_at"] or datetime.min, reverse=True)
     recent_rows = []
     for pr in recent_prs[:80]:
         created_date = pr["created_at"].strftime('%Y-%m-%d') if pr["created_at"] else "-"
+        affiliations = pr.get('affiliations') or [pr.get('affiliation', 'Unknown')]
         recent_rows.append(f"""
-          <tr data-affiliation="{escape(pr['affiliation'], quote=True)}">
+          <tr data-affiliations="{affiliation_attr(affiliations)}">
             <td>
               <a class="pr-title" href="{escape(pr['url'])}">{escape(pr['title'])}</a>
               <span class="muted">{escape(pr['repo'])}</span>
             </td>
             <td><span class="state {escape(pr['state'])}">{escape(pr['state'])}</span></td>
-            <td><span class="pill">{escape(pr['affiliation'])}</span></td>
+            <td><div class="pill-list">{affiliation_pills(affiliations)}</div></td>
             <td class="muted">@{escape(pr['user'])}</td>
             <td>{created_date}</td>
             <td class="num">+{format_number(pr['additions'])}</td>
@@ -1141,6 +1163,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
       white-space: nowrap;
     }}
     .pill {{ background: #fff; }}
+    .pill-list {{ display: flex; flex-wrap: wrap; gap: 6px; }}
     .state.open {{ background: #fff1b8; border-color: #b88a00; color: #644b00; }}
     .state.merged {{ background: #dff4e8; border-color: #4d9b70; color: #14552f; }}
     .bar {{ background: #e7ded0; height: 10px; min-width: 90px; overflow: hidden; }}
@@ -1181,11 +1204,11 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
       {''.join(group_cards)}
     </section>
 
-    {release_sections}
-
     <nav class="filters" aria-label="Filter by affiliation">
       {''.join(filter_buttons)}
     </nav>
+
+    {release_sections}
 
     <section class="section">
       <div class="section-head">
@@ -1235,14 +1258,15 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
   </main>
   <script>
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const filterableRows = document.querySelectorAll('tr[data-affiliation]');
+    const filterableRows = document.querySelectorAll('tr[data-affiliations]');
 
     filterButtons.forEach((button) => {{
       button.addEventListener('click', () => {{
         const filter = button.dataset.filter;
         filterButtons.forEach((item) => item.classList.toggle('active', item === button));
         filterableRows.forEach((row) => {{
-          row.hidden = filter !== 'all' && row.dataset.affiliation !== filter;
+          const labels = (row.dataset.affiliations || '').split('|');
+          row.hidden = filter !== 'all' && !labels.includes(filter);
         }});
       }});
     }});
@@ -1319,6 +1343,7 @@ if __name__ == "__main__":
             all_user_data.append({
                 "username": username,
                 "affiliation": USER_AFFILIATIONS.get(username, "Unknown"),
+                "affiliations": get_affiliation_labels(username),
                 "display_name": display_name,
                 "stats": stats,
                 "total_contributions": total_contributions,
@@ -1353,7 +1378,8 @@ if __name__ == "__main__":
         user_deletions = user.get('total_deletions', 0)
         total_all_additions += user_additions
         total_all_deletions += user_deletions
-        print(f"  {user['display_name']} (@{user['username']}, {user.get('affiliation', 'Unknown')}): {user['total_contributions']} contributions, +{format_number(user_additions)} -{format_number(user_deletions)}")
+        affiliations = format_affiliation_labels(user.get('affiliations') or [user.get('affiliation', 'Unknown')])
+        print(f"  {user['display_name']} (@{user['username']}, {affiliations}): {user['total_contributions']} contributions, +{format_number(user_additions)} -{format_number(user_deletions)}")
     
     print(f"\nOverall totals:")
     print(f"  Total contributions: {sum(user['total_contributions'] for user in all_user_data)}")
