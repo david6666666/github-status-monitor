@@ -1,6 +1,5 @@
 import os
 import re
-import math
 import requests
 import time
 from datetime import datetime, timezone
@@ -37,9 +36,9 @@ TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed README filename
 README_FILENAME = "README_data.md"
 CONTRIBUTION_WEIGHTS = {
-    "commit": 0.40,
+    "commit": 0.30,
     "review": 0.35,
-    "code": 0.25,
+    "code": 0.35,
 }
 # =======================================================================
 
@@ -209,7 +208,7 @@ def format_percent(value):
     return f"{value:.1f}%"
 
 def _code_line_weight(additions, deletions):
-    return math.log1p(max(additions, 0) + max(deletions, 0))
+    return max(additions, 0) + max(deletions, 0)
 
 def _stats_value(stats, name):
     if not stats:
@@ -253,10 +252,10 @@ def _score_release_items(items):
 
 def _release_score_note():
     return (
-        "Contribution score = 40% commit share + 35% review share + "
-        "25% log1p(additions + deletions) share. Commit share reflects delivery, "
-        "review share reflects quality influence, and code-line share reflects change scale "
-        "with log compression so large mechanical changes do not dominate."
+        "Contribution score = 30% commit share + 35% review share + "
+        "35% code churn share, where code churn is additions + deletions. "
+        "Commit share reflects delivery, review share reflects quality influence, "
+        "and code churn linearly reflects change scale."
     )
 
 def summarize_by_affiliation(user_data):
