@@ -1,5 +1,6 @@
 import os
 import re
+import math
 import requests
 import time
 from datetime import datetime, timezone
@@ -35,6 +36,11 @@ HTML_FILENAME = "stats_dashboard.html"
 TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed README filename
 README_FILENAME = "README_data.md"
+CONTRIBUTION_WEIGHTS = {
+    "commit": 0.40,
+    "review": 0.35,
+    "code": 0.25,
+}
 # =======================================================================
 
 def get_user_display_name(github_instance, username):
@@ -199,6 +205,60 @@ def get_affiliation_labels(username):
 def format_affiliation_labels(labels):
     return ", ".join(labels)
 
+def format_percent(value):
+    return f"{value:.1f}%"
+
+def _code_line_weight(additions, deletions):
+    return math.log1p(max(additions, 0) + max(deletions, 0))
+
+def _stats_value(stats, name):
+    if not stats:
+        return 0
+    if isinstance(stats, dict):
+        return stats.get(name, 0) or 0
+    return getattr(stats, name, 0) or 0
+
+def _get_commit_line_delta(repo, commit):
+    stats = getattr(commit, "stats", None)
+    if stats is None:
+        try:
+            stats = repo.get_commit(commit.sha).stats
+        except Exception as e:
+            print(f"    Error fetching code delta for commit {commit.sha}: {e}")
+            return 0, 0
+    return _stats_value(stats, "additions"), _stats_value(stats, "deletions")
+
+def _score_release_items(items):
+    total_commits = sum(item.get("commit_count", 0) for item in items)
+    total_reviews = sum(item.get("review_count", 0) for item in items)
+    total_code_weight = sum(item.get("code_line_weight", 0) for item in items)
+
+    for item in items:
+        commit_component = (
+            item.get("commit_count", 0) / total_commits * CONTRIBUTION_WEIGHTS["commit"] * 100
+            if total_commits else 0
+        )
+        review_component = (
+            item.get("review_count", 0) / total_reviews * CONTRIBUTION_WEIGHTS["review"] * 100
+            if total_reviews else 0
+        )
+        code_component = (
+            item.get("code_line_weight", 0) / total_code_weight * CONTRIBUTION_WEIGHTS["code"] * 100
+            if total_code_weight else 0
+        )
+        item["commit_component"] = commit_component
+        item["review_component"] = review_component
+        item["code_component"] = code_component
+        item["contribution_score"] = commit_component + review_component + code_component
+
+def _release_score_note():
+    return (
+        "Contribution score = 40% commit share + 35% review share + "
+        "25% log1p(additions + deletions) share. Commit share reflects delivery, "
+        "review share reflects quality influence, and code-line share reflects change scale "
+        "with log compression so large mechanical changes do not dominate."
+    )
+
 def summarize_by_affiliation(user_data):
     summaries = {}
 
@@ -243,6 +303,14 @@ def _empty_release_affiliation_stats():
             "commit_count": 0,
             "review_count": 0,
             "reviewed_pr_count": 0,
+            "additions": 0,
+            "deletions": 0,
+            "code_line_count": 0,
+            "code_line_weight": 0,
+            "commit_component": 0,
+            "review_component": 0,
+            "code_component": 0,
+            "contribution_score": 0,
             "commit_users": {},
             "review_users": {},
         }
@@ -288,6 +356,14 @@ def _collect_release_window_stats(
             "commit_count": 0,
             "review_count": 0,
             "reviewed_pr_count": 0,
+            "additions": 0,
+            "deletions": 0,
+            "code_line_count": 0,
+            "code_line_weight": 0,
+            "commit_component": 0,
+            "review_component": 0,
+            "code_component": 0,
+            "contribution_score": 0,
         }
         for username in USERNAMES
     }
@@ -303,13 +379,24 @@ def _collect_release_window_stats(
         if not login or login not in USER_AFFILIATIONS:
             continue
 
+        additions, deletions = _get_commit_line_delta(repo, commit)
+        code_line_count = additions + deletions
+        code_line_weight = _code_line_weight(additions, deletions)
         tracked_commits += 1
         for affiliation in get_affiliation_labels(login):
             affiliation_stats[affiliation]["commit_count"] += 1
+            affiliation_stats[affiliation]["additions"] += additions
+            affiliation_stats[affiliation]["deletions"] += deletions
+            affiliation_stats[affiliation]["code_line_count"] += code_line_count
+            affiliation_stats[affiliation]["code_line_weight"] += code_line_weight
             affiliation_stats[affiliation]["commit_users"][login] = (
                 affiliation_stats[affiliation]["commit_users"].get(login, 0) + 1
             )
         user_stats[login]["commit_count"] += 1
+        user_stats[login]["additions"] += additions
+        user_stats[login]["deletions"] += deletions
+        user_stats[login]["code_line_count"] += code_line_count
+        user_stats[login]["code_line_weight"] += code_line_weight
 
     start_date = base_time.strftime('%Y-%m-%d')
     end_date = end_time.strftime('%Y-%m-%d')
@@ -358,18 +445,36 @@ def _collect_release_window_stats(
     for username, pr_numbers in reviewed_prs_by_user.items():
         user_stats[username]["reviewed_pr_count"] = len(pr_numbers)
 
+    affiliation_items = list(affiliation_stats.values())
+    user_items = list(user_stats.values())
+    _score_release_items(affiliation_items)
+    _score_release_items(user_items)
+
     user_rows = [
         stats for stats in user_stats.values()
-        if stats["commit_count"] or stats["review_count"] or stats["reviewed_pr_count"]
+        if (
+            stats["commit_count"]
+            or stats["review_count"]
+            or stats["reviewed_pr_count"]
+            or stats["code_line_count"]
+        )
     ]
     user_rows.sort(
-        key=lambda item: (item["commit_count"] + item["review_count"], item["commit_count"]),
+        key=lambda item: (
+            item["contribution_score"],
+            item["commit_count"] + item["review_count"],
+            item["code_line_count"],
+        ),
         reverse=True,
     )
+    tracked_additions = sum(user["additions"] for user in user_stats.values())
+    tracked_deletions = sum(user["deletions"] for user in user_stats.values())
 
     print(
         f"  {section_title}: {base_release.tag_name} -> {head_ref}; "
-        f"tracked commits {tracked_commits}/{total_commits}, tracked reviews {tracked_reviews}/{total_reviews}"
+        f"tracked commits {tracked_commits}/{total_commits}, "
+        f"tracked reviews {tracked_reviews}/{total_reviews}, "
+        f"tracked code delta +{tracked_additions}/-{tracked_deletions}"
     )
 
     return {
@@ -386,6 +491,10 @@ def _collect_release_window_stats(
         "tracked_commits": tracked_commits,
         "total_reviews": total_reviews,
         "tracked_reviews": tracked_reviews,
+        "tracked_additions": tracked_additions,
+        "tracked_deletions": tracked_deletions,
+        "tracked_code_line_count": tracked_additions + tracked_deletions,
+        "score_note": _release_score_note(),
         "affiliations": affiliation_stats,
         "users": user_rows,
     }
@@ -703,15 +812,42 @@ def _append_release_markdown(markdown_text, release_stats, fallback_title):
         f"{format_number(release_stats['total_commits'])}; "
         f"Tracked reviews: {format_number(release_stats['tracked_reviews'])}/"
         f"{format_number(release_stats['total_reviews'])}; "
+        f"Tracked code delta: +{format_number(release_stats['tracked_additions'])}/"
+        f"-{format_number(release_stats['tracked_deletions'])}; "
         f"Merged PRs in window: {format_number(release_stats['merged_pr_count'])}\n\n"
     )
-    markdown_text += "| 归属 | Commit Count | Review Count | Reviewed PRs |\n"
-    markdown_text += "| ---- | ------------ | ------------ | ------------ |\n"
-    for affiliation, summary in release_stats["affiliations"].items():
+    markdown_text += f"Scoring: {release_stats['score_note']}\n\n"
+    markdown_text += "| Affiliation | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |\n"
+    markdown_text += "| ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |\n"
+    affiliation_rows = sorted(
+        release_stats["affiliations"].items(),
+        key=lambda item: item[1]["contribution_score"],
+        reverse=True,
+    )
+    for affiliation, summary in affiliation_rows:
         markdown_text += (
-            f"| {affiliation} | {format_number(summary['commit_count'])} | "
+            f"| {affiliation} | {format_percent(summary['contribution_score'])} | "
+            f"{format_number(summary['commit_count'])} | "
             f"{format_number(summary['review_count'])} | "
-            f"{format_number(summary['reviewed_pr_count'])} |\n"
+            f"{format_number(summary['reviewed_pr_count'])} | "
+            f"{format_number(summary['additions'])} | "
+            f"{format_number(summary['deletions'])} | "
+            f"{format_number(summary['code_line_count'])} |\n"
+        )
+    markdown_text += "\n"
+    markdown_text += "| User | Labels | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |\n"
+    markdown_text += "| ---- | ------ | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |\n"
+    for user in release_stats["users"]:
+        labels = format_affiliation_labels(user.get('affiliations') or [user.get('affiliation', 'Unknown')])
+        markdown_text += (
+            f"| @{user['username']} | {labels} | "
+            f"{format_percent(user['contribution_score'])} | "
+            f"{format_number(user['commit_count'])} | "
+            f"{format_number(user['review_count'])} | "
+            f"{format_number(user['reviewed_pr_count'])} | "
+            f"{format_number(user['additions'])} | "
+            f"{format_number(user['deletions'])} | "
+            f"{format_number(user['code_line_count'])} |\n"
         )
     markdown_text += "\n"
     return markdown_text
@@ -892,13 +1028,25 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
     </section>"""
 
         release_group_rows = []
-        for affiliation, summary in release_stats["affiliations"].items():
+        affiliation_rows = sorted(
+            release_stats["affiliations"].items(),
+            key=lambda item: item[1]["contribution_score"],
+            reverse=True,
+        )
+        for affiliation, summary in affiliation_rows:
             release_group_rows.append(f"""
           <tr data-affiliations="{escape(affiliation, quote=True)}">
             <td><span class="pill">{escape(affiliation)}</span></td>
+            <td class="num">{format_percent(summary['contribution_score'])}</td>
+            <td class="num">{format_percent(summary['commit_component'])}</td>
+            <td class="num">{format_percent(summary['review_component'])}</td>
+            <td class="num">{format_percent(summary['code_component'])}</td>
             <td class="num">{format_number(summary['commit_count'])}</td>
             <td class="num">{format_number(summary['review_count'])}</td>
             <td class="num">{format_number(summary['reviewed_pr_count'])}</td>
+            <td class="num">+{format_number(summary['additions'])}</td>
+            <td class="num">-{format_number(summary['deletions'])}</td>
+            <td class="num">{format_number(summary['code_line_count'])}</td>
           </tr>""")
 
         release_user_rows = []
@@ -908,9 +1056,16 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
           <tr data-affiliations="{affiliation_attr(affiliations)}">
             <td class="person">@{escape(user['username'])}</td>
             <td><div class="pill-list">{affiliation_pills(affiliations)}</div></td>
+            <td class="num">{format_percent(user['contribution_score'])}</td>
+            <td class="num">{format_percent(user['commit_component'])}</td>
+            <td class="num">{format_percent(user['review_component'])}</td>
+            <td class="num">{format_percent(user['code_component'])}</td>
             <td class="num">{format_number(user['commit_count'])}</td>
             <td class="num">{format_number(user['review_count'])}</td>
             <td class="num">{format_number(user['reviewed_pr_count'])}</td>
+            <td class="num">+{format_number(user['additions'])}</td>
+            <td class="num">-{format_number(user['deletions'])}</td>
+            <td class="num">{format_number(user['code_line_count'])}</td>
           </tr>""")
 
         return f"""
@@ -927,18 +1082,20 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
         <div class="metric"><span>{escape(release_stats['headline_label'])}</span><strong>{escape(release_stats['headline_value'])}</strong></div>
         <div class="metric"><span>Tracked commits</span><strong>{format_number(release_stats['tracked_commits'])}</strong></div>
         <div class="metric"><span>Tracked reviews</span><strong>{format_number(release_stats['tracked_reviews'])}</strong></div>
+        <div class="metric"><span>Tracked code delta</span><strong>+{format_number(release_stats['tracked_additions'])} / -{format_number(release_stats['tracked_deletions'])}</strong></div>
         <div class="metric"><span>Merged PRs</span><strong>{format_number(release_stats['merged_pr_count'])}</strong></div>
       </div>
+      <p class="score-note">{escape(release_stats['score_note'])}</p>
       <div class="release-tables">
         <div class="table-panel">
           <table>
-            <thead><tr><th>Affiliation</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th></tr></thead>
+            <thead><tr><th>Affiliation</th><th class="num">Contribution</th><th class="num">Commit pts</th><th class="num">Review pts</th><th class="num">Code pts</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th><th class="num">Add</th><th class="num">Del</th><th class="num">Lines</th></tr></thead>
             <tbody>{''.join(release_group_rows)}</tbody>
           </table>
         </div>
         <div class="table-panel">
           <table>
-            <thead><tr><th>User</th><th>Affiliation</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th></tr></thead>
+            <thead><tr><th>User</th><th>Affiliation</th><th class="num">Contribution</th><th class="num">Commit pts</th><th class="num">Review pts</th><th class="num">Code pts</th><th class="num">Commits</th><th class="num">Reviews</th><th class="num">Reviewed PRs</th><th class="num">Add</th><th class="num">Del</th><th class="num">Lines</th></tr></thead>
             <tbody>{''.join(release_user_rows)}</tbody>
           </table>
         </div>
@@ -1120,8 +1277,16 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
       color: #fffaf0;
     }}
     .groups {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }}
-    .release-grid {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }}
+    .release-grid {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }}
     .release-tables {{ display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 12px; }}
+    .score-note {{
+      background: rgba(255, 250, 240, 0.74);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font: 12px/1.55 "Trebuchet MS", sans-serif;
+      margin: 0 0 12px;
+      padding: 12px 14px;
+    }}
     .group-card {{
       background: var(--panel-strong);
       border: 1px solid var(--ink);
@@ -1138,6 +1303,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
       box-shadow: var(--shadow);
       overflow: hidden;
     }}
+    .release-tables .table-panel {{ overflow-x: auto; }}
     .release-empty {{ color: var(--muted); padding: 18px; }}
     .chart-panel {{ padding: 18px; }}
     .chart-panel img {{ display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }}
