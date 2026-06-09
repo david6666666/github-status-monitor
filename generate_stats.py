@@ -1191,148 +1191,201 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
   <title>{escape(TARGET_REPO)} PR Contribution Dashboard</title>
   <style>
     :root {{
-      --bg: #f6f2ea;
-      --ink: #171411;
-      --muted: #6d665e;
-      --line: #d8d0c4;
-      --panel: #fffaf0;
-      --panel-strong: #fff4d9;
-      --accent: #006b5f;
-      --accent-2: #bb3e03;
-      --shadow: 0 24px 60px rgba(48, 39, 27, 0.12);
+      --bg: #f3efe5;
+      --surface: #fffdfa;
+      --surface-2: #f8f3e8;
+      --ink: #151516;
+      --muted: #6c665c;
+      --line: #d9d1c2;
+      --line-strong: #1f1f1f;
+      --green: #00796b;
+      --amber: #b76500;
+      --red: #b83f35;
+      --blue: #315c98;
+      --shadow: 0 18px 44px rgba(34, 30, 23, 0.11);
     }}
     * {{ box-sizing: border-box; }}
+    html {{ scroll-behavior: smooth; }}
     body {{
       margin: 0;
       background:
-        linear-gradient(90deg, rgba(23,20,17,0.035) 1px, transparent 1px),
-        linear-gradient(rgba(23,20,17,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21,21,22,0.045) 1px, transparent 1px),
+        linear-gradient(rgba(21,21,22,0.04) 1px, transparent 1px),
+        radial-gradient(circle at 0 0, rgba(0,121,107,0.10), transparent 34%),
         var(--bg);
-      background-size: 28px 28px;
+      background-size: 32px 32px, 32px 32px, 100% 620px, auto;
       color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "Aptos", "Bahnschrift", "Segoe UI", sans-serif;
     }}
     a {{ color: inherit; text-decoration: none; }}
-    .shell {{ width: min(1480px, calc(100% - 40px)); margin: 0 auto; padding: 34px 0 56px; }}
+    .shell {{ width: min(1560px, calc(100% - 36px)); margin: 0 auto; padding: 22px 0 48px; }}
     .topline {{
       align-items: center;
-      border-bottom: 1px solid var(--line);
+      background: rgba(255,253,250,0.82);
+      border: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      padding-bottom: 14px;
+      padding: 12px 14px;
+      position: sticky;
+      top: 12px;
+      z-index: 8;
+      backdrop-filter: blur(14px);
     }}
-    .mark {{ font: 700 13px/1.1 "Trebuchet MS", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }}
-    .timestamp {{ color: var(--muted); font: 12px/1.4 "Trebuchet MS", sans-serif; }}
-    .hero {{ display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 28px; padding: 42px 0 26px; }}
+    .mark {{ font: 800 12px/1.1 "Bahnschrift", "Aptos", sans-serif; letter-spacing: 0.13em; text-transform: uppercase; }}
+    .timestamp {{ color: var(--muted); font: 12px/1.4 "Aptos", sans-serif; }}
+    .hero {{
+      align-items: stretch;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.85fr);
+      gap: 18px;
+      padding: 28px 0 18px;
+    }}
     h1 {{
-      font-size: clamp(42px, 7vw, 104px);
-      line-height: 0.88;
-      margin: 0;
-      max-width: 900px;
+      align-self: end;
+      font: 800 clamp(42px, 6vw, 92px)/0.92 "Bahnschrift", "Aptos", sans-serif;
       letter-spacing: 0;
+      margin: 0;
+      max-width: 920px;
     }}
     .summary-strip {{
-      align-self: end;
+      align-self: stretch;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }}
     .metric {{
-      background: var(--panel);
+      background: linear-gradient(180deg, rgba(255,253,250,0.98), rgba(248,243,232,0.96));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      min-height: 118px;
-      padding: 18px;
+      min-height: 104px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
     }}
+    .metric::before {{
+      background: var(--green);
+      content: "";
+      height: 4px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }}
+    .release-grid .metric:nth-child(2)::before {{ background: var(--blue); }}
+    .release-grid .metric:nth-child(3)::before {{ background: var(--amber); }}
+    .release-grid .metric:nth-child(4)::before {{ background: var(--red); }}
     .metric span, .eyebrow, th, .muted, dt {{
       color: var(--muted);
-      font: 700 11px/1.35 "Trebuchet MS", sans-serif;
+      font: 800 10px/1.35 "Bahnschrift", "Aptos", sans-serif;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }}
-    .metric strong {{ display: block; font-size: clamp(28px, 4vw, 54px); line-height: 1; margin-top: 14px; }}
-    .section {{ margin-top: 22px; }}
-    .section-head {{ align-items: end; display: flex; justify-content: space-between; gap: 18px; margin-bottom: 12px; }}
-    h2 {{ font-size: clamp(24px, 3vw, 42px); line-height: 1; margin: 0; }}
+    .metric strong {{ display: block; font: 800 clamp(24px, 3vw, 42px)/1 "Bahnschrift", "Aptos", sans-serif; margin-top: 13px; }}
+    .section {{ margin-top: 18px; }}
+    .section-head {{
+      align-items: end;
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+    }}
+    h2 {{ font: 800 clamp(22px, 2.5vw, 34px)/1 "Bahnschrift", "Aptos", sans-serif; margin: 0; }}
     .filters {{
       align-items: center;
+      background: rgba(255,253,250,0.88);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(34,30,23,0.08);
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 22px 0 0;
+      gap: 8px;
+      margin: 10px 0 18px;
+      padding: 10px;
+      position: sticky;
+      top: 72px;
+      z-index: 7;
+      backdrop-filter: blur(14px);
     }}
     .filter-btn {{
-      background: #fffaf0;
-      border: 1px solid var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
       color: var(--ink);
       cursor: pointer;
-      font: 700 12px/1 "Trebuchet MS", sans-serif;
-      padding: 11px 14px;
+      font: 800 11px/1 "Bahnschrift", "Aptos", sans-serif;
+      padding: 10px 12px;
       text-transform: uppercase;
+      transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
     }}
     .filter-btn.active, .filter-btn:hover {{
       background: var(--ink);
-      color: #fffaf0;
+      border-color: var(--ink);
+      color: var(--surface);
     }}
-    .groups {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }}
-    .release-grid {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }}
-    .release-tables {{ display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 12px; }}
+    .groups {{ display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }}
+    .release-grid {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }}
+    .release-tables {{ display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 12px; }}
     .score-note {{
-      background: rgba(255, 250, 240, 0.74);
-      border: 1px solid var(--line);
+      background: rgba(21,21,22,0.035);
+      border-left: 4px solid var(--green);
       color: var(--muted);
-      font: 12px/1.55 "Trebuchet MS", sans-serif;
+      font: 12px/1.55 "Aptos", sans-serif;
       margin: 0 0 12px;
-      padding: 12px 14px;
+      padding: 10px 12px;
     }}
     .group-card {{
-      background: var(--panel-strong);
-      border: 1px solid var(--ink);
-      box-shadow: 8px 8px 0 var(--ink);
-      min-height: 180px;
-      padding: 17px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 142px;
+      padding: 14px;
     }}
-    .group-card h3 {{ font-size: 42px; line-height: 1; margin: 12px 0 24px; }}
-    dl {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0; }}
-    dd {{ font-size: 22px; margin: 4px 0 0; }}
+    .group-card h3 {{ font: 800 34px/1 "Bahnschrift", "Aptos", sans-serif; margin: 10px 0 18px; }}
+    dl {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px; margin: 0; }}
+    dd {{ font: 800 18px/1 "Bahnschrift", "Aptos", sans-serif; margin: 4px 0 0; }}
     .chart-panel, .table-panel {{
-      background: rgba(255, 250, 240, 0.88);
+      background: rgba(255,253,250,0.94);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       overflow: hidden;
     }}
     .release-tables .table-panel {{ overflow-x: auto; }}
     .release-empty {{ color: var(--muted); padding: 18px; }}
-    .chart-panel {{ padding: 18px; }}
+    .chart-panel {{ padding: 12px; }}
     .chart-panel img {{ display: block; width: 100%; height: auto; background: white; border: 1px solid var(--line); }}
     .chart-svg {{ background: white; border: 1px solid var(--line); overflow-x: auto; }}
     .chart-svg svg {{ display: block; height: auto; max-width: none; width: 100%; }}
     .chart-placeholder {{ background: white; border: 1px solid var(--line); color: var(--muted); padding: 22px; }}
-    table {{ border-collapse: collapse; width: 100%; }}
-    th, td {{ border-bottom: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: middle; }}
-    th {{ background: #eee5d7; position: sticky; top: 0; z-index: 1; }}
-    tbody tr:hover {{ background: #fff3d4; }}
+    table {{ border-collapse: collapse; min-width: 100%; width: 100%; }}
+    th, td {{ border-bottom: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: middle; }}
+    th {{
+      background: #ebe4d6;
+      box-shadow: inset 0 -1px 0 var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }}
+    tbody tr:hover {{ background: #fff4d1; }}
     tr[hidden] {{ display: none; }}
     .num {{ font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }}
-    .rank {{ color: var(--accent-2); font-size: 22px; font-weight: 700; width: 58px; }}
-    .person, .pr-title {{ font-weight: 700; }}
-    .person:hover, .pr-title:hover {{ color: var(--accent); }}
+    .rank {{ color: var(--red); font: 800 20px/1 "Bahnschrift", "Aptos", sans-serif; width: 58px; }}
+    .person, .pr-title {{ font-weight: 800; }}
+    .person:hover, .pr-title:hover {{ color: var(--green); }}
     .muted {{ display: block; margin-top: 3px; text-transform: none; letter-spacing: 0; }}
     .pill, .state {{
       border: 1px solid var(--line);
-      border-radius: 999px;
       display: inline-flex;
-      font: 700 11px/1 "Trebuchet MS", sans-serif;
-      padding: 7px 9px;
+      font: 800 10px/1 "Bahnschrift", "Aptos", sans-serif;
+      padding: 6px 8px;
       white-space: nowrap;
     }}
     .pill {{ background: #fff; }}
-    .pill-list {{ display: flex; flex-wrap: wrap; gap: 6px; }}
-    .state.open {{ background: #fff1b8; border-color: #b88a00; color: #644b00; }}
-    .state.merged {{ background: #dff4e8; border-color: #4d9b70; color: #14552f; }}
-    .bar {{ background: #e7ded0; height: 10px; min-width: 90px; overflow: hidden; }}
-    .bar span {{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); display: block; height: 100%; }}
+    .pill-list {{ display: flex; flex-wrap: wrap; gap: 5px; }}
+    .state.open {{ background: #fff0bd; border-color: #c99000; color: #654800; }}
+    .state.merged {{ background: #dff3e8; border-color: #3b956b; color: #145331; }}
+    .bar {{ background: #e2dbcf; height: 9px; min-width: 90px; overflow: hidden; }}
+    .bar span {{ background: linear-gradient(90deg, var(--green), var(--amber)); display: block; height: 100%; }}
     .table-scroll {{ max-height: 760px; overflow: auto; }}
     @media (max-width: 980px) {{
       .hero {{ grid-template-columns: 1fr; }}
@@ -1365,15 +1418,15 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
       </div>
     </section>
 
-    <section class="section groups">
-      {''.join(group_cards)}
-    </section>
-
     <nav class="filters" aria-label="Filter by affiliation">
       {''.join(filter_buttons)}
     </nav>
 
     {release_sections}
+
+    <section class="section groups">
+      {''.join(group_cards)}
+    </section>
 
     <section class="section">
       <div class="section-head">
