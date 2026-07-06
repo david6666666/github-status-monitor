@@ -1,6 +1,6 @@
 # Enhanced GitHub Stats Report - vllm-project/vllm-omni
 
-Generated on: 2026-07-05 02:56:39 UTC
+Generated on: 2026-07-06 03:13:25 UTC
 
 **统计范围**: vllm-project/vllm-omni 仓库的所有 PR 贡献（包含代码变更统计）
 
@@ -12,18 +12,18 @@ Generated on: 2026-07-05 02:56:39 UTC
 
 总共追踪了 48 个用户在 vllm-project/vllm-omni 仓库中的贡献情况。
 
-**总代码变更统计**: +786,897 行添加, -205,206 行删除
+**总代码变更统计**: +787,556 行添加, -205,673 行删除
 
 ## 按归属统计
 
 | 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |
 | ---- | ------ | --------- | -------- | ---------- | --------- | --------- |
-| HUAWEI | 33 | 828 | 61 | 767 | 398,803 | 101,377 |
-| 阿里PAI | 3 | 77 | 6 | 71 | 181,519 | 42,619 |
+| HUAWEI | 33 | 829 | 61 | 768 | 398,949 | 101,391 |
+| 阿里PAI | 3 | 78 | 7 | 71 | 181,720 | 42,695 |
 | 蚂蚁 | 1 | 3 | 0 | 3 | 79 | 6 |
 | 小米 | 1 | 14 | 0 | 14 | 9,728 | 183 |
 | 智谱 | 1 | 6 | 0 | 6 | 9,053 | 2,505 |
-| Committer | 17 | 876 | 63 | 813 | 526,240 | 140,192 |
+| Committer | 17 | 879 | 63 | 816 | 526,753 | 140,645 |
 
 ## Last Release Contributions
 
@@ -87,51 +87,51 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 ## Current Release Contributions
 
 区间: [v0.22.0...main](https://github.com/vllm-project/vllm-omni/compare/v0.22.0...main)  
-时间: 2026-06-06 01:45:45 UTC -> 2026-07-05 02:40:42 UTC
+时间: 2026-06-06 01:45:45 UTC -> 2026-07-06 02:54:33 UTC
 
-Tracked commits: 120/276; Tracked reviews: 890/1,146; Tracked code delta: +52,366/-17,797; Merged PRs in window: 279
+Tracked commits: 124/282; Tracked reviews: 903/1,162; Tracked code delta: +52,729/-17,837; Merged PRs in window: 285
 
 Scoring: Contribution score = 30% commit share + 35% review share + 35% code churn share, where code churn is additions + deletions. Commit share reflects delivery, review share reflects quality influence, and code churn linearly reflects change scale.
 
 | Affiliation | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| Committer | 50.6% | 68 | 749 | 238 | 33,806 | 11,620 | 45,426 |
-| HUAWEI | 45.0% | 77 | 628 | 200 | 26,662 | 8,137 | 34,799 |
-| 阿里PAI | 4.4% | 8 | 16 | 11 | 4,328 | 1,525 | 5,853 |
+| Committer | 50.8% | 71 | 761 | 244 | 34,023 | 11,646 | 45,669 |
+| HUAWEI | 44.9% | 78 | 640 | 206 | 26,808 | 8,151 | 34,959 |
+| 阿里PAI | 4.3% | 8 | 16 | 11 | 4,328 | 1,525 | 5,853 |
 | 蚂蚁 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 | 小米 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 | 智谱 | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 |
 
 | User | Labels | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |
 | ---- | ------ | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |
-| @hsliuustc0106 | HUAWEI, Committer | 16.7% | 8 | 346 | 164 | 1,710 | 411 | 2,121 |
-| @yenuo26 | HUAWEI | 8.2% | 15 | 21 | 14 | 4,368 | 2,829 | 7,197 |
-| @princepride | Committer | 7.0% | 5 | 28 | 18 | 5,923 | 3,392 | 9,315 |
-| @linyueqian | Committer | 6.3% | 10 | 56 | 39 | 2,209 | 1,043 | 3,252 |
-| @lishunyang12 | Committer | 6.0% | 5 | 47 | 23 | 5,683 | 44 | 5,727 |
+| @hsliuustc0106 | HUAWEI, Committer | 16.4% | 8 | 346 | 164 | 1,710 | 411 | 2,121 |
+| @yenuo26 | HUAWEI | 8.1% | 15 | 22 | 15 | 4,368 | 2,829 | 7,197 |
+| @princepride | Committer | 7.4% | 7 | 29 | 19 | 5,933 | 3,397 | 9,330 |
+| @linyueqian | Committer | 6.6% | 11 | 56 | 39 | 2,416 | 1,064 | 3,480 |
+| @lishunyang12 | Committer | 5.9% | 5 | 47 | 23 | 5,683 | 44 | 5,727 |
 | @Sy0307 | 阿里PAI, Committer | 5.5% | 8 | 16 | 11 | 4,328 | 1,525 | 5,853 |
-| @alex-jw-brooks | Committer | 5.3% | 6 | 23 | 11 | 2,727 | 3,121 | 5,848 |
+| @alex-jw-brooks | Committer | 5.2% | 6 | 23 | 11 | 2,727 | 3,121 | 5,848 |
 | @tzhouam | HUAWEI, Committer | 5.2% | 5 | 30 | 4 | 5,085 | 516 | 5,601 |
-| @gcanlin | Committer | 5.0% | 2 | 53 | 18 | 4,464 | 301 | 4,765 |
-| @david6666666 | HUAWEI, Committer | 4.4% | 8 | 48 | 26 | 928 | 34 | 962 |
-| @fhfuih | HUAWEI | 3.9% | 3 | 4 | 4 | 4,786 | 1,147 | 5,933 |
+| @gcanlin | Committer | 4.9% | 2 | 53 | 18 | 4,464 | 301 | 4,765 |
+| @david6666666 | HUAWEI, Committer | 4.3% | 8 | 48 | 26 | 928 | 34 | 962 |
+| @fhfuih | HUAWEI | 3.8% | 3 | 4 | 4 | 4,786 | 1,147 | 5,933 |
 | @amy-why-3459 | HUAWEI | 3.8% | 6 | 30 | 14 | 1,744 | 570 | 2,314 |
-| @yuanheng-zhao | Committer | 3.0% | 6 | 30 | 14 | 327 | 219 | 546 |
+| @Gaohan123 | HUAWEI, Committer | 3.1% | 1 | 58 | 48 | 226 | 980 | 1,206 |
+| @yuanheng-zhao | Committer | 2.9% | 6 | 30 | 14 | 327 | 219 | 546 |
 | @R2-Y | HUAWEI | 2.9% | 4 | 10 | 1 | 2,983 | 50 | 3,033 |
-| @Gaohan123 | HUAWEI, Committer | 2.8% | 1 | 50 | 42 | 226 | 980 | 1,206 |
+| @TaffyOfficial | HUAWEI | 1.9% | 4 | 2 | 1 | 1,604 | 97 | 1,701 |
 | @Bounty-hunter | HUAWEI | 1.7% | 3 | 24 | 11 | 17 | 7 | 24 |
-| @congw729 | HUAWEI | 1.7% | 2 | 22 | 8 | 312 | 270 | 582 |
-| @TaffyOfficial | HUAWEI | 1.6% | 3 | 2 | 1 | 1,458 | 83 | 1,541 |
+| @congw729 | HUAWEI | 1.6% | 2 | 22 | 8 | 312 | 270 | 582 |
 | @NumberWan | HUAWEI | 1.5% | 2 | 2 | 2 | 1,042 | 887 | 1,929 |
 | @bjf-frz | HUAWEI | 1.5% | 4 | 6 | 2 | 476 | 58 | 534 |
+| @SamitHuang | HUAWEI, Committer | 1.1% | 3 | 7 | 4 | 153 | 19 | 172 |
 | @fake0fan | HUAWEI | 1.1% | 1 | 4 | 2 | 1,131 | 195 | 1,326 |
 | @zengchuang-hw | HUAWEI | 1.0% | 3 | 5 | 1 | 141 | 52 | 193 |
-| @SamitHuang | HUAWEI, Committer | 1.0% | 3 | 5 | 3 | 153 | 19 | 172 |
-| @Shirley125 | HUAWEI | 0.9% | 3 | 3 | 3 | 3 | 2 | 5 |
+| @Shirley125 | HUAWEI | 0.8% | 3 | 3 | 3 | 3 | 2 | 5 |
 | @RuixiangMa | Committer | 0.6% | 1 | 8 | 7 | 43 | 15 | 58 |
 | @yangjianjuan | HUAWEI | 0.4% | 1 | 3 | 2 | 19 | 22 | 41 |
 | @LJH-LBJ | HUAWEI | 0.4% | 1 | 2 | 1 | 59 | 5 | 64 |
-| @wtomin | HUAWEI, Committer | 0.3% | 0 | 8 | 6 | 0 | 0 | 0 |
+| @wtomin | HUAWEI, Committer | 0.3% | 0 | 9 | 7 | 0 | 0 | 0 |
 | @natureofnature | HUAWEI | 0.3% | 1 | 1 | 1 | 21 | 0 | 21 |
 | @chickeyton | HUAWEI | 0.1% | 0 | 2 | 1 | 0 | 0 | 0 |
 | @ZJY0516 | Committer | 0.0% | 0 | 1 | 1 | 0 | 0 | 0 |
@@ -243,12 +243,13 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Bugfix] Qwen2.5-omni Qwen3-omni online gradio.py example fix](https://github.com/vllm-project/vllm-omni/pull/249) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-09 | 2025-12-09 09:38:12 UTC | 102 | 10 |
 | **Total for WeiQing Chen** | | | | - | **26,950** | **3,280** |
 
-### 👤 Yueqian Lin (@linyueqian) - Committer - 总贡献: 92
-**代码变更**: +42,074 行添加, -15,368 行删除
+### 👤 Yueqian Lin (@linyueqian) - Committer - 总贡献: 93
+**代码变更**: +42,281 行添加, -15,389 行删除
 
-**Pull Requests (10 open, 82 merged)**
+**Pull Requests (10 open, 83 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Bugfix][Qwen3-TTS] Keep seeded residual MTP sampling batched](https://github.com/vllm-project/vllm-omni/pull/4889) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-05 | 2026-07-05 13:47:07 UTC | 207 | 21 |
 | [[Perf][Qwen3-TTS] Skip per-step hidden-state D2H via hidden pooler payload opt-out](https://github.com/vllm-project/vllm-omni/pull/4879) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-04 | - | 7 | 1 |
 | [[Refactor] fish_speech: vendor DAC codec modules, drop external fish-speech dependency](https://github.com/vllm-project/vllm-omni/pull/4871) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-04 | - | 1,513 | 36 |
 | [[Feature] PersonaPlex (Moshi-based full-duplex S2S): native vLLM port + duplex serving](https://github.com/vllm-project/vllm-omni/pull/4771) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-28 | - | 4,094 | 4 |
@@ -341,7 +342,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Model] Add Wan2.2 I2V and TI2V pipeline support](https://github.com/vllm-project/vllm-omni/pull/329) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-16 | 2025-12-25 08:45:13 UTC | 1,752 | 29 |
 | [[Model] Add Wan2.2 text-to-video support](https://github.com/vllm-project/vllm-omni/pull/202) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-11 02:38:05 UTC | 1,296 | 0 |
 | [[Misc] Add stage config for Qwen3-Omni-30B-A3B-Thinking](https://github.com/vllm-project/vllm-omni/pull/172) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-03 | 2025-12-04 16:41:58 UTC | 36 | 0 |
-| **Total for Yueqian Lin** | | | | - | **42,074** | **15,368** |
+| **Total for Yueqian Lin** | | | | - | **42,281** | **15,389** |
 
 ### 👤 wangyu (@yenuo26) - HUAWEI - 总贡献: 84
 **代码变更**: +51,619 行添加, -19,867 行删除
@@ -525,13 +526,14 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Feat] Add NPU Backend support for vLLM-Omni](https://github.com/vllm-project/vllm-omni/pull/89) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-26 | 2025-11-30 12:39:06 UTC | 2,933 | 86 |
 | **Total for Canlin Guo** | | | | - | **24,886** | **8,991** |
 
-### 👤 汪志鹏 (@princepride) - Committer - 总贡献: 60
-**代码变更**: +30,910 行添加, -6,910 行删除
+### 👤 汪志鹏 (@princepride) - Committer - 总贡献: 61
+**代码变更**: +30,909 行添加, -6,910 行删除
 
-**Pull Requests (1 open, 59 merged)**
+**Pull Requests (0 open, 61 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[BugFix]: fix #3236 bug](https://github.com/vllm-project/vllm-omni/pull/4877) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-04 | - | 11 | 5 |
+| [[BugFix] Preserve diffusion extra_body params for out-of-process CFG Parallel](https://github.com/vllm-project/vllm-omni/pull/4900) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-05 | 2026-07-05 17:06:30 UTC | 8 | 0 |
+| [[BugFix]: Add vae_use_tiling in magi_human test](https://github.com/vllm-project/vllm-omni/pull/4877) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-04 | 2026-07-05 17:26:10 UTC | 2 | 5 |
 | [[Feature]: Migrate magi human example](https://github.com/vllm-project/vllm-omni/pull/4572) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-19 | 2026-06-22 07:17:01 UTC | 163 | 227 |
 | [[Feature]Migrate helios example](https://github.com/vllm-project/vllm-omni/pull/4569) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-19 | 2026-06-21 07:37:17 UTC | 328 | 1,394 |
 | [[BugFix]: Fix Bagel generate_image denoising schedule](https://github.com/vllm-project/vllm-omni/pull/4509) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-17 | 2026-06-18 02:02:39 UTC | 30 | 15 |
@@ -591,7 +593,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Doc]Fixed some spelling errors](https://github.com/vllm-project/vllm-omni/pull/199) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-04 16:43:28 UTC | 6 | 6 |
 | [[FixBug]online serving fails for high-resolution videos](https://github.com/vllm-project/vllm-omni/pull/198) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-04 | 2025-12-05 02:29:02 UTC | 2 | 2 |
 | [[Doc] change `vllm_omni`  to `vllm-omni`](https://github.com/vllm-project/vllm-omni/pull/177) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-03 | 2025-12-03 09:43:59 UTC | 2 | 2 |
-| **Total for 汪志鹏** | | | | - | **30,910** | **6,910** |
+| **Total for 汪志鹏** | | | | - | **30,909** | **6,910** |
 
 ### 👤 Zhou Taichang (@tzhouam) - HUAWEI, Committer - 总贡献: 59
 **代码变更**: +56,212 行添加, -12,575 行删除
@@ -789,14 +791,14 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | **Total for amy-why-3459** | | | | - | **10,650** | **3,912** |
 
 ### 👤 Alex Brooks (@alex-jw-brooks) - Committer - 总贡献: 55
-**代码变更**: +12,051 行添加, -10,018 行删除
+**代码变更**: +12,116 行添加, -10,280 行删除
 
 **Pull Requests (9 open, 46 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
 | [[Bugfix] Realign Serving Tokenization Name to Fix Error Handling Routes](https://github.com/vllm-project/vllm-omni/pull/4816) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-01 | 2026-07-02 07:23:35 UTC | 9 | 9 |
 | [[Core / Bugfix] Add Mechanism for Endpoint Rejection](https://github.com/vllm-project/vllm-omni/pull/4762) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-27 | - | 509 | 159 |
-| [[Tests] Tiny Diffusion Model Pattern](https://github.com/vllm-project/vllm-omni/pull/4524) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-18 | - | 744 | 1 |
+| [[Tests] Tiny Diffusion Model Pattern](https://github.com/vllm-project/vllm-omni/pull/4524) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-18 | - | 809 | 263 |
 | [[Fix]: Set .transformer on SenseNova pipeline, warn if no .transformer in CacheDiT summary](https://github.com/vllm-project/vllm-omni/pull/4326) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-10 | 2026-07-01 17:40:08 UTC | 14 | 2 |
 | [Add @trackable & .from_engine_args for `AsyncOmni`](https://github.com/vllm-project/vllm-omni/pull/4275) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-08 | - | 214 | 0 |
 | [[Perf/Fix] Reimplement Batched CFG Forward for Bagel](https://github.com/vllm-project/vllm-omni/pull/4098) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-03 | 2026-06-21 23:37:21 UTC | 507 | 45 |
@@ -849,7 +851,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[BugFix] Fix Max Rank Handling in LoRA](https://github.com/vllm-project/vllm-omni/pull/1397) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-17 | 2026-03-14 02:42:55 UTC | 67 | 4 |
 | [[Bugfix] Fix Hardcoded Datatypes in Z-image](https://github.com/vllm-project/vllm-omni/pull/1393) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-17 | 2026-02-20 06:55:25 UTC | 2 | 3 |
 | [[Bugfix] Fix Dtype Parsing](https://github.com/vllm-project/vllm-omni/pull/1391) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-16 | 2026-03-04 14:49:29 UTC | 95 | 2 |
-| **Total for Alex Brooks** | | | | - | **12,051** | **10,018** |
+| **Total for Alex Brooks** | | | | - | **12,116** | **10,280** |
 
 ### 👤 Samit (@SamitHuang) - HUAWEI, Committer - 总贡献: 54
 **代码变更**: +14,628 行添加, -2,192 行删除
@@ -913,12 +915,13 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Docs] Setup Documentation System and Re-organize Dependencies](https://github.com/vllm-project/vllm-omni/pull/49) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-11-06 | 2025-11-15 13:45:43 UTC | 1,217 | 165 |
 | **Total for Samit** | | | | - | **14,628** | **2,192** |
 
-### 👤 Sy03 (@Sy0307) - 阿里PAI, Committer - 总贡献: 52
-**代码变更**: +178,597 行添加, -41,394 行删除
+### 👤 Sy03 (@Sy0307) - 阿里PAI, Committer - 总贡献: 53
+**代码变更**: +178,798 行添加, -41,470 行删除
 
-**Pull Requests (5 open, 47 merged)**
+**Pull Requests (6 open, 47 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Refactor][Qwen3-TTS] Clarify seeded MTP generator dispatch](https://github.com/vllm-project/vllm-omni/pull/4899) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-05 | - | 201 | 76 |
 | [[Fix][VoxCPM2] Follow up unified graph config gate](https://github.com/vllm-project/vllm-omni/pull/4878) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-04 | 2026-07-04 19:58:21 UTC | 194 | 125 |
 | [[Bugfix] Fix Qwen3-TTS no-async-chunk payload splitting](https://github.com/vllm-project/vllm-omni/pull/4870) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-04 | 2026-07-04 19:57:56 UTC | 99 | 13 |
 | [[Bugfix][Qwen3-TTS] Seed residual MTP sampling](https://github.com/vllm-project/vllm-omni/pull/4869) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-04 | 2026-07-04 17:47:12 UTC | 48 | 16 |
@@ -971,7 +974,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Feat]: Offline inference supports async_chunk](https://github.com/vllm-project/vllm-omni/pull/1415) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-20 | 2026-03-09 03:33:38 UTC | 708 | 0 |
 | [[Feature] : Support disaggregated inference pipeline for Qwen3_TTS](https://github.com/vllm-project/vllm-omni/pull/1161) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-02-02 | 2026-02-20 23:36:44 UTC | 2,966 | 2,588 |
 | [[Feat] : Support Async chunk cleanup](https://github.com/vllm-project/vllm-omni/pull/1087) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-01-29 | 2026-02-27 06:39:33 UTC | 381 | 22 |
-| **Total for Sy03** | | | | - | **178,597** | **41,394** |
+| **Total for Sy03** | | | | - | **178,798** | **41,470** |
 
 ### 👤 Hongsheng Liu (@hsliuustc0106) - HUAWEI, Committer - 总贡献: 51
 **代码变更**: +17,636 行添加, -6,930 行删除
@@ -1194,12 +1197,12 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | **Total for Gao Han** | | | | - | **24,614** | **10,527** |
 
 ### 👤 SYLAR (@lishunyang12) - Committer - 总贡献: 39
-**代码变更**: +30,842 行添加, -5,377 行删除
+**代码变更**: +30,883 行添加, -5,471 行删除
 
 **Pull Requests (5 open, 34 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
-| [[Bugfix] Sync JoyVL interaction layer with upstream reference fixes](https://github.com/vllm-project/vllm-omni/pull/4881) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-05 | - | 232 | 22 |
+| [[Bugfix] Sync JoyVL interaction layer with upstream reference fixes](https://github.com/vllm-project/vllm-omni/pull/4881) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-05 | - | 273 | 116 |
 | [[Feature] Add flash attention 4 ](https://github.com/vllm-project/vllm-omni/pull/4858) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-07-03 | - | 455 | 64 |
 | [[Perf] Reduce Cosmos3 video IPC transfer payload](https://github.com/vllm-project/vllm-omni/pull/4684) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-24 | - | 388 | 89 |
 | [[BugFix][Cosmos3] Pad sound latents so video+sound runs under sequence parallelism](https://github.com/vllm-project/vllm-omni/pull/4678) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-06-24 | 2026-06-30 09:23:37 UTC | 65 | 7 |
@@ -1238,7 +1241,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Doc] User guide for torch profiler ](https://github.com/vllm-project/vllm-omni/pull/570) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-31 | 2026-01-06 00:58:00 UTC | 97 | 1 |
 | [[Feature] Add tqdm in Omni pipeline to align with Vllm ](https://github.com/vllm-project/vllm-omni/pull/552) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-30 | 2025-12-30 20:44:11 UTC | 44 | 1 |
 | [[Docs:] Update Environment requirements for developer guide](https://github.com/vllm-project/vllm-omni/pull/522) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-29 | 2025-12-29 11:31:15 UTC | 3 | 1 |
-| **Total for SYLAR** | | | | - | **30,842** | **5,377** |
+| **Total for SYLAR** | | | | - | **30,883** | **5,471** |
 
 ### 👤 Jiangyun Zhu (@ZJY0516) - Committer - 总贡献: 39
 **代码变更**: +7,511 行添加, -3,187 行删除
@@ -1537,12 +1540,13 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Feature] Omni Connector + ray supported](https://github.com/vllm-project/vllm-omni/pull/215) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2025-12-05 | 2025-12-10 12:15:03 UTC | 2,662 | 190 |
 | **Total for NATURE** | | | | - | **20,974** | **1,577** |
 
-### 👤 TaffyOfficial - HUAWEI - 总贡献: 20
-**代码变更**: +12,007 行添加, -1,113 行删除
+### 👤 TaffyOfficial - HUAWEI - 总贡献: 21
+**代码变更**: +12,153 行添加, -1,127 行删除
 
-**Pull Requests (9 open, 11 merged)**
+**Pull Requests (9 open, 12 merged)**
 | Title | Repository | State | Created | Merged | Additions | Deletions |
 | ----- | ---------- | ----- | ------- | ------ | --------- | --------- |
+| [[Bugfix] Fix HunyuanImage3 MoE groups for vLLM 0.24](https://github.com/vllm-project/vllm-omni/pull/4893) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-07-05 | 2026-07-05 15:37:42 UTC | 146 | 14 |
 | [[Test] Add synthetic AR KV reuse pressure mode for DiT benchmarks](https://github.com/vllm-project/vllm-omni/pull/4675) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-24 | - | 661 | 40 |
 | [[perf] Add LTX2.3 diffusion compile granularity controls](https://github.com/vllm-project/vllm-omni/pull/4603) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-22 | - | 136 | 3 |
 | [Reduce LTX2.3 CFG input prep overhead](https://github.com/vllm-project/vllm-omni/pull/4507) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `open` | 2026-06-17 | - | 141 | 6 |
@@ -1563,7 +1567,7 @@ Scoring: Contribution score = 30% commit share + 35% review share + 35% code chu
 | [[Bugfix][HunyuanImage3] Fix offline AR garbage output by switching to Instruct chat template](https://github.com/vllm-project/vllm-omni/pull/3243) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-29 | 2026-05-05 16:31:03 UTC | 814 | 69 |
 | [Feat/Add HunyuanImage-3.0-Instruct ar part support:](https://github.com/vllm-project/vllm-omni/pull/2713) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-13 | 2026-04-16 15:15:25 UTC | 816 | 82 |
 | [[Fix] HunyuanImage-3.0: unify naming hunyuan_image_3 → hunyuan_image3](https://github.com/vllm-project/vllm-omni/pull/2712) | [vllm-project/vllm-omni](https://github.com/vllm-project/vllm-omni) | `merged` | 2026-04-13 | 2026-04-15 04:53:47 UTC | 25 | 25 |
-| **Total for TaffyOfficial** | | | | - | **12,007** | **1,113** |
+| **Total for TaffyOfficial** | | | | - | **12,153** | **1,127** |
 
 ### 👤 NumberWan - HUAWEI - 总贡献: 18
 **代码变更**: +8,443 行添加, -1,263 行删除
