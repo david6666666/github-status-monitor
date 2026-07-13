@@ -36,9 +36,9 @@ TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed README filename
 README_FILENAME = "README_data.md"
 CONTRIBUTION_WEIGHTS = {
-    "commit": 0.30,
+    "commit": 0.20,
     "review": 0.35,
-    "code": 0.35,
+    "code": 0.45,
 }
 # =======================================================================
 
@@ -252,8 +252,8 @@ def _score_release_items(items):
 
 def _release_score_note():
     return (
-        "Contribution score = 30% commit share + 35% review share + "
-        "35% code churn share, where code churn is additions + deletions. "
+        "Contribution score = 20% commit share + 35% review share + "
+        "45% code churn share, where code churn is additions + deletions. "
         "Commit share reflects delivery, review share reflects quality influence, "
         "and code churn linearly reflects change scale."
     )
@@ -322,10 +322,17 @@ def _release_time(release):
         dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
     return dt
 
+def _is_integer_formal_release(release):
+    return re.fullmatch(r"v\d+\.\d+\.0", release.tag_name or "") is not None
+
 def _get_formal_releases(repo, count=2):
     formal_releases = []
     for release in repo.get_releases():
-        if not release.draft and not release.prerelease:
+        if (
+            not release.draft
+            and not release.prerelease
+            and _is_integer_formal_release(release)
+        ):
             formal_releases.append(release)
         if len(formal_releases) >= count:
             break
