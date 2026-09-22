@@ -77,7 +77,7 @@ def test_beijing_month_windows_and_monthly_scoring():
         def search_issues(self, query):
             return [Issue(1)] if "updated:" in query else [Issue(2)]
 
-    people = monitor.MONTHLY_REPO_CONFIGS["vllm-project/afd-plugin"]["people"]
+    people = monitor.MONTHLY_SCENE_CONFIGS["afd-plugin"]["people"]
     stats = monitor._collect_monthly_window_stats(
         Github(),
         Repo(),
@@ -95,7 +95,38 @@ def test_beijing_month_windows_and_monthly_scoring():
     assert round(sum(user["contribution_score"] for user in stats["users"]), 6) == 100.0
     assert stats["users"][0]["username"] == "jiangkuaixue123"
 
+    merged_stats = monitor._merge_monthly_window_stats(
+        [stats, stats],
+        people,
+        windows[0]["section_title"],
+        windows[0]["start"],
+        windows[0]["end"],
+    )
+    assert merged_stats["tracked_commits"] == 2
+    assert merged_stats["tracked_reviews"] == 2
+    assert merged_stats["tracked_additions"] == 20
+    assert merged_stats["tracked_deletions"] == 4
+    assert round(
+        sum(user["contribution_score"] for user in merged_stats["users"]), 6
+    ) == 100.0
+
+
+def test_scene_repo_configuration():
+    assert monitor.MONTHLY_SCENE_CONFIGS["afd-plugin"]["repositories"] == [
+        "vllm-project/afd-plugin",
+        "vllm-project/vllm",
+        "vllm-project/vllm-ascend",
+    ]
+    assert monitor.MONTHLY_SCENE_CONFIGS["AgentInfer"]["repositories"] == [
+        "openJiuwen-ai/agent-infer",
+        "vllm-project/router",
+        "vllm-project/semantic-router",
+        "vllm-project/vllm",
+        "vllm-project/vllm-ascend",
+    ]
+
 
 if __name__ == "__main__":
     test_beijing_month_windows_and_monthly_scoring()
+    test_scene_repo_configuration()
     print("monthly monitoring smoke test passed")

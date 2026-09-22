@@ -36,11 +36,17 @@ TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed UTC+08:00 is sufficient for Beijing time because it has no DST changes.
 BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
 # Monthly reports use the personnel and display names from the supplied team sheet.
-MONTHLY_REPO_CONFIGS = {
-    "vllm-project/afd-plugin": {
+# Each scene aggregates every repository listed in the sheet's "涉及repo" column.
+MONTHLY_SCENE_CONFIGS = {
+    "afd-plugin": {
         "label": "afd-plugin",
         "chart_filename": "stats_chart_afd_plugin.svg",
         "html_filename": "stats_dashboard_afd_plugin.html",
+        "repositories": [
+            "vllm-project/afd-plugin",
+            "vllm-project/vllm",
+            "vllm-project/vllm-ascend",
+        ],
         "people": [
             {"name": "江晨舟", "username": "jiangkuaixue123", "location": "杭州"},
             {"name": "白竞帆", "username": "bjf-frz", "location": "杭州"},
@@ -50,10 +56,17 @@ MONTHLY_REPO_CONFIGS = {
             {"name": "侯安捷", "username": "specture724", "location": "上海"},
         ],
     },
-    "openJiuwen-ai/agent-infer": {
+    "AgentInfer": {
         "label": "AgentInfer",
         "chart_filename": "stats_chart_agentinfer.svg",
         "html_filename": "stats_dashboard_agentinfer.html",
+        "repositories": [
+            "openJiuwen-ai/agent-infer",
+            "vllm-project/router",
+            "vllm-project/semantic-router",
+            "vllm-project/vllm",
+            "vllm-project/vllm-ascend",
+        ],
         "people": [
             {"name": "杨剑娟", "username": "yangjianjuan", "location": "杭州"},
             {"name": "吴航", "username": "wuhang2014", "location": "杭州"},
@@ -120,6 +133,18 @@ def count_actual_items(search_result, item_type="items"):
     except Exception as e:
         print(f"  Error counting actual items: {e}")
         return 0, []
+
+
+class _CombinedResult:
+    """Small PyGithub-like result wrapper for multi-repository PR totals."""
+
+    def __init__(self, items):
+        self._items = list(items)
+        self.totalCount = len(self._items)
+
+    def __iter__(self):
+        return iter(self._items)
+
 
 def get_user_stats_fallback(github_instance, username, target_repo=TARGET_REPO):
     """
@@ -813,42 +838,138 @@ def _collect_monthly_window_stats(
     }
 
 
-def get_monthly_contribution_stats(github_instance, repo_name, people, now=None):
-    """Collect previous/current Beijing-month contribution windows."""
-    repo = github_instance.get_repo(repo_name)
+def _merge_monthly_window_stats(repo_stats, people, section_title, start_time, end_time):
+    """Merge raw monthly metrics across all repositories in one scene."""
+    labels = sorted({person["location"] for person in people})
+    affiliation_stats = _empty_window_affiliation_stats(labels)
+    user_stats = _empty_window_user_stats(people)
+    numeric_fields = (
+        "commit_count",
+        "review_count",
+        "reviewed_pr_count",
+        "additions",
+        "deletions",
+        "code_line_count",
+        "code_line_weight",
+    )
+
+    for stats in repo_stats:
+        for label, source in stats["affiliations"].items():
+            target = affiliation_stats[label]
+            for field in numeric_fields:
+                target[field] += source.get(field, 0)
+            for field in ("commit_users", "review_users"):
+                for username, count in source.get(field, {}).items():
+                    target[field][username] = target[field].get(username, 0) + count
+
+        for source in stats["users"]:
+            target = user_stats[source["username"]]
+            for field in numeric_fields:
+                target[field] += source.get(field, 0)
+
+    _score_release_items(list(affiliation_stats.values()))
+    _score_release_items(list(user_stats.values()))
+    user_rows = sorted(
+        user_stats.values(),
+        key=lambda item: (
+            item["contribution_score"],
+            item["commit_count"] + item["review_count"],
+            item["code_line_count"],
+            item["username"],
+        ),
+        reverse=True,
+    )
+    return {
+        "section_title": section_title,
+        "window_start": start_time,
+        "window_end": end_time,
+        "tracked_commits": sum(stats["tracked_commits"] for stats in repo_stats),
+        "total_commits": sum(stats["total_commits"] for stats in repo_stats),
+        "tracked_reviews": sum(stats["tracked_reviews"] for stats in repo_stats),
+        "total_reviews": sum(stats["total_reviews"] for stats in repo_stats),
+        "tracked_additions": sum(
+            stats["tracked_additions"] for stats in repo_stats
+        ),
+        "tracked_deletions": sum(
+            stats["tracked_deletions"] for stats in repo_stats
+        ),
+        "tracked_code_line_count": sum(
+            stats["tracked_code_line_count"] for stats in repo_stats
+        ),
+        "merged_pr_count": sum(stats["merged_pr_count"] for stats in repo_stats),
+        "score_note": _release_score_note(),
+        "affiliations": affiliation_stats,
+        "users": user_rows,
+    }
+
+
+def get_monthly_contribution_stats(
+    github_instance, scene_name, repo_names, people, now=None
+):
+    """Collect and scene-aggregate previous/current Beijing-month windows."""
+    print(
+        f"Collecting monthly contribution stats for {scene_name} across "
+        f"{len(repo_names)} repos"
+    )
+    repos = [
+        (repo_name, github_instance.get_repo(repo_name))
+        for repo_name in repo_names
+    ]
     stats = []
     for window in get_month_windows(now):
+        repo_window_stats = []
+        for repo_name, repo in repos:
+            repo_window_stats.append(
+                _collect_monthly_window_stats(
+                    github_instance=github_instance,
+                    repo=repo,
+                    repo_name=repo_name,
+                    people=people,
+                    start_time=window["start"],
+                    end_time=window["end"],
+                    section_title=window["section_title"],
+                )
+            )
         stats.append(
-            _collect_monthly_window_stats(
-                github_instance=github_instance,
-                repo=repo,
-                repo_name=repo_name,
-                people=people,
-                start_time=window["start"],
-                end_time=window["end"],
-                section_title=window["section_title"],
+            _merge_monthly_window_stats(
+                repo_window_stats,
+                people,
+                window["section_title"],
+                window["start"],
+                window["end"],
             )
         )
     return stats
 
 
-def collect_repo_user_data(github_instance, target_repo, people):
-    """Collect all-time PR monitoring data for a configured repository."""
+def collect_scene_user_data(github_instance, scene_name, repo_names, people):
+    """Collect all-time PR monitoring data across every repo in one scene."""
     all_user_data = []
     for person in people:
         username = person["username"]
+        open_prs = []
+        merged_prs = []
         try:
-            print(f"\nProcessing {target_repo} user: {username}")
-            stats = get_user_stats(
-                github_instance, username, target_repo=target_repo
-            )
+            print(f"\nProcessing {scene_name} user: {username}")
+            for repo_name in repo_names:
+                stats = get_user_stats(
+                    github_instance, username, target_repo=repo_name
+                )
+                open_prs.extend(list(stats["open_prs"]))
+                merged_prs.extend(list(stats["merged_prs"]))
+
+            combined_stats = {
+                "open_prs": _CombinedResult(open_prs),
+                "merged_prs": _CombinedResult(merged_prs),
+            }
             total_contributions = (
-                stats["merged_prs"].totalCount + stats["open_prs"].totalCount
+                combined_stats["merged_prs"].totalCount
+                + combined_stats["open_prs"].totalCount
             )
             user_total_additions = 0
             user_total_deletions = 0
 
-            for pr in list(stats["merged_prs"]) + list(stats["open_prs"]):
+            for pr in merged_prs + open_prs:
                 additions, deletions, merged_at = get_pr_additions_deletions(
                     github_instance, pr
                 )
@@ -865,14 +986,14 @@ def collect_repo_user_data(github_instance, target_repo, people):
                     "affiliation": person["location"],
                     "affiliations": [person["location"]],
                     "display_name": person["name"],
-                    "stats": stats,
+                    "stats": combined_stats,
                     "total_contributions": total_contributions,
                     "total_additions": user_total_additions,
                     "total_deletions": user_total_deletions,
                 }
             )
         except Exception as exc:
-            print(f"Error processing {target_repo} user {username}: {exc}")
+            print(f"Error processing {scene_name} user {username}: {exc}")
 
     all_user_data.sort(key=lambda item: item["total_contributions"], reverse=True)
     return all_user_data
@@ -963,14 +1084,18 @@ def _append_monthly_window_markdown(markdown_text, window_stats):
     return markdown_text + "\n"
 
 
-def generate_monthly_repo_markdown(repo_name, config, user_data, monthly_stats):
+def generate_monthly_scene_markdown(scene_name, config, user_data, monthly_stats):
     total_open = sum(user["stats"]["open_prs"].totalCount for user in user_data)
     total_merged = sum(user["stats"]["merged_prs"].totalCount for user in user_data)
     total_additions = sum(user.get("total_additions", 0) for user in user_data)
     total_deletions = sum(user.get("total_deletions", 0) for user in user_data)
+    repo_links = "、".join(
+        f"[{repo}](https://github.com/{repo})" for repo in config["repositories"]
+    )
     markdown_text = (
         f"\n---\n\n## {config['label']} 月度监控与贡献度\n\n"
-        f"仓库: [{repo_name}](https://github.com/{repo_name})  \n"
+        f"投入场景: **{scene_name}**  \n"
+        f"涉及 repo: {repo_links}  \n"
         f"独立看板: [{config['html_filename']}]({config['html_filename']})\n\n"
         f"![{config['label']} contribution chart]({config['chart_filename']})\n\n"
         f"本次追踪 {len(user_data)} 人；PR 总量 {format_number(total_open + total_merged)} "
@@ -1017,13 +1142,17 @@ def generate_monthly_repo_markdown(repo_name, config, user_data, monthly_stats):
     return markdown_text + "\n"
 
 
-def create_monthly_dashboard(repo_name, config, user_data, monthly_stats):
-    """Create a compact standalone dashboard for a monthly repository."""
+def create_monthly_dashboard(scene_name, config, user_data, monthly_stats):
+    """Create a compact standalone dashboard for one aggregated scene."""
     generated_at = format_beijing_datetime(datetime.now(timezone.utc))
     total_open = sum(user["stats"]["open_prs"].totalCount for user in user_data)
     total_merged = sum(user["stats"]["merged_prs"].totalCount for user in user_data)
     total_additions = sum(user.get("total_additions", 0) for user in user_data)
     total_deletions = sum(user.get("total_deletions", 0) for user in user_data)
+    repo_links_html = " · ".join(
+        f"<a href='https://github.com/{escape(repo)}'>{escape(repo)}</a>"
+        for repo in config["repositories"]
+    )
 
     try:
         with open(config["chart_filename"], "r", encoding="utf-8") as chart_file:
@@ -1111,7 +1240,7 @@ def create_monthly_dashboard(repo_name, config, user_data, monthly_stats):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{escape(repo_name)} monthly contribution monitor</title>
+  <title>{escape(scene_name)} monthly contribution monitor</title>
   <style>
     :root {{ --bg: #f3efe5; --surface: #fffdfa; --ink: #151516; --muted: #6c665c; --line: #d9d1c2; --accent: #00796b; }}
     * {{ box-sizing: border-box; }} body {{ margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 "Segoe UI", sans-serif; }}
@@ -1127,8 +1256,9 @@ def create_monthly_dashboard(repo_name, config, user_data, monthly_stats):
   </style>
 </head>
 <body><main>
-  <p class="muted">{escape(repo_name)} · Generated {escape(generated_at)}</p>
+  <p class="muted">{escape(scene_name)} · Generated {escape(generated_at)}</p>
   <h1>{escape(config['label'])}<br>monthly monitor</h1>
+  <p class="muted">涉及 repo: {repo_links_html}</p>
   <div class="metrics">
     <div class="metric"><span>Tracked users</span><strong>{format_number(len(user_data))}</strong></div>
     <div class="metric"><span>Total PRs</span><strong>{format_number(total_open + total_merged)}</strong></div>
@@ -2224,41 +2354,50 @@ if __name__ == "__main__":
         current_release_stats = None
 
     monthly_reports = []
-    for repo_name, repo_config in MONTHLY_REPO_CONFIGS.items():
+    for scene_name, scene_config in MONTHLY_SCENE_CONFIGS.items():
         print(f"\n{'=' * 50}")
-        print(f"Collecting monthly report for {repo_name}")
+        print(
+            f"Collecting monthly report for {scene_name} across "
+            f"{len(scene_config['repositories'])} repos"
+        )
         try:
-            monthly_user_data = collect_repo_user_data(
-                github, repo_name, repo_config["people"]
+            monthly_user_data = collect_scene_user_data(
+                github,
+                scene_name,
+                scene_config["repositories"],
+                scene_config["people"],
             )
             monthly_stats = get_monthly_contribution_stats(
-                github, repo_name, repo_config["people"]
+                github,
+                scene_name,
+                scene_config["repositories"],
+                scene_config["people"],
             )
             generate_chart(
                 monthly_user_data,
-                chart_filename=repo_config["chart_filename"],
-                target_repo=repo_name,
+                chart_filename=scene_config["chart_filename"],
+                target_repo=scene_name,
             )
             create_monthly_dashboard(
-                repo_name, repo_config, monthly_user_data, monthly_stats
+                scene_name, scene_config, monthly_user_data, monthly_stats
             )
             monthly_reports.append(
                 {
-                    "repo_name": repo_name,
-                    "config": repo_config,
+                    "scene_name": scene_name,
+                    "config": scene_config,
                     "user_data": monthly_user_data,
                     "monthly_stats": monthly_stats,
                 }
             )
         except Exception as exc:
-            print(f"Error collecting monthly report for {repo_name}: {exc}")
+            print(f"Error collecting monthly report for {scene_name}: {exc}")
 
     print(f"\nGenerating enhanced chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data, last_release_stats, current_release_stats)
     for monthly_report in monthly_reports:
-        markdown_output += generate_monthly_repo_markdown(
-            monthly_report["repo_name"],
+        markdown_output += generate_monthly_scene_markdown(
+            monthly_report["scene_name"],
             monthly_report["config"],
             monthly_report["user_data"],
             monthly_report["monthly_stats"],

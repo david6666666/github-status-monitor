@@ -2,9 +2,9 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Extend the existing GitHub status monitor to report `vllm-project/afd-plugin` and `openJiuwen-ai/agent-infer` using personnel from the supplied Google Sheet, with Beijing-time current/previous-month contribution windows while preserving the existing vLLM-Omni release-window report.
+**Goal:** Extend the existing GitHub status monitor to report the `afd-plugin` and `AgentInfer` 投入场景 using the personnel and multi-repo mappings from the supplied Google Sheet, with Beijing-time current/previous-month contribution windows while preserving the existing vLLM-Omni release-window report.
 
-**Architecture:** Keep the existing vLLM-Omni path and output names stable. Add a small, explicit configuration for the two monthly repositories, parameterize the existing all-time PR query and chart generator where needed, and add generic monthly-window collection/rendering helpers. Each added repository gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for all three repositories.
+**Architecture:** Keep the existing vLLM-Omni path and output names stable. Add a small, explicit configuration for the two monthly scenes, including each scene's people and repo list, parameterize the existing all-time PR query and chart generator where needed, and add generic monthly-window collection/rendering helpers. Each scene gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for vLLM-Omni plus the two scenes. Monthly raw metrics are aggregated across a scene before scoring.
 
 **Tech Stack:** Python 3.9+, PyGithub, requests, GitHub Actions, GitHub Search/REST API, Markdown, standalone HTML/SVG.
 
@@ -29,9 +29,9 @@ Check that every requested repository has a known owner/name, a known default br
 **Files:**
 - Modify: `generate_stats.py`
 
-**Step 1: Add explicit monthly repository configuration**
+**Step 1: Add explicit monthly scene configuration**
 
-Add the six `afd-plugin` people and eight `AgentInfer` people from the sheet, retaining sheet display names and using the sheet `属地` as each person's label. Define output names for each repository and avoid changing the existing vLLM-Omni user groups.
+Add the six `afd-plugin` people and eight `AgentInfer` people from the sheet, retaining sheet display names and using the sheet `属地` as each person's label. Map `afd-plugin` to `vllm-project/afd-plugin`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`; map `AgentInfer` to `openJiuwen-ai/agent-infer`, `vllm-project/router`, `vllm-project/semantic-router`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`. Define output names per scene and avoid changing the existing vLLM-Omni user groups.
 
 **Step 2: Parameterize all-time PR collection**
 
@@ -46,7 +46,7 @@ Use UTC+08:00 explicitly. Define:
 
 Convert API timestamps to one comparable timezone before filtering.
 
-### Task 3: Collect and score monthly contributions
+### Task 3: Collect, aggregate, and score monthly contributions
 
 **Files:**
 - Modify: `generate_stats.py`
@@ -59,23 +59,27 @@ Read repository commits between the window boundaries, retain tracked GitHub aut
 
 Search PRs updated in the bounded window, inspect review submissions, and count only review events whose `submitted_at` lies inside the window. Retain the existing 20% commit + 35% review + 45% code-churn scoring rule.
 
-**Step 3: Build per-user and per-location summaries**
+**Step 3: Aggregate scene metrics before scoring**
+
+Sum raw metrics from every configured repo in a scene for each user and `属地`, then score the merged totals once. Keep zero-activity users so the personnel view remains complete.
+
+**Step 4: Build per-user and per-location summaries**
 
 Produce the same score components for each tracked person and each `属地` label, including zero-activity users only where useful for a complete personnel view.
 
-### Task 4: Generate added repository artifacts and aggregate README
+### Task 4: Generate added scene artifacts and aggregate README
 
 **Files:**
 - Modify: `generate_stats.py`
 - Modify: `.github/workflows/update_stats.yml`
 
-**Step 1: Generate one chart and dashboard per monthly repository**
+**Step 1: Generate one chart and dashboard per monthly scene**
 
-Reuse the existing chart generator with parameterized output paths. Add a compact standalone HTML dashboard per monthly repository containing monitoring totals, recent PRs, and previous/current month contribution tables.
+Reuse the existing chart generator with parameterized output paths. Add a compact standalone HTML dashboard per monthly scene containing the covered repos, monitoring totals, recent PRs, and previous/current month contribution tables.
 
 **Step 2: Append monthly reports to `README_data.md`**
 
-Keep the existing vLLM-Omni report first, then add links, all-time PR monitoring summaries, Beijing-time window metadata, and contribution tables for `afd-plugin` and `AgentInfer`.
+Keep the existing vLLM-Omni report first, then add links, the scene repo lists, all-time PR monitoring summaries, Beijing-time window metadata, and contribution tables for `afd-plugin` and `AgentInfer`.
 
 **Step 3: Update the action artifact list**
 
