@@ -2,7 +2,7 @@ import os
 import re
 import requests
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from html import escape
 from github import Github
 
@@ -33,6 +33,39 @@ CHART_FILENAME = "stats_chart.svg"
 HTML_FILENAME = "stats_dashboard.html"
 # Target repository - only vllm-project/vllm-omni
 TARGET_REPO = "vllm-project/vllm-omni"
+# Fixed UTC+08:00 is sufficient for Beijing time because it has no DST changes.
+BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
+# Monthly reports use the personnel and display names from the supplied team sheet.
+MONTHLY_REPO_CONFIGS = {
+    "vllm-project/afd-plugin": {
+        "label": "afd-plugin",
+        "chart_filename": "stats_chart_afd_plugin.svg",
+        "html_filename": "stats_dashboard_afd_plugin.html",
+        "people": [
+            {"name": "江晨舟", "username": "jiangkuaixue123", "location": "杭州"},
+            {"name": "白竞帆", "username": "bjf-frz", "location": "杭州"},
+            {"name": "周子恒", "username": "jiaran-king", "location": "杭州"},
+            {"name": "曹玉娟", "username": "yujuancao07", "location": "上海"},
+            {"name": "李瑞鑫", "username": "lirx-pd", "location": "上海"},
+            {"name": "侯安捷", "username": "specture724", "location": "上海"},
+        ],
+    },
+    "openJiuwen-ai/agent-infer": {
+        "label": "AgentInfer",
+        "chart_filename": "stats_chart_agentinfer.svg",
+        "html_filename": "stats_dashboard_agentinfer.html",
+        "people": [
+            {"name": "杨剑娟", "username": "yangjianjuan", "location": "杭州"},
+            {"name": "吴航", "username": "wuhang2014", "location": "杭州"},
+            {"name": "敬昊昱", "username": "PharosEast", "location": "杭州"},
+            {"name": "胡海川", "username": "KaisennHu", "location": "上海"},
+            {"name": "梁腾文", "username": "LiangTengwen", "location": "上海"},
+            {"name": "李雯琳", "username": "Evelynn-V", "location": "上海"},
+            {"name": "张璇", "username": "potatoZhx", "location": "上海"},
+            {"name": "牛衍昌", "username": "warriorsniu", "location": "北京"},
+        ],
+    },
+}
 # Fixed README filename
 README_FILENAME = "README_data.md"
 CONTRIBUTION_WEIGHTS = {
@@ -88,7 +121,7 @@ def count_actual_items(search_result, item_type="items"):
         print(f"  Error counting actual items: {e}")
         return 0, []
 
-def get_user_stats_fallback(github_instance, username):
+def get_user_stats_fallback(github_instance, username, target_repo=TARGET_REPO):
     """
     备用方法：直接从组织的仓库中获取用户的PR统计
     """
@@ -98,7 +131,7 @@ def get_user_stats_fallback(github_instance, username):
     merged_prs = []
     
     try:
-        repo = github_instance.get_repo(TARGET_REPO)
+        repo = github_instance.get_repo(target_repo)
         all_prs = repo.get_pulls(state='all')
         for pr in all_prs:
             if pr.user.login == username:
@@ -137,14 +170,14 @@ def get_user_stats_fallback(github_instance, username):
             "merged_prs": EmptyResult()
         }
 
-def get_user_stats(github_instance, username):
+def get_user_stats(github_instance, username, target_repo=TARGET_REPO):
     """
     Fetches PRs (open and merged) for a user.
     Includes all data from vllm-project organization (no date restrictions).
     """
-    print(f"Fetching all data for {username} in {TARGET_REPO} repository...")
-    
-    repo_qualifier = f"repo:{TARGET_REPO}"
+    print(f"Fetching all data for {username} in {target_repo} repository...")
+
+    repo_qualifier = f"repo:{target_repo}"
 
     # 1. PRs: Query for open and merged PRs separately in the target repository
     query_open_prs = f"is:pr author:{username} is:public is:open {repo_qualifier}"
@@ -182,7 +215,7 @@ def get_user_stats(github_instance, username):
         print(f"    Switching to fallback method...")
         
         # 使用备用方法
-        return get_user_stats_fallback(github_instance, username)
+        return get_user_stats_fallback(github_instance, username, target_repo=target_repo)
     
     total_found = open_prs.totalCount + merged_prs.totalCount
     print(f"  Final counts for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs (Total: {total_found})")
@@ -549,6 +582,570 @@ def get_release_contribution_stats(github_instance):
     )
     return last_release_stats, current_release_stats
 
+
+def _to_utc_datetime(dt):
+    if not dt:
+        return None
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def _to_beijing_datetime(dt):
+    utc_dt = _to_utc_datetime(dt)
+    return utc_dt.astimezone(BEIJING_TZ) if utc_dt else None
+
+
+def get_month_windows(now=None):
+    """Return previous/current calendar-month windows using Beijing time."""
+    now_beijing = _to_beijing_datetime(now or datetime.now(timezone.utc))
+    current_start = now_beijing.replace(
+        day=1, hour=0, minute=0, second=0, microsecond=0
+    )
+    previous_start = (current_start - timedelta(days=1)).replace(day=1)
+    return [
+        {
+            "key": "previous_month",
+            "section_title": "上月贡献（北京时间）",
+            "start": previous_start,
+            "end": current_start,
+        },
+        {
+            "key": "current_month",
+            "section_title": "本月贡献（北京时间）",
+            "start": current_start,
+            "end": now_beijing,
+        },
+    ]
+
+
+def _empty_window_affiliation_stats(labels):
+    return {
+        label: {
+            "commit_count": 0,
+            "review_count": 0,
+            "reviewed_pr_count": 0,
+            "additions": 0,
+            "deletions": 0,
+            "code_line_count": 0,
+            "code_line_weight": 0,
+            "commit_component": 0,
+            "review_component": 0,
+            "code_component": 0,
+            "contribution_score": 0,
+            "commit_users": {},
+            "review_users": {},
+        }
+        for label in labels
+    }
+
+
+def _empty_window_user_stats(people):
+    return {
+        person["username"]: {
+            "username": person["username"],
+            "display_name": person["name"],
+            "affiliation": person["location"],
+            "affiliations": [person["location"]],
+            "commit_count": 0,
+            "review_count": 0,
+            "reviewed_pr_count": 0,
+            "additions": 0,
+            "deletions": 0,
+            "code_line_count": 0,
+            "code_line_weight": 0,
+            "commit_component": 0,
+            "review_component": 0,
+            "code_component": 0,
+            "contribution_score": 0,
+        }
+        for person in people
+    }
+
+
+def _collect_monthly_window_stats(
+    github_instance,
+    repo,
+    repo_name,
+    people,
+    start_time,
+    end_time,
+    section_title,
+):
+    start_utc = _to_utc_datetime(start_time)
+    end_utc = _to_utc_datetime(end_time)
+    labels = sorted({person["location"] for person in people})
+    label_by_username = {
+        person["username"]: person["location"] for person in people
+    }
+    tracked_usernames = set(label_by_username)
+    affiliation_stats = _empty_window_affiliation_stats(labels)
+    user_stats = _empty_window_user_stats(people)
+
+    try:
+        commits = list(repo.get_commits(since=start_utc, until=end_utc))
+    except Exception as exc:
+        print(f"  Error fetching commits for {repo_name} ({section_title}): {exc}")
+        commits = []
+
+    tracked_commits = 0
+    for commit in commits:
+        author = getattr(commit, "author", None)
+        login = getattr(author, "login", None) if author else None
+        if login not in tracked_usernames:
+            continue
+
+        additions, deletions = _get_commit_line_delta(repo, commit)
+        code_line_count = additions + deletions
+        code_line_weight = _code_line_weight(additions, deletions)
+        label = label_by_username[login]
+        tracked_commits += 1
+
+        summary = affiliation_stats[label]
+        summary["commit_count"] += 1
+        summary["additions"] += additions
+        summary["deletions"] += deletions
+        summary["code_line_count"] += code_line_count
+        summary["code_line_weight"] += code_line_weight
+        summary["commit_users"][login] = summary["commit_users"].get(login, 0) + 1
+
+        user = user_stats[login]
+        user["commit_count"] += 1
+        user["additions"] += additions
+        user["deletions"] += deletions
+        user["code_line_count"] += code_line_count
+        user["code_line_weight"] += code_line_weight
+
+    start_date = start_utc.strftime("%Y-%m-%d")
+    end_date = end_utc.strftime("%Y-%m-%d")
+    review_query = (
+        f"repo:{repo_name} is:pr updated:{start_date}..{end_date}"
+    )
+    print(f"  Monthly PR review query: {review_query}")
+
+    try:
+        review_issues = list(github_instance.search_issues(review_query))
+    except Exception as exc:
+        print(f"  Error fetching review candidates for {repo_name}: {exc}")
+        review_issues = []
+
+    total_reviews = 0
+    tracked_reviews = 0
+    reviewed_prs_by_user = {username: set() for username in tracked_usernames}
+    reviewed_prs_by_label = {label: set() for label in labels}
+
+    for issue in review_issues:
+        try:
+            pr = repo.get_pull(issue.number)
+            for review in pr.get_reviews():
+                submitted_at = _to_utc_datetime(review.submitted_at)
+                if not submitted_at or not (start_utc <= submitted_at < end_utc):
+                    continue
+
+                total_reviews += 1
+                reviewer = review.user.login if review.user else None
+                if reviewer not in tracked_usernames:
+                    continue
+
+                tracked_reviews += 1
+                label = label_by_username[reviewer]
+                summary = affiliation_stats[label]
+                summary["review_count"] += 1
+                summary["review_users"][reviewer] = (
+                    summary["review_users"].get(reviewer, 0) + 1
+                )
+                user_stats[reviewer]["review_count"] += 1
+                reviewed_prs_by_user[reviewer].add(issue.number)
+                reviewed_prs_by_label[label].add(issue.number)
+        except Exception as exc:
+            print(f"    Error processing reviews for PR #{issue.number}: {exc}")
+
+    for label, pr_numbers in reviewed_prs_by_label.items():
+        affiliation_stats[label]["reviewed_pr_count"] = len(pr_numbers)
+    for username, pr_numbers in reviewed_prs_by_user.items():
+        user_stats[username]["reviewed_pr_count"] = len(pr_numbers)
+
+    try:
+        merged_query = (
+            f"repo:{repo_name} is:pr is:merged merged:{start_date}..{end_date}"
+        )
+        merged_pr_count = len(list(github_instance.search_issues(merged_query)))
+    except Exception as exc:
+        print(f"  Error fetching merged PR count for {repo_name}: {exc}")
+        merged_pr_count = 0
+
+    _score_release_items(list(affiliation_stats.values()))
+    _score_release_items(list(user_stats.values()))
+    user_rows = sorted(
+        user_stats.values(),
+        key=lambda item: (
+            item["contribution_score"],
+            item["commit_count"] + item["review_count"],
+            item["code_line_count"],
+            item["username"],
+        ),
+        reverse=True,
+    )
+    tracked_additions = sum(user["additions"] for user in user_stats.values())
+    tracked_deletions = sum(user["deletions"] for user in user_stats.values())
+
+    print(
+        f"  {repo_name} {section_title}: "
+        f"tracked commits {tracked_commits}/{len(commits)}, "
+        f"tracked reviews {tracked_reviews}/{total_reviews}, "
+        f"tracked code delta +{tracked_additions}/-{tracked_deletions}"
+    )
+    return {
+        "section_title": section_title,
+        "window_start": start_time,
+        "window_end": end_time,
+        "tracked_commits": tracked_commits,
+        "total_commits": len(commits),
+        "tracked_reviews": tracked_reviews,
+        "total_reviews": total_reviews,
+        "tracked_additions": tracked_additions,
+        "tracked_deletions": tracked_deletions,
+        "tracked_code_line_count": tracked_additions + tracked_deletions,
+        "merged_pr_count": merged_pr_count,
+        "score_note": _release_score_note(),
+        "affiliations": affiliation_stats,
+        "users": user_rows,
+    }
+
+
+def get_monthly_contribution_stats(github_instance, repo_name, people, now=None):
+    """Collect previous/current Beijing-month contribution windows."""
+    repo = github_instance.get_repo(repo_name)
+    stats = []
+    for window in get_month_windows(now):
+        stats.append(
+            _collect_monthly_window_stats(
+                github_instance=github_instance,
+                repo=repo,
+                repo_name=repo_name,
+                people=people,
+                start_time=window["start"],
+                end_time=window["end"],
+                section_title=window["section_title"],
+            )
+        )
+    return stats
+
+
+def collect_repo_user_data(github_instance, target_repo, people):
+    """Collect all-time PR monitoring data for a configured repository."""
+    all_user_data = []
+    for person in people:
+        username = person["username"]
+        try:
+            print(f"\nProcessing {target_repo} user: {username}")
+            stats = get_user_stats(
+                github_instance, username, target_repo=target_repo
+            )
+            total_contributions = (
+                stats["merged_prs"].totalCount + stats["open_prs"].totalCount
+            )
+            user_total_additions = 0
+            user_total_deletions = 0
+
+            for pr in list(stats["merged_prs"]) + list(stats["open_prs"]):
+                additions, deletions, merged_at = get_pr_additions_deletions(
+                    github_instance, pr
+                )
+                pr._additions = additions
+                pr._deletions = deletions
+                pr._merged_at = merged_at
+                user_total_additions += additions
+                user_total_deletions += deletions
+                time.sleep(0.5)
+
+            all_user_data.append(
+                {
+                    "username": username,
+                    "affiliation": person["location"],
+                    "affiliations": [person["location"]],
+                    "display_name": person["name"],
+                    "stats": stats,
+                    "total_contributions": total_contributions,
+                    "total_additions": user_total_additions,
+                    "total_deletions": user_total_deletions,
+                }
+            )
+        except Exception as exc:
+            print(f"Error processing {target_repo} user {username}: {exc}")
+
+    all_user_data.sort(key=lambda item: item["total_contributions"], reverse=True)
+    return all_user_data
+
+
+def format_beijing_datetime(dt):
+    beijing_dt = _to_beijing_datetime(dt)
+    if not beijing_dt:
+        return "-"
+    return beijing_dt.strftime("%Y-%m-%d %H:%M:%S GMT+8")
+
+
+def _monthly_recent_prs(user_data, limit=80):
+    recent_prs = []
+    for user in user_data:
+        for state, prs in (
+            ("merged", user["stats"]["merged_prs"]),
+            ("open", user["stats"]["open_prs"]),
+        ):
+            for pr in prs:
+                recent_prs.append(
+                    {
+                        "title": pr.title,
+                        "url": pr.html_url,
+                        "repo": pr.repository.full_name,
+                        "state": state,
+                        "created_at": pr.created_at,
+                        "additions": getattr(pr, "_additions", 0),
+                        "deletions": getattr(pr, "_deletions", 0),
+                        "user": user["username"],
+                        "display_name": user["display_name"],
+                        "location": user["affiliation"],
+                    }
+                )
+
+    recent_prs.sort(
+        key=lambda item: item["created_at"] or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
+    return recent_prs[:limit]
+
+
+def _append_monthly_window_markdown(markdown_text, window_stats):
+    markdown_text += f"#### {window_stats['section_title']}\n\n"
+    markdown_text += (
+        f"时间: {format_beijing_datetime(window_stats['window_start'])} -> "
+        f"{format_beijing_datetime(window_stats['window_end'])}\n\n"
+    )
+    markdown_text += (
+        f"Tracked commits: {format_number(window_stats['tracked_commits'])}/"
+        f"{format_number(window_stats['total_commits'])}; "
+        f"Tracked reviews: {format_number(window_stats['tracked_reviews'])}/"
+        f"{format_number(window_stats['total_reviews'])}; "
+        f"Tracked code delta: +{format_number(window_stats['tracked_additions'])}/"
+        f"-{format_number(window_stats['tracked_deletions'])}; "
+        f"Merged PRs in window: {format_number(window_stats['merged_pr_count'])}\n\n"
+    )
+    markdown_text += f"Scoring: {window_stats['score_note']}\n\n"
+    markdown_text += "| 属地 | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |\n"
+    markdown_text += "| ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |\n"
+    affiliation_rows = sorted(
+        window_stats["affiliations"].items(),
+        key=lambda item: item[1]["contribution_score"],
+        reverse=True,
+    )
+    for label, summary in affiliation_rows:
+        markdown_text += (
+            f"| {label} | {format_percent(summary['contribution_score'])} | "
+            f"{format_number(summary['commit_count'])} | "
+            f"{format_number(summary['review_count'])} | "
+            f"{format_number(summary['reviewed_pr_count'])} | "
+            f"{format_number(summary['additions'])} | "
+            f"{format_number(summary['deletions'])} | "
+            f"{format_number(summary['code_line_count'])} |\n"
+        )
+    markdown_text += "\n| 姓名 | GitHub ID | 属地 | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions |\n"
+    markdown_text += "| ---- | --------- | ---- | ------------ | ------- | ------- | ------------ | --------- | --------- |\n"
+    for user in window_stats["users"]:
+        markdown_text += (
+            f"| {user['display_name']} | @{user['username']} | "
+            f"{user['affiliation']} | {format_percent(user['contribution_score'])} | "
+            f"{format_number(user['commit_count'])} | "
+            f"{format_number(user['review_count'])} | "
+            f"{format_number(user['reviewed_pr_count'])} | "
+            f"{format_number(user['additions'])} | "
+            f"{format_number(user['deletions'])} |\n"
+        )
+    return markdown_text + "\n"
+
+
+def generate_monthly_repo_markdown(repo_name, config, user_data, monthly_stats):
+    total_open = sum(user["stats"]["open_prs"].totalCount for user in user_data)
+    total_merged = sum(user["stats"]["merged_prs"].totalCount for user in user_data)
+    total_additions = sum(user.get("total_additions", 0) for user in user_data)
+    total_deletions = sum(user.get("total_deletions", 0) for user in user_data)
+    markdown_text = (
+        f"\n---\n\n## {config['label']} 月度监控与贡献度\n\n"
+        f"仓库: [{repo_name}](https://github.com/{repo_name})  \n"
+        f"独立看板: [{config['html_filename']}]({config['html_filename']})\n\n"
+        f"![{config['label']} contribution chart]({config['chart_filename']})\n\n"
+        f"本次追踪 {len(user_data)} 人；PR 总量 {format_number(total_open + total_merged)} "
+        f"（Open {format_number(total_open)} / Merged {format_number(total_merged)}）；"
+        f"代码变更 +{format_number(total_additions)} / -{format_number(total_deletions)}。\n\n"
+        "### PR 监控汇总\n\n"
+        "| 姓名 | GitHub ID | 属地 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |\n"
+        "| ---- | --------- | ---- | --------- | -------- | ---------- | --------- | --------- |\n"
+    )
+    for user in user_data:
+        stats = user["stats"]
+        markdown_text += (
+            f"| {user['display_name']} | @{user['username']} | {user['affiliation']} | "
+            f"{format_number(user['total_contributions'])} | "
+            f"{format_number(stats['open_prs'].totalCount)} | "
+            f"{format_number(stats['merged_prs'].totalCount)} | "
+            f"{format_number(user.get('total_additions', 0))} | "
+            f"{format_number(user.get('total_deletions', 0))} |\n"
+        )
+    markdown_text += "\n"
+    for window_stats in monthly_stats:
+        if window_stats:
+            markdown_text = _append_monthly_window_markdown(markdown_text, window_stats)
+        else:
+            markdown_text += "#### Monthly contribution unavailable\n\n"
+    markdown_text += "### 最近 PR\n\n"
+    markdown_text += "| Title | State | User | Created | Additions | Deletions |\n"
+    markdown_text += "| ----- | ----- | ---- | ------- | --------- | --------- |\n"
+    recent_prs = _monthly_recent_prs(user_data)
+    for pr in recent_prs:
+        title = pr["title"].replace("|", "\\|")
+        created_date = (
+            format_beijing_datetime(pr["created_at"]).replace(" GMT+8", "")
+            if pr["created_at"]
+            else "-"
+        )
+        markdown_text += (
+            f"| [{title}]({pr['url']}) | `{pr['state']}` | "
+            f"{pr['display_name']} (@{pr['user']}) | {created_date} | "
+            f"{format_number(pr['additions'])} | {format_number(pr['deletions'])} |\n"
+        )
+    if not recent_prs:
+        markdown_text += "| _No relevant pull requests found._ | | | | | |\n"
+    return markdown_text + "\n"
+
+
+def create_monthly_dashboard(repo_name, config, user_data, monthly_stats):
+    """Create a compact standalone dashboard for a monthly repository."""
+    generated_at = format_beijing_datetime(datetime.now(timezone.utc))
+    total_open = sum(user["stats"]["open_prs"].totalCount for user in user_data)
+    total_merged = sum(user["stats"]["merged_prs"].totalCount for user in user_data)
+    total_additions = sum(user.get("total_additions", 0) for user in user_data)
+    total_deletions = sum(user.get("total_deletions", 0) for user in user_data)
+
+    try:
+        with open(config["chart_filename"], "r", encoding="utf-8") as chart_file:
+            chart_markup = chart_file.read()
+    except OSError:
+        chart_markup = "<p>Chart is not available in this run.</p>"
+
+    monitoring_rows = []
+    for user in user_data:
+        stats = user["stats"]
+        monitoring_rows.append(
+            f"<tr><td>{escape(user['display_name'])}</td>"
+            f"<td>@{escape(user['username'])}</td>"
+            f"<td>{escape(user['affiliation'])}</td>"
+            f"<td class='num'>{format_number(user['total_contributions'])}</td>"
+            f"<td class='num'>{format_number(stats['open_prs'].totalCount)}</td>"
+            f"<td class='num'>{format_number(stats['merged_prs'].totalCount)}</td>"
+            f"<td class='num'>+{format_number(user.get('total_additions', 0))}</td>"
+            f"<td class='num'>-{format_number(user.get('total_deletions', 0))}</td></tr>"
+        )
+
+    window_sections = []
+    for window_stats in monthly_stats:
+        if not window_stats:
+            window_sections.append(
+                "<section><h2>Monthly contribution unavailable</h2></section>"
+            )
+            continue
+        label_rows = []
+        for label, summary in sorted(
+            window_stats["affiliations"].items(),
+            key=lambda item: item[1]["contribution_score"],
+            reverse=True,
+        ):
+            label_rows.append(
+                f"<tr><td>{escape(label)}</td>"
+                f"<td class='num'>{format_percent(summary['contribution_score'])}</td>"
+                f"<td class='num'>{format_number(summary['commit_count'])}</td>"
+                f"<td class='num'>{format_number(summary['review_count'])}</td>"
+                f"<td class='num'>{format_number(summary['reviewed_pr_count'])}</td>"
+                f"<td class='num'>+{format_number(summary['additions'])}</td>"
+                f"<td class='num'>-{format_number(summary['deletions'])}</td></tr>"
+            )
+        user_rows = []
+        for user in window_stats["users"]:
+            user_rows.append(
+                f"<tr><td>{escape(user['display_name'])}</td>"
+                f"<td>@{escape(user['username'])}</td>"
+                f"<td>{escape(user['affiliation'])}</td>"
+                f"<td class='num'>{format_percent(user['contribution_score'])}</td>"
+                f"<td class='num'>{format_number(user['commit_count'])}</td>"
+                f"<td class='num'>{format_number(user['review_count'])}</td>"
+                f"<td class='num'>{format_number(user['reviewed_pr_count'])}</td>"
+                f"<td class='num'>+{format_number(user['additions'])}</td>"
+                f"<td class='num'>-{format_number(user['deletions'])}</td></tr>"
+            )
+        window_sections.append(
+            f"<section><h2>{escape(window_stats['section_title'])}</h2>"
+            f"<p class='muted'>时间: {escape(format_beijing_datetime(window_stats['window_start']))}"
+            f" → {escape(format_beijing_datetime(window_stats['window_end']))}</p>"
+            f"<p>{escape(window_stats['score_note'])}</p>"
+            f"<table><thead><tr><th>属地</th><th>Contribution</th><th>Commits</th>"
+            f"<th>Reviews</th><th>Reviewed PRs</th><th>Additions</th><th>Deletions</th></tr></thead>"
+            f"<tbody>{''.join(label_rows)}</tbody></table>"
+            f"<table><thead><tr><th>姓名</th><th>GitHub ID</th><th>属地</th>"
+            f"<th>Contribution</th><th>Commits</th><th>Reviews</th><th>Reviewed PRs</th>"
+            f"<th>Additions</th><th>Deletions</th></tr></thead>"
+            f"<tbody>{''.join(user_rows)}</tbody></table></section>"
+        )
+
+    recent_rows = []
+    for pr in _monthly_recent_prs(user_data):
+        recent_rows.append(
+            f"<tr><td><a href='{escape(pr['url'])}'>{escape(pr['title'])}</a>"
+            f"<span class='muted'>{escape(pr['repo'])}</span></td>"
+            f"<td>{escape(pr['state'])}</td><td>{escape(pr['display_name'])}"
+            f"<span class='muted'>@{escape(pr['user'])}</span></td>"
+            f"<td>{escape(format_beijing_datetime(pr['created_at']))}</td>"
+            f"<td class='num'>+{format_number(pr['additions'])}</td>"
+            f"<td class='num'>-{format_number(pr['deletions'])}</td></tr>"
+        )
+
+    html_content = f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(repo_name)} monthly contribution monitor</title>
+  <style>
+    :root {{ --bg: #f3efe5; --surface: #fffdfa; --ink: #151516; --muted: #6c665c; --line: #d9d1c2; --accent: #00796b; }}
+    * {{ box-sizing: border-box; }} body {{ margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 "Segoe UI", sans-serif; }}
+    main {{ width: min(1500px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 48px; }}
+    h1, h2 {{ font-family: "Bahnschrift", "Segoe UI", sans-serif; }} h1 {{ font-size: clamp(32px, 6vw, 72px); line-height: .95; margin: 20px 0 10px; }}
+    h2 {{ border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-top: 28px; }}
+    .muted {{ color: var(--muted); display: block; }} .metrics {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }}
+    .metric, section, .chart {{ background: var(--surface); border: 1px solid var(--line); padding: 14px; margin-top: 14px; }}
+    .metric strong {{ display: block; font-size: 28px; margin-top: 8px; }} .chart svg {{ max-width: 100%; height: auto; }}
+    table {{ border-collapse: collapse; width: 100%; margin: 12px 0; background: var(--surface); }} th, td {{ border-bottom: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }}
+    th {{ background: #ebe4d6; }} .num {{ text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }}
+    a {{ color: inherit; font-weight: 700; }} @media (max-width: 760px) {{ .metrics {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }} table {{ font-size: 12px; display: block; overflow-x: auto; }} }}
+  </style>
+</head>
+<body><main>
+  <p class="muted">{escape(repo_name)} · Generated {escape(generated_at)}</p>
+  <h1>{escape(config['label'])}<br>monthly monitor</h1>
+  <div class="metrics">
+    <div class="metric"><span>Tracked users</span><strong>{format_number(len(user_data))}</strong></div>
+    <div class="metric"><span>Total PRs</span><strong>{format_number(total_open + total_merged)}</strong></div>
+    <div class="metric"><span>Open / merged</span><strong>{format_number(total_open)} / {format_number(total_merged)}</strong></div>
+    <div class="metric"><span>Code delta</span><strong>+{format_number(total_additions)} / -{format_number(total_deletions)}</strong></div>
+  </div>
+  <div class="chart">{chart_markup}</div>
+  <section><h2>PR 监控汇总</h2><table><thead><tr><th>姓名</th><th>GitHub ID</th><th>属地</th><th>Total PRs</th><th>Open</th><th>Merged</th><th>Additions</th><th>Deletions</th></tr></thead><tbody>{''.join(monitoring_rows)}</tbody></table></section>
+  {''.join(window_sections)}
+  <section><h2>最近 PR</h2><table><thead><tr><th>Title</th><th>State</th><th>User</th><th>Created</th><th>Additions</th><th>Deletions</th></tr></thead><tbody>{''.join(recent_rows) or '<tr><td colspan="6">No relevant pull requests found.</td></tr>'}</tbody></table></section>
+</main></body></html>"""
+
+    with open(config["html_filename"], "w", encoding="utf-8") as html_file:
+        html_file.write(html_content)
+    print(f"Monthly HTML dashboard created successfully: {config['html_filename']}")
+    return config["html_filename"]
+
 def format_datetime(dt):
     """
     将datetime格式化为字符串，若不存在则返回“-”
@@ -562,7 +1159,7 @@ def format_datetime(dt):
     except Exception:
         return "-"
 
-def generate_chart(user_data):
+def generate_chart(user_data, chart_filename=CHART_FILENAME, target_repo=TARGET_REPO):
     """
     生成包含堆叠PR柱状图的图表，包含additions/deletions统计
     修改：将所有字体颜色改为黑色加粗
@@ -612,7 +1209,7 @@ def generate_chart(user_data):
     
     # 修复：使用数组格式来表示多行标题，这是Chart.js的正确方式
     title_lines = [
-        f"{TARGET_REPO} PR贡献统计 - 共{len(user_data)}位用户",
+        f"{target_repo} PR贡献统计 - 共{len(user_data)}位用户",
         f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs}",
         f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
     ]
@@ -762,9 +1359,9 @@ def generate_chart(user_data):
         )
         
         if response.status_code == 200:
-            with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
+            with open(chart_filename, 'w', encoding='utf-8') as f:
                 f.write(response.text)
-            print(f"✅ Enhanced chart with black bold fonts saved successfully as {CHART_FILENAME}")
+            print(f"✅ Enhanced chart with black bold fonts saved successfully as {chart_filename}")
             print(f"   Chart size: {chart_width}x{chart_height}px with {len(usernames)} users displayed")
             print(f"   Totals displayed: Open PRs: {total_open_prs}, Merged PRs: {total_merged_prs}")
             print(f"   Code changes: +{format_number(total_additions)} -{format_number(total_deletions)}")
@@ -791,9 +1388,9 @@ def generate_chart(user_data):
                 )
                 
                 if response.status_code == 200:
-                    with open(CHART_FILENAME, 'w', encoding='utf-8') as f:
+                    with open(chart_filename, 'w', encoding='utf-8') as f:
                         f.write(response.text)
-                    print(f"✅ Smaller enhanced chart with black bold fonts saved successfully as {CHART_FILENAME}")
+                    print(f"✅ Smaller enhanced chart with black bold fonts saved successfully as {chart_filename}")
                 else:
                     print(f"❌ Even smaller chart failed: {response.status_code}")
                     
@@ -1625,14 +2222,55 @@ if __name__ == "__main__":
         print(f"Error collecting release contribution stats: {e}")
         last_release_stats = None
         current_release_stats = None
-    
+
+    monthly_reports = []
+    for repo_name, repo_config in MONTHLY_REPO_CONFIGS.items():
+        print(f"\n{'=' * 50}")
+        print(f"Collecting monthly report for {repo_name}")
+        try:
+            monthly_user_data = collect_repo_user_data(
+                github, repo_name, repo_config["people"]
+            )
+            monthly_stats = get_monthly_contribution_stats(
+                github, repo_name, repo_config["people"]
+            )
+            generate_chart(
+                monthly_user_data,
+                chart_filename=repo_config["chart_filename"],
+                target_repo=repo_name,
+            )
+            create_monthly_dashboard(
+                repo_name, repo_config, monthly_user_data, monthly_stats
+            )
+            monthly_reports.append(
+                {
+                    "repo_name": repo_name,
+                    "config": repo_config,
+                    "user_data": monthly_user_data,
+                    "monthly_stats": monthly_stats,
+                }
+            )
+        except Exception as exc:
+            print(f"Error collecting monthly report for {repo_name}: {exc}")
+
     print(f"\nGenerating enhanced chart for all {len(all_user_data)} users...")
     generate_chart(all_user_data)
     markdown_output = generate_markdown(all_user_data, last_release_stats, current_release_stats)
+    for monthly_report in monthly_reports:
+        markdown_output += generate_monthly_repo_markdown(
+            monthly_report["repo_name"],
+            monthly_report["config"],
+            monthly_report["user_data"],
+            monthly_report["monthly_stats"],
+        )
     readme_filename = create_fixed_readme(markdown_output)
     html_filename = create_dashboard_html(all_user_data, last_release_stats, current_release_stats)
 
     print(f"\n✅ All enhanced tasks completed successfully. README saved as: {readme_filename}")
     print(f"Enhanced chart saved as: {CHART_FILENAME}")
     print(f"HTML dashboard saved as: {html_filename}")
+    print(
+        "Monthly dashboards saved as: "
+        f"{[report['config']['html_filename'] for report in monthly_reports]}"
+    )
     print(f"Processed users: {[user['username'] for user in all_user_data]}")
