@@ -4,7 +4,7 @@
 
 **Goal:** Extend the existing GitHub status monitor to report the `afd-plugin` and `AgentInfer` 投入场景 using the personnel and multi-repo mappings from the supplied Google Sheet, with Beijing-time current/previous-month contribution windows while preserving the existing vLLM-Omni release-window report.
 
-**Architecture:** Keep the existing vLLM-Omni path and output names stable. Add a small, explicit configuration for the two monthly scenes, including each scene's people and repo list, parameterize the existing all-time PR query and chart generator where needed, and add generic monthly-window collection/rendering helpers. Each scene gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for vLLM-Omni plus the two scenes. Monthly raw metrics are aggregated across a scene before scoring.
+**Architecture:** Keep the existing vLLM-Omni path and output names stable. Add a small, explicit configuration for the two monthly scenes, including each scene's people and repo list, parameterize the existing all-time PR query and chart generator where needed, and add generic monthly-window collection/rendering helpers. Each scene gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for vLLM-Omni plus the two scenes. Monthly raw metrics are aggregated across a scene before scoring. All-time PR totals use full search counts while candidate lists and code-detail lookups are bounded to avoid walking large repositories' entire PR histories.
 
 **Tech Stack:** Python 3.9+, PyGithub, requests, GitHub Actions, GitHub Search/REST API, Markdown, standalone HTML/SVG.
 
@@ -57,7 +57,7 @@ Read repository commits between the window boundaries, retain tracked GitHub aut
 
 **Step 2: Collect reviews in the same window**
 
-Search PRs updated in the bounded window, inspect review submissions, and count only review events whose `submitted_at` lies inside the window. Retain the existing 20% commit + 35% review + 45% code-churn scoring rule.
+Search PRs reviewed by tracked contributors and updated in the bounded window, inspect review submissions, and count only review events whose `submitted_at` lies inside the window. Retain the existing 20% commit + 35% review + 45% code-churn scoring rule.
 
 **Step 3: Aggregate scene metrics before scoring**
 

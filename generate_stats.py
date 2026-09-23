@@ -2,6 +2,7 @@ import os
 import re
 import requests
 import time
+from itertools import islice
 from datetime import datetime, timedelta, timezone
 from html import escape
 from github import Github
@@ -35,6 +36,8 @@ HTML_FILENAME = "stats_dashboard.html"
 TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed UTC+08:00 is sufficient for Beijing time because it has no DST changes.
 BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
+PR_SAMPLE_PER_QUERY = 10
+RECENT_PR_DISPLAY_LIMIT = 80
 # Monthly reports use the personnel and display names from the supplied team sheet.
 # Each scene aggregates every repository listed in the sheet's "涉及repo" column.
 MONTHLY_SCENE_CONFIGS = {
@@ -121,26 +124,14 @@ def get_pr_additions_deletions(github_instance, pr):
         print(f"    Error fetching additions/deletions for PR #{pr.number}: {e}")
         return 0, 0, None
 
-def count_actual_items(search_result, item_type="items"):
-    """
-    计算搜索结果中的实际项目数量
-    """
-    try:
-        items = list(search_result)
-        actual_count = len(items)
-        print(f"  Actual {item_type} counted: {actual_count}")
-        return actual_count, items
-    except Exception as e:
-        print(f"  Error counting actual items: {e}")
-        return 0, []
-
-
 class _CombinedResult:
     """Small PyGithub-like result wrapper for multi-repository PR totals."""
 
-    def __init__(self, items):
+    def __init__(self, items, total_count=None):
         self._items = list(items)
-        self.totalCount = len(self._items)
+        self.totalCount = (
+            len(self._items) if total_count is None else total_count
+        )
 
     def __iter__(self):
         return iter(self._items)
@@ -195,10 +186,14 @@ def get_user_stats_fallback(github_instance, username, target_repo=TARGET_REPO):
             "merged_prs": EmptyResult()
         }
 
-def get_user_stats(github_instance, username, target_repo=TARGET_REPO):
+def get_user_stats(
+    github_instance,
+    username,
+    target_repo=TARGET_REPO,
+    item_limit=PR_SAMPLE_PER_QUERY,
+):
     """
-    Fetches PRs (open and merged) for a user.
-    Includes all data from vllm-project organization (no date restrictions).
+    Fetch exact open/merged PR counts and a bounded list of newest PRs.
     """
     print(f"Fetching all data for {username} in {target_repo} repository...")
 
@@ -215,32 +210,42 @@ def get_user_stats(github_instance, username, target_repo=TARGET_REPO):
     time.sleep(1)
     
     try:
-        open_prs = github_instance.search_issues(query_open_prs)
-        merged_prs = github_instance.search_issues(query_merged_prs)
+        open_search = github_instance.search_issues(
+            query_open_prs, sort="created", order="desc"
+        )
+        merged_search = github_instance.search_issues(
+            query_merged_prs, sort="created", order="desc"
+        )
         
         print(f"  ✓ Search API Success for {username}")
-        print(f"    Open PRs totalCount: {open_prs.totalCount}")
-        print(f"    Merged PRs totalCount: {merged_prs.totalCount}")
-        
-        # 验证totalCount的准确性
-        actual_open_count, open_items = count_actual_items(open_prs, "open PRs")
-        actual_merged_count, merged_items = count_actual_items(merged_prs, "merged PRs")
-        
-        # 如果totalCount不准确，使用实际计数
-        if open_prs.totalCount != actual_open_count:
-            print(f"  ⚠️  Open PR count mismatch: API={open_prs.totalCount}, Actual={actual_open_count}")
-            open_prs.totalCount = actual_open_count
-            
-        if merged_prs.totalCount != actual_merged_count:
-            print(f"  ⚠️  Merged PR count mismatch: API={merged_prs.totalCount}, Actual={actual_merged_count}")
-            merged_prs.totalCount = actual_merged_count
+
+        open_count = open_search.totalCount
+        merged_count = merged_search.totalCount
+        if item_limit is None:
+            open_items = list(open_search)
+            merged_items = list(merged_search)
+            open_count = len(open_items)
+            merged_count = len(merged_items)
+        else:
+            open_items = list(islice(open_search, item_limit))
+            merged_items = list(islice(merged_search, item_limit))
+
+        open_prs = _CombinedResult(open_items, open_count)
+        merged_prs = _CombinedResult(merged_items, merged_count)
+        print(f"    Open PRs totalCount: {open_count}; loaded: {len(open_items)}")
+        print(f"    Merged PRs totalCount: {merged_count}; loaded: {len(merged_items)}")
         
     except Exception as e:
         print(f"  ✗ Search API Error for {username}: {type(e).__name__}: {e}")
-        print(f"    Switching to fallback method...")
-        
-        # 使用备用方法
-        return get_user_stats_fallback(github_instance, username, target_repo=target_repo)
+        if item_limit is not None:
+            print("    Skipping unbounded fallback scan for this repository.")
+            return {
+                "open_prs": _CombinedResult([]),
+                "merged_prs": _CombinedResult([]),
+            }
+        return get_user_stats_fallback(
+            github_instance, username, target_repo=target_repo
+        )
     
     total_found = open_prs.totalCount + merged_prs.totalCount
     print(f"  Final counts for {username}: {open_prs.totalCount} open PRs, {merged_prs.totalCount} merged PRs (Total: {total_found})")
@@ -743,23 +748,27 @@ def _collect_monthly_window_stats(
 
     start_date = start_utc.strftime("%Y-%m-%d")
     end_date = end_utc.strftime("%Y-%m-%d")
-    review_query = (
-        f"repo:{repo_name} is:pr updated:{start_date}..{end_date}"
-    )
-    print(f"  Monthly PR review query: {review_query}")
+    review_issues_by_number = {}
+    for username in sorted(tracked_usernames):
+        review_query = (
+            f"repo:{repo_name} is:pr reviewed-by:{username} "
+            f"updated:{start_date}..{end_date}"
+        )
+        print(f"  Monthly review query: {review_query}")
+        try:
+            for issue in github_instance.search_issues(review_query):
+                review_issues_by_number.setdefault(issue.number, issue)
+        except Exception as exc:
+            print(
+                f"  Error fetching review candidates for {repo_name}/"
+                f"{username}: {exc}"
+            )
 
-    try:
-        review_issues = list(github_instance.search_issues(review_query))
-    except Exception as exc:
-        print(f"  Error fetching review candidates for {repo_name}: {exc}")
-        review_issues = []
-
-    total_reviews = 0
     tracked_reviews = 0
     reviewed_prs_by_user = {username: set() for username in tracked_usernames}
     reviewed_prs_by_label = {label: set() for label in labels}
 
-    for issue in review_issues:
+    for issue in review_issues_by_number.values():
         try:
             pr = repo.get_pull(issue.number)
             for review in pr.get_reviews():
@@ -767,7 +776,6 @@ def _collect_monthly_window_stats(
                 if not submitted_at or not (start_utc <= submitted_at < end_utc):
                     continue
 
-                total_reviews += 1
                 reviewer = review.user.login if review.user else None
                 if reviewer not in tracked_usernames:
                     continue
@@ -794,7 +802,10 @@ def _collect_monthly_window_stats(
         merged_query = (
             f"repo:{repo_name} is:pr is:merged merged:{start_date}..{end_date}"
         )
-        merged_pr_count = len(list(github_instance.search_issues(merged_query)))
+        merged_results = github_instance.search_issues(merged_query)
+        merged_pr_count = getattr(merged_results, "totalCount", None)
+        if merged_pr_count is None:
+            merged_pr_count = len(merged_results)
     except Exception as exc:
         print(f"  Error fetching merged PR count for {repo_name}: {exc}")
         merged_pr_count = 0
@@ -817,7 +828,7 @@ def _collect_monthly_window_stats(
     print(
         f"  {repo_name} {section_title}: "
         f"tracked commits {tracked_commits}/{len(commits)}, "
-        f"tracked reviews {tracked_reviews}/{total_reviews}, "
+        f"tracked reviews {tracked_reviews}, "
         f"tracked code delta +{tracked_additions}/-{tracked_deletions}"
     )
     return {
@@ -827,7 +838,6 @@ def _collect_monthly_window_stats(
         "tracked_commits": tracked_commits,
         "total_commits": len(commits),
         "tracked_reviews": tracked_reviews,
-        "total_reviews": total_reviews,
         "tracked_additions": tracked_additions,
         "tracked_deletions": tracked_deletions,
         "tracked_code_line_count": tracked_additions + tracked_deletions,
@@ -886,7 +896,6 @@ def _merge_monthly_window_stats(repo_stats, people, section_title, start_time, e
         "tracked_commits": sum(stats["tracked_commits"] for stats in repo_stats),
         "total_commits": sum(stats["total_commits"] for stats in repo_stats),
         "tracked_reviews": sum(stats["tracked_reviews"] for stats in repo_stats),
-        "total_reviews": sum(stats["total_reviews"] for stats in repo_stats),
         "tracked_additions": sum(
             stats["tracked_additions"] for stats in repo_stats
         ),
@@ -949,37 +958,30 @@ def collect_scene_user_data(github_instance, scene_name, repo_names, people):
         username = person["username"]
         open_prs = []
         merged_prs = []
+        open_count = 0
+        merged_count = 0
         try:
             print(f"\nProcessing {scene_name} user: {username}")
             for repo_name in repo_names:
                 stats = get_user_stats(
-                    github_instance, username, target_repo=repo_name
+                    github_instance,
+                    username,
+                    target_repo=repo_name,
+                    item_limit=PR_SAMPLE_PER_QUERY,
                 )
                 open_prs.extend(list(stats["open_prs"]))
                 merged_prs.extend(list(stats["merged_prs"]))
+                open_count += stats["open_prs"].totalCount
+                merged_count += stats["merged_prs"].totalCount
 
             combined_stats = {
-                "open_prs": _CombinedResult(open_prs),
-                "merged_prs": _CombinedResult(merged_prs),
+                "open_prs": _CombinedResult(open_prs, open_count),
+                "merged_prs": _CombinedResult(merged_prs, merged_count),
             }
             total_contributions = (
                 combined_stats["merged_prs"].totalCount
                 + combined_stats["open_prs"].totalCount
             )
-            user_total_additions = 0
-            user_total_deletions = 0
-
-            for pr in merged_prs + open_prs:
-                additions, deletions, merged_at = get_pr_additions_deletions(
-                    github_instance, pr
-                )
-                pr._additions = additions
-                pr._deletions = deletions
-                pr._merged_at = merged_at
-                user_total_additions += additions
-                user_total_deletions += deletions
-                time.sleep(0.5)
-
             all_user_data.append(
                 {
                     "username": username,
@@ -988,14 +990,15 @@ def collect_scene_user_data(github_instance, scene_name, repo_names, people):
                     "display_name": person["name"],
                     "stats": combined_stats,
                     "total_contributions": total_contributions,
-                    "total_additions": user_total_additions,
-                    "total_deletions": user_total_deletions,
+                    "total_additions": 0,
+                    "total_deletions": 0,
                 }
             )
         except Exception as exc:
             print(f"Error processing {scene_name} user {username}: {exc}")
 
     all_user_data.sort(key=lambda item: item["total_contributions"], reverse=True)
+    _attach_recent_pr_deltas(github_instance, all_user_data)
     return all_user_data
 
 
@@ -1006,7 +1009,7 @@ def format_beijing_datetime(dt):
     return beijing_dt.strftime("%Y-%m-%d %H:%M:%S GMT+8")
 
 
-def _monthly_recent_prs(user_data, limit=80):
+def _monthly_recent_prs(user_data, limit=RECENT_PR_DISPLAY_LIMIT):
     recent_prs = []
     for user in user_data:
         for state, prs in (
@@ -1026,6 +1029,8 @@ def _monthly_recent_prs(user_data, limit=80):
                         "user": user["username"],
                         "display_name": user["display_name"],
                         "location": user["affiliation"],
+                        "_pull_request": pr,
+                        "_user_record": user,
                     }
                 )
 
@@ -1034,6 +1039,29 @@ def _monthly_recent_prs(user_data, limit=80):
         reverse=True,
     )
     return recent_prs[:limit]
+
+
+def _attach_recent_pr_deltas(github_instance, user_data, limit=RECENT_PR_DISPLAY_LIMIT):
+    """Fetch code deltas only for PRs shown in the recent-PR tables."""
+    for user in user_data:
+        user["total_additions"] = 0
+        user["total_deletions"] = 0
+
+    recent_prs = _monthly_recent_prs(user_data, limit=limit)
+    for item in recent_prs:
+        pr = item["_pull_request"]
+        additions, deletions, merged_at = get_pr_additions_deletions(
+            github_instance, pr
+        )
+        pr._additions = additions
+        pr._deletions = deletions
+        pr._merged_at = merged_at
+        item["additions"] = additions
+        item["deletions"] = deletions
+        user = item["_user_record"]
+        user["total_additions"] += additions
+        user["total_deletions"] += deletions
+        time.sleep(0.5)
 
 
 def _append_monthly_window_markdown(markdown_text, window_stats):
@@ -1045,8 +1073,7 @@ def _append_monthly_window_markdown(markdown_text, window_stats):
     markdown_text += (
         f"Tracked commits: {format_number(window_stats['tracked_commits'])}/"
         f"{format_number(window_stats['total_commits'])}; "
-        f"Tracked reviews: {format_number(window_stats['tracked_reviews'])}/"
-        f"{format_number(window_stats['total_reviews'])}; "
+        f"Tracked reviews: {format_number(window_stats['tracked_reviews'])}; "
         f"Tracked code delta: +{format_number(window_stats['tracked_additions'])}/"
         f"-{format_number(window_stats['tracked_deletions'])}; "
         f"Merged PRs in window: {format_number(window_stats['merged_pr_count'])}\n\n"
@@ -1100,10 +1127,13 @@ def generate_monthly_scene_markdown(scene_name, config, user_data, monthly_stats
         f"![{config['label']} contribution chart]({config['chart_filename']})\n\n"
         f"本次追踪 {len(user_data)} 人；PR 总量 {format_number(total_open + total_merged)} "
         f"（Open {format_number(total_open)} / Merged {format_number(total_merged)}）；"
-        f"代码变更 +{format_number(total_additions)} / -{format_number(total_deletions)}。\n\n"
+        f"最近展示的最多 {RECENT_PR_DISPLAY_LIMIT} 个 PR 代码变更 "
+        f"+{format_number(total_additions)} / -{format_number(total_deletions)}。\n\n"
         "### PR 监控汇总\n\n"
-        "| 姓名 | GitHub ID | 属地 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |\n"
-        "| ---- | --------- | ---- | --------- | -------- | ---------- | --------- | --------- |\n"
+        f"PR 总数为完整搜索计数；最近 PR 候选按每人、每 repo、每状态最多 "
+        f"{PR_SAMPLE_PER_QUERY} 条读取，代码变更只统计下方展示项。\n\n"
+        "| 姓名 | GitHub ID | 属地 | Total PRs | Open PRs | Merged PRs | Recent Additions | Recent Deletions |\n"
+        "| ---- | --------- | ---- | --------- | -------- | ---------- | ---------------- | ---------------- |\n"
     )
     for user in user_data:
         stats = user["stats"]
@@ -1121,9 +1151,9 @@ def generate_monthly_scene_markdown(scene_name, config, user_data, monthly_stats
             markdown_text = _append_monthly_window_markdown(markdown_text, window_stats)
         else:
             markdown_text += "#### Monthly contribution unavailable\n\n"
-    markdown_text += "### 最近 PR\n\n"
-    markdown_text += "| Title | State | User | Created | Additions | Deletions |\n"
-    markdown_text += "| ----- | ----- | ---- | ------- | --------- | --------- |\n"
+    markdown_text += f"### 最近 PR（最多 {RECENT_PR_DISPLAY_LIMIT} 条，跨场景 repo）\n\n"
+    markdown_text += "| Title | Repository | State | User | Created | Additions | Deletions |\n"
+    markdown_text += "| ----- | ---------- | ----- | ---- | ------- | --------- | --------- |\n"
     recent_prs = _monthly_recent_prs(user_data)
     for pr in recent_prs:
         title = pr["title"].replace("|", "\\|")
@@ -1133,12 +1163,13 @@ def generate_monthly_scene_markdown(scene_name, config, user_data, monthly_stats
             else "-"
         )
         markdown_text += (
-            f"| [{title}]({pr['url']}) | `{pr['state']}` | "
+            f"| [{title}]({pr['url']}) | [{pr['repo']}](https://github.com/{pr['repo']}) | "
+            f"`{pr['state']}` | "
             f"{pr['display_name']} (@{pr['user']}) | {created_date} | "
             f"{format_number(pr['additions'])} | {format_number(pr['deletions'])} |\n"
         )
     if not recent_prs:
-        markdown_text += "| _No relevant pull requests found._ | | | | | |\n"
+        markdown_text += "| _No relevant pull requests found._ | | | | | | |\n"
     return markdown_text + "\n"
 
 
@@ -1259,16 +1290,17 @@ def create_monthly_dashboard(scene_name, config, user_data, monthly_stats):
   <p class="muted">{escape(scene_name)} · Generated {escape(generated_at)}</p>
   <h1>{escape(config['label'])}<br>monthly monitor</h1>
   <p class="muted">涉及 repo: {repo_links_html}</p>
+  <p class="muted">PR 计数为完整结果；最近 PR 候选按每人、每 repo、每状态最多 {PR_SAMPLE_PER_QUERY} 条读取，代码变更只统计下方展示项。</p>
   <div class="metrics">
     <div class="metric"><span>Tracked users</span><strong>{format_number(len(user_data))}</strong></div>
     <div class="metric"><span>Total PRs</span><strong>{format_number(total_open + total_merged)}</strong></div>
     <div class="metric"><span>Open / merged</span><strong>{format_number(total_open)} / {format_number(total_merged)}</strong></div>
-    <div class="metric"><span>Code delta</span><strong>+{format_number(total_additions)} / -{format_number(total_deletions)}</strong></div>
+    <div class="metric"><span>Recent displayed PR code delta (max {RECENT_PR_DISPLAY_LIMIT})</span><strong>+{format_number(total_additions)} / -{format_number(total_deletions)}</strong></div>
   </div>
   <div class="chart">{chart_markup}</div>
-  <section><h2>PR 监控汇总</h2><table><thead><tr><th>姓名</th><th>GitHub ID</th><th>属地</th><th>Total PRs</th><th>Open</th><th>Merged</th><th>Additions</th><th>Deletions</th></tr></thead><tbody>{''.join(monitoring_rows)}</tbody></table></section>
+  <section><h2>PR 监控汇总</h2><table><thead><tr><th>姓名</th><th>GitHub ID</th><th>属地</th><th>Total PRs</th><th>Open</th><th>Merged</th><th>Recent Additions</th><th>Recent Deletions</th></tr></thead><tbody>{''.join(monitoring_rows)}</tbody></table></section>
   {''.join(window_sections)}
-  <section><h2>最近 PR</h2><table><thead><tr><th>Title</th><th>State</th><th>User</th><th>Created</th><th>Additions</th><th>Deletions</th></tr></thead><tbody>{''.join(recent_rows) or '<tr><td colspan="6">No relevant pull requests found.</td></tr>'}</tbody></table></section>
+  <section><h2>最近 PR（最多 {RECENT_PR_DISPLAY_LIMIT} 条，跨场景 repo）</h2><table><thead><tr><th>Title / Repository</th><th>State</th><th>User</th><th>Created</th><th>Additions</th><th>Deletions</th></tr></thead><tbody>{''.join(recent_rows) or '<tr><td colspan="6">No relevant pull requests found.</td></tr>'}</tbody></table></section>
 </main></body></html>"""
 
     with open(config["html_filename"], "w", encoding="utf-8") as html_file:
@@ -1325,7 +1357,10 @@ def generate_chart(user_data, chart_filename=CHART_FILENAME, target_repo=TARGET_
     print(f"Chart will display {len(usernames)} users: {usernames}")
     print(f"Chart data - Open PR counts: {open_pr_counts} (Total: {total_open_prs})")
     print(f"Chart data - Merged PR counts: {merged_pr_counts} (Total: {total_merged_prs})")
-    print(f"Chart data - Total additions: {format_number(total_additions)}, Total deletions: {format_number(total_deletions)}")
+    print(
+        f"Chart data - Recent displayed PR additions: {format_number(total_additions)}, "
+        f"deletions: {format_number(total_deletions)}"
+    )
     
     # 修复：确保宽度不超过 QuickChart 的限制 (3000px)
     max_allowed_width = 3000
@@ -1341,7 +1376,8 @@ def generate_chart(user_data, chart_filename=CHART_FILENAME, target_repo=TARGET_
     title_lines = [
         f"{target_repo} PR贡献统计 - 共{len(user_data)}位用户",
         f"总计: Open PRs: {total_open_prs} | Merged PRs: {total_merged_prs}",
-        f"代码变更: +{format_number(total_additions)} -{format_number(total_deletions)}"
+        f"最近展示 PR 代码变更 (最多 {RECENT_PR_DISPLAY_LIMIT} 条): "
+        f"+{format_number(total_additions)} -{format_number(total_deletions)}"
     ]
     
     # 创建堆叠柱状图配置 - 修改：所有字体颜色改为黑色加粗
@@ -1407,7 +1443,7 @@ def generate_chart(user_data, chart_filename=CHART_FILENAME, target_repo=TARGET_
                     "stacked": True,
                     "scaleLabel": {
                         "display": True,
-                        "labelString": f"用户名称 (总代码变更: +{format_number(total_additions)} -{format_number(total_deletions)})",
+                        "labelString": f"用户名称 (最近展示 PR 代码变更: +{format_number(total_additions)} -{format_number(total_deletions)})",
                         "fontSize": max(12, min(18, chart_width // 150)),
                         "fontColor": "#000000",  # 修改：X轴标签字体颜色改为黑色
                         "fontStyle": "bold"      # 修改：X轴标签字体加粗
@@ -1588,16 +1624,22 @@ def _append_release_markdown(markdown_text, release_stats, fallback_title):
 def generate_markdown(user_data, last_release_stats=None, current_release_stats=None):
     """生成包含additions/deletions统计的Markdown表格"""
     markdown_text = f"这是根据在 **{TARGET_REPO}** 仓库中的 PR 贡献（Merged PRs + Open PRs）进行的排序。\n\n"
-    markdown_text += f"总共追踪了 {len(user_data)} 个用户在 {TARGET_REPO} 仓库中的贡献情况。\n\n"
+    markdown_text += (
+        f"总共追踪了 {len(user_data)} 个用户；Open/Merged PR 数为完整搜索计数，"
+        f"代码变更统计覆盖最近展示的最多 {RECENT_PR_DISPLAY_LIMIT} 个 PR。\n\n"
+    )
     
     # 计算总的additions和deletions
     total_all_additions = sum(user.get('total_additions', 0) for user in user_data)
     total_all_deletions = sum(user.get('total_deletions', 0) for user in user_data)
     
-    markdown_text += f"**总代码变更统计**: +{format_number(total_all_additions)} 行添加, -{format_number(total_all_deletions)} 行删除\n\n"
+    markdown_text += (
+        f"**最近展示 PR 代码变更统计**: +{format_number(total_all_additions)} 行添加, "
+        f"-{format_number(total_all_deletions)} 行删除\n\n"
+    )
     markdown_text += "## 按归属统计\n\n"
-    markdown_text += "| 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Additions | Deletions |\n"
-    markdown_text += "| ---- | ------ | --------- | -------- | ---------- | --------- | --------- |\n"
+    markdown_text += "| 归属 | 用户数 | Total PRs | Open PRs | Merged PRs | Recent Additions | Recent Deletions |\n"
+    markdown_text += "| ---- | ------ | --------- | -------- | ---------- | ---------------- | ---------------- |\n"
 
     for affiliation, summary in summarize_by_affiliation(user_data).items():
         markdown_text += (
@@ -1630,10 +1672,17 @@ def generate_markdown(user_data, last_release_stats=None, current_release_stats=
         else:
             markdown_text += f"### 👤 {username} - {affiliation} - 总贡献: {total_contributions}\n"
         
-        markdown_text += f"**代码变更**: +{format_number(user_additions)} 行添加, -{format_number(user_deletions)} 行删除\n\n"
+        markdown_text += (
+            f"**最近展示 PR 代码变更**: +{format_number(user_additions)} 行添加, "
+            f"-{format_number(user_deletions)} 行删除\n\n"
+        )
         
         # PR Table with additions/deletions and merged time
-        markdown_text += f"**Pull Requests ({stats['open_prs'].totalCount} open, {stats['merged_prs'].totalCount} merged)**\n"
+        markdown_text += (
+            f"**Pull Requests ({stats['open_prs'].totalCount} open, "
+            f"{stats['merged_prs'].totalCount} merged; up to "
+            f"{PR_SAMPLE_PER_QUERY} newest per state shown)**\n"
+        )
         
         # Process PRs by type to assign the correct state, then sort.
         pr_rows = []
@@ -1647,10 +1696,14 @@ def generate_markdown(user_data, last_release_stats=None, current_release_stats=
             merged_date = format_datetime(merged_at)
             
             # 获取PR的additions和deletions (如果已存储)
-            additions = getattr(pr, '_additions', 0)
-            deletions = getattr(pr, '_deletions', 0)
+            additions = (
+                format_number(pr._additions) if hasattr(pr, "_additions") else "—"
+            )
+            deletions = (
+                format_number(pr._deletions) if hasattr(pr, "_deletions") else "—"
+            )
             
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `merged` | {created_date} | {merged_date} | {additions} | {deletions} |\n"
             pr_rows.append((pr.created_at, row_string))
             
         # Process open PRs
@@ -1662,10 +1715,14 @@ def generate_markdown(user_data, last_release_stats=None, current_release_stats=
             merged_date = format_datetime(merged_at)
             
             # 获取PR的additions和deletions (如果已存储)
-            additions = getattr(pr, '_additions', 0)
-            deletions = getattr(pr, '_deletions', 0)
+            additions = (
+                format_number(pr._additions) if hasattr(pr, "_additions") else "—"
+            )
+            deletions = (
+                format_number(pr._deletions) if hasattr(pr, "_deletions") else "—"
+            )
             
-            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} | {merged_date} | {format_number(additions)} | {format_number(deletions)} |\n"
+            row_string = f"| [{title}]({pr.html_url}) | [{repo_name}](https://github.com/{repo_name}) | `open` | {created_date} | {merged_date} | {additions} | {deletions} |\n"
             pr_rows.append((pr.created_at, row_string))
 
         if pr_rows:
@@ -1697,7 +1754,10 @@ def create_fixed_readme(content):
     # Create the full README content with header
     readme_header = f"# Enhanced GitHub Stats Report - {TARGET_REPO}\n\n"
     readme_header += f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n"
-    readme_header += f"**统计范围**: {TARGET_REPO} 仓库的所有 PR 贡献（包含代码变更统计）\n\n"
+    readme_header += (
+        f"**统计范围**: {TARGET_REPO} 仓库的完整 PR 计数；代码变更统计覆盖最近展示的 "
+        f"最多 {RECENT_PR_DISPLAY_LIMIT} 个 PR。\n\n"
+    )
     readme_header += f"![Enhanced GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     
@@ -2165,7 +2225,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
     <section class="section">
       <div class="section-head">
         <h2>Contribution Volume</h2>
-        <p class="timestamp">Code delta: +{format_number(total_additions)} / -{format_number(total_deletions)}</p>
+        <p class="timestamp">Recent displayed PR code delta (max {RECENT_PR_DISPLAY_LIMIT}): +{format_number(total_additions)} / -{format_number(total_deletions)}</p>
       </div>
       <div class="chart-panel">
         {chart_markup}
@@ -2182,7 +2242,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
           <thead>
             <tr>
               <th>#</th><th>Contributor</th><th>Affiliation</th><th class="num">Total</th>
-              <th class="num">Open</th><th class="num">Merged</th><th class="num">Add</th><th class="num">Del</th><th>Scale</th>
+              <th class="num">Open</th><th class="num">Merged</th><th class="num">Recent Add</th><th class="num">Recent Del</th><th>Scale</th>
             </tr>
           </thead>
           <tbody>{''.join(leaderboard_rows)}</tbody>
@@ -2193,7 +2253,7 @@ def create_dashboard_html(user_data, last_release_stats=None, current_release_st
     <section class="section">
       <div class="section-head">
         <h2>Recent Pull Requests</h2>
-        <p class="timestamp">Latest 80 PRs across tracked contributors</p>
+        <p class="timestamp">Latest {RECENT_PR_DISPLAY_LIMIT} PRs across tracked contributors and configured repos</p>
       </div>
       <div class="table-panel table-scroll">
         <table>
@@ -2238,12 +2298,15 @@ if __name__ == "__main__":
     if not GITHUB_TOKEN:
         raise ValueError("GH_PAT environment variable not set.")
         
-    print(f"Starting Enhanced GitHub stats generation for {len(USERNAMES)} users...")
+    print(f"Starting GitHub stats generation for {len(USERNAMES)} users...")
     print(f"Target repository: {TARGET_REPO}")
-    print(f"Including PR contributions with additions/deletions tracking")
+    print(
+        f"PR counts are complete; code deltas are fetched for the latest "
+        f"{RECENT_PR_DISPLAY_LIMIT} displayed PRs."
+    )
     print(f"Users to track: {USERNAMES}")
     
-    github = Github(GITHUB_TOKEN)
+    github = Github(GITHUB_TOKEN, per_page=100)
     
     all_user_data = []
     for username in USERNAMES:
@@ -2252,46 +2315,11 @@ if __name__ == "__main__":
             print(f"Processing user: {username}")
             
             display_name = get_user_display_name(github, username)
-            stats = get_user_stats(github, username)
+            stats = get_user_stats(
+                github, username, item_limit=PR_SAMPLE_PER_QUERY
+            )
             total_contributions = stats['merged_prs'].totalCount + stats['open_prs'].totalCount
-            
-            # 获取PR的additions和deletions
-            print(f"  Fetching additions/deletions for {username}'s PRs...")
-            user_total_additions = 0
-            user_total_deletions = 0
-            
-            # 处理merged PRs
-            for pr in stats['merged_prs']:
-                try:
-                    additions, deletions, merged_at = get_pr_additions_deletions(github, pr)
-                    pr._additions = additions
-                    pr._deletions = deletions
-                    pr._merged_at = merged_at
-                    user_total_additions += additions
-                    user_total_deletions += deletions
-                    time.sleep(0.5)  # API rate limiting
-                except Exception as e:
-                    print(f"    Error processing merged PR #{pr.number}: {e}")
-                    pr._additions = 0
-                    pr._deletions = 0
-                    pr._merged_at = None
-            
-            # 处理open PRs
-            for pr in stats['open_prs']:
-                try:
-                    additions, deletions, merged_at = get_pr_additions_deletions(github, pr)
-                    pr._additions = additions
-                    pr._deletions = deletions
-                    pr._merged_at = merged_at
-                    user_total_additions += additions
-                    user_total_deletions += deletions
-                    time.sleep(0.5)  # API rate limiting
-                except Exception as e:
-                    print(f"    Error processing open PR #{pr.number}: {e}")
-                    pr._additions = 0
-                    pr._deletions = 0
-                    pr._merged_at = None
-            
+
             all_user_data.append({
                 "username": username,
                 "affiliation": USER_AFFILIATIONS.get(username, "Unknown"),
@@ -2299,13 +2327,12 @@ if __name__ == "__main__":
                 "display_name": display_name,
                 "stats": stats,
                 "total_contributions": total_contributions,
-                "total_additions": user_total_additions,
-                "total_deletions": user_total_deletions
+                "total_additions": 0,
+                "total_deletions": 0
             })
             
             print(f"✅ Successfully processed {username}:")
             print(f"   Total contributions: {total_contributions}")
-            print(f"   Code changes: +{format_number(user_total_additions)} -{format_number(user_total_deletions)}")
             
             # 添加延迟避免API限制
             time.sleep(2)
@@ -2320,6 +2347,7 @@ if __name__ == "__main__":
     
     # 按总贡献数排序
     all_user_data.sort(key=lambda x: x['total_contributions'], reverse=True)
+    _attach_recent_pr_deltas(github, all_user_data)
     
     # 打印最终统计
     print(f"\nFinal contribution summary:")
