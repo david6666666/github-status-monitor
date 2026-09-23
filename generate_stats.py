@@ -88,6 +88,19 @@ MONTHLY_SCENE_CONFIGS = {
             {"name": "liubingyu", "username": "spencerr221", "location": "香港"},
         ],
     },
+    "vllm-gr": {
+        "label": "vllm-gr",
+        "chart_filename": "stats_chart_vllm_gr.svg",
+        "html_filename": "stats_dashboard_vllm_gr.html",
+        "repositories": ["JiusiServe/vllm-gr"],
+        "people": [
+            {"name": "支云鹏", "username": "ZhiYunpenghuawei", "location": "北京"},
+            {"name": "田晓冬", "username": "parallel-star8", "location": "北京"},
+            {"name": "丁易", "username": "DINGEde", "location": "北京"},
+            {"name": "张邯", "username": "zhanghanleo", "location": "北京"},
+            {"name": "张淑程", "username": "candanzg", "location": "北京"},
+        ],
+    },
 }
 # Fixed README filename
 README_FILENAME = "README_data.md"

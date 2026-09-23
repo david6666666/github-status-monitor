@@ -58,6 +58,8 @@ jobs:
             stats_dashboard_afd_plugin.html
             stats_chart_agentinfer.svg
             stats_dashboard_agentinfer.html
+            stats_chart_vllm_gr.svg
+            stats_dashboard_vllm_gr.html
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "actions@github.com"
           push_options: '--force-with-lease'

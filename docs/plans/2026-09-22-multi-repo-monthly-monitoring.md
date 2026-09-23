@@ -2,9 +2,9 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Extend the existing GitHub status monitor to report the `afd-plugin` and `AgentInfer` 投入场景 using the personnel and multi-repo mappings from the supplied Google Sheet, with Beijing-time current/previous-month contribution windows while preserving the existing vLLM-Omni release-window report.
+**Goal:** Extend the existing GitHub status monitor to report the `afd-plugin`, `AgentInfer`, and `vllm-gr` 投入场景 using their configured personnel and repositories, with Beijing-time current/previous-month contribution windows while preserving the existing vLLM-Omni release-window report.
 
-**Architecture:** Keep the existing vLLM-Omni path and output names stable. Add a small, explicit configuration for the two monthly scenes, including each scene's people and repo list, parameterize the existing all-time PR query and chart generator where needed, and add generic monthly-window collection/rendering helpers. Each scene gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for vLLM-Omni plus the two scenes. Monthly raw metrics are aggregated across a scene before scoring. All-time PR totals use full search counts while candidate lists and code-detail lookups are bounded to avoid walking large repositories' entire PR histories.
+**Architecture:** Keep the existing vLLM-Omni reporting behavior stable while naming its output files explicitly. Maintain an explicit configuration for the three monthly scenes, including each scene's people and repo list, parameterize the existing all-time PR query and chart generator where needed, and use the generic monthly-window collection/rendering helpers. Each scene gets its own SVG chart and HTML dashboard; `README_data.md` becomes the generated index/report for vLLM-Omni plus the three scenes. Monthly raw metrics are aggregated across a scene before scoring. All-time PR totals use full search counts while candidate lists and code-detail lookups are bounded to avoid walking large repositories' entire PR histories.
 
 **Tech Stack:** Python 3.9+, PyGithub, requests, GitHub Actions, GitHub Search/REST API, Markdown, standalone HTML/SVG.
 
@@ -31,7 +31,7 @@ Check that every requested repository has a known owner/name, a known default br
 
 **Step 1: Add explicit monthly scene configuration**
 
-Add the six `afd-plugin` people and ten `AgentInfer` people, including the two subsequently added Hong Kong contributors, retaining display names and each person's location. Map `afd-plugin` to `vllm-project/afd-plugin`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`; map `AgentInfer` to `openJiuwen-ai/agent-infer`, `vllm-project/router`, `vllm-project/semantic-router`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`. Define output names per scene and keep the existing vLLM-Omni reporting flow intact.
+Add the six `afd-plugin` people and ten `AgentInfer` people, including the two subsequently added Hong Kong contributors, retaining display names and each person's location. Also add the five Beijing-based `vllm-gr` contributors for `JiusiServe/vllm-gr`. Map `afd-plugin` to `vllm-project/afd-plugin`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`; map `AgentInfer` to `openJiuwen-ai/agent-infer`, `vllm-project/router`, `vllm-project/semantic-router`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`. Define output names per scene and keep the existing vLLM-Omni reporting flow intact.
 
 **Step 2: Parameterize all-time PR collection**
 
@@ -79,16 +79,16 @@ Reuse the existing chart generator with parameterized output paths. Add a compac
 
 **Step 2: Append monthly reports to `README_data.md`**
 
-Keep the existing vLLM-Omni report first, then add links, the scene repo lists, all-time PR monitoring summaries, Beijing-time window metadata, and contribution tables for `afd-plugin` and `AgentInfer`.
+Keep the existing vLLM-Omni report first, then add links, the scene repo lists, all-time PR monitoring summaries, Beijing-time window metadata, and contribution tables for all three monthly scenes.
 
 **Step 3: Update the action artifact list**
 
-Include the two new SVG and HTML files in `file_pattern`; keep the daily schedule and manual dispatch path because the added API work should not turn the existing monitor into an hourly rate-limit risk.
+Include every scene-specific SVG and HTML file in `file_pattern`; keep the daily schedule and manual dispatch path because the added API work should not turn the existing monitor into an hourly rate-limit risk.
 
 ### Task 5: Verify, review, commit, push, and trigger
 
 **Files:**
-- Generated: `README_data.md`, `stats_chart_vllm_omni.svg`, `stats_dashboard_vllm_omni.html`, `stats_chart_afd_plugin.svg`, `stats_dashboard_afd_plugin.html`, `stats_chart_agentinfer.svg`, `stats_dashboard_agentinfer.html`
+- Generated: `README_data.md`, `stats_chart_vllm_omni.svg`, `stats_dashboard_vllm_omni.html`, `stats_chart_afd_plugin.svg`, `stats_dashboard_afd_plugin.html`, `stats_chart_agentinfer.svg`, `stats_dashboard_agentinfer.html`, `stats_chart_vllm_gr.svg`, `stats_dashboard_vllm_gr.html`
 
 **Step 1: Run local static checks**
 
