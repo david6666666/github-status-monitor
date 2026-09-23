@@ -10,7 +10,7 @@ from github import Github
 # =================================CONFIG=================================
 # GitHub usernames grouped by affiliation
 USER_GROUPS = {
-    "HUAWEI": ["david6666666", "jiangkuaixue123", "tangtiangu", "bjf-frz", "yangjianjuan ", "wuhang2014", "yenuo26", "hsliuustc0106", "amy-why-3459", "zengchuang-hw", "Shirley125", "LJH-LBJ", "Bounty-hunter", "fake0fan", "R2-Y", "natureofnature", "chickeyton", "Gaohan123", "congw729", "herotai214", "TaffyOfficial", "tzhouam", "NumberWan", "spencerr221", "fhfuih", "SamitHuang", "knlnguyen1802", "hadipash", "cyr20040123", "AndyZhou952", "wtomin", "mxuax", "zhtmike"],
+    "HUAWEI": ["david6666666", "jiangkuaixue123", "tangtiangu", "bjf-frz", "yangjianjuan ", "wuhang2014", "yenuo26", "hsliuustc0106", "amy-why-3459", "zengchuang-hw", "Shirley125", "LJH-LBJ", "Bounty-hunter", "fake0fan", "R2-Y", "natureofnature", "chickeyton", "Gaohan123", "congw729", "herotai214", "TaffyOfficial", "tzhouam", "NumberWan", "spencerr221", "fhfuih", "SamitHuang", "knlnguyen1802", "hadipash", "cyr20040123", "AndyZhou952", "wtomin", "mxuax", "zhtmike", "BLANKETusers", "Dong1017", "psv666", "ShengDev"],
     "阿里PAI": ["ZeldaHuang", "iwzbi", "Sy0307"],
     "蚂蚁": ["ApsarasX"],
     "小米": ["qibaoyuan"],
@@ -29,9 +29,9 @@ USER_AFFILIATIONS = {
 # Your GitHub Personal Access Token, read from an environment variable
 GITHUB_TOKEN = os.getenv('GH_PAT')
 # The output filename for the chart
-CHART_FILENAME = "stats_chart.svg"
+CHART_FILENAME = "stats_chart_vllm_omni.svg"
 # The output filename for the standalone HTML dashboard
-HTML_FILENAME = "stats_dashboard.html"
+HTML_FILENAME = "stats_dashboard_vllm_omni.html"
 # Target repository - only vllm-project/vllm-omni
 TARGET_REPO = "vllm-project/vllm-omni"
 # Fixed UTC+08:00 is sufficient for Beijing time because it has no DST changes.
@@ -84,6 +84,8 @@ MONTHLY_SCENE_CONFIGS = {
             {"name": "李雯琳", "username": "Evelynn-V", "location": "上海"},
             {"name": "张璇", "username": "potatoZhx", "location": "上海"},
             {"name": "牛衍昌", "username": "warriorsniu", "location": "北京"},
+            {"name": "daihaozhao", "username": "herotai214", "location": "香港"},
+            {"name": "liubingyu", "username": "spencerr221", "location": "香港"},
         ],
     },
 }
@@ -1842,6 +1844,7 @@ def create_fixed_readme(content):
         f"**统计范围**: {TARGET_REPO} 仓库的完整 PR 计数；代码变更统计覆盖最近展示的 "
         f"最多 {RECENT_PR_DISPLAY_LIMIT} 个 PR。\n\n"
     )
+    readme_header += f"[vLLM-Omni dashboard]({HTML_FILENAME})\n\n"
     readme_header += f"![Enhanced GitHub Stats Chart]({CHART_FILENAME})\n\n"
     readme_header += "---\n\n"
     

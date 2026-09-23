@@ -31,7 +31,7 @@ Check that every requested repository has a known owner/name, a known default br
 
 **Step 1: Add explicit monthly scene configuration**
 
-Add the six `afd-plugin` people and eight `AgentInfer` people from the sheet, retaining sheet display names and using the sheet `属地` as each person's label. Map `afd-plugin` to `vllm-project/afd-plugin`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`; map `AgentInfer` to `openJiuwen-ai/agent-infer`, `vllm-project/router`, `vllm-project/semantic-router`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`. Define output names per scene and avoid changing the existing vLLM-Omni user groups.
+Add the six `afd-plugin` people and ten `AgentInfer` people, including the two subsequently added Hong Kong contributors, retaining display names and each person's location. Map `afd-plugin` to `vllm-project/afd-plugin`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`; map `AgentInfer` to `openJiuwen-ai/agent-infer`, `vllm-project/router`, `vllm-project/semantic-router`, `vllm-project/vllm`, and `vllm-project/vllm-ascend`. Define output names per scene and keep the existing vLLM-Omni reporting flow intact.
 
 **Step 2: Parameterize all-time PR collection**
 
@@ -88,7 +88,7 @@ Include the two new SVG and HTML files in `file_pattern`; keep the daily schedul
 ### Task 5: Verify, review, commit, push, and trigger
 
 **Files:**
-- Generated: `README_data.md`, `stats_chart.svg`, `stats_dashboard.html`, `stats_chart_afd_plugin.svg`, `stats_dashboard_afd_plugin.html`, `stats_chart_agentinfer.svg`, `stats_dashboard_agentinfer.html`
+- Generated: `README_data.md`, `stats_chart_vllm_omni.svg`, `stats_dashboard_vllm_omni.html`, `stats_chart_afd_plugin.svg`, `stats_dashboard_afd_plugin.html`, `stats_chart_agentinfer.svg`, `stats_dashboard_agentinfer.html`
 
 **Step 1: Run local static checks**
 
