@@ -39,6 +39,10 @@ BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
 PR_SAMPLE_PER_QUERY = 10
 RECENT_PR_DISPLAY_LIMIT = 80
 MONTHLY_REVIEW_EXCLUDED_REPOS = {"vllm-project/vllm"}
+GITHUB_PER_PAGE = 100
+GITHUB_SEARCH_INTERVAL_SECONDS = 2.1
+MAX_GITHUB_SEARCH_PAGES = 10
+_LAST_GITHUB_SEARCH_REQUEST_AT = 0.0
 # Monthly reports use the personnel and display names from the supplied team sheet.
 # Each scene aggregates every repository listed in the sheet's "涉及repo" column.
 MONTHLY_SCENE_CONFIGS = {
@@ -138,6 +142,47 @@ class _CombinedResult:
         return iter(self._items)
 
 
+def _wait_for_github_search_slot():
+    delay = GITHUB_SEARCH_INTERVAL_SECONDS - (
+        time.monotonic() - _LAST_GITHUB_SEARCH_REQUEST_AT
+    )
+    if delay > 0:
+        time.sleep(delay)
+
+
+def _search_issues_throttled(github_instance, query, **kwargs):
+    """Run one GitHub Search request at a pace below its per-minute limit."""
+    global _LAST_GITHUB_SEARCH_REQUEST_AT
+
+    _wait_for_github_search_slot()
+    try:
+        results = github_instance.search_issues(query, **kwargs)
+        total_count = results.totalCount  # Force the lazy first-page request here.
+    finally:
+        _LAST_GITHUB_SEARCH_REQUEST_AT = time.monotonic()
+    return results, total_count
+
+
+def _iter_search_results(results, total_count):
+    """Iterate search pages with the same global pacing as initial requests."""
+    global _LAST_GITHUB_SEARCH_REQUEST_AT
+
+    page_count = min(
+        (max(total_count, 0) + GITHUB_PER_PAGE - 1) // GITHUB_PER_PAGE,
+        MAX_GITHUB_SEARCH_PAGES,
+    )
+    for page_number in range(page_count):
+        if page_number == 0:
+            page = results.get_page(page_number)
+        else:
+            _wait_for_github_search_slot()
+            try:
+                page = results.get_page(page_number)
+            finally:
+                _LAST_GITHUB_SEARCH_REQUEST_AT = time.monotonic()
+        yield from page
+
+
 def get_user_stats_fallback(github_instance, username, target_repo=TARGET_REPO):
     """
     备用方法：直接从组织的仓库中获取用户的PR统计
@@ -211,20 +256,24 @@ def get_user_stats(
     time.sleep(1)
     
     try:
-        open_search = github_instance.search_issues(
+        open_search, open_count = _search_issues_throttled(
+            github_instance,
             query_open_prs, sort="created", order="desc"
         )
-        merged_search = github_instance.search_issues(
+        merged_search, merged_count = _search_issues_throttled(
+            github_instance,
             query_merged_prs, sort="created", order="desc"
         )
         
         print(f"  ✓ Search API Success for {username}")
 
-        open_count = open_search.totalCount
-        merged_count = merged_search.totalCount
         if item_limit is None:
-            open_items = list(open_search)
-            merged_items = list(merged_search)
+            open_items = list(
+                _iter_search_results(open_search, open_count)
+            )
+            merged_items = list(
+                _iter_search_results(merged_search, merged_count)
+            )
             open_count = len(open_items)
             merged_count = len(merged_items)
         else:
@@ -473,7 +522,12 @@ def _collect_release_window_stats(
     query = f"repo:{TARGET_REPO} is:pr is:merged merged:{start_date}..{end_date}"
     print(f"  Release PR review query: {query}")
 
-    merged_pr_issues = list(github_instance.search_issues(query))
+    merged_pr_search, merged_pr_total = _search_issues_throttled(
+        github_instance, query
+    )
+    merged_pr_issues = list(
+        _iter_search_results(merged_pr_search, merged_pr_total)
+    )
     total_reviews = 0
     tracked_reviews = 0
     reviewed_prs_by_user = {username: set() for username in USERNAMES}
@@ -761,7 +815,12 @@ def _collect_monthly_window_stats(
             )
             print(f"  Monthly review query: {review_query}")
             try:
-                for issue in github_instance.search_issues(review_query):
+                review_results, review_total = _search_issues_throttled(
+                    github_instance, review_query
+                )
+                for issue in _iter_search_results(
+                    review_results, review_total
+                ):
                     review_issues_by_number.setdefault(issue.number, issue)
             except Exception as exc:
                 print(
@@ -807,10 +866,9 @@ def _collect_monthly_window_stats(
         merged_query = (
             f"repo:{repo_name} is:pr is:merged merged:{start_date}..{end_date}"
         )
-        merged_results = github_instance.search_issues(merged_query)
-        merged_pr_count = getattr(merged_results, "totalCount", None)
-        if merged_pr_count is None:
-            merged_pr_count = len(merged_results)
+        _, merged_pr_count = _search_issues_throttled(
+            github_instance, merged_query
+        )
     except Exception as exc:
         print(f"  Error fetching merged PR count for {repo_name}: {exc}")
         merged_pr_count = 0
@@ -2332,7 +2390,7 @@ if __name__ == "__main__":
     )
     print(f"Users to track: {USERNAMES}")
     
-    github = Github(GITHUB_TOKEN, per_page=100)
+    github = Github(GITHUB_TOKEN, per_page=GITHUB_PER_PAGE)
     
     all_user_data = []
     for username in USERNAMES:
