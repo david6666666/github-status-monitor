@@ -57,7 +57,7 @@ Read repository commits between the window boundaries, retain tracked GitHub aut
 
 **Step 2: Collect reviews in the same window**
 
-Search PRs reviewed by tracked contributors and updated in the bounded window, inspect review submissions, and count only review events whose `submitted_at` lies inside the window. Retain the existing 20% commit + 35% review + 45% code-churn scoring rule.
+Search PRs reviewed by tracked contributors and updated in the bounded window, inspect review submissions, and count only review events whose `submitted_at` lies inside the window. Skip review collection for `vllm-project/vllm` to reduce API work, but continue including that repository in PR monitoring/counts. Retain the existing 20% commit + 35% review + 45% code-churn scoring rule.
 
 **Step 3: Aggregate scene metrics before scoring**
 

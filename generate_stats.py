@@ -38,6 +38,7 @@ TARGET_REPO = "vllm-project/vllm-omni"
 BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
 PR_SAMPLE_PER_QUERY = 10
 RECENT_PR_DISPLAY_LIMIT = 80
+MONTHLY_REVIEW_EXCLUDED_REPOS = {"vllm-project/vllm"}
 # Monthly reports use the personnel and display names from the supplied team sheet.
 # Each scene aggregates every repository listed in the sheet's "涉及repo" column.
 MONTHLY_SCENE_CONFIGS = {
@@ -749,20 +750,24 @@ def _collect_monthly_window_stats(
     start_date = start_utc.strftime("%Y-%m-%d")
     end_date = end_utc.strftime("%Y-%m-%d")
     review_issues_by_number = {}
-    for username in sorted(tracked_usernames):
-        review_query = (
-            f"repo:{repo_name} is:pr reviewed-by:{username} "
-            f"updated:{start_date}..{end_date}"
-        )
-        print(f"  Monthly review query: {review_query}")
-        try:
-            for issue in github_instance.search_issues(review_query):
-                review_issues_by_number.setdefault(issue.number, issue)
-        except Exception as exc:
-            print(
-                f"  Error fetching review candidates for {repo_name}/"
-                f"{username}: {exc}"
+    reviews_excluded = repo_name in MONTHLY_REVIEW_EXCLUDED_REPOS
+    if reviews_excluded:
+        print(f"  Skipping monthly review collection for {repo_name} by configuration.")
+    else:
+        for username in sorted(tracked_usernames):
+            review_query = (
+                f"repo:{repo_name} is:pr reviewed-by:{username} "
+                f"updated:{start_date}..{end_date}"
             )
+            print(f"  Monthly review query: {review_query}")
+            try:
+                for issue in github_instance.search_issues(review_query):
+                    review_issues_by_number.setdefault(issue.number, issue)
+            except Exception as exc:
+                print(
+                    f"  Error fetching review candidates for {repo_name}/"
+                    f"{username}: {exc}"
+                )
 
     tracked_reviews = 0
     reviewed_prs_by_user = {username: set() for username in tracked_usernames}
@@ -832,6 +837,8 @@ def _collect_monthly_window_stats(
         f"tracked code delta +{tracked_additions}/-{tracked_deletions}"
     )
     return {
+        "repo_name": repo_name,
+        "reviews_excluded": reviews_excluded,
         "section_title": section_title,
         "window_start": start_time,
         "window_end": end_time,
@@ -893,6 +900,11 @@ def _merge_monthly_window_stats(repo_stats, people, section_title, start_time, e
         "section_title": section_title,
         "window_start": start_time,
         "window_end": end_time,
+        "review_excluded_repos": sorted(
+            stats["repo_name"]
+            for stats in repo_stats
+            if stats.get("reviews_excluded") and stats.get("repo_name")
+        ),
         "tracked_commits": sum(stats["tracked_commits"] for stats in repo_stats),
         "total_commits": sum(stats["total_commits"] for stats in repo_stats),
         "tracked_reviews": sum(stats["tracked_reviews"] for stats in repo_stats),
@@ -1078,6 +1090,12 @@ def _append_monthly_window_markdown(markdown_text, window_stats):
         f"-{format_number(window_stats['tracked_deletions'])}; "
         f"Merged PRs in window: {format_number(window_stats['merged_pr_count'])}\n\n"
     )
+    if window_stats["review_excluded_repos"]:
+        markdown_text += (
+            "Review counts exclude "
+            f"{', '.join(window_stats['review_excluded_repos'])}; "
+            "PR monitoring/counts still include these repositories.\n\n"
+        )
     markdown_text += f"Scoring: {window_stats['score_note']}\n\n"
     markdown_text += "| 属地 | Contribution | Commits | Reviews | Reviewed PRs | Additions | Deletions | Code Lines |\n"
     markdown_text += "| ---- | ------------ | ------- | ------- | ------------ | --------- | --------- | ---------- |\n"
@@ -1240,10 +1258,18 @@ def create_monthly_dashboard(scene_name, config, user_data, monthly_stats):
                 f"<td class='num'>+{format_number(user['additions'])}</td>"
                 f"<td class='num'>-{format_number(user['deletions'])}</td></tr>"
             )
+        review_exclusion_note = ""
+        if window_stats["review_excluded_repos"]:
+            review_exclusion_note = (
+                "<p class='muted'>Review counts exclude "
+                f"{escape(', '.join(window_stats['review_excluded_repos']))}; "
+                "PR monitoring/counts still include these repositories.</p>"
+            )
         window_sections.append(
             f"<section><h2>{escape(window_stats['section_title'])}</h2>"
             f"<p class='muted'>时间: {escape(format_beijing_datetime(window_stats['window_start']))}"
             f" → {escape(format_beijing_datetime(window_stats['window_end']))}</p>"
+            f"{review_exclusion_note}"
             f"<p>{escape(window_stats['score_note'])}</p>"
             f"<table><thead><tr><th>属地</th><th>Contribution</th><th>Commits</th>"
             f"<th>Reviews</th><th>Reviewed PRs</th><th>Additions</th><th>Deletions</th></tr></thead>"
