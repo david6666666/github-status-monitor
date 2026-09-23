@@ -4,7 +4,9 @@ Generated on: 2026-09-23 04:17:20 UTC
 
 **统计范围**: vllm-project/vllm-omni 仓库的完整 PR 计数；代码变更统计覆盖最近展示的 最多 80 个 PR。
 
-![Enhanced GitHub Stats Chart](stats_chart.svg)
+[vLLM-Omni dashboard](stats_dashboard_vllm_omni.html)
+
+![Enhanced GitHub Stats Chart](stats_chart_vllm_omni.svg)
 
 ---
 
