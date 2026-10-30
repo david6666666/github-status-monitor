@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   update-stats:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       # Required for the commit action to push changes
       contents: write
@@ -34,7 +34,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
@@ -50,6 +50,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "📊 Chore: Update stats, chart, and dashboard"
+          commit_options: '-s'
           file_pattern: >-
             README_data.md
             stats_chart_vllm_omni.svg
